@@ -15,3 +15,12 @@ Data came from three different labs’ ex vivo samples of P. vivax infected pati
 It can be downloaded from [Kaggle](https://www.kaggle.com/kmader/malaria-bounding-boxes)
 
 
+#### Run this project
+
+Step 1: Clone this Repository.
+
+Step 1: Download The Dataset From The Given Link and Rename the dataset folder 'malaria'. Move the dataset into project directory.
+
+Step 2: Run the Data Preparation File or JSON_to_CSV_Test.py & JSON_to_CSV_Test.py
+
+Step 3: Data Preparation For Model Training
