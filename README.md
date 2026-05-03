@@ -1,20 +1,58 @@
-## MalariAI : Automated Malaria Cell Segmentation from Blood Smear Images Using Computer Vision and Deep Learning Techniques
+# MalariAI : Automated Malaria Cell Segmentation
 
-#### Problem Statement
-<div align="justify">
-   Malaria, a life-threatening disease caused by Plasmodium parasites, remains a global health challenge, particularly in regions with limited access to healthcare resources. One of the key components in the diagnosis of malaria is the microscopic examination of blood smear images to detect and quantify the presence of malaria-infected red blood cells. Traditional manual methods for cell segmentation and parasite detection are labor-intensive, time-consuming, and subject to inter-observer variability. To address these challenges, there is an urgent need for automated malaria cell segmentation systems that can assist healthcare professionals in making accurate and timely diagnoses.
-</div>
+## Overview
+This repository contains a streamlined Python pipeline for detecting and classifying Malaria cells in blood smear images using PyTorch and Faster R-CNN. 
 
+Initially built as a messy Jupyter Notebook pipeline utilizing deprecated Mask R-CNN frameworks, the project has been fully remodeled into a clean, object-oriented PyTorch codebase that scales easily and relies on standard modern computer vision practices.
 
-#### Dataset
+## Project Structure
+```text
+MalariAI/
+├── README.md              # Project Tracker and Guide
+├── requirements.txt       # Environment dependencies
+├── data/
+│   └── prepare_data.py    # Standardizes original JSON annotations to CSV
+├── src/
+│   ├── models/
+│   │   ├── dataset.py     # Custom PyTorch Dataset
+│   │   └── faster_rcnn.py # torchvision Faster R-CNN instance 
+│   ├── train.py           # Training Loop using SGD
+│   └── inference.py       # Inference and Visualization module
+├── notebooks/             # Archived EDA and experimental notebooks
+└── archive/               # Legacy scripts that got refactored
+```
 
-<div align="justify">
-Data came from three different labs’ ex vivo samples of P. vivax infected patients in Manaus, Brazil, and Thailand. The Manaus and Thailand data were used for training and validation while the Brazil data were left out as our test set. Blood smears were stained with Giemsa reagent, which attaches to DNA and allow experts to inspect infected cells and determine their stage.
-</div>
+## Quick Start
+1. **Environment Setup**: 
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. **Data Preparation**: Ensure `input/training.json` and `input/test.json` are present, then run:
+   ```bash
+   python data/prepare_data.py
+   ```
+3. **Training**:
+   ```bash
+   python src/train.py
+   ```
+4. **Inference**:
+   ```bash
+   python src/inference.py --image ImageMal.jpg --model models/faster_rcnn_malariai.pth
+   ```
 
-It can be downloaded from [Kaggle](https://www.kaggle.com/kmader/malaria-bounding-boxes)
+---
 
+## 📈 Work Tracker
+*(Always keep this section updated so future iterations can pick up instantly)*
 
-### Methodology
+### Completed Tasks
+- [x] Analysed current mixed pipeline (TF, Keras, PyTorch, MRCNN) out of notebooks.
+- [x] Restructured directories and moved deprecated/experimental scripts into `archive/` and `notebooks/`.
+- [x] Wrote unified `prepare_data.py` to extract correct bounding boxes (min_r, max_c etc.) normalized across files.
+- [x] Created scalable PyTorch Dataloader `MalariaDataset` that natively groups bounding boxes by class (`RBC`, `non_RBC`).
+- [x] Added automated bounding box visualization and testing script `inference.py`.
 
-<img src="./System Architecture.png" />
+### Next Steps / To-Do
+- [ ] **Data Validation**: Run data loader over the full dataset and check that image dimensions and bounding box boundaries never throw OOB errors.
+- [ ] **Hyperparameter Tuning**: Optimize Learning Rate & Step Schedulers (default currently SGD `lr=0.005`).
+- [ ] **Model Evaluation**: Reconstruct map computation across the test holdout in `inference.py`.
