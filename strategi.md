@@ -34,10 +34,12 @@ Novelty Angle 1: Overcoming Incomplete Annotations in Medical Datasets
 
 The Pitch: Most deep learning pipelines fail when datasets have incomplete annotations (missing bounding boxes). We propose a decoupling framework where a Zero-Shot Biological Segmenter (like Cellpose) extracts robust Regions of Interest (ROIs), circumventing the missing label problem, followed by a dedicated classifier.
 Why it's good: It solves a real-world problem. Researchers hate labeling thousands of cells. Proving your pipeline works despite bad/incomplete labels is highly publishable.
+
 Novelty Angle 2: Handling Dense Overlapping Erythrocytes
 
 The Pitch: Object detection bounding boxes fail on densely packed blood smears. By pivoting to an Instance Segmentation → Classification pipeline, we achieve a significantly higher recall rate on clumped cells than current state-of-the-art Faster R-CNN approaches.
 Why it's good: You can directly compare Stage 1 (our approach) against your 2023 Mask R-CNN model and show a massive spike in detected cells.
+
 Novelty Angle 3: Explainable AI (XAI) in the Classification Stage
 
 The Pitch: If we use a Vision Transformer (ViT) or Grad-CAM on a CNN for the classification stage, we can output "Attention Maps" that visually highlight the malaria parasite inside the cropped cell crop.
