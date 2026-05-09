@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; padding: 20px; font-size: 13px; }
+
+  h1 { font-size: 18px; font-weight: 700; color: #f8fafc; margin-bottom: 4px; letter-spacing: -0.3px; }
+  .subtitle { color: #64748b; font-size: 12px; margin-bottom: 24px; }
+
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #475569; margin-bottom: 10px; }
+
+  /* Data section */
+  .data-row { display: flex; gap: 10px; margin-bottom: 24px; }
+  .data-card { flex: 1; background: #1e2330; border: 1px solid #2d3748; border-radius: 8px; padding: 12px; }
+  .data-card .num { font-size: 22px; font-weight: 700; color: #38bdf8; }
+  .data-card .label { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+  .warn-card { flex: 2; background: #1e1a2e; border: 1px solid #4c1d95; border-radius: 8px; padding: 12px; }
+  .warn-card .title { font-size: 12px; font-weight: 600; color: #a78bfa; margin-bottom: 6px; }
+
+  .bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .bar-label { width: 80px; font-size: 10px; color: #94a3b8; text-align: right; }
+  .bar-track { flex: 1; height: 10px; background: #2d3748; border-radius: 99px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 99px; }
+  .bar-val { width: 44px; font-size: 10px; color: #64748b; }
+
+  /* Two pipelines */
+  .pipelines { display: flex; gap: 14px; margin-bottom: 24px; }
+  .pipeline { flex: 1; border-radius: 10px; padding: 14px; }
+  .pipe-a { background: #0f1e2e; border: 1.5px solid #0369a1; }
+  .pipe-b { background: #0e1e18; border: 1.5px solid #065f46; }
+
+  .pipe-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .pipe-tag { font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 2px 7px; border-radius: 99px; text-transform: uppercase; }
+  .tag-a { background: #0369a1; color: #bae6fd; }
+  .tag-b { background: #065f46; color: #6ee7b7; }
+  .pipe-title { font-size: 13px; font-weight: 700; }
+
+  .step { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; position: relative; }
+  .step-num { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .num-a { background: #0369a1; color: #fff; }
+  .num-b { background: #065f46; color: #fff; }
+  .step-content { flex: 1; }
+  .step-title { font-size: 11px; font-weight: 600; color: #f1f5f9; }
+  .step-sub { font-size: 10px; color: #64748b; margin-top: 2px; line-height: 1.4; }
+
+  .connector { width: 1px; height: 8px; margin: 0 auto 0 9px; }
+  .conn-a { background: #0369a1; opacity: 0.5; }
+  .conn-b { background: #065f46; opacity: 0.5; }
+
+  /* Comparison */
+  .compare-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+  .compare-table th { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; color: #64748b; text-align: left; padding: 6px 10px; border-bottom: 1px solid #2d3748; }
+  .compare-table td { font-size: 11px; padding: 7px 10px; border-bottom: 1px solid #1e2330; color: #cbd5e1; vertical-align: top; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .td-metric { color: #94a3b8; font-weight: 600; }
+  .badge { display: inline-block; font-size: 9px; font-weight: 700; padding: 1px 6px; border-radius: 99px; }
+  .badge-blue { background: #1e3a5f; color: #38bdf8; }
+  .badge-green { background: #064e3b; color: #34d399; }
+  .badge-yellow { background: #451a03; color: #fbbf24; }
+
+  /* Roadmap */
+  .phases { display: flex; gap: 10px; }
+  .phase { flex: 1; background: #1e2330; border: 1px solid #2d3748; border-radius: 8px; padding: 10px; }
+  .phase-header { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .ph1 { color: #38bdf8; }
+  .ph2 { color: #a78bfa; }
+  .ph3 { color: #34d399; }
+  .ph4 { color: #fb923c; }
+  .phase-item { font-size: 10px; color: #94a3b8; margin-bottom: 3px; padding-left: 8px; position: relative; line-height: 1.4; }
+  .phase-item::before { content: "·"; position: absolute; left: 0; color: #475569; }
+  .phase-title { font-size: 11px; font-weight: 600; color: #e2e8f0; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<h1>MalariAI — Project Master Plan</h1>
+<p class="subtitle">Build both · Compare · Understand every layer · Publish</p>
+
+<!-- Data Reality -->
+<div class="section-label">The Data Reality</div>
+<div class="data-row">
+  <div class="data-card">
+    <div class="num">1,208</div>
+    <div class="label">Training Images<br>1600×1200 px, RGB</div>
+  </div>
+  <div class="data-card">
+    <div class="num">120</div>
+    <div class="label">Test Images<br>held out</div>
+  </div>
+  <div class="data-card">
+    <div class="num">80,113</div>
+    <div class="label">Bounding box<br>annotations</div>
+  </div>
+  <div class="warn-card">
+    <div class="title">⚠ Class Imbalance — the Core Challenge</div>
+    <div class="bar-row"><span class="bar-label">Red Blood Cell</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:#38bdf8;"></div></div><span class="bar-val">77,420</span></div>
+    <div class="bar-row"><span class="bar-label">Trophozoite</span><div class="bar-track"><div class="bar-fill" style="width:1.9%;background:#f87171;"></div></div><span class="bar-val">1,473</span></div>
+    <div class="bar-row"><span class="bar-label">Ring</span><div class="bar-track"><div class="bar-fill" style="width:0.45%;background:#fb923c;"></div></div><span class="bar-val">353</span></div>
+    <div class="bar-row"><span class="bar-label">Schizont</span><div class="bar-track"><div class="bar-fill" style="width:0.23%;background:#a78bfa;"></div></div><span class="bar-val">179</span></div>
+    <div class="bar-row"><span class="bar-label">Gametocyte</span><div class="bar-track"><div class="bar-fill" style="width:0.18%;background:#34d399;"></div></div><span class="bar-val">144</span></div>
+  </div>
+</div>
+
+<!-- Two Pipelines -->
+<div class="section-label">Two Architectures We Will Build</div>
+<div class="pipelines">
+
+  <!-- Pipeline A -->
+  <div class="pipeline pipe-a">
+    <div class="pipe-header">
+      <span class="pipe-tag tag-a">Baseline A</span>
+      <span class="pipe-title">End-to-End Faster R-CNN</span>
+    </div>
+
+    <div class="step">
+      <div class="step-num num-a">1</div>
+      <div class="step-content">
+        <div class="step-title">ResNet-50 + FPN Backbone</div>
+        <div class="step-sub">Feature pyramid extracts multi-scale representations from the full blood smear</div>
+      </div>
+    </div>
+    <div class="connector conn-a"></div>
+    <div class="step">
+      <div class="step-num num-a">2</div>
+      <div class="step-content">
+        <div class="step-title">Region Proposal Network (RPN)</div>
+        <div class="step-sub">Proposes candidate cell bounding boxes at multiple anchor scales</div>
+      </div>
+    </div>
+    <div class="connector conn-a"></div>
+    <div class="step">
+      <div class="step-num num-a">3</div>
+      <div class="step-content">
+        <div class="step-title">RoI Align + Classification Head</div>
+        <div class="step-sub">Refines boxes, predicts class: RBC vs infected (trophozoite, ring, etc.)</div>
+      </div>
+    </div>
+    <div class="connector conn-a"></div>
+    <div class="step">
+      <div class="step-num num-a">4</div>
+      <div class="step-content">
+        <div class="step-title">mAP Evaluation (COCO metric)</div>
+        <div class="step-sub">IoU thresholds 0.5–0.95, per-class AP, recall curve</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pipeline B -->
+  <div class="pipeline pipe-b">
+    <div class="pipe-header">
+      <span class="pipe-tag tag-b">Novel B</span>
+      <span class="pipe-title">Decoupled Two-Stage Pipeline</span>
+    </div>
+
+    <div class="step">
+      <div class="step-num num-b">1</div>
+      <div class="step-content">
+        <div class="step-title">Universal Cell Segmentation</div>
+        <div class="step-sub">Watershed + distance transform finds EVERY cell — infected or not, annotated or not</div>
+      </div>
+    </div>
+    <div class="connector conn-b"></div>
+    <div class="step">
+      <div class="step-num num-b">2</div>
+      <div class="step-content">
+        <div class="step-title">Cell Crop Extraction</div>
+        <div class="step-sub">Each detected cell → padded 64×64 crop. Map ground-truth labels via IoU overlap</div>
+      </div>
+    </div>
+    <div class="connector conn-b"></div>
+    <div class="step">
+      <div class="step-num num-b">3</div>
+      <div class="step-content">
+        <div class="step-title">EfficientNet-B0 Classifier</div>
+        <div class="step-sub">Lightweight CNN trained only on single-cell crops. Focal loss for class imbalance</div>
+      </div>
+    </div>
+    <div class="connector conn-b"></div>
+    <div class="step">
+      <div class="step-num num-b">4</div>
+      <div class="step-content">
+        <div class="step-title">Grad-CAM++ Explainability</div>
+        <div class="step-sub">Attention heatmap pinpoints the parasite inside the cell — clinical validation layer</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Comparison Table -->
+<div class="section-label">How We Compare Them</div>
+<table class="compare-table">
+  <thead>
+    <tr>
+      <th>Metric / Property</th>
+      <th>Baseline A — Faster R-CNN</th>
+      <th>Novel B — Decoupled</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="td-metric">Detection Recall</td>
+      <td>Misses unannotated cells (treats as background) <span class="badge badge-yellow">Weakness</span></td>
+      <td>Finds every cell regardless of annotation <span class="badge badge-green">Strength</span></td>
+    </tr>
+    <tr>
+      <td class="td-metric">Dense Overlap</td>
+      <td>NMS drops overlapping valid cells <span class="badge badge-yellow">Weakness</span></td>
+      <td>Watershed separates touching cells instance-wise <span class="badge badge-green">Strength</span></td>
+    </tr>
+    <tr>
+      <td class="td-metric">Explainability</td>
+      <td>Black box — no per-cell heatmap <span class="badge badge-yellow">Weakness</span></td>
+      <td>Grad-CAM++ highlights parasite location <span class="badge badge-green">Strength</span></td>
+    </tr>
+    <tr>
+      <td class="td-metric">Speed (inference)</td>
+      <td>Slower — full image through deep network <span class="badge badge-blue">Tradeoff</span></td>
+      <td>Faster classifier, but segmentation adds overhead <span class="badge badge-blue">Tradeoff</span></td>
+    </tr>
+    <tr>
+      <td class="td-metric">Paper Claim</td>
+      <td>Standard SOTA baseline</td>
+      <td>Novel contribution — decoupled, label-resilient, explainable</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Roadmap -->
+<div class="section-label">Build Roadmap — 4 Phases</div>
+<div class="phases">
+  <div class="phase">
+    <div class="phase-header ph1">Phase 1</div>
+    <div class="phase-title">Data & EDA</div>
+    <div class="phase-item">Parse JSON annotations correctly</div>
+    <div class="phase-item">Visualize sample images + boxes</div>
+    <div class="phase-item">Understand class imbalance</div>
+    <div class="phase-item">Build the PyTorch Dataset</div>
+  </div>
+  <div class="phase">
+    <div class="phase-header ph2">Phase 2</div>
+    <div class="phase-title">Baseline A</div>
+    <div class="phase-item">Faster R-CNN with FPN</div>
+    <div class="phase-item">Training loop + SGD</div>
+    <div class="phase-item">mAP evaluation</div>
+    <div class="phase-item">Colab notebook</div>
+  </div>
+  <div class="phase">
+    <div class="phase-header ph3">Phase 3</div>
+    <div class="phase-title">Novel Pipeline B</div>
+    <div class="phase-item">Watershed segmentation</div>
+    <div class="phase-item">Cell crop extraction</div>
+    <div class="phase-item">EfficientNet + Focal Loss</div>
+    <div class="phase-item">Grad-CAM++ XAI</div>
+  </div>
+  <div class="phase">
+    <div class="phase-header ph4">Phase 4</div>
+    <div class="phase-title">Compare & Report</div>
+    <div class="phase-item">Side-by-side metrics</div>
+    <div class="phase-item">Ablation study</div>
+    <div class="phase-item">Paper writeup structure</div>
+    <div class="phase-item">Clean Colab notebooks</div>
+  </div>
+</div>
+
+</body>
+</html>
