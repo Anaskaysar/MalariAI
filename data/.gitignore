@@ -1,1 +1,7 @@
-malaria/*
+# Dataset files — not committed to GitHub
+# Download from: https://bbbc.broadinstitute.org/BBBC041
+
+malaria/images/
+malaria.zip
+*.zip
+crops/

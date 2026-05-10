@@ -1,0 +1,13 @@
+{
+  "map_50": 0.5846,
+  "checkpoint_epoch": 12,
+  "val_loss": 0.2273,
+  "per_class_ap": {
+    "red blood cell": 0.9101,
+    "trophozoite": 0.6273,
+    "ring": 0.5829,
+    "schizont": 0.3379,
+    "gametocyte": 0.2351,
+    "leukocyte": 0.8141
+  }
+}

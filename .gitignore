@@ -1,1 +1,74 @@
-malariaenv/*
+# MalariAI .gitignore
+# GitHub hard limit: 100 MB/file.
+# All model weights, dataset files and environments are excluded.
+
+# Virtual environment
+malariaenv/
+venv/
+.venv/
+env/
+
+# Dataset (too large for GitHub)
+data/malaria/images/
+data/malaria.zip
+data/*.zip
+data/crops/
+
+# Model checkpoints (300-500 MB each)
+*.pth
+*.pt
+*.ckpt
+
+# Keep small result files inside checkpoint folders
+!**/metrics.json
+!**/loss_curves.png
+!**/gt_vs_pred.png
+!**/sample_gt_boxes.png
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Packaging
+dist/
+build/
+*.egg-info/
+*.egg
+wheels/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Logs
+*.log
+*.tmp
+*.temp
+wandb/
+runs/
+lightning_logs/
+
+# Unknown artifact
+Phase2-BaselineA/0.8

@@ -314,9 +314,11 @@ python app.py
 | §3.2 Stage 1 Watershed | 🔲 Placeholder | KB (after Phase 3) |
 | §3.3 Stage 2 EfficientNet | 🔲 Placeholder | KB (after Phase 3) |
 | §3.4 Grad-CAM++ | 🔲 Placeholder | KB (after Phase 3) |
-| §3.5 Baseline A | 🔲 Placeholder | KB (after Phase 2) |
-| §3.6 Evaluation Metrics | 🔲 Placeholder | KB |
-| §4 Experiments | 🔲 Placeholder | KB (after training) |
+| §3.5 Baseline A | ✅ Written | KB |
+| §3.6 Evaluation Metrics | ✅ Written | KB |
+| §4.1 Implementation Details | ✅ Written (Baseline A complete, Pipeline B pending) | KB |
+| §4.2 Quantitative Results | 🔧 Partial (Baseline A row filled, Pipeline B pending) | KB |
+| §4.3–4.5 Ablation / Dense / XAI | 🔲 Placeholder | KB (after Phase 3) |
 | §5 Results & Discussion | 🔲 Placeholder | KB + Mohammed Ali |
 | §6 Conclusion | 🔲 Placeholder | Mohammed Ali |
 | Bibliography | ⚠ Partial (some placeholders) | Mohammed Ali |
