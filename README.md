@@ -1,7 +1,9 @@
-# MalariAI — A Label-Resilient Decoupled Framework for Universal Cell Segmentation and Explainable Stage Classification in Dense Malaria Blood Smears
+# MalariAI- No Cell Left Behind
+
+### MalariAI — A Label-Resilient Decoupled Framework for Universal Cell Segmentation and Explainable Stage Classification in Dense Malaria Blood Smears
 
 > **Research Paper + Portfolio Demo**  
-> Kaysarul Anas Apurba (Laurentian University, Canada) · Mohammed Ali (Melbourne Institute of Technology, Australia)  
+> Kaysarul Anas Apurba, Md Hasibul Hasan (Laurentian University, Canada) · Mohammed Ali (Melbourne Institute of Technology, Australia)  
 > Target venue: arXiv / MICCAI · Live demo: Hugging Face Spaces
 
 ---

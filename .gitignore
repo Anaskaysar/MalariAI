@@ -19,6 +19,11 @@ data/crops/
 *.pt
 *.ckpt
 
+# Phase-specific checkpoints
+Phase2-BaselineA/checkpoints/
+Phase3-PipelineB/checkpoints/
+checkpoints/
+
 # Keep small result files inside checkpoint folders
 !**/metrics.json
 !**/loss_curves.png
@@ -70,5 +75,9 @@ wandb/
 runs/
 lightning_logs/
 
+# Outputs
+outputs/
+
 # Unknown artifact
 Phase2-BaselineA/0.8
+
