@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MalariAI | Clinical Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<h2 class="sr-only">MalariAI clinical UI</h2>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="logo">Malari<span>AI</span></div>
+  <div class="badge">Pipeline B · Stage 1 + 2</div>
+  <div id="statusBanner" class="badge badge-warn">
+      <span id="statusText">⚠ Malaria Detected</span>
+      <span id="statusSub" class="hidden"></span>
+  </div>
+  <div class="spacer"></div>
+  <span style="font-size:10px;color:#94a3b8;margin-right:8px;">NIH BBBC041 · P. falciparum · EfficientNet-B0</span>
+  <button class="topbtn-sec" onclick="window.location.reload()">New Image</button>
+</div>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-card">
+    <div id="statDetected" class="stat-val c-blue">0</div>
+    <div class="stat-label">Cells detected</div>
+    <div class="stat-sub" style="color:#94a3b8;">Watershed Stage 1</div>
+  </div>
+  <div class="stat-card">
+    <div id="statInfected" class="stat-val c-red">0</div>
+    <div class="stat-label">Infected cells</div>
+    <div class="stat-sub c-red">Parasitised erythrocytes</div>
+  </div>
+  <div class="stat-card">
+    <div id="statHealthy" class="stat-val c-green">0</div>
+    <div class="stat-label">Healthy RBCs</div>
+    <div class="stat-sub" style="color:#94a3b8;">Uninfected erythrocytes</div>
+  </div>
+  <div class="stat-card">
+    <div id="statRate" class="stat-val c-amber">0%</div>
+    <div class="stat-label">Infection rate</div>
+    <div class="stat-sub" style="color:#94a3b8;">Parasitaemia index</div>
+  </div>
+  <div class="stat-card">
+    <div id="statLeuko" class="stat-val c-purple">0</div>
+    <div class="stat-label">Leukocytes</div>
+    <div class="stat-sub" style="color:#94a3b8;">White blood cells</div>
+  </div>
+</div>
+
+<!-- MAIN GRID -->
+<div class="main-grid">
+
+  <!-- CARD 1: Input + Pipeline -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">1</div>
+      <div class="card-title">Blood Smear Input</div>
+      <div class="card-sub">Giemsa-stained sample</div>
+    </div>
+    <div class="card-body" style="position: relative;">
+      <div id="loadingOverlay" class="loading-overlay hidden">
+          <div class="spinner"></div>
+      </div>
+      
+      <div id="uploadZone" class="upload-zone">
+        <div class="upload-icon">🔬</div>
+        <div class="upload-text">Drop a blood smear image or <strong>browse files</strong></div>
+        <input type="file" id="fileInput" class="hidden" accept="image/*">
+      </div>
+      <button id="runBtn" class="run-btn" disabled>Run Analysis</button>
+
+      <!-- Pipeline progress -->
+      <div class="pipeline">
+        <div id="step1" class="pipe-step">
+          <div class="pipe-dot">1</div>
+          <div class="pipe-label">Otsu Thresh</div>
+        </div>
+        <div id="step2" class="pipe-step">
+          <div class="pipe-dot">2</div>
+          <div class="pipe-label">Watershed</div>
+        </div>
+        <div id="step3" class="pipe-step">
+          <div class="pipe-dot">3</div>
+          <div class="pipe-label">EfficientNet</div>
+        </div>
+        <div id="step4" class="pipe-step">
+          <div class="pipe-dot">4</div>
+          <div class="pipe-label">Grad-CAM++</div>
+        </div>
+      </div>
+
+      <div class="smear-wrap">
+        <div class="smear-bg">
+          <img id="smearImg" src="" class="smear-img">
+          <div class="smear-label">Watershed Result</div>
+        </div>
+      </div>
+
+      <div class="legend">
+        <div class="leg"><div class="leg-dot" style="background:#f87171"></div>RBC</div>
+        <div class="leg"><div class="leg-dot" style="background:#059669"></div>Trophozoite</div>
+        <div class="leg"><div class="leg-dot" style="background:#2563eb"></div>Ring</div>
+        <div class="leg"><div class="leg-dot" style="background:#d97706"></div>Schizont</div>
+        <div class="leg"><div class="leg-dot" style="background:#be185d"></div>Gametocyte</div>
+        <div class="leg"><div class="leg-dot" style="background:#7c3aed"></div>Leukocyte</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 2: Cell Gallery -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">2</div>
+      <div class="card-title">Extracted Cell Crops</div>
+      <div class="card-sub">Stage 2 Output</div>
+    </div>
+    <div class="card-body">
+      <div id="cellGrid" class="cell-grid">
+          <!-- Dynamically populated -->
+      </div>
+      <div id="cellCountNote" class="count-note">No cells detected yet</div>
+      <div class="filter-row">
+        <div class="filter-btn">🔴 Infected only</div>
+        <div class="filter-btn">⬇ By confidence</div>
+        <div class="filter-btn">📦 Export .zip</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 3: Report -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">3</div>
+      <div class="card-title">Classification Report</div>
+      <div class="card-sub">Stage 2 AI Summary</div>
+    </div>
+    <div class="card-body">
+      <!-- Status banner is at the top now -->
+
+      <div class="report-row"><span class="rl">Dominant stage</span><span id="dominantStage" class="rv">N/A</span></div>
+      <div class="report-row"><span class="rl">Ring stage</span><span id="ringSummary" class="rv">None</span></div>
+      <div class="report-row"><span class="rl">Schizont</span><span id="schizontSummary" class="rv">None</span></div>
+      <div class="report-row"><span class="rl">Inference time</span><span class="rv">~2.1 s</span></div>
+
+      <div class="section-title">Cell breakdown</div>
+      <div class="bar-row"><div class="bar-meta"><span>🔴 Healthy RBC</span><span id="countRbc">0</span></div><div class="bar-track"><div id="barRbc" class="bar-fill" style="width:0%;background:#f87171"></div></div></div>
+      <div class="bar-row"><div class="bar-meta"><span>🟢 Trophozoite</span><span id="countTroph">0</span></div><div class="bar-track"><div id="barTroph" class="bar-fill" style="width:0%;background:#059669"></div></div></div>
+      <div class="bar-row"><div class="bar-meta"><span>🔵 Ring</span><span id="countRing">0</span></div><div class="bar-track"><div id="barRing" class="bar-fill" style="width:0%;background:#2563eb"></div></div></div>
+      <div class="bar-row"><div class="bar-meta"><span>🟡 Schizont</span><span id="countSchiz">0</span></div><div class="bar-track"><div id="barSchiz" class="bar-fill" style="width:0%;background:#d97706"></div></div></div>
+      <div class="bar-row"><div class="bar-meta"><span>🩷 Gametocyte</span><span id="countGam">0</span></div><div class="bar-track"><div id="barGam" class="bar-fill" style="width:0%;background:#be185d"></div></div></div>
+      <div class="bar-row"><div class="bar-meta"><span>🟣 Leukocyte</span><span id="countLeuko">0</span></div><div class="bar-track"><div id="barLeuko" class="bar-fill" style="width:0%;background:#7c3aed"></div></div></div>
+
+      <!-- Grad-CAM -->
+      <div class="section-title">Explainability (Grad-CAM++)</div>
+      <div class="gradcam-tabs">
+        <div class="gtab active">Crop view</div>
+      </div>
+
+      <div class="gradcam-panel">
+        <div class="gradcam-label"><div class="gdot"></div>Target class activation map</div>
+        <div class="crop-view">
+          <div class="crop-img-wrap">
+            <img id="gcImg" src="" class="crop-img-gc">
+          </div>
+          <div class="crop-info">
+            <div id="gcClass" class="crop-class">Class · 0.0%</div>
+            <div id="gcNote" class="crop-note">Red region = highest model activation.</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="export-btn">📄 Download PDF Report</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

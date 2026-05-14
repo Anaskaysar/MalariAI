@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f4f8; color: #1e293b; padding: 16px; font-size: 13px; }
+
+  h2.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+  /* TOP BAR */
+  .topbar {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 18px; background: #fff;
+    border-radius: 10px; margin-bottom: 14px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px #00000010;
+  }
+  .logo { font-size: 17px; font-weight: 700; color: #1e293b; letter-spacing: -0.4px; }
+  .logo span { color: #1d4ed8; }
+  .badge { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; padding: 2px 9px; border-radius: 20px; font-size: 10px; font-weight: 600; }
+  .badge-warn { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+  .spacer { flex: 1; }
+  .topbtn {
+    background: #1d4ed8; color: #fff; border: none;
+    padding: 6px 14px; border-radius: 6px; font-size: 11px;
+    font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 5px;
+  }
+  .topbtn-sec {
+    background: #fff; color: #374151; border: 1px solid #d1d5db;
+    padding: 6px 14px; border-radius: 6px; font-size: 11px;
+    font-weight: 600; cursor: pointer;
+  }
+
+  /* STAT STRIP */
+  .stat-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 14px; }
+  .stat-card {
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 8px;
+    padding: 11px 14px; box-shadow: 0 1px 2px #00000008;
+  }
+  .stat-val { font-size: 22px; font-weight: 700; }
+  .stat-label { font-size: 10px; color: #64748b; margin-top: 2px; }
+  .stat-sub { font-size: 9px; margin-top: 1px; }
+  .c-blue { color: #1d4ed8; }
+  .c-red { color: #b91c1c; }
+  .c-green { color: #047857; }
+  .c-amber { color: #b45309; }
+  .c-purple { color: #6d28d9; }
+
+  /* THREE-COLUMN LAYOUT */
+  .main-grid { display: grid; grid-template-columns: 1fr 1fr 300px; gap: 12px; }
+
+  /* CARDS */
+  .card {
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 10px;
+    overflow: hidden; box-shadow: 0 1px 3px #00000010;
+  }
+  .card-header {
+    padding: 9px 14px; border-bottom: 1px solid #f1f5f9;
+    display: flex; align-items: center; gap: 8px;
+    background: #fafcff;
+  }
+  .card-num {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: #1d4ed8; color: #fff; font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .card-title { font-size: 12px; font-weight: 700; color: #1e293b; }
+  .card-sub { font-size: 10px; color: #94a3b8; margin-left: auto; }
+  .card-body { padding: 12px; }
+
+  /* CARD 1 — Upload + Smear View */
+  .upload-zone {
+    border: 2px dashed #bfdbfe; border-radius: 8px; padding: 14px 10px;
+    text-align: center; cursor: pointer; background: #f8faff;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .upload-zone:hover { border-color: #1d4ed8; background: #eff6ff; }
+  .upload-icon { font-size: 22px; margin-bottom: 5px; }
+  .upload-text { font-size: 10px; color: #6b7280; }
+  .upload-text strong { color: #1d4ed8; }
+
+  .run-btn {
+    width: 100%; margin-top: 8px; padding: 8px;
+    background: #1d4ed8; color: #fff; border: none; border-radius: 6px;
+    font-size: 12px; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+
+  /* Pipeline steps */
+  .pipeline { display: flex; align-items: center; margin: 10px 0 8px; }
+  .pipe-step { display: flex; flex-direction: column; align-items: center; flex: 1; position: relative; }
+  .pipe-step::after {
+    content: ''; position: absolute; top: 9px; left: 60%; width: 80%; height: 1.5px;
+    background: #e2e8f0;
+  }
+  .pipe-step:last-child::after { display: none; }
+  .pipe-step.done::after { background: #047857; }
+  .pipe-step.active::after { background: #bfdbfe; }
+  .pipe-dot {
+    width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #cbd5e1;
+    background: #f8fafc; display: flex; align-items: center; justify-content: center;
+    font-size: 8px; color: #94a3b8; font-weight: 700; position: relative; z-index: 1;
+  }
+  .pipe-step.done .pipe-dot { background: #047857; border-color: #047857; color: #fff; }
+  .pipe-step.active .pipe-dot { background: #1d4ed8; border-color: #1d4ed8; color: #fff; animation: pulse 1.2s infinite; }
+  @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 #1d4ed830} 50%{box-shadow:0 0 0 5px #1d4ed810} }
+  .pipe-label { font-size: 8px; color: #94a3b8; margin-top: 3px; }
+  .pipe-step.done .pipe-label { color: #047857; }
+  .pipe-step.active .pipe-label { color: #1d4ed8; font-weight: 600; }
+
+  /* Smear view */
+  .smear-wrap { position: relative; border-radius: 6px; overflow: hidden; border: 1px solid #e2e8f0; margin-top: 2px; }
+  .smear-bg {
+    width: 100%; height: 148px; background: #e8e0d4;
+    position: relative; overflow: hidden;
+  }
+  /* Simulated Giemsa stain background */
+  .smear-bg::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 40%, #d6c9b8 0%, #c9b99e 40%, #bfad95 100%);
+  }
+  .cell-o {
+    position: absolute; border-radius: 50%; border: 1.5px solid;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .smear-label {
+    position: absolute; bottom: 5px; left: 5px;
+    background: #ffffffcc; color: #374151; font-size: 9px;
+    padding: 2px 7px; border-radius: 4px; font-weight: 500;
+    border: 1px solid #e2e8f0;
+  }
+
+  /* Color legend */
+  .legend { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 7px; }
+  .leg { display: flex; align-items: center; gap: 3px; font-size: 9px; color: #64748b; }
+  .leg-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* CARD 2 — Cell Gallery */
+  .cell-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; }
+  .cell-thumb {
+    aspect-ratio: 1; border-radius: 5px; border: 1.5px solid #e2e8f0;
+    cursor: pointer; position: relative; overflow: hidden;
+    background: #f8fafc; display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+  .cell-thumb:hover { border-color: #1d4ed8; transform: scale(1.06); z-index: 2; }
+  .cell-thumb.selected { border-color: #1d4ed8; box-shadow: 0 0 0 2px #bfdbfe; }
+  .cell-thumb.t-rbc { border-color: #fca5a5; }
+  .cell-thumb.t-troph { border-color: #6ee7b7; }
+  .cell-thumb.t-ring { border-color: #93c5fd; }
+  .cell-thumb.t-schiz { border-color: #fcd34d; }
+  .cell-thumb.t-wbc { border-color: #c4b5fd; }
+  .cell-inner2 { width: 68%; height: 68%; border-radius: 50%; }
+  .cell-tag2 {
+    position: absolute; bottom: 1px; left: 50%; transform: translateX(-50%);
+    font-size: 7px; font-weight: 600; white-space: nowrap;
+    background: #ffffffcc; color: #374151; padding: 0 3px; border-radius: 2px;
+  }
+  .cell-conf2 { position: absolute; top: 1px; right: 2px; font-size: 7px; color: #9ca3af; }
+
+  .filter-row { display: flex; gap: 5px; margin-top: 8px; }
+  .filter-btn {
+    flex: 1; padding: 4px 2px; background: #f8fafc; border: 1px solid #e2e8f0;
+    border-radius: 5px; color: #6b7280; font-size: 9px; cursor: pointer;
+    text-align: center;
+  }
+  .filter-btn:hover { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+  .count-note { font-size: 9px; color: #94a3b8; text-align: center; margin-top: 6px; }
+
+  /* CARD 3 — Report */
+  .status-banner {
+    background: #fef2f2; border: 1px solid #fecaca; border-radius: 7px;
+    padding: 8px 12px; display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+  }
+  .status-icon { font-size: 16px; }
+  .status-text { font-size: 11px; font-weight: 700; color: #991b1b; }
+  .status-sub { font-size: 9px; color: #b91c1c; margin-top: 1px; }
+
+  .report-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 5px 0; border-bottom: 1px solid #f1f5f9; font-size: 11px;
+  }
+  .report-row:last-of-type { border-bottom: none; }
+  .rl { color: #6b7280; }
+  .rv { font-weight: 600; color: #1e293b; }
+
+  .section-title { font-size: 10px; font-weight: 700; color: #374151; margin: 10px 0 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .bar-row { margin-bottom: 5px; }
+  .bar-meta { display: flex; justify-content: space-between; font-size: 9px; color: #6b7280; margin-bottom: 2px; }
+  .bar-track { background: #f1f5f9; border-radius: 10px; height: 5px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 10px; }
+
+  /* Dual Grad-CAM */
+  .gradcam-section { margin-top: 10px; }
+  .gradcam-tabs { display: flex; gap: 4px; margin-bottom: 7px; }
+  .gtab {
+    flex: 1; padding: 4px; border-radius: 5px; border: 1px solid #e2e8f0;
+    background: #f8fafc; color: #6b7280; font-size: 9px; font-weight: 600;
+    cursor: pointer; text-align: center; transition: all 0.15s;
+  }
+  .gtab.active { background: #1d4ed8; color: #fff; border-color: #1d4ed8; }
+  .gradcam-panel { border: 1px solid #e2e8f0; border-radius: 7px; overflow: hidden; }
+  .gradcam-label {
+    background: #fafcff; padding: 5px 10px; font-size: 9px; color: #64748b;
+    border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; gap: 5px;
+  }
+  .gdot { width: 6px; height: 6px; border-radius: 50%; background: #047857; }
+
+  /* Crop view */
+  .crop-view { display: flex; gap: 8px; padding: 8px; }
+  .crop-img { width: 56px; height: 56px; border-radius: 5px; overflow: hidden; position: relative; background: #e8e0d4; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .crop-inner { width: 65%; height: 65%; border-radius: 50%; background: radial-gradient(circle, #2d6a4f, #1b4332); position: relative; z-index: 1; }
+  .crop-heat { position: absolute; inset: 0; background: radial-gradient(circle at 52% 48%, #dc262680 0%, #f59e0b55 38%, transparent 62%); }
+  .crop-info { flex: 1; }
+  .crop-class { font-size: 12px; font-weight: 700; color: #047857; }
+  .crop-conf { font-size: 9px; color: #6b7280; margin-top: 2px; }
+  .crop-focus { font-size: 9px; color: #374151; margin-top: 4px; font-weight: 500; }
+  .crop-note { font-size: 8px; color: #6b7280; margin-top: 3px; line-height: 1.4; }
+
+  /* Full-image view */
+  .full-view { padding: 8px; }
+  .full-smear { width: 100%; height: 80px; background: radial-gradient(ellipse at 30% 40%, #d6c9b8, #bfad95); border-radius: 5px; position: relative; overflow: hidden; }
+  .full-heat-overlay { position: absolute; inset: 0; background: radial-gradient(ellipse at 63% 38%, #dc262666 0%, #f59e0b33 30%, transparent 55%); }
+  .full-box { position: absolute; border: 1.5px solid #1d4ed8; border-radius: 3px; }
+  .full-box-infected { border: 1.5px solid #b91c1c; }
+  .full-crosshair { position: absolute; width: 16px; height: 16px; border: 1.5px solid #b91c1c; background: #b91c1c20; border-radius: 2px; }
+  .full-label-sm { position: absolute; bottom: 3px; right: 4px; font-size: 7px; background: #ffffffcc; color: #374151; padding: 1px 5px; border-radius: 3px; border: 1px solid #e2e8f0; }
+
+  .export-btn {
+    width: 100%; margin-top: 8px; padding: 6px;
+    background: #fff; border: 1px solid #d1d5db; border-radius: 6px;
+    color: #374151; font-size: 10px; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 5px;
+  }
+  .export-btn:hover { background: #f8fafc; border-color: #1d4ed8; color: #1d4ed8; }
+</style>
+</head>
+<body>
+<h2 class="sr-only">MalariAI clinical UI — medical colour scheme with blood smear analysis, cell crop gallery, and dual Grad-CAM++ explainability panel</h2>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="logo">Malari<span>AI</span></div>
+  <div class="badge">Pipeline B · Stage 1 + 2</div>
+  <div class="badge badge-warn">⚠ Malaria Detected</div>
+  <div class="spacer"></div>
+  <span style="font-size:10px;color:#94a3b8;margin-right:8px;">NIH BBBC041 · P. falciparum · EfficientNet-B0</span>
+  <button class="topbtn-sec">New Image</button>
+  <button class="topbtn">⬇ Export PDF Report</button>
+</div>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-card">
+    <div class="stat-val c-blue">84</div>
+    <div class="stat-label">Cells detected</div>
+    <div class="stat-sub" style="color:#94a3b8;">Watershed Stage 1</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-val c-red">7</div>
+    <div class="stat-label">Infected cells</div>
+    <div class="stat-sub c-red">Parasitised erythrocytes</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-val c-green">77</div>
+    <div class="stat-label">Healthy RBCs</div>
+    <div class="stat-sub" style="color:#94a3b8;">Uninfected erythrocytes</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-val c-amber">8.3%</div>
+    <div class="stat-label">Infection rate</div>
+    <div class="stat-sub" style="color:#94a3b8;">Parasitaemia index</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-val c-purple">1</div>
+    <div class="stat-label">Leukocytes</div>
+    <div class="stat-sub" style="color:#94a3b8;">White blood cells</div>
+  </div>
+</div>
+
+<!-- MAIN GRID -->
+<div class="main-grid">
+
+  <!-- CARD 1: Input + Pipeline -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">1</div>
+      <div class="card-title">Blood Smear Input</div>
+      <div class="card-sub">1600 × 1200 px · Giemsa-stained</div>
+    </div>
+    <div class="card-body">
+      <div class="upload-zone">
+        <div class="upload-icon">🔬</div>
+        <div class="upload-text">Drop a blood smear image or <strong>browse files</strong></div>
+        <div class="upload-text" style="margin-top:2px;">.png · .jpg · .tiff accepted</div>
+      </div>
+      <button class="run-btn">Run Analysis</button>
+
+      <!-- Pipeline progress -->
+      <div class="pipeline" style="margin:10px 0 6px;">
+        <div class="pipe-step done">
+          <div class="pipe-dot">✓</div>
+          <div class="pipe-label">Otsu Thresh</div>
+        </div>
+        <div class="pipe-step done">
+          <div class="pipe-dot">✓</div>
+          <div class="pipe-label">Watershed</div>
+        </div>
+        <div class="pipe-step active">
+          <div class="pipe-dot">3</div>
+          <div class="pipe-label">EfficientNet</div>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-dot">4</div>
+          <div class="pipe-label">Grad-CAM++</div>
+        </div>
+      </div>
+
+      <!-- Simulated smear with overlaid detections -->
+      <div class="smear-wrap">
+        <div class="smear-bg">
+          <!-- RBCs — light pink/red outlines -->
+          <div class="cell-o" style="width:22px;height:22px;left:5%;top:10%;border-color:#f87171;background:#fef2f2;"></div>
+          <div class="cell-o" style="width:20px;height:20px;left:17%;top:7%;border-color:#f87171;background:#fef2f2;"></div>
+          <div class="cell-o" style="width:21px;height:21px;left:30%;top:12%;border-color:#f87171;background:#fef2f2;"></div>
+          <div class="cell-o" style="width:20px;height:20px;left:56%;top:9%;border-color:#f87171;background:#fef2f2;"></div>
+          <div class="cell-o" style="width:21px;height:21px;left:82%;top:11%;border-color:#f87171;background:#fef2f2;"></div>
+          <!-- Trophozoites — green -->
+          <div class="cell-o" style="width:28px;height:28px;left:43%;top:7%;border-color:#059669;background:#f0fdf4;border-width:2px;"></div>
+          <!-- Ring — blue -->
+          <div class="cell-o" style="width:24px;height:24px;left:71%;top:8%;border-color:#2563eb;background:#eff6ff;border-width:2px;"></div>
+          <!-- Row 2 -->
+          <div class="cell-o" style="width:22px;height:22px;left:4%;top:37%;border-color:#f87171;background:#fef2f2;"></div>
+          <div class="cell-o" style="width:21px;height:21px;left:15%;top:40%;border-color:#f87171;background:#fef2f2;"></div>
+          <!-- Schizont — amber -->
+          <div class="cell-o" style="width:30px;height:30px;left:27%;top:33%;border-color:#d97706;background:#fffbeb;border-width:2px;"></div>
+          <div class="cell-o" style="width:20px;height:20px;left:43%;top:38%;border-color:#f87171;background:#fef2f2;"></div>
+          <div class="cell-o" style="width:22px;height:22px;left:55%;top:36%;border-color:#f87171;background:#fef2f2;"></div>
+          <div class="cell-o" style="width:21px;height:21px;left:66%;top:40%;border-color:#f87171;background:#fef2f2;"></div>
+          <!-- Ring -->
+          <div class="cell-o" style="width:25px;height:25px;left:77%;top:34%;border-color:#2563eb;background:#eff6ff;border-width:2px;"></div>
+          <div class="cell-o" style="width:20px;height:20px;left:89%;top:38%;border-color:#f87171;background:#fef2f2;"></div>
+          <!-- Row 3 -->
+          <div class="cell-o" style="width:22px;height:22px;left:7%;top:62%;border-color:#f87171;background:#fef2f2;"></div>
+          <!-- Leukocyte — purple, larger -->
+          <div class="cell-o" style="width:34px;height:34px;left:20%;top:59%;border-color:#7c3aed;background:#f5f3ff;border-width:2px;"></div>
+          <div class="cell-o" style="width:21px;height:21px;left:38%;top:63%;border-color:#f87171;background:#fef2f2;"></div>
+          <div class="cell-o" style="width:20px;height:20px;left:51%;top:61%;border-color:#f87171;background:#fef2f2;"></div>
+          <!-- Trophozoite -->
+          <div class="cell-o" style="width:27px;height:27px;left:63%;top:60%;border-color:#059669;background:#f0fdf4;border-width:2px;"></div>
+          <div class="cell-o" style="width:22px;height:22px;left:79%;top:63%;border-color:#f87171;background:#fef2f2;"></div>
+          <div class="cell-o" style="width:20px;height:20px;left:90%;top:61%;border-color:#f87171;background:#fef2f2;"></div>
+          <div class="smear-label">Watershed · 84 cells isolated</div>
+        </div>
+      </div>
+
+      <div class="legend">
+        <div class="leg"><div class="leg-dot" style="background:#f87171"></div>RBC</div>
+        <div class="leg"><div class="leg-dot" style="background:#059669"></div>Trophozoite</div>
+        <div class="leg"><div class="leg-dot" style="background:#2563eb"></div>Ring</div>
+        <div class="leg"><div class="leg-dot" style="background:#d97706"></div>Schizont</div>
+        <div class="leg"><div class="leg-dot" style="background:#be185d"></div>Gametocyte</div>
+        <div class="leg"><div class="leg-dot" style="background:#7c3aed"></div>Leukocyte</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 2: Cell Gallery -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">2</div>
+      <div class="card-title">Extracted Cell Crops</div>
+      <div class="card-sub">84 cells · 64 × 64 px each</div>
+    </div>
+    <div class="card-body">
+      <div class="cell-grid">
+        <div class="cell-thumb t-rbc"><div class="cell-inner2" style="background:radial-gradient(circle,#fca5a5,#ef4444)"></div><div class="cell-tag2">RBC</div><div class="cell-conf2">99%</div></div>
+        <div class="cell-thumb t-rbc"><div class="cell-inner2" style="background:radial-gradient(circle,#fca5a5,#ef4444)"></div><div class="cell-tag2">RBC</div><div class="cell-conf2">98%</div></div>
+        <div class="cell-thumb t-troph selected"><div class="cell-inner2" style="background:radial-gradient(circle,#6ee7b7,#059669)"></div><div class="cell-tag2">Troph</div><div class="cell-conf2">94%</div></div>
+        <div class="cell-thumb t-rbc"><div class="cell-inner2" style="background:radial-gradient(circle,#fca5a5,#ef4444)"></div><div class="cell-tag2">RBC</div><div class="cell-conf2">99%</div></div>
+        <div class="cell-thumb t-ring"><div class="cell-inner2" style="background:radial-gradient(circle,#93c5fd,#2563eb)"></div><div class="cell-tag2">Ring</div><div class="cell-conf2">81%</div></div>
+        <div class="cell-thumb t-rbc"><div class="cell-inner2" style="background:radial-gradient(circle,#fca5a5,#ef4444)"></div><div class="cell-tag2">RBC</div><div class="cell-conf2">97%</div></div>
+        <div class="cell-thumb t-rbc"><div class="cell-inner2" style="background:radial-gradient(circle,#fca5a5,#ef4444)"></div><div class="cell-tag2">RBC</div><div class="cell-conf2">99%</div></div>
+        <div class="cell-thumb t-schiz"><div class="cell-inner2" style="background:radial-gradient(circle,#fcd34d,#d97706)"></div><div class="cell-tag2">Schiz</div><div class="cell-conf2">87%</div></div>
+        <div class="cell-thumb t-rbc"><div class="cell-inner2" style="background:radial-gradient(circle,#fca5a5,#ef4444)"></div><div class="cell-tag2">RBC</div><div class="cell-conf2">98%</div></div>
+        <div class="cell-thumb t-rbc"><div class="cell-inner2" style="background:radial-gradient(circle,#fca5a5,#ef4444)"></div><div class="cell-tag2">RBC</div><div class="cell-conf2">99%</div></div>
+        <div class="cell-thumb t-ring"><div class="cell-inner2" style="background:radial-gradient(circle,#93c5fd,#2563eb)"></div><div class="cell-tag2">Ring</div><div class="cell-conf2">76%</div></div>
+        <div class="cell-thumb t-wbc"><div class="cell-inner2" style="background:radial-gradient(circle,#c4b5fd,#7c3aed)"></div><div class="cell-tag2">WBC</div><div class="cell-conf2">96%</div></div>
+        <div class="cell-thumb t-rbc"><div class="cell-inner2" style="background:radial-gradient(circle,#fca5a5,#ef4444)"></div><div class="cell-tag2">RBC</div><div class="cell-conf2">99%</div></div>
+        <div class="cell-thumb t-rbc"><div class="cell-inner2" style="background:radial-gradient(circle,#fca5a5,#ef4444)"></div><div class="cell-tag2">RBC</div><div class="cell-conf2">97%</div></div>
+        <div class="cell-thumb t-troph"><div class="cell-inner2" style="background:radial-gradient(circle,#6ee7b7,#059669)"></div><div class="cell-tag2">Troph</div><div class="cell-conf2">91%</div></div>
+        <div class="cell-thumb t-rbc"><div class="cell-inner2" style="background:radial-gradient(circle,#fca5a5,#ef4444)"></div><div class="cell-tag2">RBC</div><div class="cell-conf2">99%</div></div>
+        <div class="cell-thumb t-rbc"><div class="cell-inner2" style="background:radial-gradient(circle,#fca5a5,#ef4444)"></div><div class="cell-tag2">RBC</div><div class="cell-conf2">98%</div></div>
+        <div class="cell-thumb t-rbc"><div class="cell-inner2" style="background:radial-gradient(circle,#fca5a5,#ef4444)"></div><div class="cell-tag2">RBC</div><div class="cell-conf2">99%</div></div>
+        <div class="cell-thumb t-rbc"><div class="cell-inner2" style="background:radial-gradient(circle,#fca5a5,#ef4444)"></div><div class="cell-tag2">RBC</div><div class="cell-conf2">99%</div></div>
+        <div class="cell-thumb t-rbc"><div class="cell-inner2" style="background:radial-gradient(circle,#fca5a5,#ef4444)"></div><div class="cell-tag2">RBC</div><div class="cell-conf2">97%</div></div>
+        <div class="cell-thumb t-rbc"><div class="cell-inner2" style="background:radial-gradient(circle,#fca5a5,#ef4444)"></div><div class="cell-tag2">RBC</div><div class="cell-conf2">98%</div></div>
+        <div class="cell-thumb t-rbc"><div class="cell-inner2" style="background:radial-gradient(circle,#fca5a5,#ef4444)"></div><div class="cell-tag2">RBC</div><div class="cell-conf2">99%</div></div>
+        <div class="cell-thumb t-rbc"><div class="cell-inner2" style="background:radial-gradient(circle,#fca5a5,#ef4444)"></div><div class="cell-tag2">RBC</div><div class="cell-conf2">99%</div></div>
+        <div class="cell-thumb t-rbc"><div class="cell-inner2" style="background:radial-gradient(circle,#fca5a5,#ef4444)"></div><div class="cell-tag2">RBC</div><div class="cell-conf2">98%</div></div>
+      </div>
+      <div class="count-note">Showing 24 of 84 · <span style="color:#1d4ed8;cursor:pointer;">View all cells</span></div>
+      <div class="filter-row">
+        <div class="filter-btn">🔴 Infected only</div>
+        <div class="filter-btn">⬇ By confidence</div>
+        <div class="filter-btn">📦 Export .zip</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 3: Report -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">3</div>
+      <div class="card-title">Classification Report</div>
+      <div class="card-sub">EfficientNet-B0 · Focal Loss</div>
+    </div>
+    <div class="card-body">
+      <!-- Status banner -->
+      <div class="status-banner">
+        <div class="status-icon">⚠️</div>
+        <div>
+          <div class="status-text">Malaria Detected</div>
+          <div class="status-sub">Plasmodium falciparum · 8.3% parasitaemia</div>
+        </div>
+      </div>
+
+      <div class="report-row"><span class="rl">Dominant stage</span><span class="rv c-green">Trophozoite</span></div>
+      <div class="report-row"><span class="rl">Ring stage</span><span class="rv c-blue">2 cells · 76–81% conf.</span></div>
+      <div class="report-row"><span class="rl">Schizont</span><span class="rv c-amber">1 cell · 87%</span></div>
+      <div class="report-row"><span class="rl">Inference time</span><span class="rv">2.1 s · CPU</span></div>
+      <div class="report-row"><span class="rl">Leukocytes</span><span class="rv c-purple">1 (excluded from rate)</span></div>
+
+      <!-- Per-class bars -->
+      <div class="section-title">Cell breakdown</div>
+      <div class="bar-row"><div class="bar-meta"><span>🔴 Healthy RBC</span><span>77</span></div><div class="bar-track"><div class="bar-fill" style="width:92%;background:#f87171"></div></div></div>
+      <div class="bar-row"><div class="bar-meta"><span>🟢 Trophozoite</span><span>3</span></div><div class="bar-track"><div class="bar-fill" style="width:18%;background:#059669"></div></div></div>
+      <div class="bar-row"><div class="bar-meta"><span>🔵 Ring</span><span>2</span></div><div class="bar-track"><div class="bar-fill" style="width:12%;background:#2563eb"></div></div></div>
+      <div class="bar-row"><div class="bar-meta"><span>🟡 Schizont</span><span>1</span></div><div class="bar-track"><div class="bar-fill" style="width:6%;background:#d97706"></div></div></div>
+      <div class="bar-row"><div class="bar-meta"><span>🩷 Gametocyte</span><span>0</span></div><div class="bar-track"><div class="bar-fill" style="width:0%;background:#be185d"></div></div></div>
+      <div class="bar-row"><div class="bar-meta"><span>🟣 Leukocyte</span><span>1</span></div><div class="bar-track"><div class="bar-fill" style="width:6%;background:#7c3aed"></div></div></div>
+
+      <!-- Dual Grad-CAM -->
+      <div class="section-title">Grad-CAM++ · Cell #3 (Trophozoite)</div>
+      <div class="gradcam-tabs">
+        <div class="gtab active">Crop view</div>
+        <div class="gtab">Full image</div>
+      </div>
+
+      <!-- CROP VIEW (shown by default) -->
+      <div class="gradcam-panel" id="cropPanel">
+        <div class="gradcam-label"><div class="gdot"></div>Activation on 64×64 crop</div>
+        <div class="crop-view">
+          <div class="crop-img">
+            <div class="crop-inner"></div>
+            <div class="crop-heat"></div>
+          </div>
+          <div class="crop-info">
+            <div class="crop-class">Trophozoite · 94.2%</div>
+            <div class="crop-conf">Grad-CAM++ activation map</div>
+            <div class="crop-focus">🔴 Focus: chromatin mass</div>
+            <div class="crop-note">Model activated on cell interior, away from membrane — consistent with trophozoite morphology.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FULL IMAGE VIEW (hidden, toggled by tab) -->
+      <div class="gradcam-panel" id="fullPanel" style="display:none;">
+        <div class="gradcam-label"><div class="gdot"></div>Activation overlaid on full smear</div>
+        <div class="full-view">
+          <div class="full-smear">
+            <div class="full-heat-overlay"></div>
+            <!-- bounding boxes on all cells -->
+            <div class="full-box" style="left:4%;top:8%;width:17px;height:17px;"></div>
+            <div class="full-box" style="left:15%;top:6%;width:16px;height:16px;"></div>
+            <div class="full-box" style="left:29%;top:10%;width:16px;height:16px;"></div>
+            <div class="full-box-infected full-box" style="left:42%;top:5%;width:22px;height:22px;"></div>
+            <div class="full-box" style="left:56%;top:8%;width:15px;height:15px;"></div>
+            <div class="full-box-infected full-box" style="left:70%;top:6%;width:19px;height:19px;"></div>
+            <div class="full-box" style="left:82%;top:9%;width:16px;height:16px;"></div>
+            <div class="full-box" style="left:3%;top:35%;width:17px;height:17px;"></div>
+            <div class="full-box" style="left:14%;top:38%;width:16px;height:16px;"></div>
+            <div class="full-box-infected full-box" style="left:26%;top:31%;width:24px;height:24px;border-color:#d97706;"></div>
+            <!-- Selected cell crosshair -->
+            <div class="full-crosshair" style="left:42%;top:5%;width:22px;height:22px;"></div>
+            <div class="full-label-sm">🔴 Grad-CAM++ · active cell</div>
+          </div>
+          <div style="font-size:8px;color:#6b7280;margin-top:5px;">Blue = all cells · Red border = infected · Heatmap = model activation region</div>
+        </div>
+      </div>
+
+      <button class="export-btn">📄 Download PDF Report</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Tab switching for Grad-CAM views
+  const tabs = document.querySelectorAll('.gtab');
+  const cropPanel = document.getElementById('cropPanel');
+  const fullPanel = document.getElementById('fullPanel');
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      if (i === 0) { cropPanel.style.display = ''; fullPanel.style.display = 'none'; }
+      else { cropPanel.style.display = 'none'; fullPanel.style.display = ''; }
+    });
+  });
+</script>
+</body>
+</html>
