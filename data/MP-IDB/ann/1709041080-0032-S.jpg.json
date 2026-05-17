@@ -1,0 +1,58 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741202,
+            "tagId": 31225,
+            "name": "schizont stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:32:53.380Z",
+            "updatedAt": "2024-03-01T15:32:53.380Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128260,
+            "classId": 6533083,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:32:53.381Z",
+            "updatedAt": "2024-03-01T15:32:53.381Z",
+            "tags": [],
+            "classTitle": "vivax",
+            "bitmap": {
+                "data": "eJwBPwLA/YlQTkcNChoKAAAADUlIRFIAAACpAAAAkQEDAAAAgjIKrAAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAHnSURBVHicldc/TsMwFAZwW5XomBWmXIGRocLcgOswIBJOwBE4SoPEPciA1DVsRrL8sJPGSen3VXoeUPXj6fnPs+PEmNQ2XWdKey6/KhF7COmH/XnfhMK1yIcEUw9WpIpr9omdNyJ7KbyX1LxN/2lESnQjY3s78sOSY2ojSz+pldJat/B24SFHd2XUc/uVwlcrHtvn9b/gqX1jFiHcYu7U7HBuwEbD8QI3Zxwu8HmPkfMG81bFj+ec1+R8fFru4AJmRtFwkmNuBcN1ZevtVWUIeL0D7xKMz69P32l0BcJbzB1Mkg8sGElmoDkJYpJkULHXMtiajANeE0+5xuwA97DEuUvCinGrmXRpAUcaXePoBkcTdphJdXS11DGaPDlqPWUHWLeRyVKRopHJD/QUE3Y4SYW7RJMnZ4fsE7590EgIC+5ScO70xINJWmV0o2BcS86oy4gfpoTJ9sE3Cbsvye2Kk5D9EPF1pGMhzC8vdBp6/Lo14PlcYJBcz/NzJlrIgjkuM+hWLxGxPBTCwyo6FG7NFH0YueSe378HdzKSmX19krtEV2u+mdhKn2fqJz7M3w2Js4yfGGnMuyNvvgYbmlQSkdeU+PrIpvYm7lxvetcu3xipEKl2d1X6c2/8y8K3uaQmLcTOPB3pD0nDZR+GSr7YAAAAAElFTkSuQmCCUR8M4Q==",
+                "origin": [
+                    383,
+                    232
+                ]
+            }
+        },
+        {
+            "id": 150128261,
+            "classId": 6533083,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:32:53.381Z",
+            "updatedAt": "2024-03-01T15:32:53.381Z",
+            "tags": [],
+            "classTitle": "vivax",
+            "bitmap": {
+                "data": "eJwB1QIq/YlQTkcNChoKAAAADUlIRFIAAAC3AAAAuQEDAAAAUKo8rAAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAJ9SURBVHicrZhNjtQwEIUrymjMYqTcgFxkJF+FIyDWaGz2I3EFbtIZsWDJFXIE87PwCOOibKebbnW9CKPJIp18/VIul8tJ2USXx5jorl6YeI6nQ6LXnl7JVTrnjjNZT+8bDw0aT1z4YnLlw/bIRFPhLhc+Jxpz4/MPrvpsRDhnMnx4rJwrlx/htl5w4bZx2zhXvvzVu3KSc2mNV6L78ius/il6X+7D/Vv+yMej8fL8d/d8yWf2lq+Owh9VPvHhGrOnSaH8y5NihPkb6TwA/glwAnwp8VEOiZaGi17lHtjx22Ao9ifADeCjxgPgGfAE7Md+PvXw0Knf4V1+ov4iLnEbAFcHOP9HYqn62JnoBBLLg8ChRER2QH8h35kAgE8aFq66s8OthnN/mFX7a//87bXjALcvYR/1Ny86l0DoPOl+ClfbbV8rVa/bj0CPOBh3BvNa9IhPGs5gfBnzucfOjv0uO6lz3FGeJ+wn8qeLS4LqPIA4JMh1O0iP8hBz3Q7yM8D+9ur7OLKD5i/So/n1UvMUjVcE8UEcx1/nCcx3nCe6HuVDb/4g+8gfFIcV1i2qHs1rVI+h7w4qQyJ+nzjANQz1EegD1lvAZ9DuBPiL1JPSsFqHQ570+nMvcIhbjfe+uMEHJgEeQT1cFsSaecRXUIcvYF2D+M666V/H8bmer+uHp60B4V8uXNkaGDleNL24ph85jE/ZHXFu8Wr8QzjJ57oKr1w6sTZWufld+VCX+sVCMomz8GRLIIa6mSBOpTtKLgmPpgbiHZWgfqWft/Tg4uzH8u5ct/0L/jystxRMnGlcz/Y2pONvboS3HY0hn/Y76q03S7t9OPKbbefjtDHyB3qobnqY+oCzAAAAAElFTkSuQmCCQRdl9g==",
+                "origin": [
+                    1286,
+                    740
+                ]
+            }
+        }
+    ]
+}

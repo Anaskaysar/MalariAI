@@ -1,0 +1,39 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741236,
+            "tagId": 31224,
+            "name": "trophozoite stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:33:50.924Z",
+            "updatedAt": "2024-03-01T15:33:50.924Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128303,
+            "classId": 6533081,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:33:50.925Z",
+            "updatedAt": "2024-03-01T15:33:50.925Z",
+            "tags": [],
+            "classTitle": "malariae",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtL2IMzIDCRzJzbNAVJsAT4hrkD6////S2/OvwtkMZYE+QUzODy7kQbkLPd0cQypmLP30kbBwwo8rAGWmhqSjYJGTbbBYgdmp4j2O00PU2VtV2q0ny7z3ExkX7mCip/RROsV66c2Mp3gvDiVJzAx8VyZVkLiPsdi2yc9fbx38rtTFl0I0PlYaR+XfKQlPmOj9YaSNw5OG3faKKcp1O/Ncfsjfuqr4GJuYyGreRfEj/Etduz5KLKA6bHG9xbVWxX39C3DZBem62veKLl58p3o9tyVf8NvvFh5n7+tPfHkjKZp3kAnM3i6+rmsc0poAgByZ2F2",
+                "origin": [
+                    1170,
+                    954
+                ]
+            }
+        }
+    ]
+}

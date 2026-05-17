@@ -1,0 +1,58 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741215,
+            "tagId": 31226,
+            "name": "gametocyte stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:33:20.058Z",
+            "updatedAt": "2024-03-01T15:33:20.058Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128275,
+            "classId": 6533083,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:33:20.060Z",
+            "updatedAt": "2024-03-01T15:33:20.060Z",
+            "tags": [],
+            "classTitle": "vivax",
+            "bitmap": {
+                "data": "eJwBAAL//YlQTkcNChoKAAAADUlIRFIAAACbAAAArwEDAAAA0EQ+dAAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAGoSURBVHictdfLkYQgEAZgpvYwR0PwuFFsGRpksCkRCiF45ODKjjpCP35n2rKG41fQdvMo0Lml3bMPTraulKhwKI8WhfsFS+a4WpllyLWxjw1PHBGyoL6A8RWT+jjHr4ozQhL0Hbby72+w1eQbZoTTbrdCmpw4llNPMZpxz8lTLBCDmE0alGMy4yhnc2lZTtzSJoTzMX4ZsNgxIEznUOS5FS8xI5zMOKsNsmNvwbX4QWK4hhFhNuN41NObUdoJnC7jDaHcIOt6aCyfQblryrJydgQxzwyH2Bkx6j27HC87Dmb0CLVhjAjDBxBsukP0ZhwQ9gg7M4J1R6cD4tE5OnG0vcTxCIcPYI9S6hCqaRoRwp4ZXD3bjeJBTJVoQhjRPQHRobvn2g09HaPYDs93FERe0ogwbchLig5kfxGDFfd3KSt+fxje3mJG+CydT1N6iV4XxOcuvMReF8SwvnTpxoE4I2yvZ1JnrZKWFBE2a3XSn5Ra0kSwZk9/R+rSJYJ16cjHW6KBYP08NfejM6rjObpflVHtGjg6MHqrNCGMEr9ByEfXP9Xx0VrEfyZvxPqalbWsAAAAAElFTkSuQmCC2e/jBw==",
+                "origin": [
+                    1581,
+                    694
+                ]
+            }
+        },
+        {
+            "id": 150128276,
+            "classId": 6533083,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:33:20.060Z",
+            "updatedAt": "2024-03-01T15:33:20.060Z",
+            "tags": [],
+            "classTitle": "vivax",
+            "bitmap": {
+                "data": "eJwB0QIu/YlQTkcNChoKAAAADUlIRFIAAACKAAAAwgEDAAAArELIJgAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAJ5SURBVHicpdexjtNAEAbgDS4MBXJ7VAkVJWWuQcubUPAClDRo/SY8Sny6ggbdFTxALJ0EBQUWkYiP+LzYY693Z/61YnHWKcl9mt39M+s4sVLueFYpeaz/AG0FJUrp708ZpT1dSjLtR0ZPLpS1fMn0zbW1NadPFqgT2zDKemqRIgOXUXOOMqQ1zqWRDA60lD7s4YqIlW0HshuxYHeUk1xYoNrRFGP105Gf/w7pPQw0Tnyr6b9TSNQrex/SLdHfkL4NMweUHIkewiq/4JQroJb1KqQkILus6m0QvqvoHwqiLKyao9VnrNohmZBySftx1wL6Mn5AArrahVX0eHWEquIlzFVtPvgtG46vuZF0e2Ny0a5ulYK3634kXqWBWp3LPluDRK1Yc+r3SHOycXqF9PrMwD2RWHGHpOVmD/HnaT88nfr9TqeCh33fstzTaXwuPZX9w5EoE1QwOtrqnaCDrXU/vXuPd0TmV+73/0B/1OkgOX3qiygZTz/GqNryA8jEqiqkGqldRBWLOkeR6ZsomfPUItlFIUocGKFIcyJR481ZL4oqKVK1rPfdqfOfFJkL0z9mriXTR1cEKmIhzgw8DpRhFRBcOmZIXB7tIReX2u56kqsXgrrz/jlSKqjB6Rt5Jbf2t4JTulpAdAVYONAgaU7lY2iNlJ4l/FKbowQpMldiGNFXPg9G378aqxg1RBkjGsiWbJGGKpZ1+DW3QlI4kO1RjVTNVoVvspylDClFCuMXSLmC+I58sOkHq6fpl66W4aPk41eOfNbCUYLkW50DBbcsEMtnrZEqTxnvVhjMi1uS3SMZuaAbye5Y6Bzm91bUjIKT2jaVksfGvfgHKi56w+NmXU0AAAAASUVORK5CYIIl2k0f",
+                "origin": [
+                    1087,
+                    839
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741249,
+            "tagId": 31226,
+            "name": "gametocyte stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:34:14.003Z",
+            "updatedAt": "2024-03-01T15:34:14.003Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128317,
+            "classId": 6533081,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:34:14.003Z",
+            "updatedAt": "2024-03-01T15:34:14.003Z",
+            "tags": [],
+            "classTitle": "malariae",
+            "bitmap": {
+                "data": "eJwBJwHY/olQTkcNChoKAAAADUlIRFIAAABUAAAAVgEDAAAAa20jiQAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAADPSURBVHicldPBDcMgDAVQIw65VMoIGSWbNRmlo7BJGSFHKqG4NdhgIlBbLnlCP9hCGIDWHerCnTHjE2Mx4slePpbQRg78Y1pO2RNNdlQ+r7bZ6VSxu3jBeqj44NbEKztIa1xYm5kKi7HdNz2jtmtsB/vVvslMXfuBj6Ft137ouWtXrpO8Km9fvf9g+DPfGn/IrAMvXUPjWbncbahPj2yUS2Gv3pvv70eo7zMop+GZpOrFVmWyT5WJKpOdmzuUo5pHGWDqzrGnl0GZdvOAG33fTY652LGzhnkAAAAASUVORK5CYII/W4AL",
+                "origin": [
+                    1131,
+                    970
+                ]
+            }
+        }
+    ]
+}

@@ -56,6 +56,7 @@ import numpy as np
 from scipy import ndimage as ndi
 from skimage.feature import peak_local_max
 from skimage.segmentation import watershed
+from tqdm import tqdm
 
 # ── Project root on sys.path ──────────────────────────────────────────────────
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -64,10 +65,10 @@ from shared.label_map import LABEL_TO_INT, INT_TO_LABEL, CLASS_COLOUR_RGB
 
 SKIP_LABELS = {"difficult"}
 CROP_SIZE   = 64          # output crop dimension (pixels)
-MIN_AREA    = 200         # discard watershed regions smaller than this (noise)
-MIN_DIST    = 18          # peak_local_max min_distance (px) — tune to cell size
-OPEN_KSIZE  = 5           # morphological opening kernel size
-DIST_THRESH = 0.30        # fraction of max distance → sure-foreground threshold
+MIN_AREA    = 150         # discard watershed regions smaller than this (noise)
+MIN_DIST    = 12          # peak_local_max min_distance (px) — smaller = more seeds = better separation
+OPEN_KSIZE  = 3           # morphological opening kernel size — smaller preserves inter-cell gaps
+DIST_THRESH = 0.25        # fraction of max distance → sure-foreground threshold — lower = more markers
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -248,7 +249,7 @@ def run_crops(records, img_dir: Path, out_dir: Path, vis_dir: Path | None,
                          "gt_label", "gt_iou"])
 
         total_ws = 0
-        for rec_idx, rec in enumerate(records):
+        for rec_idx, rec in enumerate(tqdm(records, desc="Extracting crops", unit="img")):
             img_path = img_dir / rec["filename"]
             if not img_path.exists():
                 # try basename only
@@ -276,10 +277,6 @@ def run_crops(records, img_dir: Path, out_dir: Path, vis_dir: Path | None,
 
                 writer.writerow([rec["filename"], cell_idx, crop_name,
                                  *box, label, f"{best_iou:.3f}"])
-
-            if (rec_idx + 1) % 50 == 0:
-                print(f"  [{rec_idx+1}/{len(records)}] "
-                      f"total watershed cells so far: {total_ws}")
 
             # optional visualisation
             if vis_dir and rec_idx < n_vis:
@@ -311,7 +308,7 @@ def run_eval(records, img_dir: Path, vis_dir: Path | None, n_vis: int,
 
     per_image  = []
 
-    for rec_idx, rec in enumerate(records):
+    for rec_idx, rec in enumerate(tqdm(records, desc="Evaluating", unit="img")):
         img_path = img_dir / rec["filename"]
         if not img_path.exists():
             img_path = img_dir / Path(rec["filename"]).name
@@ -348,10 +345,6 @@ def run_eval(records, img_dir: Path, vis_dir: Path | None, n_vis: int,
         if n_gt >= dense_thresh:
             dense_gt  += n_gt
             dense_rec += rec_count
-
-        if (rec_idx + 1) % 20 == 0:
-            print(f"  [{rec_idx+1}/{len(records)}] "
-                  f"running recall={recovered/max(total_gt,1)*100:.1f}%")
 
         if vis_dir and rec_idx < n_vis:
             vis_dir.mkdir(parents=True, exist_ok=True)

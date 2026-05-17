@@ -1,0 +1,67 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741226,
+            "tagId": 31225,
+            "name": "schizont stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:33:27.345Z",
+            "updatedAt": "2024-03-01T15:33:27.345Z"
+        },
+        {
+            "id": 18741227,
+            "tagId": 31224,
+            "name": "trophozoite stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:33:27.345Z",
+            "updatedAt": "2024-03-01T15:33:27.345Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128293,
+            "classId": 6533081,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:33:27.345Z",
+            "updatedAt": "2024-03-01T15:33:27.345Z",
+            "tags": [],
+            "classTitle": "malariae",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtJ2QGzGyAwkl8bsyAJSbAE+Ia5A+v///0tvzr8LZDGWBPkFMzg8u5EG5MzydHEMqZjTe9GQr9mAhzUgXFaimuW72k6xaKWvSTJL3T+caCjY/7ZlxQKPlCqubaL7Ol98FPz0+ZLpgV3Xua8uPdgttEHySp/i/4UJc+qdbm9OLKpJ7uG3miB1o/Gf9iK2vzZNJVcebW12v2F1ibWSJ7f43IToE8uXe/0/yLwmSYMja6N3yo7b2bn2m592GrzM5fxdpfOZYdn0XYcjFK81LJPfsNfqSWxr+z6gKxk8Xf1c1jklNAEAwBVkPw==",
+                "origin": [
+                    1054,
+                    704
+                ]
+            }
+        },
+        {
+            "id": 150128294,
+            "classId": 6533081,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:33:27.346Z",
+            "updatedAt": "2024-03-01T15:33:27.346Z",
+            "tags": [],
+            "classTitle": "malariae",
+            "bitmap": {
+                "data": "eJwBPgHB/olQTkcNChoKAAAADUlIRFIAAABDAAAAUwEDAAAA/tIoqwAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAADmSURBVHicjdNLDoIwFAXQEoiMDEuoW3DoqOsyMWlnTlyCiVvpUroEZmIUnvTzLhQwkQkn9PNuaSuEEIXgpxzE3gQ1ZFTnUUmyNHjtFLkoSfSC+ihN4xNEaxVQudAH6iC3IT9dDTVBBrIbcjFeUoj3tqwW8aYSbaYa8aJ8tXIpi1b7Z7/s26QCrTEVIV8IiH5JLa8jBNT4pwqDNYYQq4QkcTlayfIkMzm0znWGTtARY6e6aT/yBa+Wjq1ZnKaQtfulmv+GqnkSeWWpB0S5TCphNRRO/dj6jDeB7pd0J/rbIelSCVZ6fwHuc+Sxe3cWTAAAAABJRU5ErkJggr55gdY=",
+                "origin": [
+                    1257,
+                    1155
+                ]
+            }
+        }
+    ]
+}

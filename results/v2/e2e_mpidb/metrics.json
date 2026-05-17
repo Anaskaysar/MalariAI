@@ -1,0 +1,52 @@
+{
+  "iou_threshold": 0.5,
+  "dataset": "mpidb",
+  "n_images_evaluated": 209,
+  "gt_counts": {
+    "parasitized": 1407
+  },
+  "ap_per_class": {
+    "parasitized": {
+      "ap": 0.0182,
+      "n_gt": 1407
+    }
+  },
+  "mAP_at_iou50": 0.0182,
+  "binary_parasitized_AP": 0.0182,
+  "stage1": {
+    "total_gt_cells": 1407,
+    "total_watershed_boxes": 4726,
+    "tp": 18,
+    "fp": 4708,
+    "fn": 1389,
+    "recall_at_iou50": 0.0128,
+    "precision_at_iou50": 0.0038,
+    "f1_at_iou50": 0.0059,
+    "per_class": {
+      "falciparum": {
+        "gt_count": 1267,
+        "tp": 16,
+        "recall": 0.012628255722178374
+      },
+      "malariae": {
+        "gt_count": 43,
+        "tp": 2,
+        "recall": 0.046511627906976744
+      },
+      "vivax": {
+        "gt_count": 64,
+        "tp": 0,
+        "recall": 0.0
+      },
+      "ovale": {
+        "gt_count": 33,
+        "tp": 0,
+        "recall": 0.0
+      }
+    }
+  },
+  "timing": {
+    "stage1_seconds": 309.5,
+    "e2e_seconds": 320.0
+  }
+}

@@ -1,0 +1,39 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741200,
+            "tagId": 31226,
+            "name": "gametocyte stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:32:53.381Z",
+            "updatedAt": "2024-03-01T15:32:53.381Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128257,
+            "classId": 6533083,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:32:53.381Z",
+            "updatedAt": "2024-03-01T15:32:53.381Z",
+            "tags": [],
+            "classTitle": "vivax",
+            "bitmap": {
+                "data": "eJwBFQPq/IlQTkcNChoKAAAADUlIRFIAAACwAAAA3wEDAAAAbNvLkgAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAK9SURBVHicrdi9jtQwEAdwr4IUTgLyAoiUPAAP4FdCNNA5Ha/Bm5COkpYCaVPSnRHFBW02Q7KJv2b+vk2Ws3TS6afReDx2vLtRyo1nCo43UIsBcklfPgHWNKB4TURW6GFSkuHFzNTKGQllqR7jnnN94RHVNw3OZuGG8aKiQsyHlbuUi5V7zKwrxYlQ4S6aMpwWXjput3B1hdP1VEccfYTR9V/I2uW2CRvMtIcLzCXmCnPtud/Avux0M2kPh7KTra+egg1mglxg1hFHh9Bgpg3coBmjY1Um7BteYdaYDWaCfMDMokece8TRdCUJji4ZN6hTvlcrf2SFL0nGUCbnc1wKn5IyvJRS5/m+DzOuSS7RMTd+z77aKFUbttJG0V3g39GUfeCzYFHgD3B6fLRY5fAY823I8bLMzdyCM0jrxST5Uvg7yK+M4LnCWjKhliwVirUvjKJbzBbswlLhxEdQoSb6DCqcvmnIZs2P3yC70qr5zxD9SbhTc/5p2gdW4cyi9l7NRYrkg+dzysaK28CzZpWMynQXPjHWneK3mOdasoWP7CX6reAS5V6Z584yfn72XR74GluZN9zdkQazxswKd5+x1f+w+yQoN7FVcJkd5gazgjxiHjD3mF19rOEd5gaz8sOg+pbtuef1LXzC/MtA/mnYatKtj7im8IDblMUiN3GLuXkKVpAzX9uG66wxR7mjlsQHPObyanR3Mz9gxmvPcLmLa8yEWV/lDe2OOP6JoL9Drr9BfhE6aCN+jjnqd3c7h161mJvbOTQl1uggJ0yQw+2THJM7z8lvrJf+Hki4xkkCZ37WZdjisvdxi7nDU2Y4SaJxdIWj7zCro+NEQ69Sdk/giHnAnHklwt/lZNiAviq//BZzw7hGq3HNEm+PKrQatx7xCqqUmzCPAuZYTjhfzDTMSEaqqsYP7wGr19H//wDclnFueEzQcQAAAABJRU5ErkJggq/Diq0=",
+                "origin": [
+                    1389,
+                    823
+                ]
+            }
+        }
+    ]
+}
