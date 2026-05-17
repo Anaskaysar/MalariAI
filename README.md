@@ -1,10 +1,10 @@
-# MalariAI- No Cell Left Behind
+# MalariAI — No Cell Left Behind
 
-### MalariAI — A Label-Resilient Decoupled Framework for Universal Cell Segmentation and Explainable Stage Classification in Dense Malaria Blood Smears
+### A Label-Resilient Decoupled Framework for Universal Cell Segmentation and Explainable Stage Classification in Dense Malaria Blood Smears
 
-> **Research Paper + Portfolio Demo**  
-> Kaysarul Anas Apurba, Md Hasibul Hasan (Laurentian University, Canada) · Mohammed Ali (Melbourne Institute of Technology, Australia)  
-> Target venue: arXiv / MICCAI · Live demo: Hugging Face Spaces
+> **Research Paper — Targeting CMIG (Computerized Medical Imaging and Graphics)**
+> Kaysarul Anas Apurba · Md Hasibul Hasan (Laurentian University, Canada) · Mohammed Ali (Melbourne Institute of Technology, Australia)
+> Paper: `paper_writing/cmig_submission/MalariAI_CMIG.tex`
 
 ---
 
@@ -18,10 +18,10 @@ Automated malaria diagnosis from peripheral blood smear microscopy remains a cri
 
 **MalariAI** is a two-stage decoupled framework that addresses all three simultaneously:
 
-- **Stage 1** — An *annotation-agnostic* distance-transform guided watershed algorithm that isolates every cell in the smear regardless of ground-truth completeness.
+- **Stage 1** — An *annotation-agnostic* distance-transform guided watershed algorithm that isolates every cell in the smear regardless of ground-truth completeness. Stage 1 v2 adds CLAHE contrast normalisation and resolution-aware peak detection for cross-dataset robustness.
 - **Stage 2** — An **EfficientNet-B0** classifier trained with **Focal Loss** for multi-class infection stage identification (ring, trophozoite, schizont, gametocyte), with **Grad-CAM++** generating per-cell spatial attention heatmaps.
 
-We benchmark against a **Faster R-CNN** baseline on the publicly available **NIH BBBC041** dataset (1,208 training images, 79,672 valid annotated instances across 6 cell categories).
+We evaluate on **NIH BBBC041** (1,208 training images, 79,672 annotated instances) and validate cross-dataset on **MP-IDB** (209 images, 1,407 infected cells from 4 *Plasmodium* species) without any retraining.
 
 ---
 
@@ -33,12 +33,37 @@ We benchmark against a **Faster R-CNN** baseline on the publicly available **NIH
 | Dense overlapping cells | NMS deletes genuine overlapping detections ❌ | Distance-transform splits touching cells ✅ |
 | Clinical explainability | Black-box prediction ❌ | Grad-CAM++ heatmap per cell ✅ |
 | Multi-class imbalance | Ignored (537:1 RBC:gametocyte ratio) ❌ | Focal Loss + per-class inverse-frequency weights ✅ |
+| Single-dataset evaluation | Trained and tested on same dataset ❌ | Cross-dataset validation on MP-IDB (unseen stain/lab) ✅ |
 
 ---
 
-## Dataset
+## Key Results
 
-**NIH BBBC041** — Giemsa-stained *P. falciparum* thin blood smears, 1600×1200 px  
+### BBBC041 — Source Domain (120 test images, 5,917 GT boxes)
+
+| Method | Stage 1 Recall@IoU0.5 | Binary Parasitized AP@0.5 | mAP@0.5 |
+|---|---|---|---|
+| Baseline A (Faster R-CNN) | N/A | — | 58.99% |
+| Pipeline B — Stage 1 v1 | 66.88% | 29.10% | 8.67% |
+| Pipeline B — Stage 1 v2 | 41.61% | 7.40% | 0.78% |
+
+> Stage 2 (EfficientNet-B0) crop classification accuracy: **98.36%** overall; schizont **87.5%**, gametocyte **75.0%** — vs Faster R-CNN AP of 24.6% and 26.0% for the same rare classes.
+
+### MP-IDB — Cross-Dataset Zero-Shot (209 images, 1,407 infected cells)
+
+| Method | Stage 1 Recall@IoU0.5 | Binary Parasitized AP@0.5 |
+|---|---|---|
+| Pipeline B — Stage 1 v1 | 1.28% | 1.82% |
+| Pipeline B — Stage 1 v2 (CLAHE) | **20.68%** | **9.09%** |
+
+Stage 1 v2 delivers a **16× recall improvement** on the unseen dataset. Per-species recall (v2): *P. malariae* 86.0%, *P. ovale* 60.6%, *P. vivax* 32.8%, *P. falciparum* 16.8%.
+
+---
+
+## Datasets
+
+### NIH BBBC041 (Primary)
+Giemsa-stained *P. falciparum* thin blood smears, 1600×1200 px.
 Source: [Broad Bioimage Benchmark Collection](https://bbbc.broadinstitute.org/BBBC041)
 
 | Split | Images | Valid Boxes |
@@ -46,287 +71,244 @@ Source: [Broad Bioimage Benchmark Collection](https://bbbc.broadinstitute.org/BB
 | Training | 1,208 | 79,672 |
 | Test | 120 | 5,917 |
 
-**Class distribution (training, excluding "difficult"):**
+Class distribution (training): Red Blood Cell 97.2%, Trophozoite 1.8%, Ring 0.4%, Schizont 0.2%, Gametocyte 0.2%, Leukocyte 0.1%.
 
-| Class | Count | % |
+### MP-IDB (Cross-Dataset Validation)
+Giemsa-stained thin blood smears, 2592×1944 px. 4 *Plasmodium* species annotated with Supervisely bitmap masks.
+Source: [MP-IDB dataset](https://github.com/lstorchi/pica_rbc)
+
+| Species | Images | Infected Cells |
 |---|---|---|
-| Red Blood Cell | 77,420 | 97.2% |
-| Trophozoite | 1,473 | 1.8% |
-| Ring | 353 | 0.4% |
-| Schizont | 179 | 0.2% |
-| Gametocyte | 144 | 0.2% |
-| Leukocyte | 103 | 0.1% |
-
-**EDA key findings:**
-- 58% of training images contain at least one overlapping cell pair (IoU > 0.3) — empirical motivation for P2
-- Median 59 boxes/image, max 223 — "dense smear" defined as > 100 boxes (11% of images)
-- Trophozoite median area 17,272 px² vs. RBC 11,544 px² — intraerythrocytic swelling confirmed
-
-> 📊 Full EDA: [`notebooks/Phase1_EDA.ipynb`](notebooks/Phase1_EDA.ipynb)
+| *P. falciparum* | — | 1,267 (90.1%) |
+| *P. vivax* | — | 64 (4.5%) |
+| *P. ovale* | — | 33 (2.3%) |
+| *P. malariae* | — | 43 (3.1%) |
+| **Total** | **209** | **1,407** |
 
 ---
 
 ## Project Structure
 
 ```text
-MalariAI/
-├── README.md                        ← Master plan (this file)
-├── requirements.txt                 ← Training dependencies
+MalariAI-Automated-Malaria-Cell-Segmentation-from-Blood-Smear-Images/
+│
+├── README.md
+├── requirements.txt
 │
 ├── data/
-│   ├── .gitignore
-│   └── malaria/                     ← Place dataset here (not committed)
-│       ├── training.json
-│       ├── test.json
-│       └── images/
+│   ├── malaria/                        ← BBBC041 images + JSON annotations
+│   │   ├── training.json
+│   │   ├── test.json
+│   │   └── images/
+│   ├── MP-IDB/                         ← MP-IDB images + Supervisely annotations
+│   │   ├── img/
+│   │   └── ann/
+│   ├── processed/
+│   │   ├── train_annotations.csv       ← BBBC041 train (prepare_data.py)
+│   │   ├── test_annotations.csv        ← BBBC041 test  (prepare_data.py)
+│   │   └── mpidb_annotations.csv       ← MP-IDB        (prepare_mpidb.py)
+│   ├── prepare_data.py                 ← BBBC041 JSON → CSV converter
+│   └── prepare_mpidb.py                ← MP-IDB Supervisely bitmap → CSV converter
 │
 ├── shared/
-│   └── label_map.py                 ← Single source of truth: class indices, colours, names
-│
-├── Phase1-EDA/                      ← ✅ COMPLETE
-│   ├── dataset.py                   ← MalariaDataset + MalariaCropDataset (shared across phases)
-│   ├── eda.py                       ← Standalone EDA script
-│   └── outputs/                     ← EDA plots
+│   └── label_map.py                    ← Class indices, colours, names
 │
 ├── notebooks/
-│   ├── Phase1_EDA.ipynb             ← ✅ Interactive EDA notebook (primary interface)
-│   └── outputs/                     ← class_distribution.png, parasite_crops.png, etc.
+│   ├── Phase1_EDA.ipynb                ← ✅ BBBC041 exploratory data analysis
+│   └── mpidb_eda.ipynb                 ← ✅ MP-IDB exploratory data analysis
 │
-├── Phase2-BaselineA/                ← 🔧 IN PROGRESS
-│   ├── train_frcnn.py               ← Faster R-CNN ResNet-50 FPN training script
-│   ├── evaluate.py                  ← mAP@0.5, mAP@[0.5:0.95], per-class AP
-│   └── checkpoints/                 ← Saved model weights (not committed)
+├── Phase1-EDA/                         ← ✅ COMPLETE
+├── Phase2-BaselineA/                   ← ✅ COMPLETE — Faster R-CNN baseline
+│   ├── train_frcnn.py
+│   ├── evaluate.py
+│   └── checkpoints/best.pth
 │
-├── Phase3-PipelineB/                ← ⏳ PENDING
-│   ├── stage1_watershed.py          ← Otsu → morphological opening → distance transform → watershed
-│   ├── stage2_train.py              ← EfficientNet-B0 + Focal Loss training
-│   ├── stage2_inference.py          ← Crop classification + Grad-CAM++ generation
-│   ├── gradcam.py                   ← Grad-CAM++ implementation
-│   └── checkpoints/                 ← Saved model weights (not committed)
+├── Phase3-PipelineB/                   ← ✅ COMPLETE — MalariAI pipeline
+│   ├── stage1_watershed.py             ← Otsu → distance transform → watershed (v1)
+│   ├── stage2_train.py                 ← EfficientNet-B0 + Focal Loss training
+│   ├── stage2_inference.py             ← Crop classification + Grad-CAM++
+│   ├── gradcam.py
+│   └── checkpoints/best.pth           ← Trained Stage 2 checkpoint
 │
-├── Phase4-WebApp/                   ← ⏳ PENDING — Flask UI + HuggingFace deployment
-│   ├── app.py                       ← Flask server (upload → pipeline → results)
-│   ├── pipeline.py                  ← Loads Stage1 + Stage2 models, runs full inference
-│   ├── templates/
-│   │   └── index.html               ← 3-card UI (smear view / cell gallery / report + Grad-CAM++)
-│   ├── static/
-│   │   ├── css/style.css
-│   │   └── js/app.js
-│   ├── requirements.txt             ← Lightweight: flask, torch (CPU), torchvision, opencv, pillow
-│   └── README_deploy.md             ← HuggingFace Spaces deployment steps
+├── src/
+│   ├── pipeline_b/
+│   │   ├── stage1_watershed.py         ← Stage 1 v1 (original)
+│   │   └── stage2_classify.py
+│   └── pipeline_b_v2/
+│       ├── stage1_v2.py                ← ✅ Stage 1 v2: CLAHE + resolution-aware peak detection
+│       └── e2e_eval.py                 ← ✅ End-to-end evaluation framework (IoU matching + AP)
 │
-├── paper_writing/
-│   ├── draft/
-│   │   ├── MalariAI_Paper_Draft.tex ← LaTeX paper draft (main file)
-│   │   ├── fig_class_distribution.png
-│   │   ├── fig_parasite_crops.png
-│   │   └── fig_density.png
-│   ├── previous_study/              ← Reference PDFs (Papers 1–4)
-│   └── coauthor_reading_guide.md    ← Mohammed Ali's extraction tables + timeline
+├── results/
+│   └── v2/
+│       ├── e2e_bbbc041/                ← Stage 1 v1 results on BBBC041
+│       │   ├── metrics.json
+│       │   ├── stage1_stats.json
+│       │   └── pr_curves.png
+│       ├── e2e_bbbc041_v2/             ← Stage 1 v2 results on BBBC041
+│       ├── e2e_mpidb/                  ← Stage 1 v1 results on MP-IDB
+│       └── e2e_mpidb_v2/              ← Stage 1 v2 results on MP-IDB
 │
-└── checkpoints/                     ← Top-level symlinks to best models for web app
-    ├── stage2_best.pth              ← → Phase3-PipelineB/checkpoints/best.pth
-    └── README.md
+├── Phase4-WebApp/                      ← ✅ COMPLETE — Flask UI
+│   ├── app.py
+│   ├── pipeline.py
+│   └── README_deploy.md
+│
+└── paper_writing/
+    ├── cmig_submission/
+    │   ├── MalariAI_CMIG.tex           ← ✅ Full paper (1,827 lines, CMIG format)
+    │   ├── references.bib
+    │   ├── system_diagram_v1.png       ← ⚠ Being replaced (low resolution)
+    │   └── fig_*.png                   ← All paper figures
+    └── research_strategy_*.md
 ```
 
 ---
 
 ## Architecture
 
-### Pipeline B — MalariAI (Proposed)
+### Stage 1 — Annotation-Agnostic Cell Segmentation
 
 ```
-Full Blood Smear Image (1600×1200 px, Giemsa-stained)
-          │
-          ▼
-┌─────────────────────────────────────────┐
-│  STAGE 1: ANNOTATION-AGNOSTIC WATERSHED │
-│  • Otsu thresholding (global binarise)  │
-│  • Morphological opening (noise remove) │
-│  • Distance transform (topology map)    │
-│  • Marker-based watershed (separation)  │
-│  → N cell crops (no GT labels required) │
-└─────────────────┬───────────────────────┘
-                  │  N individual 64×64 crops
-                  ▼
-┌─────────────────────────────────────────┐
-│  STAGE 2: EFFICIENTNET-B0 CLASSIFIER    │
-│  • Focal Loss γ=2.0, α=inv-frequency    │
-│  • 7-class head (incl. background)      │
-│  • Grad-CAM++ heatmap per cell          │
-│  → Class label + confidence + heatmap  │
-└─────────────────────────────────────────┘
-          │
-          ▼
-┌─────────────────────────────────────────┐
-│  PHASE 4: FLASK WEB APP (HF Spaces)     │
-│  Card 1 — Smear + watershed outlines    │
-│  Card 2 — Cell crop gallery (filtered)  │
-│  Card 3 — Report + dual Grad-CAM++ view │
-│            (crop detail / full image)   │
-└─────────────────────────────────────────┘
+Input image (any resolution)
+        │
+        ▼ [v2 only]
+CLAHE contrast normalisation (L channel, LAB space)
+        │
+        ▼
+Grayscale + Otsu thresholding  →  binary mask (cell=1, bg=0)
+        │
+        ▼
+Morphological opening  →  noise removal
+        │
+        ▼
+Distance transform  →  "height map" with peaks at cell centres
+        │
+        ▼ [v1: dist_norm >= 0.35]  [v2: peak_local_max, min_dist auto-scaled]
+Seed generation (one seed per cell)
+        │
+        ▼
+Watershed from seeds  →  individual cell regions
+        │
+        ▼
+N bounding boxes (no GT labels required)
 ```
 
-### Pipeline A — Faster R-CNN Baseline
+### Stage 2 — EfficientNet-B0 Crop Classifier
 
 ```
-Full Blood Smear Image
-          │
-          ▼
-ResNet-50-FPN Backbone → RPN → RoI Align → Classification Head → NMS
-          │
-          ▼
-Bounding boxes + class labels
+N cell crops (64×64 px each)
+        │
+        ▼
+EfficientNet-B0 (ImageNet pretrained, 5.3M params)
+        │
+        ▼
+Focal Loss head (γ=2.0, per-class α)
+        │
+        ├── Class label (RBC / Ring / Trophozoite / Schizont / Gametocyte / Leukocyte)
+        ├── Confidence score
+        └── Grad-CAM++ heatmap (spatial evidence of prediction)
 ```
 
 ---
 
-## Phase Roadmap
+## Reproducing Results
 
-| Phase | Name | Owner | Status | Key Outputs |
-|---|---|---|---|---|
-| **Phase 1** | EDA & Dataset Analysis | KB | ✅ Complete | `Phase1_EDA.ipynb`, dataset.py, EDA plots |
-| **Phase 2** | Baseline A — Faster R-CNN | KB | 🔧 Next | `train_frcnn.py`, mAP numbers, checkpoint |
-| **Phase 3** | Pipeline B — Watershed + EfficientNet | KB | ⏳ Pending | Stage1+2 code, Grad-CAM++ output, checkpoint |
-| **Phase 4** | Flask UI + HuggingFace Deployment | KB | ⏳ Pending | Live demo at `hf.co/spaces/…`, PDF report export |
-| **Phase 5** | Evaluation, Ablation & Paper | KB + Mohammed Ali | ⏳ Pending | mAP tables, ablation study, final `.tex` → arXiv |
+### 1. Setup
 
-### Phase 4 Detail — Flask Web App
+```bash
+git clone https://github.com/Anaskaysar/MalariAI-Automated-Malaria-Cell-Segmentation-from-Blood-Smear-Images.git
+cd MalariAI-Automated-Malaria-Cell-Segmentation-from-Blood-Smear-Images
+python -m venv malariaenv
+malariaenv\Scripts\activate          # Windows
+pip install -r requirements.txt
+pip install scipy scikit-image       # required for Stage 1 v2
+```
 
-The web app runs **Pipeline B only** (watershed → EfficientNet-B0 → Grad-CAM++) — no GPU required. EfficientNet-B0 (5.3M params) runs in ~2s on CPU, making it viable on Hugging Face Spaces free tier.
+### 2. Prepare annotation CSVs
 
-**What the demo does:**
-1. User uploads a blood smear PNG/JPG
-2. Stage 1 (watershed) isolates every cell — outlines overlaid on smear image (Card 1)
-3. Every crop shown in a filterable gallery with class label + confidence (Card 2)
-4. Summary report: infection rate, dominant stage, per-class counts (Card 3)
-5. Grad-CAM++ shown in two modes: 64×64 crop detail view + full-image activation overlay
+```bash
+python data/prepare_data.py          # BBBC041 → data/processed/test_annotations.csv
+python data/prepare_mpidb.py         # MP-IDB  → data/processed/mpidb_annotations.csv
+```
 
-**HuggingFace Spaces deployment:**
-- Platform: [Hugging Face Spaces](https://huggingface.co/spaces) — free, no GPU needed
-- SDK: Flask (via Docker space type)
-- Model checkpoint uploaded to HF model hub or stored in repo (≤25MB for EfficientNet-B0)
-- URL will be `huggingface.co/spaces/[username]/MalariAI`
+### 3. Run end-to-end evaluation — Stage 1 v1 (original)
 
----
+```bash
+# BBBC041
+python src/pipeline_b_v2/e2e_eval.py \
+    --dataset bbbc041 \
+    --img-dir data/malaria/images \
+    --ann-csv data/processed/test_annotations.csv \
+    --checkpoint Phase3-PipelineB/checkpoints/best.pth \
+    --out-dir results/v2/e2e_bbbc041
 
-## Key Design Decisions
+# MP-IDB (cross-dataset zero-shot)
+python src/pipeline_b_v2/e2e_eval.py \
+    --dataset mpidb \
+    --img-dir data/MP-IDB/img \
+    --ann-csv data/processed/mpidb_annotations.csv \
+    --checkpoint Phase3-PipelineB/checkpoints/best.pth \
+    --out-dir results/v2/e2e_mpidb
+```
 
-| Decision | Rationale |
-|---|---|
-| **Watershed over Mask R-CNN for Stage 1** | Zero labelled data required; no NMS; splits touching cells by topology |
-| **EfficientNet-B0 for Stage 2** | 5.3M params — runs on CPU; outperforms ResNet-18 on small images; strong ImageNet transfer |
-| **Focal Loss (γ=2.0)** | Addresses 537:1 class imbalance without oversampling; per-class α from EDA counts |
-| **Grad-CAM++** | More accurate multi-activation localisation than standard Grad-CAM; clinically interpretable |
-| **Decoupled stages** | Stage 1 is label-agnostic; Stage 2 sees pre-isolated crops → avoids NMS artefacts entirely |
-| **Flask + HuggingFace** | CPU-viable demo, free hosting, strong portfolio signal, sharable URL |
-| **Phase-based folder structure** | Clean separation of EDA / training / inference / app — each phase is self-contained |
+### 4. Run end-to-end evaluation — Stage 1 v2 (CLAHE + resolution-aware)
+
+```bash
+# BBBC041
+python src/pipeline_b_v2/e2e_eval.py \
+    --dataset bbbc041 --stage1-version v2 \
+    --img-dir data/malaria/images \
+    --ann-csv data/processed/test_annotations.csv \
+    --checkpoint Phase3-PipelineB/checkpoints/best.pth \
+    --out-dir results/v2/e2e_bbbc041_v2
+
+# MP-IDB
+python src/pipeline_b_v2/e2e_eval.py \
+    --dataset mpidb --stage1-version v2 \
+    --img-dir data/MP-IDB/img \
+    --ann-csv data/processed/mpidb_annotations.csv \
+    --checkpoint Phase3-PipelineB/checkpoints/best.pth \
+    --out-dir results/v2/e2e_mpidb_v2
+```
+
+### 5. Run the web app
+
+```bash
+cd Phase4-WebApp
+python app.py
+# Open http://localhost:5000
+```
 
 ---
 
 ## Research Contributions
 
-**C1 — Label-Resilient Segmentation.** An annotation-agnostic Stage 1 that detects every cell in a blood smear without relying on ground-truth bounding boxes, directly addressing the incomplete-annotation failure mode (P1) in NIH BBBC041.
+**C1 — Label-Resilient Segmentation.** Annotation-agnostic Stage 1 detects every cell without ground-truth bounding boxes, addressing the incomplete-annotation failure mode (P1). Cell recovery rate: 75.95% (centroid-in-box), 66.88% (IoU≥0.5) on BBBC041.
 
-**C2 — Density-Invariant Overlap Handling.** Distance-transform guided watershed separates touching and overlapping cells at the instance level, recovering detections that NMS-based detectors systematically suppress in dense smear regions (P2). Empirically: 58% of training images contain overlapping cell pairs (IoU > 0.3).
+**C2 — Density-Invariant Overlap Handling.** Distance-transform guided watershed separates touching cells at the instance level, recovering detections that NMS-based detectors suppress in dense smear regions (P2). 58% of BBBC041 training images contain overlapping cell pairs (IoU > 0.3).
 
-**C3 — Integrated End-to-End Explainability.** Grad-CAM++ spatial attention heatmaps generated within the full detection-to-classification pipeline, with dual views (crop detail + full-image overlay) — a capability absent from all prior whole-slide malaria detection systems (P3).
+**C3 — Integrated End-to-End Explainability.** Grad-CAM++ spatial heatmaps generated within the full detection-to-classification pipeline, with dual views (crop detail + full-image overlay) — absent from all prior whole-slide malaria detection systems (P3).
 
----
-
-## Setup
-
-### 1. Clone & create environment
-
-```bash
-git clone https://github.com/Anaskaysar/MalariAI-Automated-Malaria-Cell-Segmentation-from-Blood-Smear-Images.git
-cd MalariAI-Automated-Malaria-Cell-Segmentation-from-Blood-Smear-Images
-
-python -m venv malariaenv
-# Windows:
-malariaenv\Scripts\activate
-# macOS/Linux:
-source malariaenv/bin/activate
-
-pip install -r requirements.txt
-```
-
-### 2. Download the dataset
-
-Download from [BBBC041](https://bbbc.broadinstitute.org/BBBC041) and place:
-
-```
-data/malaria/training.json
-data/malaria/test.json
-data/malaria/images/   ← all .png files go here
-```
-
-### 3. Run Phase 1 EDA
-
-```bash
-jupyter notebook notebooks/Phase1_EDA.ipynb
-```
-
-### 4. Train — Phase 2 (Faster R-CNN baseline)
-
-```bash
-python Phase2-BaselineA/train_frcnn.py \
-    --json data/malaria/training.json \
-    --img-dir data/malaria/images \
-    --epochs 20 \
-    --out-dir Phase2-BaselineA/checkpoints
-```
-
-### 5. Train — Phase 3 (Pipeline B)
-
-```bash
-# Stage 1: run watershed over all training images, save crops
-python Phase3-PipelineB/stage1_watershed.py \
-    --json data/malaria/training.json \
-    --img-dir data/malaria/images \
-    --out-dir data/crops
-
-# Stage 2: train EfficientNet-B0 on saved crops
-python Phase3-PipelineB/stage2_train.py \
-    --train-json data/malaria/training.json \
-    --img-dir data/malaria/images \
-    --epochs 30 \
-    --out-dir Phase3-PipelineB/checkpoints
-```
-
-### 6. Run the web app locally (Phase 4)
-
-```bash
-cd Phase4-WebApp
-pip install -r requirements.txt
-python app.py
-# → Open http://localhost:5000
-```
+**C4 — Cross-Dataset Generalisation Study.** First evaluation of a malaria detection pipeline on MP-IDB without retraining. Stage 1 v2 (CLAHE) achieves 20.68% recall on unseen staining/institution, a 16× improvement over the unadapted baseline. Per-species analysis reveals morphology-driven recall patterns consistent with the parasitology literature.
 
 ---
 
 ## Paper Status
 
-| Section | Status | Owner |
-|---|---|---|
-| Abstract | ✅ Written | KB |
-| §1 Introduction | 🔲 Placeholder | Mohammed Ali (after exps) |
-| §2 Related Work | ✅ Written (5 subsections) | KB + Mohammed Ali |
-| §3.1 Dataset & Setup | ✅ Written | KB |
-| §3.2 Stage 1 Watershed | 🔲 Placeholder | KB (after Phase 3) |
-| §3.3 Stage 2 EfficientNet | 🔲 Placeholder | KB (after Phase 3) |
-| §3.4 Grad-CAM++ | 🔲 Placeholder | KB (after Phase 3) |
-| §3.5 Baseline A | ✅ Written | KB |
-| §3.6 Evaluation Metrics | ✅ Written | KB |
-| §4.1 Implementation Details | ✅ Written (Baseline A complete, Pipeline B pending) | KB |
-| §4.2 Quantitative Results | 🔧 Partial (Baseline A row filled, Pipeline B pending) | KB |
-| §4.3–4.5 Ablation / Dense / XAI | 🔲 Placeholder | KB (after Phase 3) |
-| §5 Results & Discussion | 🔲 Placeholder | KB + Mohammed Ali |
-| §6 Conclusion | 🔲 Placeholder | Mohammed Ali |
-| Bibliography | ⚠ Partial (some placeholders) | Mohammed Ali |
+| Section | Status |
+|---|---|
+| Abstract | ✅ Complete |
+| §1 Introduction | ✅ Complete |
+| §2 Related Work (5 subsections) | ✅ Complete |
+| §3 Methodology (Dataset, Stage 1, Stage 2, Baseline A, Metrics, MP-IDB) | ✅ Complete |
+| §4 Experiments (Stage 1 eval, Stage 2 eval, E2E BBBC041, Cross-dataset, Ablations, Summary) | ✅ Complete |
+| §5 Discussion + Limitations | ✅ Complete |
+| §6 Conclusion | ✅ Complete |
+| Bibliography | ✅ Complete |
+| Appendix (iteration history) | ✅ Complete |
+| System diagram | ⚠ Being replaced (high-res version in progress) |
 
-Paper draft: [`paper_writing/draft/MalariAI_Paper_Draft.tex`](paper_writing/draft/MalariAI_Paper_Draft.tex)  
-Co-author guide: [`paper_writing/coauthor_reading_guide.md`](paper_writing/coauthor_reading_guide.md)
+Paper: `paper_writing/cmig_submission/MalariAI_CMIG.tex` (1,827 lines, Elsevier CMIG format)
 
 ---
 
@@ -334,10 +316,10 @@ Co-author guide: [`paper_writing/coauthor_reading_guide.md`](paper_writing/coaut
 
 ```bibtex
 @article{apurba2025malariai,
-  title   = {MalariAI: A Label-Resilient Decoupled Framework for Universal Cell
+  title   = {{MalariAI}: A Label-Resilient Decoupled Framework for Universal Cell
              Segmentation and Explainable Stage Classification in Dense Malaria Blood Smears},
-  author  = {Apurba, Kaysarul Anas and Ali, Mohammed},
-  journal = {arXiv preprint},
+  author  = {Apurba, Kaysarul Anas and Hasan, Md Hasibul and Ali, Mohammed},
+  journal = {Computerized Medical Imaging and Graphics},
   year    = {2025}
 }
 ```
@@ -346,12 +328,12 @@ Co-author guide: [`paper_writing/coauthor_reading_guide.md`](paper_writing/coaut
 
 ## Acknowledgements
 
-The authors thank their former supervisor from North South University, Dhaka, Bangladesh (currently Assistant Professor at KFUPM), for guidance during the Junior Design 299 course (2021) where the initial concept was developed.
+The authors thank their former supervisor from North South University, Bangladesh, for guidance during the initial concept development (Junior Design 299, 2021).
 
-The authors also gratefully acknowledge Prof. Amr Abdel-Dayem (Laurentian University, Canada) for guidance during the Image Processing and Computer Vision course within the M.Sc. programme in Computational Sciences, where this project was significantly extended in Fall 2023.
+The authors gratefully acknowledge Prof. Amr Abdel-Dayem (Laurentian University, Canada) for guidance during the Image Processing and Computer Vision course within the M.Sc. programme in Computational Sciences (Fall 2023).
 
 ---
 
 ## License
 
-This repository is for academic research purposes. The NIH BBBC041 dataset is subject to its own licence — see [BBBC041](https://bbbc.broadinstitute.org/BBBC041).
+This repository is for academic research purposes. The NIH BBBC041 dataset is subject to its own licence — see [BBBC041](https://bbbc.broadinstitute.org/BBBC041). The MP-IDB dataset is subject to its own licence — see [MP-IDB](https://github.com/lstorchi/pica_rbc).

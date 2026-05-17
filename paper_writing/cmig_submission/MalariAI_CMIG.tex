@@ -1,9 +1,11 @@
-% \documentclass[review,12pt]{elsarticle}
-\documentclass[5p,times]{elsarticle}
+\documentclass[review,12pt]{elsarticle}
+% \documentclass[5p,times]{elsarticle}
 %% Journal name
 \journal{Computerized Medical Imaging and Graphics}
 
 %% -- Packages ----------------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb}
@@ -417,6 +419,8 @@ XAI ensemble~\cite{xai_ensemble2025}      & $\times$ & $\times$ & $\sim$   \\
 
 \begin{figure*}[t]
   \centering
+  % TODO: replace filename with system_diagram_v2 once delivered
+  % (see paper_writing/cmig_submission/system_diagram_brief.md)
   \includegraphics[width=\linewidth]{system_diagram_v1.png}
   \caption{\malariai{} two-stage decoupled architecture. Stage~1 performs
     universal cell segmentation via distance-transform guided watershed on the raw 1600$\times$1200
@@ -1821,6 +1825,4 @@ Introducing \texttt{MIN\_AREA}~$= 150$\,px$^2$ and
 The final iteration introduces explicit flagging of oversized merged regions
 and a confidence threshold of 0.40 on parasite predictions. This is the
 pipeline described in Section~\ref{ssec:stage1} and evaluated in
-Section~\ref{ssec:stage1_results}.
-
-\end{document}
+Secti
