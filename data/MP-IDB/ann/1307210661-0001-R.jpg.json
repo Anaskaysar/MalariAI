@@ -1,0 +1,609 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741135,
+            "tagId": 31223,
+            "name": "ring stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.746Z",
+            "updatedAt": "2024-03-01T15:31:17.746Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128048,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.748Z",
+            "updatedAt": "2024-03-01T15:31:17.748Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtJ+QGzByAwkM+VjmoAUW4BPiCuQ/v///9Kb8+8CWYwlQX7BDA7PbqQBOcs9XRxDKua0XjrI22rAwZbgwy8nezDQapbs2sUWTO58zxa2MpmurIz7M+laPBcrg8cZ0S83Z64/1zyzO6PyyPKCbJXEvJT7qyQ3hZqrq94Mn7VH+ybzE3X39NqNq5eyiivXGUhmPrF6+q0/7F3w7wM2ipVP5V3sj5woPmV1SdjL4NeXbrc4xy6/xd/3f73CF18TZuR0flNCl2D4hp0nd7kl3OmpK9+09vQLwT9SJ1+zsYouOnJYofUr0MkMnq5+LuucEpoAJGdltg==",
+                "origin": [
+                    1952,
+                    57
+                ]
+            }
+        },
+        {
+            "id": 150128049,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.748Z",
+            "updatedAt": "2024-03-01T15:31:17.748Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtKOQGzDyAwkmVtdJYEUW4BPiCuQ/v///9Kb8+8CWYwlQX7BDA7PbqQBOQs9XRxDKuasvbRXsFVBgOVBMQ+H7sEgHV7vzSJeCiYJO9i/bzZofmj8i6n8qHVHR1mdx/zJ8cFPVt2Y+VNM1tezxDQ1sNlt27pHjLztet9WXJuzKEVVqu9NYujWpIvLkrTFWF8Y3J18ztXk5a8Al0fef8TXnjXJtAw9OlP7X9GKBDZnfbUphlsXtsxUO/PzoNixtA1ru2LFcqxuq36sFrjxnu1n9t/mvd/ZWQ6Uqz8LXX4D6FgGT1c/l3VOCU0AnkBidg==",
+                "origin": [
+                    1578,
+                    362
+                ]
+            }
+        },
+        {
+            "id": 150128050,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.748Z",
+            "updatedAt": "2024-03-01T15:31:17.748Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtJOQGzJyAwkd9TnrwRSbAE+Ia5A+v///0tvzr8LZDGWBPkFMzg8u5EG5Mz3dHEMqZhTe+ksb7MBD2vCYpmiMxySrRdfZPRcErR41vDG6t/qaNeCXy2feH4wMky9t+C63/bODhHp1yKh0+Ry1ii+0tmywt1FyPKEsrCQptIWRamXqy4vEjKMNVPJbsmTntMaWdY376vXLfmr4lkLvf4pxk9t3SawpuSHTf2H/l37a6MSOF9m9DxdPH3J0W0TXNrCbbdnn42tjz0/+9b/MzfuM7Yulu+9GqlmNlNYFehUBk9XP5d1TglNANXdY4Q=",
+                "origin": [
+                    926,
+                    576
+                ]
+            }
+        },
+        {
+            "id": 150128051,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.749Z",
+            "updatedAt": "2024-03-01T15:31:17.749Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtK6QGzPyAwk/U5d9gRSbAE+Ia5A+v///0tvzr8LZDGWBPkFMzg8u5EG5HR6ujiGVMzJvbhR8IgCD4tDJQeHZmPQPpPgW9OdOFtY5OZbdj4/aMYo3aDyTGDiWo5wi6n8Qoz7cu8zyFktMLMp+PCoQVTQQX1jFPd3t7TJjonrOd1f8ee3tP5Y8qJBOvK47YN79z45RU2Y+bk3eeG9m181jW82nVDu9/szme0g05sK76uRx2zrL8Y9zrfp12N2Z9sStyx1I9BRDJ6ufi7rnBKaACBJVAA=",
+                "origin": [
+                    814,
+                    598
+                ]
+            }
+        },
+        {
+            "id": 150128052,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.749Z",
+            "updatedAt": "2024-03-01T15:31:17.749Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtJWQGzGyAwk12yXEABSbAE+Ia5A+v///0tvzr8LZDGWBPkFMzg8u5EG5EzxdHEMqZhTe3Gj4GEFHtaAnxoakgcXV5gYSy2uaJkiElPnIF9YoLLwoaiQ0KSOE3Nd+t3V9PZwMlTJi0o90ZrXFjBRkntKm7TtrrsdPpdM0j90td88kH1o5QlpLu01F4LWHpd98LP5h/TK/Z9ZN4bPL7x1mvngLY5rq7bzW/3+PePYxsSevtDHNle7+TdHRIY9iGj8mXl3wfXSWgbuBuU/Rdbv6oDuY/B09XNZ55TQBACsA1y/",
+                "origin": [
+                    2122,
+                    620
+                ]
+            }
+        },
+        {
+            "id": 150128053,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.749Z",
+            "updatedAt": "2024-03-01T15:31:17.749Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtK+QGzGyAwkdyi1fQRSbAE+Ia5A+v///0tvzr8LZDGWBPkFMzg8u5EG5Mz2dHEMqZgz99Ju3iMKPGwJ89ftMFJOEXFTXmzIpRywrKOg4sfxesGXfu5fPSWU7V1ctmlZBD7cvipucvRiueaFxtEaSnFW57jmHkw0MvX7Wi62KrXuwvmXOTftju0q+nrkiKzNDEafc2d6En4e+2wvFvKT2djYzsAwXDRk2fdGKde3i5eJvbc626T2pHi1hI1bf0zS/6dbpbbx/33Y+pTz8T82IdXpUotnFT8COpPB09XPZZ1TQhMAD9ZfLg==",
+                "origin": [
+                    1368,
+                    744
+                ]
+            }
+        },
+        {
+            "id": 150128054,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.749Z",
+            "updatedAt": "2024-03-01T15:31:17.749Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtJuQGzDyAwkH0bGJQAptgCfEFcg/f///6U3598FshhLgvyCGRye3UgDclZ5ujiGVMyZemkj71EFHpYApa4pkoqLDaQkewMlGo1YT7E+NvYS+bLU/ytXjZvZua3Cmy5vXhCkPSGE0SKUYR3f/Zbm6xWF4qJiG1wuCP8N0H9hGC0ex7VKTLZd5FLLqR7htSEbJ0wve1Wj4SNSvyLqtr2I/azvG8SnrHxz9ufCXi/n4zMaecOXvV7rGq3pnVu3ae2JoHW+busbr0fkb51a/LtRMWrSm8kHbt5/oJ55dVI183GR9gOfOG6VAl3N4Onq57LOKaEJAGzwZZc=",
+                "origin": [
+                    862,
+                    764
+                ]
+            }
+        },
+        {
+            "id": 150128055,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.749Z",
+            "updatedAt": "2024-03-01T15:31:17.749Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtKeQGzFyAwkj3E/+wCk2AJ8QlyB9P///5fenH8XyGIsCfILZnB4diMNyFni6eIYUjGn9dJG3iMKPKwBi0U0JRUXG0j1TAuUaJzE9LC7d2Mxl9DKeReesycyMCiFSdzv7Dj04YNcjQqn+5szzR2Z75zOHHP6csZtz4w7MoXvpFn/COufkVra9SH1apP5bXnXkjOshae3pN8x1KmU/Dtp+UcDK2uVPRL2bxaYX317bfa5pnaNo5V+wWzrAjNX/+JoiQnM+SJpUnO723NBYqV73rVPRYyxy17w/wvpv9zLXOPLAPKgq5/LOqeEJgBmU2Tv",
+                "origin": [
+                    1938,
+                    932
+                ]
+            }
+        },
+        {
+            "id": 150128056,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.752Z",
+            "updatedAt": "2024-03-01T15:31:17.752Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtKmQGzJyAwk17z66AGk2AJ8QlyB9P///5fenH8XyGIsCfILZnB4diMNyOn1dHEMqZgz9+JG3iMKPKwB7iJTJB+6JW4xmOV+kmOKSOC/h/nyglaxxSbrP5pv0lXayRm/M3aBFKfFWZ4NCex6n1k3bDjA3b/Q6JgD1+abEsxWyTkO+f3+Hzduuru4zvMY++q37X/z+4+a6XYvP28cOr98hvjq96lam47++fOBq/rN5qN1V7/37mD+vv+orVvjpZTYe9lPlNeFv+mvBDqMwdPVz2WdU0ITAIJ5XG4=",
+                "origin": [
+                    1732,
+                    986
+                ]
+            }
+        },
+        {
+            "id": 150128057,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.752Z",
+            "updatedAt": "2024-03-01T15:31:17.752Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtIOQGzJyAwk93TtnwKk2AJ8QlyB9P///5fenH8XyGIsCfILZnB4diMNyJnt6eIYUjGn9OJG3qMKPCwB7ppBRkyLDaKMotwSWby4WpL55td9CcyoENom/NNFJXNyoVnoXrYmRX4VZ1kLXo1N0buvr5IqO3CLT+F83lUlocZfTkxSF58n8Pw6rvr52uwTLoqvmr71/uP9+/CPW5RA54YHCmVJyi3x3y/+3dr34P+bv73d6/ZVMVw9WswUMFfy9NkjE7LmNC7kiOzzjPzj+4Rx++JYWfbKTRpAZzJ4uvq5rHNKaAIAP+VfVw==",
+                "origin": [
+                    1110,
+                    1087
+                ]
+            }
+        },
+        {
+            "id": 150128058,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.752Z",
+            "updatedAt": "2024-03-01T15:31:17.752Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtLWQOzOyAwkm7nXegEptgCfEFcg/f///6U3598FshhLgvyCGRye3UgDctZ6ujiGVMyZO2mjYIsBD8tZix8XVHeITFfzKtaMZ1JkPGz7yfP/sT8CDo/mPvSbtJZbsWUlW12mqcCHOQz/ug84cToEMppdTjLXnfV2qUGwd32hQOv2zK1JJRlqun9bn12Ta1nsbsdspcF8plyhpYrdpj9yvsNfZqOS9wky/4oO/nv3kqlm49rmirar8jHm1xNeOlpUb192ZOeZ/N//cyuLE1QeKAq2+5Rri+jY73blnrdxzS1+Q7faklNPNzgBHc7g6ernss4poQkAPYxlUw==",
+                "origin": [
+                    1870,
+                    1126
+                ]
+            }
+        },
+        {
+            "id": 150128059,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.752Z",
+            "updatedAt": "2024-03-01T15:31:17.752Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtI+QOzByAwk00401gEptgCfEFcg/f///6U3598FshhLgvyCGRye3UgDcnZ5ujiGVMxpvbxb8LACD1vCz5gAI6bFBlI9xzR6Hlxq5WcV6JoS4RdSW/5MMXo/I0OZzgatR1u3KCap7Tp37Hz1xVeKNgnv5Es/XoprbpxRKf7W+8gvz0s2b89NnlX57Kiuj9VCcbbJH9Vv73b3rVFavf+TvNjZlA1ZbpMPPlj40tdq8u6TvhxdL89pya89xb7OqFGrWNNorZJz2JlJvKLzBDWt1tam9t2ySde4vKvnszvntxqGt487Hp/Sjz30v2G2+B6GZbxCZ1WUr/0H+oLB09XPZZ1TQhMAf3RwiQ==",
+                "origin": [
+                    480,
+                    1161
+                ]
+            }
+        },
+        {
+            "id": 150128060,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.752Z",
+            "updatedAt": "2024-03-01T15:31:17.752Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtIOQOzCyAwkuc0WdgMptgCfEFcg/f///6U3598FshhLgvyCGRye3UgDcjZ4ujiGVMzpvbSR97CCAGuAjrimZGOgBG//MY0eB8/GP7k/vr894bVox0dtPr879s/nRG96/Hy24ju2hv+sN9TiHBJ1D7zi2GDVeDVdd/X1xjPONs/YX3UqHGlMW/7cVXjG3rdKSvcjOoqSVbWi9y7c+NyhYsHmn+lL/m+8f4D5R+sX2cDvMRxN9QteL4113nHBZP6yi6ELM84dVZJ4nNp/NumWaEz4lNCHYukfc6ZZiytkqIYdW+dqxfBdtmt/WWHyJKDbGTxd/VzWOSU0AQDKOm4E",
+                "origin": [
+                    1267,
+                    1184
+                ]
+            }
+        },
+        {
+            "id": 150128061,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.752Z",
+            "updatedAt": "2024-03-01T15:31:17.752Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtIWQOzMyAwkP68NiQdSbAE+Ia5A+v///0tvzr8LZDGWBPkFMzg8u5EG5Mz3dHEMqZhTemk3b4sBD9sDha4pko2Bm254pmzpmSSoEezy7ea/tcxFXGfDH7Bv41Qs2qBebDxz9ybD292xa5JE9A07nW1cinZmWDGdfeZ1aGVZuc+kbcmvv2zTWcM9u3rnXdnJLfvqP53f82GGD/fjJ/8m5az//qBEX+mx9cUHiYdsNG4UCpQe3qOxZN42dpGsupW/dixQm9LgsN9iJqf49ANd8Q+FD4krFURcdAk9+w3oVAZPVz+XdU4JTQCxBWXw",
+                "origin": [
+                    1035,
+                    1216
+                ]
+            }
+        },
+        {
+            "id": 150128062,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.752Z",
+            "updatedAt": "2024-03-01T15:31:17.752Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtKWQGzNyAwkf8ttOAuk2AJ8QlyB9P///5fenH8XyGIsCfILZnB4diMNyFng6eIYUjGn9OJG3iMKPKwBi0XC01jcErcYRLmd5NDUVKo78Cy6YPnih54z8ltcb3Utv+G0sdbZ9I1DmMuBLoaYMKY7svPbjLJ414r5uyvdWtfZ+GJ7Y2H10XUnxDYrCR7n/yDOqHxz49oVOXE373zcsHPxB9G+6ibb50rnOOPfS81fNP8g36GExHkftj21+NRj8klkKvOHiT8mlNQxznlxUNJd++X9her6CveVdwSw8d0CupXB09XPZZ1TQhMA32djsw==",
+                "origin": [
+                    1754,
+                    1224
+                ]
+            }
+        },
+        {
+            "id": 150128063,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.753Z",
+            "updatedAt": "2024-03-01T15:31:17.753Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtKGQGzGyAwkQ8IfPwdSbAE+Ia5A+v///0tvzr8LZDGWBPkFMzg8u5EG5NR5ujiGVMzpvXiWt0GBh/WBFL+c5MFAibU9zzT6DlxsfphZP2nRRY3p+i1OL7QFn7ptYksQVF/QxXnjCI9DSsRBzrDtr0x1Q74XiERbfFXy2fv855vfuyN1139q/6Fqe9vp2z+9vH/7pc7NC34Vu+f9o0lPN0f/mWYeveeTg6Luhp8CpyP4gi6x5T0SlXUAuoTB09XPZZ1TQhMAOppVlw==",
+                "origin": [
+                    19,
+                    1238
+                ]
+            }
+        },
+        {
+            "id": 150128064,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.753Z",
+            "updatedAt": "2024-03-01T15:31:17.753Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtKuQOzEyAwkrd06LwEptgCfEJDg////l96cfxfIYiwJ8gtmcHh2Iw3IWe/p4hhSMWfqpd28RxR4GALcRTQlFRcbzJLUXWzgdEpEveYH+4sOJdmrkz+wJzIzHOEp+2CU4yJ/1c+lSn52l4bpXbG0Rhm3J4mzijr8vC+kiBRKM06/GbLW50fo10MxVnqnriVds9TU1ZpccNG0M67Enut/WNXVjwtu3Dfaoq/1r9732+63/G0JJ+Qm17rpZF9Ptwz5vaTyxUG5p8pTnjrmvnZ+/jL74JvTgantTF9Fnb2nvhb7xhr5Y2f3pzsmjkCnM3i6+rmsc0poAgBnqGhV",
+                "origin": [
+                    748,
+                    1240
+                ]
+            }
+        },
+        {
+            "id": 150128065,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.753Z",
+            "updatedAt": "2024-03-01T15:31:17.753Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJwBDAHz/olQTkcNChoKAAAADUlIRFIAAABDAAAAPwEDAAAAgeTnigAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAC0SURBVHicldKxDYQwDAXQoCtSMkJGYbGTyGiMkhEoKaL8I/a3Cdw1lwK9gvhbjkM4zzvwAFkRgaJKwK5agEO1As0uAIKpa+t6dRUW4RVR7Zq72l0JVmYRZY24aWOYlJ5Uu+tgrITEpxrDJORSojJjR22M/a3CVv7R+qWx8vKlPPRnGruPTzWfQfO5VJ9a9UkePudLu79CsZeRiUc2YKX9pZvtAVci8YL+GGxNKjXbNp23+/cD+n18OTLG5ZgAAAAASUVORK5CYIIN0XJG",
+                "origin": [
+                    892,
+                    1251
+                ]
+            }
+        },
+        {
+            "id": 150128066,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.753Z",
+            "updatedAt": "2024-03-01T15:31:17.753Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtK2QGzKyAwkT/wvPA6k2AJ8QlyB9P///5fenH8XyGIsCfILZnB4diMNyJng6eIYUjGn9OJewVYFHoYHFWJTeg5o9CxbbMilHBBU8Ozp9fKuC092G3dOYGA4wlXExHe0UaPQ/cihDhZPr5ZzJ1oSd07aW3gkuHuJDseqMGWztdN+/TmywazCd8E1qZVfpVN7d7n9flyxsF5h/UQ1l3wJtTd1vdKz7/9k+8H89vvyfp6cWeL+cwxr2GXfRH8+K3o3cdEd+fUdti//hYTvBrqNwdPVz2WdU0ITAP4HXlo=",
+                "origin": [
+                    1018,
+                    1382
+                ]
+            }
+        },
+        {
+            "id": 150128067,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.753Z",
+            "updatedAt": "2024-03-01T15:31:17.753Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtLaQKzLyAwSOcUwD0ixBfiEuALp////L705/y6QxVgS5BfM4PDsRhqQU+jp4hhSMWfqhY28BxQEmA+4i0zpOaDRw7Y4dUrPBCPWrs/HPBunqInUO/3gzhFr+5iSs+SRCu/08wwLZrsel59cbMCR1mU8g30xS8xs6clvW4V3V+TF3qi/JV66sENnUoeSzg1nYVcVwefHZ8xkFRUVjmQM33X3isAmm5S82/VAyxk8Xf1c1jklNAEAujdGQw==",
+                "origin": [
+                    168,
+                    1430
+                ]
+            }
+        },
+        {
+            "id": 150128068,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.753Z",
+            "updatedAt": "2024-03-01T15:31:17.753Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtK2QGzNyAwkP30V2A6k2AJ8QlyB9P///5fenH8XyGIsCfILZnB4diMNyJnm6eIYUjGn9tJG0cMKPCwBT3cuSGHpP5RRYeKWyOLFJWfEMVdKtfCwfklDrdqiE3OfnDyzqW7Gzpwjrbsmis3qm/Ny6yeGZW0q9ZxyixQ00qUP6q5wKH5xoGAG3x/2fufCFXxvzX+Jqygw90xRZD4pK1U4nyFmh7Hkpn3XO311XRU2NurnpZZ8SWmNbA16dTaq+MLN0Ls29gxL51Yy/ivyPRJzNsYJ6EIGT1c/l3VOCU0APAZalg==",
+                "origin": [
+                    206,
+                    1436
+                ]
+            }
+        },
+        {
+            "id": 150128069,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.753Z",
+            "updatedAt": "2024-03-01T15:31:17.753Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtIuQOzFyAwkLa4nNAIptgCfEFcg/f///6U3598FshhLgvyCGRye3UgDcnZ5ujiGVMxZe8mQr0VBgPWCotg0uYPZOc8vPsiQOaocECSx3+jzTFXp5K0h+op/FD+4ujzS3KamMFtswQyzhtuCDkF3D9wTmMXVz8Te/+nELZa2gMCpEos+N2Ub3b24eeUOreZSjtK+TYm5HuGPbgRWBrjIf192qPuf/8fQ283X2HXXz5I32dm0Oj77vf3lLX+1fi9Oq/+0flJ90Cf9KYFm796cNcz88tA0MNPnq1Xo+oivTNPi/LUaQq/IbDOPuF5S66K37tWTaRF5J1cCfcHg6ernss4poQkAD1ByVA==",
+                "origin": [
+                    1869,
+                    1446
+                ]
+            }
+        },
+        {
+            "id": 150128070,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.753Z",
+            "updatedAt": "2024-03-01T15:31:17.753Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtK+QOzOyAwkK2IipgIptgCfEFcg/f///6U3598FshhLgvyCGRye3UgDcjZ6ujiGVMzZemkj7xEFHtYAdxFNycZAid6eYxo9EyYxHZ1uXCPtNzEodpX6aTOXGqVPrR+WsuWe0bBOm1J+bVO6bvtsG0Pux9Ov3rCeFFDWsST5dY7bu+efIrbziyW/DZcofmC6bsMkcbcPM2YeyNExVrS7H/H/yPXm08qfH++XNVb2MG6+yB/L/VEsd6HxI9PV+/6cCV6syLNjZ97paUyXcmKWPFwptvKTtH37ynuBnsndHda692SNvjB+XM0yZ53Jhk9AxzN4uvq5rHNKaAIAUm1rUw==",
+                "origin": [
+                    2074,
+                    1460
+                ]
+            }
+        },
+        {
+            "id": 150128071,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.753Z",
+            "updatedAt": "2024-03-01T15:31:17.753Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtIuQGzLyAwk9T7E/gBSbAE+Ia5A+v///0tvzr8LZDGWBPkFMzg8u5EG5CzxdHEMqZiTe+kgb4MCD+sFKT4Z2YOBMr5uySJuD140RmR6dx8pquIU2/eTgSVH4bWDzyLujR0Cx79da13jcErtXp/KPLGLX86tKiqI397p5nct+dDKI4xhqe5HQyxfrLodaGzbd+H6jsXtP7XrTS59j5jHx/0is1wkt0zrz5SlkmI+sbNC9D2jODRf7X9puDhL0yXI/MK+FU6SeteqouLZayMc57vL8b9acjlOi70rIyqScSfQvQyern4u65wSmgC/fGCf",
+                "origin": [
+                    313,
+                    1482
+                ]
+            }
+        },
+        {
+            "id": 150128072,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.754Z",
+            "updatedAt": "2024-03-01T15:31:17.754Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtImQOzNyAwkWQ+Z7QFSbAE+Ia5A+v///0tvzr8LZDGWBPkFMzg8u5EG5MzydHEMqZiz9tJGwRYFAdYLpTw8mgeDNHi9Fot4GagU/Dj+76jz876dT3ziHqTL3tRXuq1YU2PauELHIShcYTVfwoVy5gAdt2geq4TsVwyzKnvYyyI+XFqdvp2vuWtm4IerJob+Nv+ezJCWW7byX/tvl+8Gt/7WaeRf31264vel6v1P+KfMZtyWwB/9h0+75bFF3YM3ezX26r9x595kvunFa/H40KYtF+QKjgFdyeDp6ueyzimhCQCnCWBt",
+                "origin": [
+                    807,
+                    1482
+                ]
+            }
+        },
+        {
+            "id": 150128073,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.754Z",
+            "updatedAt": "2024-03-01T15:31:17.754Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtIOQGzJyAwk93TtnwKk2AJ8QlyB9P///5fenH8XyGIsCfILZnB4diMNyJnh6eIYUjFn6cWNvIcVRFgu5C/1eClow7X4YEbPIY4pImLidsc1O5XDC7+q7LN/dO6MWcrs+31uLA0MFd9kVvQlL7B+xCDk3vAo+sDC40c0S/7xxu/kZp/Y8ia8buEHtvsVro/nylvUX3jfWC/4XlDvRVXC9du7L1mE2+Vvmbpwu0NIdPcqJW0uQ+1rS16Ex69RL+BtT2uVDskKOCt2/CS3rEJiKb9Z/x+gGxk8Xf1c1jklNAEA8cRdDg==",
+                "origin": [
+                    473,
+                    1521
+                ]
+            }
+        },
+        {
+            "id": 150128074,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.754Z",
+            "updatedAt": "2024-03-01T15:31:17.754Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtIOQGzByAwky6/lGAIptgCfEFcg/f///6U3598FshhLgvyCGRye3UgDcqZ5ujiGVMwpvXhQtEWBh+XCm88PJgpptF5aYuK9kKVPpqKHe/IK/jLbv4dVXrm4HEmXPM+uIDOBjSmAjW9BVsvCvcpGp7e8P3GmiKfL8Mpz88Mz3C6/3PexTf1Rs8HDmgIfj7Yz0/cHiF1hfWufMLteUecDm/nCl/vrN0oesXN+vnprwJrpOVNVtT9uiVpsdu9LnM2M5JbMi8JhSe+j9cre+2mdK3qdBXQhg6ern8s6p4QmADgfX38=",
+                "origin": [
+                    1707,
+                    1602
+                ]
+            }
+        },
+        {
+            "id": 150128075,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.754Z",
+            "updatedAt": "2024-03-01T15:31:17.754Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtJOQGzJyAwkd9TnrwRSbAE+Ia5A+v///0tvzr8LZDGWBPkFMzg8u5EG5MzzdHEMqZhTe2k3L7OiAMsFW8sCD06TpM5LOy5ptArpqTj0NP7lOM0xqZqReblsB8eOzHXmDNPenwreuNqndAFvjLNH7PqV7ov2TAzdLWNySOp6RUbElcOMUmJXQwWrzsw/YP919e8VW0JttHKemBeV3fa0Wuh6NqR0WbLUouNTfD2jG75e9HG9/Yir9Pat1IZpcjsu36wU3Bmpub9DZ9eXiQK1Pz6zFmxKvF1scnA/0KUMnq5+LuucEpoA3B1hnA==",
+                "origin": [
+                    807,
+                    1714
+                ]
+            }
+        },
+        {
+            "id": 150128076,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.755Z",
+            "updatedAt": "2024-03-01T15:31:17.755Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtKWQGzGyAwk3RsWCwMptgCfEFcg/f///6U3598FshhLgvyCGRye3UgDciZ5ujiGVMxZe3Gj4GEFHtaAnzFLvnBItl48ktFziEMvtuBPw5HjKjtLFjaEc7xU6TwReKRf6dZuxpsfGPQOM4YcFv6w4MKEP8IFZVuuL9reJ7e3PEEpap9o54mwg8KWevqsIov0OCRWqn9h/sj2j+ln56/WTQ43+zY5pp5+KNvJ6+Z0zKSrx/HsxzQ+m0LxmMnvi56zRW+t289wdrMWu/n5Y1eBrmPwdPVzWeeU0AQA4QVcTg==",
+                "origin": [
+                    388,
+                    1749
+                ]
+            }
+        },
+        {
+            "id": 150128077,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.755Z",
+            "updatedAt": "2024-03-01T15:31:17.755Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtJeQOzKyAwkr3s8eg6k2AJ8QlyB9P///5fenH8XyGIsCfILZnB4diMNyFnn6eIYUjFn7qWNgocVeFgDajRjqljcTmYYSC02aPLm6pNXVjzZWfgwYK/1a5XmfcXn1nrkzTE3+MI0Yea/hMS25qlbFsjrsn7/cERn6YF7novETreGSguEpxl/k7w9NbCt1lDS+O6z6b+npJ6qOs7w97Sl4nPOx8ptnJfre6q2S99aPO9GjvjZaaGls/+qHu/7Hcy9+VmjkHDKjKIjAsoZcVInepZMzJ7jqftU7KjTbN1TYgW//jH+S/q6WSliYy7Q5Qyern4u65wSmgAux2sh",
+                "origin": [
+                    280,
+                    1765
+                ]
+            }
+        },
+        {
+            "id": 150128078,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.757Z",
+            "updatedAt": "2024-03-01T15:31:17.757Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtL2QOzMyAwkBQv91YAUW4BPiCuQ/v///9Kb8+8CWYwlQX7BDA7PbqQBOWs8XRxDKuZMvbSXt9lAgDXBXTPIiGn2kcUPL9p0uRe8ZPp58K9NkmTgEdZfKjXsu8oVW/I3fHYyq7nAo70rkXkSk8PW3Qf8XuzeviDja6WU4nQxR/UFvXvPBHRsLm+57n/jq75bCZN40IGWGmdFrYt5N+Zf/H/4W8+Jc+LXOM+qf3PeupJPw2UbB5uKt7v6u/tfPD21Lkr9fsH9+KRP30uzvIZc9yd+OtsYJu1Z731Bb5fFJwuG9zKNN/elTqsHupvB09XPZZ1TQhMAHIRosg==",
+                "origin": [
+                    2112,
+                    1774
+                ]
+            }
+        }
+    ]
+}

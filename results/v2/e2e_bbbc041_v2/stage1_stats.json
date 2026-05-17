@@ -1,0 +1,37 @@
+{
+  "total_gt_cells": 5917,
+  "total_watershed_boxes": 10764,
+  "tp": 2462,
+  "fp": 8302,
+  "fn": 3455,
+  "recall_at_iou50": 0.4161,
+  "precision_at_iou50": 0.2287,
+  "f1_at_iou50": 0.2952,
+  "per_class": {
+    "red blood cell": {
+      "gt_count": 5614,
+      "tp": 2386,
+      "recall": 0.4250089063056644
+    },
+    "trophozoite": {
+      "gt_count": 111,
+      "tp": 23,
+      "recall": 0.2072072072072072
+    },
+    "ring": {
+      "gt_count": 169,
+      "tp": 50,
+      "recall": 0.2958579881656805
+    },
+    "schizont": {
+      "gt_count": 11,
+      "tp": 1,
+      "recall": 0.09090909090909091
+    },
+    "gametocyte": {
+      "gt_count": 12,
+      "tp": 2,
+      "recall": 0.16666666666666666
+    }
+  }
+}

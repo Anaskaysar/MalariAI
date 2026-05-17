@@ -1,0 +1,39 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741125,
+            "tagId": 31225,
+            "name": "schizont stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:09.465Z",
+            "updatedAt": "2024-03-01T15:31:09.465Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150127963,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:09.468Z",
+            "updatedAt": "2024-03-01T15:31:09.468Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJwBxwE4/olQTkcNChoKAAAADUlIRFIAAACGAAAAfgEDAAAA23b7pgAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAFvSURBVHicndZBTsMwEAVQR0HqMtzASBwkHIVjsGt6MsyKWyBzAizBwoso07qNE8//qeriVfU0nsk46STGpNUEA2s3kkwoHYmVAaQXp6EVOWjaiXx+qX2dnJYK2idRF5lAok6TVpHIzvKI8vemE6tMWUJFzCKN0C4SjmllyfMKMjURRFgOUbV+Wr8TiaDIhgwkjsRD9dzIjqQrJF4Ri9IXcMnDIijtDYlwfZcYLX5TOhJbIfu7xWFbGzJUxHiSQLUiHqqMJEK9p/KWyoN4PMNUHiRSZpaxYhfHjBUxEz4bqdX/yLD+k+fl8eiT9FpCnXRaRjroTeFdN/Ns3oyaW9jeL97gkfHTOtDTinPjMiaUBJTe4UR6dji1cIrm6ddQTCH5VQe11RDIspb3syydfbss/SwLLIlW6TDNknokWd/FubPi5XhVwioWa+X2A0kRY1j2JOc+fkh8Keerdi+FmHeRD6OWzXemSIQfKg/90/zrCLg9aWAM3mgtAAAAAElFTkSuQmCC3BTLJQ==",
+                "origin": [
+                    837,
+                    1076
+                ]
+            }
+        }
+    ]
+}

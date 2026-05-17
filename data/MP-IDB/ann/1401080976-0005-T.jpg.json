@@ -1,0 +1,58 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741248,
+            "tagId": 31224,
+            "name": "trophozoite stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:34:06.399Z",
+            "updatedAt": "2024-03-01T15:34:06.399Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128315,
+            "classId": 6533081,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:34:06.401Z",
+            "updatedAt": "2024-03-01T15:34:06.401Z",
+            "tags": [],
+            "classTitle": "malariae",
+            "bitmap": {
+                "data": "eJwBdQGK/olQTkcNChoKAAAADUlIRFIAAABmAAAAWQEDAAAA9j3DWQAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAEdSURBVHicjdTNTcQwEAXgsaxluaUDvBJNcAsVUAolrEMHlEAb3CJxgC7IDXELN69kPDhxNp7nVSx8ST75+VcjE53b9YFEM06KhQ4qyw5OsV9T314zL1DMIWpIumXmn1UstHuadGIeIx6bd06tj3owX4ti8urTLJiW33N7lp+0tkDUbMnPuxLagUxWAHFlzrhRlBz3Qa2Qg6RP17BKYZ/d0gjJUhok7iWuvj2uh2RXlTxDeUstJIUCFTIgm1U7uodZHFygK5NckUjizrAKsLIcaADF2tXQJ9T/WwPU5whyZe3WJI4boI8ryUl2Qw40Xqhd9Sz1RkKhn9+VvC+hcVazKL0S+0sFu0jHPz7a35f01HSkbu71a5ffMqK76fsHNOxuDzpLxTwAAAAASUVORK5CYIKMfZy/",
+                "origin": [
+                    1676,
+                    824
+                ]
+            }
+        },
+        {
+            "id": 150128316,
+            "classId": 6533081,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:34:06.402Z",
+            "updatedAt": "2024-03-01T15:34:06.402Z",
+            "tags": [],
+            "classTitle": "malariae",
+            "bitmap": {
+                "data": "eJwBKAHX/olQTkcNChoKAAAADUlIRFIAAABIAAAASwEDAAAA6bdTqgAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAADQSURBVHicfdLBDcMgDAVQR6mEeuLcU2bovVJG6AgdhWzSVRihI9ANcswhigsx/oUGlUP0ZLCDkYniOpEuE1SDyjKzyEERPCX0Sb5SlxL4RXQ7J/ASa+0hnonurHqw7jrRKr+SmPndjRqhARk5tuFcpe/uVcRB7lnJFzINWWSYv7KN3GPluSnNXaC5UO43PqpqashDeEnGS8ZzqgW3WhHbIC7UN9QdtNEFGg7iIjYqVAHypdAQPaF8gzg59M6tEQW395PWKOVkOnV2Hes42zV9P1oM98lri3hwAAAAAElFTkSuQmCC6EJ7rw==",
+                "origin": [
+                    878,
+                    1446
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,67 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741152,
+            "tagId": 31224,
+            "name": "trophozoite stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:39.837Z",
+            "updatedAt": "2024-03-01T15:31:39.837Z"
+        },
+        {
+            "id": 18741153,
+            "tagId": 31223,
+            "name": "ring stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:39.837Z",
+            "updatedAt": "2024-03-01T15:31:39.837Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128200,
+            "classId": 6533082,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:39.837Z",
+            "updatedAt": "2024-03-01T15:31:39.837Z",
+            "tags": [],
+            "classTitle": "ovale",
+            "bitmap": {
+                "data": "eJwBcgGN/olQTkcNChoKAAAADUlIRFIAAABgAAAAaAEDAAAANAVnFgAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAEaSURBVHicjdQxbsUgDAZgI4YsldKxW6/QA1R6PUrv0SFsHXukpupFsnXNyFMRfiEP8A8EKUz+BAY7oBCF8UQwXiH+mpYca2afMXbxzMwmxup7w7qHhn62mO2O9e9XcOXPgHsSx1FgDpgi/DlwgbDdBbfLWGLJLULdDwkW6wkz6hCuhk7wXTDmlDBdzOeWLXjOVumQYRGMcOdg93uXGYEvtjblORqXKQQdg2tMsLXcY+hO4OAeQ9Kli7ELKdtXkB5cBWloraC7KJZJdw1yQ5ag0uaRqbyOMKnBeATfQB/BETxTi1gQM+TcfxAD5KdzZoLaDOJgZpSaE+KvZ8gfKh36bwBXSvDvH0uE2pJf3gCPlGGJBKuAJsQQt7oBpwQ3WU3XnnMAAAAASUVORK5CYILHhJrM",
+                "origin": [
+                    1479,
+                    195
+                ]
+            }
+        },
+        {
+            "id": 150128201,
+            "classId": 6533082,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:39.838Z",
+            "updatedAt": "2024-03-01T15:31:39.838Z",
+            "tags": [],
+            "classTitle": "ovale",
+            "bitmap": {
+                "data": "eJwBIQLe/YlQTkcNChoKAAAADUlIRFIAAACmAAAAmwEDAAAA0qJyRwAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAHJSURBVHiczdbBUcMwEAVQGTPjC4M7wJ1g7hRDCVYHtOQOaEElCE5iEF4i2U5Wuz8mnnBAhwzzsvxdxY5iY/iqrAGrltqml84LHezh3/tQYkW29aYjVwaQfSF6E9rRO6XlhX4D7YmADkCrEWkdVuWba8KChHoVentSlvA4HNWhAD7DqZTib0paq/uKKY3LDibejb5mbYknrBMfrsKgtaERqit0zfUgt1muYzlaQ+VyUD1UWrqJldt1UsfztVh7mIAVd1Pqobq9quYNf6N4XlWblN3RTBXmXIUbqhMirJ1gLWEdoTqUe0Y9TMAaYMIEFddi9VcnxP+sg9bpaqUduic3QI3geMgJHdT2UiVw9FG6rZF6qGGX1herNzcdqjWgOqIjPJ8bOsLBhFRbXajBoINjr+JuunbPGZ5/Gwap9ryqbgbq9bV4BoN+96YNlQlbKpthzTPo+8GgO2qCtVgjTAhQHUzIH5m6SyzcRUb5BZ83LIPX52WiZ6Z+1Q/e0S3aex4yrur4TuyiHdfjE2XLx2DPmeza8Qf5Xg2Wo9Vg5cfJtf2U485jrP2s4WtTY4Fptlek1mitQ566RFPFfFWEmqyT1If0zpPUu9OfP60dMq+kQ8NsAAAAAElFTkSuQmCCGsD91A==",
+                "origin": [
+                    354,
+                    1631
+                ]
+            }
+        }
+    ]
+}

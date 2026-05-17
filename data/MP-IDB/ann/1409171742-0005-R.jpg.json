@@ -1,0 +1,58 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741008,
+            "tagId": 31223,
+            "name": "ring stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:28:41.600Z",
+            "updatedAt": "2024-03-01T15:28:41.600Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150126920,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:28:41.602Z",
+            "updatedAt": "2024-03-01T15:28:41.602Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJwBdAGL/olQTkcNChoKAAAADUlIRFIAAACOAAAAfAEDAAAAhWkaWQAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAEcSURBVHic7dZNDsIgEAVgGhdd9gg9So8GR+MoHIElC8KoFQq8h9GoiS6c5ZcwP13MVKlbiBjVxyqSgLSgTbJH+3a5UYJ317CVskg45FQoHjQXEtd0lcMX2oRe6oNKG5PUMFCwJpsbCt04bf6toYQFL9FPWEtOHXnsIZecO4rYQy45oLUjwU5zF7oni53eownIMXmcZ6eZaXlMgea5kjxD2NaIIhUcE/bwYdo+SPoJCiNC+dP75H+UHJP9AunXyIxoY1qZFiZcTMLrK/GSS7wdBxR50wYmz+R4azta9ztB+5YOzL7ugfgyRb5fga5cvo8rFoQvZogSX99ypKlgV7Jc96akU3SkDV33+ttBqWoye0hJVn9DSjKj2tDtqzNYZiCxYeKbEQAAAABJRU5ErkJggsQcnIc=",
+                "origin": [
+                    1213,
+                    699
+                ]
+            }
+        },
+        {
+            "id": 150126921,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:28:41.603Z",
+            "updatedAt": "2024-03-01T15:28:41.603Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJwBXAGj/olQTkcNChoKAAAADUlIRFIAAAB6AAAAYwEDAAAAbk6G9AAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAEESURBVHiczdS9EcMgDAVgci5cegRG8WaB0RjFI1C64FASzI/0QkziKnR8h4XwwVMqDUNEVrUxP+fkGegXBAaURvtmOmCrsBzgEVoRfUC8F1iJRNmpzEvZpYKHL2j/AKZC4I2njdtR8+iDZmDlJkSuCwaBzdNh5lPwPeCbpNPxTdLpxkAANwGR//KLQNB5F5YBWPHPE6wDcFfA/A70F2DfwQxAjSB2YBUQvgF9DnsHFgEeYcMb1AN5Cx1ebXyDhK+U8B2HLmgE3uqO8eFliuUcewPeqoOQylnIWsWgC5iNOflaIx7j1CkIR4sJnOe1aixQqu4FJqhZT6PqEH22Fb7CtLXF6gFJYqqwAY4fsAAAAABJRU5ErkJggsF1kYQ=",
+                "origin": [
+                    1155,
+                    1306
+                ]
+            }
+        }
+    ]
+}

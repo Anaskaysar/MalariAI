@@ -19,16 +19,31 @@ data/crops/
 *.pt
 *.ckpt
 
-# Phase-specific checkpoints
+# Phase-specific checkpoints and results
 Phase2-BaselineA/checkpoints/
+Phase2-BaselineA/0.8
 Phase3-PipelineB/checkpoints/
+Phase3-PipelineB/results/
 checkpoints/
+outputs/
 
 # Keep small result files inside checkpoint folders
 !**/metrics.json
 !**/loss_curves.png
 !**/gt_vs_pred.png
 !**/sample_gt_boxes.png
+
+# Local Execution Scripts
+run.bat
+run.ps1
+run.sh
+1526001325-main.pdf
+
+# Research Paper Drafts & Assets
+paper_writing/draft/
+paper_writing/previous/
+paper_writing/*.zip
+*.pdf
 
 # Python cache
 __pycache__/
@@ -74,10 +89,4 @@ desktop.ini
 wandb/
 runs/
 lightning_logs/
-
-# Outputs
-outputs/
-
-# Unknown artifact
-Phase2-BaselineA/0.8
 

@@ -1,0 +1,39 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741256,
+            "tagId": 31225,
+            "name": "schizont stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:34:21.857Z",
+            "updatedAt": "2024-03-01T15:34:21.857Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128324,
+            "classId": 6533081,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:34:21.858Z",
+            "updatedAt": "2024-03-01T15:34:21.858Z",
+            "tags": [],
+            "classTitle": "malariae",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtJJQFzAyAwk75ea3wVSbAE+Ia5A+v///0tvzgeJMJYE+QUzODy7kQZkc3m6OIZUzGm9srH0sIJAQ+IXjZBT0hkdPAty0rYVeb80lDiYyiUn7u1WYM/Z5HX/8Q7rCS2GvzcoLeuLVAlZG6UUG5lxUzSUb6Wq2VpPNy+r1Jmni6yW/rgVnpnWlHPt9Z2VV9yKT8UsOvHyxPlDrLcWWJc80jB03ObxL+PdydWP3Dmz3moqGMW48G0qeXrbLtffb/6kB1NY1G+4BN178YmxylHQa0LAu6jTrbtuf/119P3E4Py7D4wTbMu2OZaveHT3NNNKlSYw5Cze2Lvk2jwhkY22rzh/flNI8zgbK5PwSvsh+3/JTnHnmxMvd+3IkVk3/f+WVX5RZ1dF/Yz5E/Gb2yc6rkzjjt+M9ccrJ9YdK6/8xbog4EP+xsVOvMAgYvB09XNZ55TQBACICpsi",
+                "origin": [
+                    1081,
+                    1055
+                ]
+            }
+        }
+    ]
+}

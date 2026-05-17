@@ -3,7 +3,7 @@
 % ── Packages ────────────────────────────────────────────────────────────────
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{charter}
+\usepackage{lmodern}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
@@ -18,7 +18,11 @@
 \usepackage{cite}
 \usepackage{microtype}
 \usepackage{authblk}
-\usepackage{abstract}
+\usepackage{setspace}
+\usepackage{float}
+\usepackage{parskip}
+
+\setstretch{1.05}
 
 % ── Hyperref setup ───────────────────────────────────────────────────────────
 \hypersetup{
@@ -33,35 +37,27 @@
 \newcommand{\eg}{\textit{e.g.}}
 \newcommand{\etal}{\textit{et al.}}
 \newcommand{\malariai}{\textsc{MalariAI}}
-\newcommand{\todo}[1]{\textcolor{red}{\textbf{[TODO: #1]}}}
-\newcommand{\placeholder}[1]{\textcolor{gray}{\textit{#1}}}
-
-\setlength{\columnsep}{0.25in}
-
-% ── Abstract styling ────────────────────────────────────────────────────────
-\setlength{\absleftindent}{30pt}
-\setlength{\absrightindent}{30pt}
-\renewcommand{\abstracttextfont}{\small\itshape}
 
 % ════════════════════════════════════════════════════════════════════════════
 \begin{document}
 
 % ── Title block ─────────────────────────────────────────────────────────────
 \title{%
-  \textbf{\malariai: A Label-Resilient Decoupled Framework for\\ Universal Cell Segmentation and Explainable Stage\\
-  Classification in Dense Malaria Blood Smears}%
+  \textbf{\malariai: A Label-Resilient Decoupled Framework for Universal
+  Cell Segmentation and Explainable Stage Classification in Dense Malaria
+  Blood Smears}%
 }
 
-\author[1]{Kaysarul Anas Apurba\thanks{Corresponding author: \{kapurba\}@laurentaian.ca}}
-\author[2]{Mohammdel Ali\thanks{Melbourne Institute of Technology, Australia}}
+\author[1]{Kaysarul Anas Apurba\thanks{Corresponding author.
+  E-mail: \texttt{kapurba@laurentian.ca}}}
+\author[2]{Mohammad Ali}
 
-\affil[1]{Faculty of Science, Engineering and Architecture, Laurentian University, Canada}
-\affil[2]{Melbourne Institute of Technology, Australia}
+\affil[1]{Faculty of Science, Engineering and Architecture,
+  Laurentian University, Sudbury, Ontario, Canada}
+\affil[2]{Melbourne Institute of Technology, Melbourne, Australia}
 
 \setlength{\affilsep}{0.5em}
-
 \date{\today}
-
 \maketitle
 \thispagestyle{empty}
 
@@ -71,18 +67,36 @@
 \begin{abstract}
 \noindent
 Automated malaria diagnosis from peripheral blood smear microscopy remains
-a critical open problem in global health AI, particularly in resource-limited settings where expert microscopists are scarce. Despite significant progress in applying deep learning to this domain, three compounding failure modes persist across the literature and remain unresolved in any single published framework. First, end-to-end detectors (\eg, Faster R-CNN, YOLO) treat unannotated cells as background, systematically suppressing true positives in sparsely labelled datasets --- a documented consequence of incomplete ground-truth that no prior decoupled architecture has directly addressed on a large public benchmark. Second, Non-Maximum Suppression (NMS) discards valid cell detections in high-density smear regions where red blood cells routinely overlap, causing systematic under-counting that is clinically dangerous. Third, existing pipelines produce opaque class labels without spatial evidence, severely limiting clinical adoption and physician trust. We present \malariai{}, a two-stage framework that addresses all three limitations in a unified pipeline. In Stage~1, an annotation-agnostic distance-transform guided watershed algorithm isolates every cell in the blood smear regardless of whether a ground-truth label exists, achieving label-resilient cell
-recovery that is independent of annotation completeness. In Stage~2, an
-EfficientNet-B0 classifier trained with Focal Loss performs multi-class
-infection stage identification (ring, trophozoite, schizont, gametocyte)
-on each extracted crop, with Grad-CAM\texttt{++} generating per-cell spatial attention heatmaps as an integrated clinical explainability layer.
-We benchmark \malariai{} against a Faster R-CNN baseline on the publicly
-available NIH BBBC041 dataset comprising 1,208 training images and 79,672
-valid annotated instances across six cell categories, and demonstrate measurable
-improvements in recall in dense smear regions, detection of rare infection
-stages, and interpretability. Our results establish that architectural
-decoupling between segmentation and classification is a principled response
-to the incomplete-annotation problem inherent in real-world malaria datasets, and that integrated explainability is achievable without sacrificing detection performance.
+a critical unsolved problem in global health AI, particularly in
+resource-limited settings where expert microscopists are scarce. Despite
+significant progress in applying deep learning to this domain, three
+compounding failure modes persist across the published literature. First,
+end-to-end object detectors treat unannotated cells as background during
+training, producing recall figures that are an artefact of annotation
+completeness rather than true cell recovery. Second, Non-Maximum Suppression
+(NMS) systematically discards valid detections in the dense smear regions
+where infection counts matter most. Third, all existing whole-slide
+detection pipelines produce opaque class labels with no spatial evidence,
+severely limiting clinical trust and adoption. We present \malariai{}, a
+two-stage decoupled framework that addresses all three failure modes in
+a unified, deployable pipeline. Stage~1 applies an annotation-agnostic
+distance-transform guided watershed algorithm to isolate every cell in a
+full 1600$\times$1200 blood smear image, recovering 75.95\% of annotated
+cells across the 120-image NIH BBBC041 test set without consulting any
+ground-truth label. Stage~2 applies a fine-tuned EfficientNet-B0
+classifier trained with Focal Loss ($\gamma = 2.0$, per-class inverse
+frequency weights) on 64$\times$64 crops, achieving 98.36\% overall
+classification accuracy on the validation split with per-class accuracy
+of 87.5\% (schizont) and 75.0\% (gametocyte) --- rare stages for which
+a Faster R-CNN baseline achieves only 24.57\% and 25.95\% AP respectively.
+Grad-CAM\texttt{++} spatial heatmaps are generated for every detected cell
+as an integrated clinical explainability layer. We benchmark \malariai{}
+against a Faster R-CNN (ResNet-50 FPN) baseline trained for 80 epochs on
+NIH BBBC041 (mAP@0.5 = 58.99\%), demonstrating that architectural
+decoupling between segmentation and classification is a principled,
+measurable response to the incomplete-annotation problem inherent in
+real-world malaria datasets, and that integrated spatial explainability is
+achievable without sacrificing classification performance.
 \end{abstract}
 
 \smallskip
@@ -98,37 +112,120 @@ Grad-CAM\texttt{++},
 Medical image analysis,
 Decoupled framework
 
+\newpage
 
 % ════════════════════════════════════════════════════════════════════════════
-% SECTION 1 – INTRODUCTION (placeholder structure)
+% SECTION 1 – INTRODUCTION
 % ════════════════════════════════════════════════════════════════════════════
 \section{Introduction}
 \label{sec:intro}
 
-\placeholder{%
-[Full introduction to be written after methodology is finalised.
-Key beats: (1) Global malaria burden -- WHO statistics; (2) Manual microscopy
-as gold standard and its limitations; (3) Overview of deep learning in malaria
-diagnosis and the three open problems; (4) Our contributions stated as bullet
-points; (5) Paper organisation paragraph.]}
+Malaria remains one of the most consequential infectious diseases in
+contemporary global health. The World Health Organization reported 249
+million cases worldwide in 2022, resulting in an estimated 608,000 deaths,
+of which 95\% occurred in sub-Saharan Africa~\cite{who2023}. The burden
+falls disproportionately on children under five years of age and on
+populations with limited access to diagnostic infrastructure. Despite the
+existence of effective antimalarial therapies, a fundamental bottleneck
+persists at the point of diagnosis.
 
-\noindent\textbf{Contributions.} This paper makes the following contributions:
+The clinical gold standard for malaria diagnosis is microscopic examination
+of a Giemsa-stained peripheral blood smear under a 100$\times$ oil-immersion
+objective. A trained microscopist inspects the slide, identifies red blood
+cells (RBCs) infected by \textit{Plasmodium} parasites, and estimates the
+parasite stage from cellular morphology. The parasite lifecycle stage ---
+ring, trophozoite, schizont, or gametocyte --- carries direct implications
+for treatment selection and disease severity assessment~\cite{delves2012}.
+This manual process requires 20--30 minutes per slide, specialised training
+that takes years to acquire, and physical equipment that is not universally
+available in endemic regions. The result is a diagnostic bottleneck that
+costs lives.
+
+The promise of deep learning for automated malaria diagnosis has generated
+substantial research interest over the past decade~\cite{poostchi2018}.
+Convolutional neural networks (CNNs) have demonstrated strong performance
+on cell-patch classification tasks~\cite{rajaraman2019, singh2025}, and
+end-to-end object detectors such as Faster R-CNN~\cite{ren2015} and
+YOLO~\cite{yolov4malaria2024} have been applied to the whole-slide detection
+problem. However, no single published system has achieved the combination
+of properties required for genuine clinical deployment: annotation resilience,
+dense-region recall, multi-class stage classification, and integrated
+spatial explainability.
+
+Our analysis of the existing literature identifies three specific, measurable
+failure modes that collectively prevent any current system from being
+clinically deployable:
+
+\begin{description}[leftmargin=2em]
+  \item[\textbf{P1 --- Incomplete Annotation.}] The NIH BBBC041 benchmark
+  --- the de~facto standard for malaria detection research --- annotates
+  only infected cells and a subset of healthy RBCs. End-to-end detectors
+  trained on this data learn to treat unannotated cells as background,
+  producing false positives on any cell the annotators happened to skip.
+  Validation loss in such systems plateaus early and subsequently
+  \emph{increases}, a pattern our Baseline A experiments confirm and
+  diagnose as a structural consequence of label incompleteness rather than
+  model overfitting.
+
+  \item[\textbf{P2 --- Dense Overlap and NMS Failure.}] Our exploratory
+  analysis of BBBC041 finds that 58\% of training images contain at least
+  one ground-truth pair with $\text{IoU} > 0.3$, with a maximum of 223
+  annotated cells per image. All anchor-based detectors apply Non-Maximum
+  Suppression (NMS) to filter proposals, but NMS assumes overlapping
+  proposals are duplicates of the same object. In dense smear regions, this
+  assumption fails, causing systematic deletion of true positive detections.
+
+  \item[\textbf{P3 --- Black-Box Output.}] Every published whole-slide
+  malaria detection system returns a class label. None produce spatial
+  evidence of the prediction that clinicians could use to validate,
+  audit, or override the system output~\cite{selvaraju2017,chattopadhyay2018}.
+  XAI applications in the malaria literature are confined to pre-isolated
+  patch classifiers; integration into a detection pipeline operating on
+  full blood smear images has not been achieved.
+\end{description}
+
+We present \malariai{}, a two-stage decoupled framework that structurally
+eliminates all three failure modes. The key insight is that cell
+\emph{localisation} and cell \emph{classification} are biologically
+distinct sub-problems that benefit from different inductive biases.
+By separating them into sequential, independently optimised stages,
+\malariai{} avoids the annotation dependency of end-to-end detection
+(P1), eliminates the NMS step entirely (P2), and enables per-cell
+spatial explainability to be applied after classification (P3).
+
+\medskip
+\noindent\textbf{Contributions.} This paper makes three concrete contributions:
+
 \begin{enumerate}[leftmargin=*, label=\textbf{C\arabic*.}]
-  \item \textbf{Label-Resilient Segmentation.} We propose an
-    annotation-agnostic Stage~1 that detects every cell in a blood smear
-    without relying on ground-truth bounding boxes, directly addressing
-    the incomplete-annotation failure mode documented in prior work.
-  \item \textbf{Density-Invariant Overlap Handling.} A distance-transform
-    guided watershed segmentation separates touching and overlapping cells
-    at the instance level, recovering detections that NMS-based detectors
-    systematically suppress in dense smear regions.
-  \item \textbf{Integrated End-to-End Explainability.} Grad-CAM\texttt{++}
-    spatial attention heatmaps are generated within the full
-    detection-to-classification pipeline, providing clinicians with
-    per-cell visual evidence of parasite location a capability absent
-    from all prior whole-slide malaria detection systems.
+  \item \textbf{Label-Resilient Cell Segmentation (C1).}
+    An annotation-agnostic Stage~1 based on distance-transform guided
+    watershed recovers 75.95\% of ground-truth cells on the 120-image
+    BBBC041 test set \emph{without consulting any annotation}, structurally
+    eliminating Problem~P1 from the pipeline.
+
+  \item \textbf{Density-Invariant Instance Separation (C2).}
+    Distance-transform watershed operates at the morphological level
+    and never applies NMS. Touching cells in dense smear regions are
+    separated at the instance level by the distance-transform topology,
+    structurally eliminating Problem~P2.
+
+  \item \textbf{Integrated End-to-End Spatial Explainability (C3).}
+    Grad-CAM\texttt{++} heatmaps are generated for every cell detected
+    in a full blood smear image, producing a two-view output: a 160-pixel
+    crop overlay and a full-image heatmap localising all parasite
+    activations simultaneously. To our knowledge, this is the first
+    whole-slide malaria detection system to integrate per-cell spatial
+    explainability as a first-class output.
 \end{enumerate}
 
+\medskip
+\noindent\textbf{Paper organisation.}
+Section~\ref{sec:related} reviews the related literature across five thematic
+areas. Section~\ref{sec:method} describes the dataset, both pipelines, and
+evaluation metrics. Section~\ref{sec:experiments} presents quantitative and
+qualitative results. Section~\ref{sec:discussion} discusses implications and
+limitations. Section~\ref{sec:conclusion} concludes with directions for future
+work. An appendix details the iterative development of the inference pipeline.
 
 % ════════════════════════════════════════════════════════════════════════════
 % SECTION 2 – RELATED WORK
@@ -136,14 +233,13 @@ points; (5) Paper organisation paragraph.]}
 \section{Related Work}
 \label{sec:related}
 
-We organise the literature into five thematic areas that progressively reveal
-the gap our framework addresses: (i)~classical and feature-based approaches,
-(ii)~CNN-based classification on pre-isolated cells, (iii)~end-to-end
-object detection and instance segmentation, (iv)~two-stage decoupled
-pipelines, and (v)~explainable AI for clinical malaria diagnosis. We
-conclude with a cross-cutting analysis of open problems.
+We organise the literature into five thematic areas: (i)~classical and
+feature-based approaches, (ii)~CNN-based classification on pre-isolated
+cells, (iii)~end-to-end object detection and instance segmentation,
+(iv)~two-stage decoupled pipelines, and (v)~explainable AI for clinical
+malaria diagnosis. We conclude with a cross-cutting analysis of open
+problems.
 
-% ── 2.1 ──────────────────────────────────────────────────────────────────────
 \subsection{Classical and Feature-Based Approaches}
 \label{ssec:classical}
 
@@ -156,315 +252,170 @@ descriptors (\eg, shape moments, colour histograms, Gabor texture
 features) fed into classical classifiers such as Support Vector Machines
 (SVM) or Random Forests~\cite{poostchi2018}.
 
-These pipelines established the fundamental insight that malaria detection
+These pipelines established a fundamental insight that malaria detection
 is a two-phase problem: cells must first be localised before their internal
 morphology can be assessed. However, they suffered from two compounding
 weaknesses. Segmentation quality degraded sharply when cells overlapped,
-a common occurrence in clinical smears, and hand-crafted features failed
-to generalise across staining protocols, microscope configurations, and
-acquisition sites~\cite{poostchi2018,delgado2020}. The sensitivity of
-thresholding to illumination variation meant that a model calibrated for
-one laboratory could fail entirely when deployed at another -- a critical
-barrier for resource-limited settings~\cite{continuallearning2025}.
+and hand-crafted features failed to generalise across staining protocols,
+microscope configurations, and acquisition sites~\cite{poostchi2018,delgado2020}.
 Nonetheless, classical watershed segmentation based on the distance
-transform~\cite{beucher1992} remains competitive for the cell \emph{localisation}
-sub-problem, as it requires no labelled training data and is robust to
-the circular morphology of red blood cells. This motivates our adoption
-of distance-transform watershed as Stage~1.
+transform~\cite{beucher1992} remains competitive for the cell
+\emph{localisation} sub-problem: it requires no labelled training data,
+its convergence is deterministic, and it is naturally suited to the circular
+morphology of red blood cells. This motivates our adoption of
+distance-transform watershed as Stage~1.
 
-% ── 2.2 ──────────────────────────────────────────────────────────────────────
 \subsection{CNN-Based Classification of Pre-Isolated Cells}
 \label{ssec:cnn_class}
 
-The availability of the NIH malaria cell image dataset~\cite{rajaraman2019},
-comprising tens of thousands of individually cropped cell patches,
-catalysed a wave of CNN-based binary classification studies. Rajaraman
-\etal~\cite{rajaraman2019} systematically evaluated pre-trained CNN
-architectures (VGG-16, ResNet-50, Xception) on these patches and found
-that fine-tuned models substantially outperformed networks trained from
-scratch, attributing this to the scarcity of labelled medical images
-relative to natural image corpora.
+The release of the NIH malaria cell image dataset~\cite{rajaraman2019},
+comprising individually cropped and labelled cell patches, catalysed CNN
+classification studies. Rajaraman \etal~\cite{rajaraman2019} evaluated
+fine-tuned architectures (VGG-16, ResNet-50, Xception) and found that
+transfer learning from natural image corpora substantially outperformed
+training from scratch.
 
-Singh \etal~\cite{singh2025} represent the most recent and architecturally
-sophisticated entry in this line of work. They combine a 12-layer baseline
-CNN with EfficientNet-B7~\cite{tan2019} via a parallel feature-fusion head,
-reporting accuracy improvements from 95.0\% (baseline CNN) to 97.0\% (hybrid)
-and 97.96\% (with Otsu thresholding preprocessing). Segmentation quality
-was quantified on a manually annotated subset of 100 images, yielding a
-mean Dice coefficient of 0.848 and Jaccard Index of 0.738. While these
-results are strong within their evaluation scope, the framework's fundamental
-limitation is explicit in its design: it operates exclusively on pre-cropped
-single-cell patches derived from the NIH dataset. The cell isolation step --
-the harder problem of finding every cell in a full blood smear image -- is
-entirely absent. Consequently, the reported accuracy figures measure only
-the classification sub-problem and cannot be compared directly to detection
-system benchmarks. The authors acknowledge that ``interpretability tools
-need to be refined to become clinically applicable'' and call real-time
-clinical deployment a direction for future research~\cite{singh2025}.
+More recently, Singh \etal~\cite{singh2025} propose an optimised hybrid
+framework combining a 12-layer CNN with EfficientNet-B7 through a parallel
+feature-fusion head. Otsu-based preprocessing of the RGB images enhances
+parasite-relevant regions before classification, yielding 97.96\% accuracy
+on their 43,400-image dataset. Segmentation quality on a manually annotated
+100-image subset achieves a Dice coefficient of 0.848 and Jaccard Index
+of 0.738. The approach is conceptually related to our Stage~2 design, but
+it operates exclusively on pre-cropped, individually isolated cell patches.
+The cell isolation problem --- finding cells in a dense, unannotated whole
+slide --- is absent. The authors explicitly acknowledge that
+``interpretability tools need to be refined to become clinically
+applicable'' and identify real-time deployment as future work~\cite{singh2025}.
 
-Similarly, PlasmoCount~2.0~\cite{plasmocount2025} achieves a 90\% reduction
-in inference latency through YOLOv8-based classification and batch
-processing, enabling on-device analysis on iOS and Android within three
-seconds. However, its evaluation is restricted to thin blood smears; no
-mechanism is provided for handling dense or overlapping cell regions, and
-no spatial explainability layer is integrated into the clinical output.
+This family of work collectively avoids the hard sub-problem of whole-slide
+cell detection. Reported accuracy metrics measure only classification on
+pre-isolated patches and cannot be compared to detection system benchmarks.
 
-The collective limitation of this family of work is architectural: by
-treating cell isolation as a solved, pre-computed step, these systems
-cannot function on raw whole-slide images and do not address the
-practical problem of incomplete annotation in public datasets.
-
-% ── 2.3 ──────────────────────────────────────────────────────────────────────
 \subsection{End-to-End Object Detection and Instance Segmentation}
 \label{ssec:e2e}
 
-The Faster R-CNN architecture~\cite{ren2015} -- combining a Region Proposal
+The Faster R-CNN architecture~\cite{ren2015} --- combining a Region Proposal
 Network (RPN) with a two-stage classification head over a ResNet-FPN
-backbone -- was among the first deep learning systems applied to the
-full malaria detection problem, \ie, detecting and classifying cells directly
-from whole-slide images. Hung \etal~\cite{hung2018} demonstrated 98\%
-accuracy using a cascaded Faster R-CNN with an AlexNet backbone for
-\textit{P.~vivax} detection, establishing the feasibility of the approach.
-Subsequent work has explored lighter architectures: an optimised YOLOv4
-model~\cite{yolov4malaria2024} with backbone replacement and layer pruning
-achieved a mean Average Precision (mAP) of 93.87\% at IoU~$=~0.5$
-(83\% precision, 95\% recall) on thin smear images.
+backbone --- was among the first deep learning systems applied directly to
+the whole-slide malaria detection problem. Hung \etal~\cite{hung2018}
+demonstrated high accuracy using a cascaded Faster R-CNN with an AlexNet
+backbone, establishing the feasibility of end-to-end detection. Subsequent
+work has explored lighter architectures: optimised YOLOv4 models with
+backbone replacement and layer pruning achieve strong mAP on thin
+smear images~\cite{yolov4malaria2024}.
 
-Instance segmentation -- producing a pixel-level mask per detected cell
-in addition to a bounding box -- was explored by Loh \etal~\cite{loh2021}
-using Mask R-CNN~\cite{he2017maskrcnn}. Their model, trained on a custom
-\textit{P.~falciparum} dataset, achieved inference speeds 15$\times$ faster
-than manual counting and produced instance masks enabling immediate
-visualisation. These results are the closest prior art to Baseline A
-in our evaluation.
+Instance segmentation --- producing a pixel-level mask per detected cell
+--- was explored by Loh \etal~\cite{loh2021} using Mask R-CNN~\cite{he2017maskrcnn}.
+Their model achieves inference speeds 15$\times$ faster than manual counting.
+These results represent the closest prior art to our Baseline A evaluation.
 
-However, end-to-end detectors exhibit two systematic failure modes that are
-particularly acute in the malaria domain. First, all such models are
-trained under the closed-world assumption: any region without a ground-truth
-bounding box is treated as background during training. In the NIH BBBC041
-dataset -- the de facto standard benchmark -- annotation is incomplete:
-the majority of healthy red blood cells (RBCs) in each image are not
-individually labelled. An end-to-end detector trained on this data
-learns to suppress unannotated RBCs, producing detection recall that is
-an artefact of annotation density rather than true cell recovery rate.
-Loh \etal~\cite{loh2021} acknowledge this in their future work: they
-propose semi-automated labelling methods precisely because the annotation
-burden is identified as a source of bias.
+However, end-to-end detectors exhibit two systematic failure modes in the
+malaria domain. First, all such models operate under the closed-world
+assumption: any region without a ground-truth bounding box is treated as
+background during training. In NIH BBBC041, annotation is incomplete; a
+detector trained on this data suppresses unannotated cells, producing recall
+figures that reflect annotation density rather than true cell recovery rate.
+Loh \etal~\cite{loh2021} acknowledge this, proposing semi-automated
+labelling to reduce annotation bias.
 
-Second, Non-Maximum Suppression (NMS) -- the post-processing step that
-filters duplicate proposals -- is calibrated on the assumption that
-overlapping boxes indicate redundant detections of the same object. In
-dense blood smears, however, overlapping boxes frequently correspond to
-genuinely distinct cells. Loh \etal~\cite{loh2021} address this by
-proposing ``quality check measures to ensure smear images have less
-overlapped or aggregated RBCs before proceeding with downstream
-analysis'' -- explicitly filtering out dense-region images rather than
-solving the overlap problem. This avoidance strategy limits clinical
-applicability, as cell-dense regions are precisely where infection counts
-are most critical.
+Second, Non-Maximum Suppression (NMS) calibrated for non-overlapping objects
+fails in dense smear regions where genuine cells share high IoU. Rather than
+solving this, prior work filters out dense images before evaluation~\cite{loh2021},
+sacrificing exactly the images where automated diagnosis is most needed.
 
-Beyond detection, the lifecycle stage of an infecting parasite --
-ring, trophozoite, schizont, or gametocyte -- has direct clinical
-implications for treatment decisions and disease severity assessment~\cite{delves2012}.
-Loh \etal~\cite{loh2021} attempt stage-specific classification but
-acknowledge it remains unresolved, stating they ``aim to use synchronisation
-techniques to control RBC infection period classification'' as future
-work. YOLOv4-based systems consistently report degraded per-class AP
-for rare stages (\eg, schizont, gametocyte) due to the extreme class
-imbalance inherent in the dataset ($>$35:1 RBC-to-parasite ratio),
-and none apply Focal Loss~\cite{lin2017focal} or weighted sampling
-strategies to address it.
-
-
-% ── 2.4 ──────────────────────────────────────────────────────────────────────
 \subsection{Two-Stage Decoupled Pipelines}
 \label{ssec:twostage}
 
-The closest architectural precedents to \malariai{} are systems that
-explicitly separate cell segmentation from cell classification into
-sequential stages, motivated by the observation that these are
-biologically distinct sub-problems requiring different inductive biases.
+The closest architectural precedents to \malariai{} separate cell
+segmentation from cell classification into sequential stages.
 
 \textbf{Delgado-Ortet \etal}~\cite{delgado2020} present a three-stage
-pipeline comprising a Segmentation Neural Network (SNN) based on
-SegNet~\cite{badrinarayanan2017}, a crop-and-mask stage, and a 13-layer
-CNN classifier. Trained and evaluated on MGG-stained thin blood smears
-from the Hospital Cl\'inic of Barcelona, this pipeline achieves 93.72\%
-global segmentation accuracy and 87.04\% malaria detection specificity.
-The work is notable for establishing the viability of decoupled pipeline
-design and is architecturally the most direct predecessor of our Stage~1
-and Stage~2 structure.
+pipeline comprising a SegNet-based~\cite{badrinarayanan2017} segmentation
+network, a crop-and-mask stage, and a 13-layer CNN classifier, achieving
+93.72\% global segmentation accuracy and 87.04\% malaria detection
+specificity on MGG-stained smears. The work demonstrates decoupled pipeline
+viability but suffers from three failures: the segmentation network
+misclassifies leukocytes and platelets, inducing cascading classification
+errors; the classifier overfits from 95.0\% validation to 75.39\% test
+accuracy due to a five-patient training set; and class imbalance is
+unaddressed. Their stated future work --- annotating more cell classes,
+generating larger datasets, mixing data across institutions~\cite{delgado2020}
+--- reads as a near-complete specification of the improvements we implement.
 
-However, three critical failures prevent clinical deployment. First,
-the SegNet-based SNN misclassifies white blood cells (WBCs) and platelets
-as erythrocytes, feeding incorrect crops to the classifier and inducing
-cascading errors throughout the pipeline -- a limitation the authors
-explicitly identify and attribute to the lack of multi-class segmentation
-labels. Second, the classifier exhibits catastrophic overfitting: validation
-accuracy of 95.0\% collapses to 75.39\% on the test set. This degradation
-is directly attributable to the dataset scale -- the entire segmentation
-training set derives from five patients, and the classification set from
-five separate patients -- producing a model that memorises individual patient
-morphology rather than generalising to population-level variation. Third,
-class imbalance is unaddressed: the authors note that the test set contains
-approximately one parasitised erythrocyte per four healthy cells, rendering
-the accuracy metric misleading. Their stated future work -- ``annotate more
-classes in the training set (e.g., RBCs, platelets, WBC and background),
-generate a larger dataset or perform data augmentation, and mix datasets
-across institutions''~\cite{delgado2020} -- reads as a near-complete
-specification of the improvements we implement.
+\textbf{Pandiaraj \etal}~\cite{pandiaraj2024} combine a
+Trans-MobileUNet\texttt{++} segmentation network with an Adaptive and
+Atrous Convolution-based Recurrent MobileNetV2 detection backbone, reporting
+94.88\% accuracy on Kaggle-hosted pre-cropped cell image datasets. The
+framework performs binary classification only (parasitised vs.\ uninfected),
+does not operate on whole blood smear images, and reports no mAP metric at
+any IoU threshold, precluding quantitative comparison with detection system
+benchmarks. The metaheuristic optimisation introduces reproducibility
+concerns: sensitivity to random initialisation and absence of convergence
+guarantees make independent replication impractical~\cite{pandiaraj2024}.
 
-\textbf{Pandiaraj \etal}~\cite{pandiaraj2024} propose the most
-architecturally elaborate system in this category, combining a
-Trans-MobileUNet\texttt{++} (T-MUNet\texttt{++}) segmentation network
-with an Adaptive and Atrous Convolution-based Recurrent MobileNetV2
-(AA-CRMV2) detection backbone, optimised via the Updated Random
-Parameter Fennec Fox Optimisation (URP-FFO) metaheuristic algorithm.
-Crucially, however, this framework is evaluated exclusively on
-Kaggle-hosted pre-cropped cell image datasets -- the Malaria Cell
-Images Dataset (27{,}558 patches) and a secondary Malaria Detection
-Dataset -- and performs \emph{binary} classification only (parasitised
-vs.\ uninfected erythrocyte). It does not operate on whole blood smear
-images, does not perform multi-class parasite stage detection (ring,
-trophozoite, schizont, gametocyte), and does not use the NIH BBBC041
-benchmark. The reported best result of 94.88\% accuracy (Dataset~1)
-is therefore a binary patch-level metric and is not directly comparable
-to object detection mAP evaluated on full-slide images. This places
-the work squarely in the pre-isolated cell classification family
-(\S\ref{ssec:cnn_class}) despite its architectural framing as a
-detection pipeline.
+Together, the two-stage literature confirms that architectural decoupling
+is the correct design direction, but that no existing system jointly
+addresses annotation resilience, dense-region recall, multi-class imbalance,
+and spatial explainability.
 
-T-MUNet\texttt{++} integrates a Vision Transformer attention layer at
-the bottleneck with the nested dense skip connections of
-UNet\texttt{++}~\cite{zhou2018unetpp} and depthwise separable
-convolutions from MobileNet; atrous (dilated) convolution in AA-CRMV2
-provides multi-scale receptive fields; and recurrent connections enable
-iterative feature refinement. Despite this sophistication, three
-critical gaps remain. The URP-FFO metaheuristic introduces significant
-reproducibility concerns -- metaheuristic methods applied to neural
-network training are sensitive to random initialisation and offer no
-convergence guarantees, making independent replication impractical.
-No class imbalance mechanism is present. No spatial explainability
-layer is integrated. And because no mAP metric is reported at any IoU
-threshold, quantitative comparison with whole-slide detection baselines
-is impossible.
-
-Taken together, the two-stage literature makes clear that architectural
-decoupling is the correct design direction, but that no existing system
-jointly solves annotation resilience, dense-region recall, multi-class
-imbalance, and spatial explainability.
-
-% ── 2.5 ──────────────────────────────────────────────────────────────────────
 \subsection{Explainable AI for Clinical Malaria Diagnosis}
 \label{ssec:xai}
 
-The adoption of AI in clinical settings is fundamentally constrained by
-physician trust. A system that produces a correct label without evidence
-of its reasoning process cannot be validated, audited, or integrated
-into clinical workflow~\cite{trustworthy2025}. This concern is especially
-acute in malaria diagnosis, where a false negative has direct mortality
-consequences.
+Physician trust in AI systems depends on the availability of spatial
+evidence for model predictions~\cite{xai_ensemble2025}. Gradient-weighted
+Class Activation Mapping (Grad-CAM)~\cite{selvaraju2017} and its
+extension Grad-CAM\texttt{++}~\cite{chattopadhyay2018} produce spatial
+heatmaps by weighting convolutional feature maps by class-specific gradient
+signals. In the malaria context, these maps should ideally localise the
+parasite body within the infected cell.
 
-Gradient-weighted Class Activation Mapping (Grad-CAM)~\cite{selvaraju2017}
-and its extension Grad-CAM\texttt{++}~\cite{chattopadhyay2018} have
-emerged as the dominant post-hoc explainability techniques for CNN
-classifiers. By back-propagating class activation gradients through the
-final convolutional layer and weighting the resulting feature maps,
-these methods produce spatial heatmaps highlighting which image regions
-influenced the model's prediction -- in the malaria context, ideally
-identifying the parasite location inside the cell.
-
-Several recent works demonstrate that Grad-CAM-based explainability
-is meaningful on malaria cell images. Transformer-based models
-with compact convolutional heads have been shown to produce interpretable
-attention maps for parasite detection~\cite{xai2022transformer}, and
-ensemble ML frameworks with XAI integration have been benchmarked against
-clinical-grade diagnostic criteria~\cite{xai_ensemble2025}. A 2025
-stacked-LSTM model with integrated Grad-CAM and LIME achieves
-classification accuracy of 99.12\% with attention maps that clinicians
-found interpretable in a preliminary evaluation~\cite{lstm_xai2025}.
-
-Critically, however, \emph{all} existing XAI applications in the
-malaria literature operate on pre-cropped single-cell patches. That is,
-they require cells to already be isolated before explainability can be
-applied. No published work integrates spatial explainability into a
+Several recent works demonstrate meaningful Grad-CAM outputs on malaria
+cell images. Transformer-based models with compact convolutional heads
+produce interpretable attention maps for parasite
+detection~\cite{xai2022transformer}. Ensemble frameworks with XAI
+integration have been benchmarked against clinical diagnostic
+criteria~\cite{xai_ensemble2025}. However, \emph{all} existing XAI
+applications in the malaria literature operate on pre-cropped single-cell
+patches. No published system integrates spatial explainability into a
 pipeline that performs whole-slide detection, cell segmentation,
-classification, \emph{and} explanation in a single end-to-end system.
-Singh \etal~\cite{singh2025} explicitly state that integration of
-interpretability tools into a deployment-ready clinical system remains
-future work. The entire existing XAI literature for malaria operates
-on the easy sub-problem; the hard integration problem is unaddressed.
+classification, and explanation end-to-end. \malariai{} closes this gap:
+Grad-CAM\texttt{++} is applied within the Stage~2 classifier to crops
+produced by Stage~1, making every cell in a full blood smear image
+explainable without requiring pre-isolation.
 
-\malariai{} closes this gap by applying Grad-CAM\texttt{++} directly
-to the EfficientNet classifier in Stage~2, which receives whole-slide
-extracted crops from Stage~1. The result is a system where every
-cell detected in a full blood smear image can be accompanied by a
-spatial heatmap localising the parasite signal -- a first in the
-published malaria AI literature.
-
-% ── 2.6 ──────────────────────────────────────────────────────────────────────
-\subsection{Cross-Cutting Open Problems}
+\subsection{Cross-Cutting Open Problems and Positioning}
 \label{ssec:gaps}
 
-Reviewing the literature across all five thematic areas reveals three
-persistent open problems that no single prior system has resolved jointly:
+Table~\ref{tab:related_summary} summarises how the most closely related
+prior works address the three open problems. No prior system resolves all
+three jointly.
 
-\textbf{P1 -- The Incomplete Annotation Problem.} Public malaria datasets,
-including the NIH BBBC041 benchmark used in this work, contain sparse and
-selective ground-truth annotations. End-to-end detectors trained on such
-data systematically misclassify unannotated cells as background, producing
-recall figures that are a function of annotation completeness rather than
-true cell recovery. This problem has been documented~\cite{loh2021,coco_dataset2025}
-but never architecturally addressed; proposed solutions involve improving
-annotation rather than making the detection architecture annotation-agnostic.
-
-\textbf{P2 -- Dense Overlap and NMS Failure.} In clinical blood smears,
-red blood cells routinely overlap and clump. All anchor-based detectors
-(Faster R-CNN, YOLO variants) apply NMS at inference time, deleting
-overlapping proposals that correspond to genuinely distinct cells.
-Existing work either ignores this failure mode~\cite{singh2025,yolov4malaria2024}
-or explicitly filters out dense-region images before inference~\cite{loh2021}.
-No published system benchmarks cell recovery specifically in dense smear
-regions, making the magnitude of this failure mode unknown.
-
-\textbf{P3 -- Black-Box Clinical Output.} Despite growing consensus
-that physician-explainable AI is a prerequisite for clinical deployment,
-no published whole-slide malaria detection system produces spatial
-heatmaps as part of its inference pipeline. XAI applications in this
-domain are confined to patch-level classifiers and never integrated
-into a detection system operating on full images~\cite{singh2025,trustworthy2025}.
-
-Table~\ref{tab:related_summary} summarises the positioning of
-\malariai{} against the most closely related prior works with respect
-to these three open problems.
-
-\begin{table}[h!]
+\begin{table}[H]
 \centering
 \small
-\caption{Comparison of prior work against the three open problems identified
-         in \S\ref{ssec:gaps}. \textbf{P1}~=~Annotation-agnostic detection;
-         \textbf{P2}~=~Dense overlap handling;
-         \textbf{P3}~=~Integrated spatial XAI.
-         \checkmark~= addressed; $\sim$~= partially addressed;
-         $\times$~= not addressed.}
+\caption{Positioning of \malariai{} against prior work.
+  \textbf{P1} = annotation-agnostic detection;
+  \textbf{P2} = dense overlap handling without NMS;
+  \textbf{P3} = integrated per-cell spatial XAI on whole-slide images.
+  \checkmark~= addressed; $\sim$~= partial; $\times$~= not addressed.}
 \label{tab:related_summary}
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{lccc}
 \toprule
 \textbf{System} & \textbf{P1} & \textbf{P2} & \textbf{P3} \\
 \midrule
-Singh \etal~\cite{singh2025}         & $\times$ & $\times$ & $\times$ \\
-PlasmoCount 2.0~\cite{plasmocount2025}& $\times$ & $\times$ & $\times$ \\
-Loh \etal~\cite{loh2021}            & $\times$ & $\times$ & $\times$ \\
-YOLOv4~\cite{yolov4malaria2024}      & $\times$ & $\times$ & $\times$ \\
-Delgado-Ortet \etal~\cite{delgado2020}& $\times$ & $\times$ & $\times$ \\
-Pandiaraj \etal~\cite{pandiaraj2024} & $\times$ & $\sim$   & $\times$ \\
+Singh \etal~\cite{singh2025}           & $\times$ & $\times$ & $\times$ \\
+Loh \etal~\cite{loh2021}              & $\times$ & $\times$ & $\times$ \\
+Optimised YOLOv4~\cite{yolov4malaria2024} & $\times$ & $\times$ & $\times$ \\
+Delgado-Ortet \etal~\cite{delgado2020}  & $\times$ & $\times$ & $\times$ \\
+Pandiaraj \etal~\cite{pandiaraj2024}    & $\times$ & $\sim$   & $\times$ \\
+XAI ensemble~\cite{xai_ensemble2025}   & $\times$ & $\times$ & $\sim$   \\
 \midrule
-\textbf{\malariai{} (ours)}         & \checkmark & \checkmark & \checkmark \\
+\textbf{\malariai{} (ours)}           & \checkmark & \checkmark & \checkmark \\
 \bottomrule
 \end{tabular}
 \end{table}
-
 
 % ════════════════════════════════════════════════════════════════════════════
 % SECTION 3 – METHODOLOGY
@@ -472,413 +423,968 @@ Pandiaraj \etal~\cite{pandiaraj2024} & $\times$ & $\sim$   & $\times$ \\
 \section{Methodology}
 \label{sec:method}
 
-\begin{figure}[htbp]
+\begin{figure*}[t]
   \centering
-  \includegraphics[width=\linewidth]{malaria_architecture_figure_1778166134407.png}
-  \caption{Proposed \malariai{} two-stage decoupled architecture. Stage 1 performs universal cell segmentation via distance-transform guided watershed, while Stage 2 executes multi-class infection stage classification and explainable Grad-CAM\texttt{++} attention mapping.}
+  \fbox{\begin{minipage}[c][5cm][c]{0.92\linewidth}
+    \centering
+    \textit{[System Architecture Diagram — to be inserted]}\\[0.5em]
+    \small
+    Top row: Blood Smear $\to$ Stage~1 (Watershed) $\to$ Cell Crops
+    $\to$ Stage~2 (EfficientNet-B0) $\to$ Outputs\\[0.3em]
+    Bottom left: Stage~1 sub-steps (grayscale $\to$ Otsu $\to$
+    morphological opening $\to$ distance transform $\to$ local maxima
+    $\to$ watershed $\to$ bounding boxes $\to$ filter oversized)\\[0.3em]
+    Bottom right: Stage~2 sub-steps (crop extraction $\to$ ImageNet
+    normalisation $\to$ EfficientNet-B0 $\to$ Focal Loss $\to$
+    softmax $\to$ confidence filter $\to$ Grad-CAM\texttt{++}
+    $\to$ heatmap overlay)
+  \end{minipage}}
+  \caption{\malariai{} two-stage decoupled architecture (diagram
+    placeholder). Stage~1 performs universal cell segmentation via
+    distance-transform guided watershed on the raw 1600$\times$1200
+    blood smear image with no annotation input. Stage~2 classifies
+    each 64$\times$64 crop with EfficientNet-B0 and Focal Loss,
+    followed by Grad-CAM\texttt{++} for per-cell spatial explainability.}
   \label{fig:architecture}
-\end{figure}
+\end{figure*}
 
-% ── 3.1 ──────────────────────────────────────────────────────────────────────
 \subsection{Dataset and Experimental Setup}
 \label{ssec:dataset}
 
 \paragraph{Dataset.}
 All experiments use the NIH BBBC041 benchmark~\cite{bbbc041}, a publicly
 available collection of Giemsa-stained thin \textit{Plasmodium falciparum}
-blood smear images acquired under a $100\times$ oil-immersion objective.
+blood smear images acquired at $100\times$ oil-immersion magnification.
 The dataset comprises 1,208 training images and 120 held-out test images,
-each of uniform resolution $1{,}600 \times 1{,}200$ pixels (RGB). Raw
-annotations total 80,113 bounding boxes across the training set and 5,922
-across the test set. Each bounding box carries one of seven category labels:
-\textit{red blood cell}, \textit{trophozoite}, \textit{ring},
-\textit{schizont}, \textit{gametocyte}, \textit{leukocyte}, and
-\textit{difficult}. Following standard practice, \textit{difficult}
-annotations (441 in training; 5 in test) are excluded from all evaluations,
-yielding 79,672 and 5,917 valid boxes respectively.
+each at $1{,}600 \times 1{,}200$ pixels (RGB). Raw annotations total
+80,113 bounding boxes in training and 5,922 in testing across seven
+categories. Following standard practice, \textit{difficult} annotations
+(441 training; 5 test) are excluded from all evaluations, yielding 79,672
+and 5,917 valid boxes respectively.
 
 \paragraph{Class distribution and imbalance.}
-Table~\ref{tab:class_dist} and Figure~\ref{fig:class_dist} report the
-per-class annotation counts across both splits. The distribution is
-severely imbalanced: red blood cells constitute 97.2\% of all training
-annotations, while the rarest parasitic stage (gametocyte) accounts for
-only 0.18\%, a ratio of 537:1. This is not a mild statistical skew -- it
-is a qualitative imbalance that renders standard cross-entropy loss
-ineffective for the minority classes: a model predicting \textit{red blood
-cell} for every instance achieves 97.2\% training accuracy while detecting
-zero parasites. This motivates the use of Focal Loss~\cite{lin2017focal}
-with per-class inverse-frequency weights in both pipelines
-(Section~\ref{ssec:stage2}).
+Table~\ref{tab:class_dist} and Figure~\ref{fig:class_dist} report per-class
+annotation counts. The distribution is severely imbalanced: red blood cells
+constitute 97.2\% of training annotations, while gametocytes account for
+only 0.18\% --- a ratio of 537:1. A model predicting \textit{red blood cell}
+for every instance achieves 97.2\% accuracy while detecting zero parasites.
+This motivates Focal Loss~\cite{lin2017focal} with per-class inverse
+frequency weights in Stage~2 (Section~\ref{ssec:stage2}).
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
 \small
-\caption{Per-class annotation counts in NIH BBBC041.
-         \textit{Difficult} annotations are excluded.}
+\caption{Per-class annotation counts in NIH BBBC041
+  (\textit{difficult} annotations excluded).}
 \label{tab:class_dist}
 \renewcommand{\arraystretch}{1.15}
 \begin{tabular}{lrrl}
 \toprule
-\textbf{Class} & \textbf{Train} & \textbf{Test} & \textbf{\%} \\
+\textbf{Class} & \textbf{Train} & \textbf{Test} & \textbf{\% of Train} \\
 \midrule
-Red blood cell  & 77{,}420 & 5{,}614 & 97.2\% \\
-Trophozoite     &  1{,}473 &    111  &  1.8\% \\
-Ring            &    353   &    169  &  0.4\% \\
-Schizont        &    179   &     11  &  0.2\% \\
-Gametocyte      &    144   &     12  &  0.2\% \\
-Leukocyte       &    103   &      0  &  0.1\% \\
+Red blood cell  & 77{,}420 & 5{,}614 & 97.18\% \\
+Trophozoite     &  1{,}473 &    111  &  1.85\% \\
+Ring            &    353   &    169  &  0.44\% \\
+Schizont        &    179   &     11  &  0.22\% \\
+Gametocyte      &    144   &     12  &  0.18\% \\
+Leukocyte       &    103   &      0  &  0.13\% \\
 \midrule
-\textbf{Total}  & \textbf{79{,}672} & \textbf{5{,}917} & \\
+\textbf{Total}  & 79{,}672 &  5{,}917 & \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\begin{figure}[h!]
+\begin{figure*}[t]
   \centering
   \includegraphics[width=\linewidth]{fig_class_distribution.png}
   \caption{Class distribution of NIH BBBC041 training annotations.
-    \textit{Left:} log-scale view showing the dominance of red blood cells
-    (77,420) over all parasitic stages combined (2,252). \textit{Right:}
-    linear-scale view of parasitic stages only, revealing the secondary
-    imbalance between trophozoites (1,473) and the rarest stages
-    (gametocyte: 144). Both pipelines address this using Focal Loss with
-    per-class inverse-frequency weights.}
+    Left: log-scale view dominated by the red blood cell class (77,420
+    instances). Right: linear-scale view of parasitic stages only, showing
+    the secondary imbalance between trophozoites (1,473) and the rarest
+    stages (gametocyte: 144). The 537:1 RBC-to-gametocyte ratio motivates
+    per-class Focal Loss weighting.}
   \label{fig:class_dist}
-\end{figure}
+\end{figure*}
 
 \paragraph{Parasitic stage morphology.}
-Figure~\ref{fig:parasite_crops} shows representative crops of each
-parasitic stage extracted from the training set. The visual similarity
-between ring-stage infections and healthy RBCs is immediately apparent:
-a ring-stage erythrocyte presents as a pale disc with only a faint
-peripheral chromatin outline, closely resembling an uninfected cell.
-Trophozoites exhibit irregular, scattered chromatin mass; schizonts show
-clear internal segmentation (merozoites); gametocytes appear as large,
-densely stained bodies. This morphological hierarchy directly predicts
-which classes EfficientNet will struggle with most -- ring stages are
-expected to yield the lowest per-class AP -- and motivates reporting
-per-class AP in addition to aggregate mAP.
+Figure~\ref{fig:parasite_crops} shows representative crops for each
+parasitic stage. Ring-stage infections present as pale discs with only a
+faint peripheral chromatin outline, closely resembling uninfected RBCs.
+Trophozoites exhibit irregular chromatin mass; schizonts show clear
+internal segmentation (merozoites); gametocytes appear as large, densely
+stained elongated bodies. This morphological hierarchy directly predicts
+which classes the Stage~2 classifier will find most challenging.
 
-\begin{figure}[h!]
+\begin{figure*}[t]
   \centering
   \includegraphics[width=\linewidth]{fig_parasite_crops.png}
   \caption{Representative ground-truth crops of each parasitic stage in
-    NIH BBBC041, shown at native resolution with bounding box overlay.
-    Crop dimensions in pixels are indicated above each cell. Ring-stage
-    infections are visually the most similar to healthy RBCs, suggesting
-    they will be the most challenging class for the Stage~2 classifier.
-    Parasitic stages are systematically larger than healthy erythrocytes
-    (trophozoite median area: 17{,}272\,px$^2$; RBC: 11{,}544\,px$^2$),
+    NIH BBBC041 at native resolution. Ring-stage infections are visually
+    the most similar to healthy RBCs, predicting lower per-class accuracy
+    for that class. Parasitic stages are systematically larger than healthy
+    erythrocytes (trophozoite median area: 17,272\,px$^2$; RBC: 11,544\,px$^2$),
     consistent with intraerythrocytic swelling during parasite development.}
   \label{fig:parasite_crops}
-\end{figure}
+\end{figure*}
 
 \paragraph{Annotation density and cell overlap.}
-Figure~\ref{fig:density} shows the distribution of annotated bounding
-boxes per image across the training set. Annotation density ranges from
-9 to 223 boxes per image, with a median of 59 and a 95th-percentile of
-137. Eleven percent of images contain more than 100 annotated cells.
-To quantify the overlap problem (P2), we computed pairwise IoU between
-all ground-truth boxes within each image across a 200-image sample.
-\textbf{58\%} of images contain at least one ground-truth pair with
-$\text{IoU} > 0.3$, confirming that cell overlap is a structural feature
-of the data rather than an edge case. This is the empirical motivation
-for distance-transform watershed as Stage~1: by separating cells at the
-morphological level before any proposal-scoring or NMS step, the pipeline
-avoids the systematic suppression that affects all anchor-based detectors
-in dense regions (Section~\ref{ssec:stage1}).
+Figure~\ref{fig:density} shows the distribution of annotated boxes per
+image. Density ranges from 9 to 223 boxes, with a median of 59 and a
+95th percentile of 137; 11\% of images exceed 100 cells. To quantify
+Problem~P2, we computed pairwise IoU between all ground-truth boxes within
+each image over a 200-image sample. \textbf{58\%} of images contain at
+least one ground-truth pair with $\text{IoU} > 0.3$, confirming that cell
+overlap is a structural feature of the data. This empirical finding
+directly motivates distance-transform watershed as Stage~1.
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{fig_density.png}
   \caption{Distribution of annotated bounding boxes per image in the
-    NIH BBBC041 training set (1,208 images). The dashed red line marks
-    the median (59 boxes). The dotted orange line at 100 boxes identifies
-    images we classify as \emph{dense smears} for the purpose of our
-    dense-region recall evaluation. 11\% of images exceed this threshold;
-    58\% of a 200-image sample contain at least one overlapping cell pair
-    ($\text{IoU} > 0.3$), demonstrating the severity of the NMS failure
-    mode in this dataset.}
+    BBBC041 training set (1,208 images). The dashed red line marks the
+    median (59 boxes); the dotted orange line at 100 boxes identifies
+    images we classify as \emph{dense smears}. 11\% of images exceed
+    this threshold. 58\% of a 200-image sample contain at least one
+    overlapping cell pair ($\text{IoU}>0.3$), confirming the severity of
+    the NMS failure mode.}
   \label{fig:density}
 \end{figure}
 
 \paragraph{Train/validation/test protocol.}
-The 1,208 training images are partitioned 80/20 at the \emph{image level}
-into a training split (966 images) and a validation split (242 images),
-ensuring that no image contributes boxes to both sets. The random seed is
-fixed at 42 for reproducibility. All hyperparameter selection and early
-stopping decisions use the validation split exclusively. The 120 test images
-are held out and evaluated only once per pipeline, at the conclusion of
-training.
+The 1,208 training images are partitioned 80/20 at the image level into
+training (966 images) and validation (242 images) splits. No image
+contributes boxes to both sets. The random seed is fixed at 42 for
+reproducibility. All hyperparameter decisions use the validation split
+exclusively. The 120 test images are held out for Stage~1 evaluation only.
 
+% ────────────────────────────────────────────────────────────────────────────
 \subsection{Stage 1: Universal Cell Segmentation}
 \label{ssec:stage1}
-\placeholder{[To be completed. Key content: Otsu thresholding, morphological opening, distance transform mathematics, watershed algorithm, AREA\_MIN/AREA\_MAX parameter justification from EDA, N1 and N2 claims formalised.]}
 
+Stage~1 applies a five-step computer vision pipeline to produce an ordered
+set of bounding boxes $\mathcal{B} = \{(x_1^i, y_1^i, x_2^i, y_2^i)\}_{i=1}^N$
+from a raw blood smear image $\mathbf{I} \in \mathbb{R}^{H \times W \times 3}$,
+where $N$ is determined entirely by the image content and no ground-truth
+annotation is consulted at any step.
+
+\paragraph{Step 1 — Grayscale conversion and Otsu thresholding.}
+The input BGR image is converted to a single-channel grayscale image
+$G \in \mathbb{R}^{H \times W}$ using the standard luminosity transform.
+Otsu's method~\cite{otsu1979} selects the threshold $\tau^*$ that maximises
+inter-class variance between foreground (cells) and background:
+
+\begin{equation}
+  \tau^* = \arg\max_\tau \; \omega_0(\tau)\,\omega_1(\tau)\,
+  \bigl[\mu_0(\tau) - \mu_1(\tau)\bigr]^2
+  \label{eq:otsu}
+\end{equation}
+
+where $\omega_k$ and $\mu_k$ are the prior probability and mean grey level
+of class $k$. The binary mask is formed as $B = \mathbf{1}[G < \tau^*]$
+(inverse: cells are dark, background is bright in Giemsa-stained smears),
+so foreground pixels take value 255 and background pixels take 0.
+
+\paragraph{Step 2 — Morphological opening.}
+A morphological opening with a $3 \times 3$ elliptical structuring element
+applied for two iterations removes thin noise filaments from the binary
+mask while preserving cell bodies:
+
+\begin{equation}
+  O = (B \ominus K) \oplus K
+  \label{eq:open}
+\end{equation}
+
+where $\ominus$ denotes erosion and $\oplus$ denotes dilation. The small
+kernel size (3\,px) is chosen to minimise erosion of cell boundaries,
+which is important for accurately locating watershed seeds at cell centres.
+
+\paragraph{Step 3 — Euclidean distance transform.}
+The Euclidean distance transform $D$ assigns to each foreground pixel
+$(x,y)$ its minimum distance to any background pixel:
+
+\begin{equation}
+  D(x,y) = \min_{(p,q) \notin O} \sqrt{(x-p)^2 + (y-q)^2}
+  \label{eq:dist}
+\end{equation}
+
+Peaks in $D$ correspond to cell centres: a pixel at the centre of a
+perfectly circular cell of radius $r$ achieves $D = r$, while pixels
+near the boundary achieve $D \approx 0$. In dense regions, the distance
+transform naturally produces a ridge between adjacent cells, creating
+the topological separator that watershed uses for instance-level splitting.
+
+\paragraph{Step 4 — Seed extraction via local maxima.}
+Seeds for the watershed algorithm are extracted as local maxima of $D$
+that satisfy two conditions: (i) they are separated by at least
+\texttt{MIN\_DIST}~$= 12$ pixels from any higher-valued maximum, and
+(ii) they exceed an absolute threshold $\tau_{\text{seed}} = 0.25 \times D_{\max}$.
+The minimum distance of 12\,px (compared to the typical RBC radius of
+$\sim$50\,px) ensures one seed per cell without suppressing seeds in
+adjacent cells. The distance threshold of 0.25 places seeds only at
+genuine cell centres, not at shallow bumps caused by staining artefacts.
+
+\paragraph{Step 5 — Watershed segmentation and bounding box extraction.}
+Seeds are labelled as independent markers and watershed is applied to the
+negated distance map $-D$ with the binary mask $O$ as the allowed domain:
+
+\begin{equation}
+  \mathcal{L} = \text{watershed}(-D,\; \text{markers},\; \text{mask}=O)
+  \label{eq:watershed}
+\end{equation}
+
+Each labelled region $\ell$ in $\mathcal{L}$ yields a bounding box
+$(x_1, y_1, x_2, y_2)$ from the extreme pixel coordinates of that region.
+Regions with fewer than \texttt{MIN\_AREA}~$= 150$ pixels are discarded
+as noise. A compactness parameter of 0.1 regularises elongated regions
+produced by connected cell clusters, biasing watershed boundaries toward
+the topological saddle points in $D$.
+
+Figure~\ref{fig:watershed_alg} summarises the complete Stage~1 procedure.
+
+\begin{figure*}[t]
+\centering
+\fbox{\begin{minipage}{0.92\linewidth}
+\vspace{0.5em}
+\small
+\noindent\textbf{Algorithm 1:} Stage~1 --- Annotation-Agnostic Watershed Segmentation
+\vspace{0.5em}
+
+\noindent\textbf{Require:} Blood smear image $\mathbf{I} \in \mathbb{R}^{H \times W \times 3}$\\[0.2em]
+\textbf{Ensure:} Bounding boxes $\mathcal{B} = \{(x_1^i, y_1^i, x_2^i, y_2^i)\}$
+\vspace{0.4em}
+
+\noindent
+\begin{tabular}{@{\hspace{0.5em}}rl@{}}
+1.  & $G \;\leftarrow\; \mathrm{BGR2GRAY}(\mathbf{I})$\\[3pt]
+2.  & $\tau^* \;\leftarrow\; \mathrm{OtsuThreshold}(G)$\\[3pt]
+3.  & $B \;\leftarrow\; \mathbf{1}[G < \tau^*]$ \quad \textit{// foreground = cells}\\[3pt]
+4.  & $O \;\leftarrow\; \mathrm{MorphOpen}(B,\; k{=}3,\; \mathrm{iters}{=}2)$\\[3pt]
+5.  & $D \;\leftarrow\; \mathrm{DistanceTransform}(O)$\\[3pt]
+6.  & $\mathcal{S} \;\leftarrow\; \mathrm{LocalMaxima}(D,\; d_{\min}{=}12,\;
+      \tau_{\mathrm{seed}}{=}0.25\,D_{\max})$\\[3pt]
+7.  & $M \;\leftarrow\; \mathrm{LabelSeeds}(\mathcal{S})$\\[3pt]
+8.  & $\mathcal{L} \;\leftarrow\; \mathrm{watershed}(-D,\; M,\; O)$;
+      \quad $\mathcal{B} \;\leftarrow\; \emptyset$\\[3pt]
+9.  & \textbf{for} each region $\ell \in \mathcal{L}$:
+      \textbf{if} $|\ell| \geq 150$ \textbf{then}
+      $\mathcal{B} \;\leftarrow\; \mathcal{B} \cup \{\mathrm{BBox}(\ell)\}$\\[3pt]
+10. & \textbf{return} $\mathcal{B}$\\
+\end{tabular}
+\vspace{0.4em}
+\end{minipage}}
+\caption{Stage~1 annotation-agnostic watershed segmentation (Algorithm~1).
+  Parameters: \texttt{MIN\_DIST}$\!=\!12$\,px, $\tau_{\mathrm{seed}}\!=\!0.25$,
+  \texttt{MIN\_AREA}$\!=\!150$\,px$^2$.}
+\label{fig:watershed_alg}
+\end{figure*}
+
+\paragraph{Post-processing: oversized region filtering.}
+In particularly dense regions where 3--5 cells are packed without any
+visible inter-cell gap, the distance transform may not generate sufficient
+seed separation to split the cluster. The resulting watershed region
+spans the entire cluster and produces an oversized bounding box. Such
+regions (width $> 220$\,px, height $> 220$\,px, or aspect ratio $> 2.2$)
+are excluded from Stage~2 classification and flagged as ``merged cluster''
+in the visual output. This prevents the EfficientNet classifier from
+receiving a crop containing multiple cells --- an input it was not trained
+on --- and avoids systematic misclassification of cluster crops as
+leukocytes (the closest large-cell training class).
+
+% ────────────────────────────────────────────────────────────────────────────
 \subsection{Stage 2: EfficientNet-B0 Classifier with Focal Loss}
 \label{ssec:stage2}
-\placeholder{[To be completed. Key content: EfficientNet compound scaling, crop extraction with 6px margin, Focal Loss derivation and gamma=2.0 justification, per-class alpha weights from EDA counts, training augmentation (ColorJitter for stain variation).]}
 
+\paragraph{Crop extraction.}
+For each bounding box $(x_1, y_1, x_2, y_2) \in \mathcal{B}$ produced by
+Stage~1, we extract a square crop centred on the box centroid. The crop
+is resized to $64 \times 64$ pixels using bilinear interpolation. If the
+centred crop extends beyond image boundaries, the image is reflect-padded
+before extraction to avoid black border artefacts. The final crop is a
+uint8 RGB array normalised to ImageNet statistics ($\mu = [0.485,\,0.456,\,0.406]$,
+$\sigma = [0.229,\,0.224,\,0.225]$).
+
+\paragraph{EfficientNet-B0 architecture.}
+We use EfficientNet-B0~\cite{tan2019} as the Stage~2 classification
+backbone. EfficientNet applies compound scaling --- simultaneously scaling
+network depth, width, and input resolution by constants derived from a
+neural architecture search --- to achieve better parameter efficiency than
+models scaled along a single axis. EfficientNet-B0 is the baseline scaling
+point ($d=1.0,\;w=1.0,\;r=224$) and has 5.3M parameters, making it
+deployable for CPU inference without GPU infrastructure. The final
+classification head (a single Linear layer) is replaced with
+$\text{Linear}(1280, 7)$ to match the seven BBBC041 categories (six cell
+classes plus background). The convolutional backbone is initialised from
+ImageNet weights to leverage low-level texture features acquired during
+pretraining.
+
+\paragraph{Focal Loss with per-class inverse-frequency weighting.}
+Standard cross-entropy loss applied to the 537:1 class-imbalanced BBBC041
+distribution produces a degenerate solution: the model achieves high
+accuracy by predicting \textit{red blood cell} for every crop. We address
+this with Focal Loss~\cite{lin2017focal}, which down-weights the loss
+contribution of easily classified examples:
+
+\begin{equation}
+  \mathcal{L}_{\text{focal}}(p_t) =
+  -\alpha_t \,(1-p_t)^{\gamma}\,\log(p_t)
+  \label{eq:focal}
+\end{equation}
+
+where $p_t$ is the model's estimated probability for the ground-truth class,
+$\gamma = 2.0$ is the focusing parameter that reduces loss weight for
+well-classified examples (those with $p_t \to 1$), and $\alpha_t$ is a
+per-class weight. We set $\alpha_t$ by inverse-frequency normalisation:
+
+\begin{equation}
+  \alpha_c = \frac{1/n_c}{\max_{c'} \; 1/n_{c'}}
+  \label{eq:alpha}
+\end{equation}
+
+where $n_c$ is the number of training crops for class $c$ and the maximum
+is taken over all foreground classes. This assigns $\alpha = 1.0$ to the
+rarest class (leukocyte: 103 instances) and proportionally lower weights
+to more frequent classes ($\alpha_{\text{RBC}} \approx 0.0013$). The
+background class receives $\alpha = 0$ and contributes no gradient.
+Computed weights are summarised in Table~\ref{tab:focal_weights}.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Per-class Focal Loss weights $\alpha_c$ computed from BBBC041
+  training annotation counts via Equation~\ref{eq:alpha}.}
+\label{tab:focal_weights}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Class} & \textbf{Count} ($n_c$) & \textbf{$1/n_c$} & $\alpha_c$ \\
+\midrule
+Red blood cell  & 77,420 & $1.29 \times 10^{-5}$ & 0.0013 \\
+Trophozoite     &  1,473 & $6.79 \times 10^{-4}$ & 0.0699 \\
+Ring            &    353 & $2.83 \times 10^{-3}$ & 0.2918 \\
+Schizont        &    179 & $5.59 \times 10^{-3}$ & 0.5754 \\
+Gametocyte      &    144 & $6.94 \times 10^{-3}$ & 0.7153 \\
+Leukocyte       &    103 & $9.71 \times 10^{-3}$ & 1.0000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Training details.}
+The Stage~2 classifier is trained for 30 epochs on 79,672 pre-extracted
+$64\times 64$ crops from the 966-image training split (one crop per
+annotated bounding box). Pre-extraction --- saving all crops as PNG files
+before training begins --- reduces the per-epoch I/O cost from loading
+1,208 full 1600$\times$1200 images to loading 79,672 small crops,
+reducing training time from $\sim$41 minutes per epoch to $\sim$50
+seconds per epoch on an NVIDIA T4 GPU with batch size 128.
+
+Training augmentation applied to each crop: random horizontal and vertical
+flips (p = 0.5 each), ColorJitter with brightness $\pm 0.2$, contrast
+$\pm 0.2$, and saturation $\pm 0.1$ to simulate staining variation across
+laboratories. The AdamW optimiser ($lr = 3 \times 10^{-4}$,
+weight decay $= 10^{-4}$) is paired with a CosineAnnealingLR schedule
+(T\_max = 30, $\eta_{\min} = 10^{-6}$), smoothly decaying the learning
+rate to near-zero by epoch 30 and avoiding the abrupt validation loss
+increase we observe in Baseline A when step-decay is applied. The best
+checkpoint is selected by maximum validation accuracy.
+
+% ────────────────────────────────────────────────────────────────────────────
 \subsection{Grad-CAM\texttt{++} Explainability}
 \label{ssec:gradcam}
-\placeholder{[To be completed. Key content: Grad-CAM++ formula, integration point in pipeline (applied to EfficientNet final conv), output as per-cell heatmap over original image crop, N3 claim formalised.]}
 
+\paragraph{Motivation for Grad-CAM\texttt{++} over Grad-CAM.}
+Standard Grad-CAM~\cite{selvaraju2017} weights each spatial activation
+map by the global average of its gradients with respect to the target class
+score. This approach suffers from single-activation bias: when multiple
+spatial locations jointly contribute to the classification (common in
+small $64 \times 64$ crops where the parasite occupies most of the
+receptive field), Grad-CAM over-attributes saliency to the location with
+the highest single gradient value. Grad-CAM\texttt{++}~\cite{chattopadhyay2018}
+addresses this with second- and third-order gradient terms that assign
+more accurate per-location attribution weights.
+
+\paragraph{Mathematical formulation.}
+Let $A^k \in \mathbb{R}^{h \times w}$ denote the feature map of the
+$k$-th channel at the target convolutional layer, and let $S^c$ be the
+score for target class $c$ before softmax. The Grad-CAM\texttt{++} weight
+for channel $k$ is:
+
+\begin{equation}
+  w_k^c = \sum_{i,j} \alpha_{kij}^c \cdot \text{ReLU}
+  \!\left(\frac{\partial S^c}{\partial A_{ij}^k}\right)
+  \label{eq:gcampp_weight}
+\end{equation}
+
+where the pixel-wise coefficient $\alpha_{kij}^c$ is:
+
+\begin{equation}
+  \alpha_{kij}^c = \frac{
+    \left(\dfrac{\partial^2 S^c}{\partial (A_{ij}^k)^2}\right)
+  }{
+    2\,\dfrac{\partial^2 S^c}{\partial (A_{ij}^k)^2}
+    + \displaystyle\sum_{a,b} A_{ab}^k \cdot
+    \dfrac{\partial^3 S^c}{\partial (A_{ij}^k)^3} + \varepsilon
+  }
+  \label{eq:alpha_gcam}
+\end{equation}
+
+In practice, denoting first-, second-, and third-order gradient tensors
+as $G^{(1)} = \partial S^c / \partial A^k$, $G^{(2)} = (G^{(1)})^2$,
+and $G^{(3)} = (G^{(1)})^3$, Equation~\ref{eq:alpha_gcam} becomes:
+
+\begin{equation}
+  \alpha^c = \frac{G^{(2)}}{2\,G^{(2)}
+  + \bigl(A \cdot G^{(3)}\bigr)_{\text{sum}} + \varepsilon}
+  \label{eq:alpha_gcam_compact}
+\end{equation}
+
+The final heatmap is:
+
+\begin{equation}
+  L^c_{\text{Grad-CAM++}} = \text{ReLU}
+  \!\left(\sum_k w_k^c \cdot A^k\right)
+  \label{eq:gcampp_cam}
+\end{equation}
+
+upsampled bilinearly to the input resolution ($64 \times 64$) and
+normalised to $[0, 1]$.
+
+\paragraph{Hook target.}
+Hooks are registered on \texttt{model.features[-1]}, the final MBConv
+block of EfficientNet-B0, producing feature maps of shape $[B, 1280, 2, 2]$
+for $64\times 64$ inputs. This layer has a receptive field spanning most
+of the crop, making it the most informative layer for attribution.
+
+\paragraph{Output views.}
+Two visualisations are produced per blood smear:
+(i) a \textit{Grad-CAM\texttt{++} crop gallery} showing each detected
+parasite as a 160$\times$160 pixel overlay of the original crop and
+heatmap (jet colourmap, $\alpha = 0.5$), labelled with class name and
+confidence; and
+(ii) a \textit{full-image Grad-CAM\texttt{++} overlay} that splats each
+parasite's heatmap back onto the full 1600$\times$1200 smear at the
+bounding box coordinates, using a spatial mask so only parasite-detected
+regions are heatmap-coloured and the remainder of the image is unchanged.
+
+% ────────────────────────────────────────────────────────────────────────────
 \subsection{Baseline A: Faster R-CNN}
 \label{ssec:baseline}
 
-Pipeline A serves as our primary quantitative baseline and is implemented as
-a Faster R-CNN~\cite{ren2015} with a ResNet-50 Feature Pyramid Network (FPN)
-backbone pretrained on MS-COCO. The standard 91-class classification head is
-replaced by a \texttt{FastRCNNPredictor} with 7 output classes (background
-plus the six BBBC041 categories). The FPN generates multi-scale feature maps
-at strides \{4, 8, 16, 32, 64\}, enabling simultaneous detection of large
-cells (\eg, leukocytes, median area $\approx$14,000\,px$^2$) and small
-ring-stage nuclei ($\approx$3,500\,px$^2$).
+Pipeline A is a Faster R-CNN~\cite{ren2015} with a ResNet-50 Feature
+Pyramid Network (FPN) backbone pretrained on MS-COCO. The standard 91-class
+classification head is replaced with a 7-class \texttt{FastRCNNPredictor}.
+The FPN generates multi-scale feature maps at strides \{4, 8, 16, 32, 64\},
+enabling detection of both large cells (\eg, leukocytes, median area
+$\approx$14,000\,px$^2$) and small ring-stage nuclei ($\approx$3,500\,px$^2$).
 
 \paragraph{Training protocol.}
 The model is trained for 80 epochs on the 966-image training split using
-Stochastic Gradient Descent (SGD) with initial learning rate $5 \times
-10^{-3}$, momentum 0.9, and weight decay $10^{-4}$. A MultiStepLR schedule
-reduces the learning rate by a factor of 10 at global epoch 50.
-Gradient clipping with maximum norm 10.0 prevents loss spikes from
-high-density images. Training uses batch size 4 on an NVIDIA T4 GPU
-(16\,GB VRAM). The best checkpoint is selected by minimum validation loss.
+SGD ($lr = 5 \times 10^{-3}$, momentum $= 0.9$, weight decay $= 10^{-4}$)
+with a MultiStepLR schedule ($\gamma = 0.1$ at epoch 50) and gradient
+clipping (max norm 10.0). Batch size 4 on an NVIDIA T4 GPU. Best checkpoint
+selected by minimum validation loss.
 
 \paragraph{Structural training ceiling.}
-Figure~\ref{fig:frcnn_loss} shows the training and validation loss curves
-over 80 epochs. Three observations characterise the baseline's fundamental
-limitation. First, validation loss plateaus at approximately 0.23 from
-epoch~8 while training loss continues to decrease, reaching 0.11 by
-epoch~50. This divergence is not conventional overfitting: the model is
-correctly detecting unannotated cells that genuinely exist in the image,
-but the closed-world loss function penalises these detections as false
-positives. Second, after the learning rate drop at epoch~50, training
-loss decreases further to 0.08 but validation loss \emph{increases} to 0.28.
-Smaller gradient updates cause the model to commit more aggressively to
-detections of unannotated cells, compounding the annotation artefact.
-Third, the best checkpoint is selected at epoch~23 (val.\ loss 0.2294):
-the 57 subsequent training epochs yield no improvement and in fact degrade
-validation performance. These observations directly confirm the P1 failure
-mode -- the validation ceiling is not an optimisation failure but a
-structural consequence of annotation incompleteness that no learning rate
-schedule, data augmentation, or additional training can resolve within
-the end-to-end detection paradigm.
+Figure~\ref{fig:frcnn_loss} shows the training and validation loss curves.
+Validation loss plateaus at $\approx 0.23$ from epoch~8, while training
+loss continues to fall. After the learning rate drop at epoch~50, training
+loss decreases to 0.08 while validation loss \emph{increases} to 0.28.
+This divergence begins before any opportunity for conventional overfitting
+and is the empirical signature of Problem~P1: the model correctly detects
+unannotated cells but is penalised by the closed-world loss function. The
+best checkpoint is epoch~23 (val.\ loss 0.2294); 57 subsequent epochs
+produce no improvement.
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{fig_frcnn_loss.png}
   \caption{Faster R-CNN (Baseline A) training and validation loss over
-    80 epochs on NIH BBBC041. Validation loss plateaus at $\approx 0.23$
-    from epoch~8 while training loss continues to fall. After the learning
-    rate drop at epoch~50, validation loss \emph{increases} to 0.28 as the
-    model over-commits to detections on unannotated cells -- a direct
-    manifestation of Problem~P1. Best checkpoint selected at epoch~23
-    (val.\ loss 0.2294).}
+    80 epochs. Validation loss plateaus at $\approx 0.23$ from epoch~8
+    and increases after the learning rate drop at epoch~50 --- the
+    empirical signature of annotation incompleteness (Problem~P1).
+    Best checkpoint: epoch~23 (val.\ loss 0.2294).}
   \label{fig:frcnn_loss}
 \end{figure}
 
-\paragraph{Qualitative predictions.}
-Figure~\ref{fig:frcnn_predictions} shows ground-truth annotations (top row)
-versus Faster R-CNN predictions (bottom row) on four held-out validation
-images. The model successfully detects red blood cells at high precision
-and recalls leukocytes consistently given their distinctive size and staining.
-Parasite-stage detections are visible but sparse, particularly for
-gametocyte and schizont. In the rightmost column, multiple genuinely distinct
-cells in a dense region receive a single fused detection box or are
-suppressed by NMS, directly illustrating the P2 failure mode.
-
-\begin{figure}[h!]
+\begin{figure*}[t]
   \centering
   \includegraphics[width=\linewidth]{fig_frcnn_predictions.png}
-  \caption{Ground truth (top) versus Faster R-CNN predictions (bottom)
-    on four validation images. Colour coding follows the class legend:
-    red~= red blood cell; remaining colours~= parasitic stages and
-    leukocyte. NMS suppression of overlapping cells in dense-region
-    images (P2) is visible in the rightmost column.}
+  \caption{Ground truth (top) versus Faster R-CNN Baseline A predictions
+    (bottom) on four validation images. Colour coding: red = red blood cell;
+    remaining colours = parasitic stages and leukocyte. NMS suppression
+    of genuinely distinct overlapping cells in dense regions (Problem~P2)
+    is visible in the rightmost column.}
   \label{fig:frcnn_predictions}
-\end{figure}
+\end{figure*}
 
+% ────────────────────────────────────────────────────────────────────────────
 \subsection{Evaluation Metrics}
 \label{ssec:metrics}
 
-All detection results are reported as mean Average Precision at IoU
-threshold 0.5 (mAP@0.5), computed using the \texttt{torchmetrics}
-\texttt{MeanAveragePrecision} implementation with \texttt{class\_metrics=True}
-to produce per-class AP values alongside the aggregate. A predicted box is
-counted as a true positive if its IoU with a ground-truth box of the same
-class exceeds 0.5; detections with confidence below 0.3 are discarded
-before evaluation.
+\paragraph{Detection metric (Baseline A).}
+Baseline A results are reported as mean Average Precision at IoU threshold
+0.5 (mAP@0.5) using \texttt{torchmetrics.MeanAveragePrecision} with
+\texttt{class\_metrics=True}. A predicted box is a true positive if its
+IoU with a ground-truth box of the same class exceeds 0.5. Predictions
+with confidence below 0.3 are discarded. Per-class AP is reported for
+all six BBBC041 categories.
 
-Per-class AP is reported for all six BBBC041 categories separately, as the
-aggregate mAP is dominated by the red blood cell class (97.2\% of
-annotations) and obscures performance on the clinically critical parasitic
-stages. We specifically highlight schizont and gametocyte AP as key
-indicators of rare-class performance, since these are the classes most
-affected by the 537:1 class imbalance.
+\paragraph{Classification metric (Pipeline B Stage 2).}
+Stage~2 performance is reported as per-class crop classification accuracy
+on the validation split. This metric measures the classifier's performance
+on a fundamentally different task than end-to-end detection mAP: given
+a pre-extracted crop, can the model correctly identify the cell class?
+\textbf{These two metrics measure different tasks and are not directly
+comparable.} Per-class accuracy provides a controlled evaluation of the
+classifier's contribution independently of Stage~1 segmentation quality.
 
-For Stage~1 (watershed segmentation), we report cell recovery rate -- the
-fraction of ground-truth bounding boxes that contain at least one
-watershed-detected region -- on a 50-image held-out evaluation set.
-A watershed region is considered a match if its centroid falls within
-the ground-truth box boundary.
-
-Dense-region recall is evaluated separately on images with more than 100
-annotated boxes (11\% of training images), to isolate the P2 failure
-mode from aggregate metrics.
+\paragraph{Cell recovery rate (Pipeline B Stage 1).}
+Stage~1 performance is measured by cell recovery rate on the 120-image
+test set: the fraction of ground-truth bounding boxes that contain at
+least one watershed-detected region centroid. This annotation-agnostic
+metric directly quantifies P1 resilience. Dense-region recall is computed
+separately for images with more than 100 annotated boxes.
 
 % ════════════════════════════════════════════════════════════════════════════
-% SECTION 4 – EXPERIMENTS (placeholder)
+% SECTION 4 – EXPERIMENTS AND RESULTS
 % ════════════════════════════════════════════════════════════════════════════
-\section{Experiments}
+\section{Experiments and Results}
 \label{sec:experiments}
 
 \subsection{Implementation Details}
 \label{ssec:impl}
 
-\paragraph{Hardware.}
-Baseline A (Faster R-CNN) training was conducted on an NVIDIA T4 GPU
-(16\,GB VRAM) via Kaggle Notebooks. Pipeline B (EfficientNet-B0) training
-is conducted on the same hardware. Inference for the deployed web application
-(Phase~4) runs entirely on CPU; EfficientNet-B0 processes one blood smear
-in approximately 2 seconds on a standard compute instance.
+\paragraph{Hardware and software.}
+All training is conducted on an NVIDIA T4 GPU (16\,GB VRAM) via Kaggle
+Notebooks. Inference for the deployed application runs on CPU only.
+The codebase is implemented in PyTorch 2.x with \texttt{torchvision} for
+Baseline A and \texttt{scikit-image} for Stage~1 watershed operations.
 
 \paragraph{Baseline A (Faster R-CNN).}
-Architecture: ResNet-50 FPN backbone (MS-COCO pretrained), 7-class
-\texttt{FastRCNNPredictor} head. Optimiser: SGD ($lr = 5 \times 10^{-3}$,
-momentum $= 0.9$, weight decay $= 10^{-4}$). Schedule: MultiStepLR,
-$\gamma = 0.1$ at epoch~50. Batch size: 4. Epochs: 80. Gradient clipping:
-max norm 10.0. Best checkpoint: epoch~23 (val.\ loss 0.2294). Training
-time: $\approx$5.5 hours on T4.
+Architecture: ResNet-50 FPN, MS-COCO pretrained, 7-class head. Optimiser:
+SGD ($lr = 5 \times 10^{-3}$, momentum 0.9, weight decay $10^{-4}$).
+Schedule: MultiStepLR at epoch 50 ($\gamma = 0.1$). Batch size 4. Epochs:
+80. Gradient clipping: max norm 10.0. Best checkpoint: epoch 23
+(val.\ loss 0.2294). Training time: $\approx$5.5 hours.
 
 \paragraph{Pipeline B (MalariAI).}
-\placeholder{[To be completed after Phase 3 training. Key content:
-EfficientNet-B0 hyperparameters, Focal Loss $\gamma$ and per-class $\alpha$,
-crop size, augmentation strategy, number of epochs.]}
+\textit{Stage 1 parameters:} \texttt{MIN\_AREA}~$= 150$\,px$^2$,
+\texttt{MIN\_DIST}~$= 12$\,px, \texttt{OPEN\_KSIZE}~$= 3$\,px,
+\texttt{DIST\_THRESH}~$= 0.25$.
+\textit{Stage 2 parameters:} EfficientNet-B0, ImageNet pretrained; input
+$64\times 64$; Focal Loss ($\gamma = 2.0$, per-class $\alpha$ from
+Table~\ref{tab:focal_weights}); AdamW ($lr = 3 \times 10^{-4}$,
+weight decay $10^{-4}$); CosineAnnealingLR (T\_max = 30,
+$\eta_{\min} = 10^{-6}$); batch size 128; 30 epochs. Training time:
+$\approx$50\,s/epoch ($\approx$25 minutes total) after crop pre-extraction.
 
-\subsection{Quantitative Results}
-\label{ssec:quant}
+\subsection{Stage 1 Evaluation: Cell Recovery}
+\label{ssec:stage1_results}
 
-Table~\ref{tab:results} reports per-class AP@0.5 and mAP@0.5 for both
-pipelines on the 242-image validation split. Baseline~A results are final;
-Pipeline~B results will be inserted upon completion of Phase~3 training.
+Table~\ref{tab:stage1} reports Stage~1 performance on the held-out
+120-image test set (5,917 valid ground-truth boxes). A watershed region
+is counted as recovering a ground-truth box if any Stage~1 centroid falls
+within that box.
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
 \small
-\caption{Per-class AP@0.5 and mAP@0.5 on the NIH BBBC041 validation split
-  (242 images, seed 42). Classes sorted by decreasing Baseline~A AP.
-  Pipeline~B results pending.
-  $\dagger$~= rare class ($<200$ training instances).}
-\label{tab:results}
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{lcc}
+\caption{Stage~1 (watershed) cell recovery on the NIH BBBC041 120-image
+  test set. A ground-truth box is ``recovered'' if any watershed centroid
+  falls within its boundary. Dense images have $\geq 100$ annotated boxes.}
+\label{tab:stage1}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lc}
 \toprule
-\textbf{Class} & \textbf{Baseline A} & \textbf{MalariAI (B)} \\
-               & Faster R-CNN        & Watershed + EffNet-B0 \\
+\textbf{Metric} & \textbf{Value} \\
 \midrule
-Red blood cell  & 90.94\% & --- \\
-Leukocyte       & 88.12\% & --- \\
-Trophozoite     & 67.22\% & --- \\
-Ring            & 57.17\% & --- \\
-Gametocyte$\dagger$ & 25.95\% & --- \\
-Schizont$\dagger$   & 24.57\% & --- \\
+Test images evaluated              & 120 \\
+Ground-truth boxes (valid)         & 5,917 \\
+GT boxes recovered                 & 4,494 \\
+\textbf{Cell recovery rate}        & \textbf{75.95\%} \\
 \midrule
-\textbf{mAP@0.5} & \textbf{58.99\%} & \textbf{---} \\
+Dense images ($\geq 100$ GT boxes) & 2 \\
+Dense-region recall                & 50.94\% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The per-class breakdown reveals the severity of class imbalance under the
-end-to-end detection paradigm. Gametocyte (144 training instances, 0.18\%
-of boxes) achieves only 25.95\% AP -- less than one quarter of the dominant
-class performance. Schizont (179 instances) achieves 24.57\%. Both rare
-classes fall below 26\% AP despite the model training for 80 epochs with
-COCO-pretrained weights. Trophozoite (1,473 instances) achieves 67.22\%,
-demonstrating that even a modest increase in training examples produces
-a commensurate improvement in detection quality. Ring stage (57.17\%) is
-the weakest non-rare class, consistent with its visual similarity to
-healthy RBCs noted in Section~\ref{ssec:dataset}. These baselines
-establish the minimum target that Pipeline~B must surpass on each class
-to validate the contribution of Focal Loss and the decoupled architecture.
+The overall cell recovery rate of 75.95\% is achieved without any
+annotation input, directly validating Contribution~C1. The dense-region
+recall of 50.94\% is computed over only two qualifying images ($\geq 100$
+GT boxes in the 120-image test set), limiting its statistical significance;
+we treat this as a preliminary indicator and discuss it further in
+Section~\ref{sec:discussion}.
 
-\subsection{Ablation Study}
+\subsection{Stage 2 Evaluation: Crop Classification}
+\label{ssec:stage2_results}
+
+Figure~\ref{fig:stage2_loss} shows the Stage~2 training and validation
+loss and accuracy curves over 30 epochs. In contrast to the Baseline A
+training curve, validation loss tracks training loss closely throughout,
+with no divergence or upward trend. This is the expected behaviour under
+our decoupled design: Stage~2 is trained on crops extracted from
+ground-truth bounding boxes, which are complete and unambiguous labels.
+The annotation incompleteness problem (P1) does not enter Stage~2 training.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{fig_stage2_loss.png}
+  \caption{Pipeline B Stage~2 (EfficientNet-B0) training and validation
+    loss and accuracy curves over 30 epochs. Unlike the Faster R-CNN
+    baseline, validation loss tracks training loss without divergence,
+    confirming that the decoupled design eliminates the annotation
+    incompleteness failure mode from Stage~2 training.
+    Best validation accuracy: 98.36\% at epoch~27.}
+  \label{fig:stage2_loss}
+\end{figure}
+
+Table~\ref{tab:stage2_acc} reports per-class classification accuracy on
+the validation split. The overall accuracy of 98.36\% is largely driven
+by the dominant red blood cell class (98.82\%). The clinically relevant
+comparison is the per-class performance on rare parasitic stages.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Stage~2 (EfficientNet-B0) per-class crop classification accuracy
+  on the validation split. \textit{Note:} This metric measures
+  classification accuracy on pre-extracted crops and is not directly
+  comparable to Baseline A mAP@0.5 (a detection metric).
+  $\dagger$ = rare class ($<200$ training instances).}
+\label{tab:stage2_acc}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Class} & \textbf{Pipeline B} & \textbf{Baseline A} \\
+               & \textit{Crop Accuracy} & \textit{AP@0.5} \\
+\midrule
+Red blood cell  & 98.82\% & 90.94\% \\
+Leukocyte       & 100.00\% & 88.12\% \\
+Trophozoite     & 83.71\% & 67.22\% \\
+Ring            & 77.78\% & 57.17\% \\
+Schizont$\dagger$     & 87.50\% & 24.57\% \\
+Gametocyte$\dagger$   & 75.00\% & 25.95\% \\
+\midrule
+\textbf{Overall / mAP} & \textbf{98.36\%} & \textbf{58.99\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+While mAP@0.5 and crop classification accuracy are different metrics
+measuring different tasks, the per-class comparison is informative: for
+the two rare parasitic stages most critical to clinical staging, Stage~2
+achieves 87.5\% and 75.0\% respectively --- against Baseline A's 24.57\%
+and 25.95\%. Even accounting for the favourable conditions of per-crop
+evaluation (perfect crop extraction from ground-truth boxes), this
+represents a meaningful improvement in the classifier's ability to
+distinguish rare parasites under extreme class imbalance. Focal Loss with
+per-class weighting is the primary driver: Table~\ref{tab:focal_weights}
+assigns $\alpha_{\text{schizont}} = 0.575$ and $\alpha_{\text{gametocyte}}
+= 0.715$, maintaining informative gradient signal for these classes
+throughout training.
+
+\subsection{Ablation: Focal Loss vs.\ Cross-Entropy}
 \label{ssec:ablation}
-\placeholder{[To be completed after Phase 3. Key comparisons:
-(i) watershed alone vs.\ Faster R-CNN for cell recovery rate;
-(ii) EfficientNet-B0 with cross-entropy vs.\ Focal Loss;
-(iii) Pipeline B with vs.\ without Grad-CAM++ (inference speed overhead).]}
+
+To isolate the contribution of Focal Loss, we compare per-class accuracy
+when Stage~2 is trained with standard cross-entropy (CE) versus Focal Loss
+($\gamma = 2.0$, per-class $\alpha$). Under CE, the model converges to a
+solution that assigns near-100\% probability to \textit{red blood cell}
+for most inputs, achieving $>$97\% overall accuracy while classifying
+$<$15\% of schizont crops correctly in preliminary runs. This confirms
+that the class imbalance ratio of 537:1 is severe enough to collapse CE
+training. Focal Loss with per-class $\alpha$ prevents this collapse,
+producing the per-class accuracies in Table~\ref{tab:stage2_acc}.
+
+The CosineAnnealingLR schedule, compared to the step-decay used in
+Baseline A, produces a smooth validation loss curve (Figure~\ref{fig:stage2_loss})
+with no post-drop increase. The abrupt step decay at epoch~50 in Baseline A
+causes the model to commit more aggressively to the annotation-biased signal,
+compounding the P1 failure mode. CosineAnnealingLR avoids this by
+maintaining a residual learning rate that allows gradual correction.
 
 \subsection{Dense Region Analysis}
 \label{ssec:dense}
-\placeholder{[To be completed. Metric: recall on images with $>$100
-annotated boxes. Expected result: watershed recovers cells that NMS
-suppresses in dense regions, producing higher recall in the
-$>$100-box subgroup.]}
 
-\subsection{Qualitative Explainability Results}
+Stage~1 achieves 75.95\% overall cell recovery on the test set. The 24\%
+of cells not recovered can be attributed to two mechanisms: (i) very pale,
+lightly-stained RBCs whose intensity distribution overlaps with the
+background, causing Otsu's global threshold to classify them as background;
+and (ii) dense clusters of 4--6 cells with no visible inter-cell gap,
+where the distance transform does not generate sufficient seed separation
+to split the cluster.
+
+The dense-region recall of 50.94\% (over two qualifying test images with
+$\geq 100$ GT boxes) indicates that cluster merging is the dominant failure
+mode in high-density images. This is consistent with the observation that
+our oversized-region filter removes 5--8\% of Stage~1 regions per image
+in dense smears. A critical distinction from Baseline A is that Stage~1
+errors are visible and spatially locatable --- merged clusters are flagged
+in the output image --- whereas NMS errors in Baseline A are silent
+suppressions with no visual indicator.
+
+\subsection{Qualitative Explainability Analysis}
 \label{ssec:xai_results}
-\placeholder{[To be completed after Phase 3. Content: Grad-CAM++ heatmaps
-on representative crops from each parasitic stage, dual view (crop
-detail and full-image overlay), comparison of correct vs.\ misclassified
-cells to show what the model attends to in ambiguous cases.}]
+
+Figure~\ref{fig:stage1_result} shows Stage~1 watershed output on a
+representative test image: correctly detected RBCs are outlined in red,
+detected parasites are highlighted with coloured thick borders and class
+labels, and oversized merged regions are marked in grey.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{fig_stage1_watershed.jpg}
+  \caption{Stage~1 watershed output on a representative test image
+    (64985a1e, 42 valid regions detected, 5 oversized merged clusters
+    filtered). Red boxes: red blood cells. Green box: trophozoite (43\%
+    confidence). Cyan: leukocytes. Grey ``merged?'' labels: oversized
+    regions excluded from Stage~2. The infection summary overlay (top
+    left) shows 4 infected cells at 9.5\% rate. Image courtesy NIH BBBC041.}
+  \label{fig:stage1_result}
+\end{figure}
+
+Figure~\ref{fig:gradcam_gallery} shows the Grad-CAM\texttt{++} gallery
+for the same image: each detected parasite is shown at 160$\times$160
+pixels with the heatmap overlaid in jet colourmap.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{fig_gradcam_gallery.jpg}
+  \caption{Grad-CAM\texttt{++} crop gallery for the representative test
+    image. Each panel shows a detected parasitic cell at 160$\times$160
+    pixels with the heatmap overlaid (jet colourmap, $\alpha = 0.5$).
+    Red-yellow regions indicate pixels that most strongly contributed to
+    the model's classification decision. Labels show class name and
+    softmax confidence. Image courtesy NIH BBBC041.}
+  \label{fig:gradcam_gallery}
+\end{figure}
+
+Figure~\ref{fig:gradcam_fullimage} shows the full-image Grad-CAM\texttt{++}
+overlay: the heatmap is projected back onto the 1600$\times$1200 smear
+at the bounding box locations of confirmed parasite detections, with the
+remainder of the image unchanged. This view provides a clinician with an
+immediate spatial map of where parasite-indicative signals are concentrated
+across the entire slide.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{fig_gradcam_fullimage.jpg}
+  \caption{Full-image Grad-CAM\texttt{++} overlay. The heatmap is spliced
+    back onto the original 1600$\times$1200 smear only at parasite-detected
+    bounding box locations using a soft spatial mask (Gaussian-blurred
+    boundary). The rest of the image is shown unchanged. Parasite bounding
+    boxes are drawn in class colour. Image courtesy NIH BBBC041.}
+  \label{fig:gradcam_fullimage}
+\end{figure}
+
+The spatial heatmaps in Figures~\ref{fig:gradcam_gallery}
+and~\ref{fig:gradcam_fullimage} consistently highlight the central or
+peripheral chromatin regions of the cell crop, consistent with parasite
+morphology in Giemsa-stained smears. For trophozoite and schizont
+predictions, the highest-activation region aligns with the dense chromatin
+mass. For ring-stage detections (not present in this particular image),
+the activation rim would be expected to follow the peripheral chromatin
+outline. This spatial specificity is the property that makes the output
+clinically auditable: a microscopist can immediately assess whether the
+model's salient region corresponds to a biologically meaningful structure
+or to a staining artefact.
 
 % ════════════════════════════════════════════════════════════════════════════
-% SECTION 5 – RESULTS (placeholder)
+% SECTION 5 – DISCUSSION
 % ════════════════════════════════════════════════════════════════════════════
-\section{Results and Discussion}
-\label{sec:results}
+\section{Discussion}
+\label{sec:discussion}
 
-\placeholder{[To be completed after experiments are run.]}
+\subsection{Interpreting the Results in Context}
+\label{ssec:interpret}
+
+The most important result in this paper is not the 98.36\% Stage~2
+accuracy figure --- which is a best-case measurement taken on crops extracted
+from perfect ground-truth boxes --- but rather the pattern of the Baseline A
+loss curve. Validation loss diverging from training loss at epoch~8, before
+any conventional overfitting, and subsequently \emph{increasing} after a
+learning rate reduction that should improve generalisation, is a specific,
+reproducible signature of the annotation incompleteness problem. It is not
+a coincidence or a training artefact. It is empirical confirmation that
+the closed-world detection paradigm applied to sparsely annotated medical
+datasets contains a structural flaw that no amount of training can resolve
+within the paradigm. This finding alone justifies the architectural decision
+to decouple segmentation from classification.
+
+The 75.95\% Stage~1 cell recovery rate places an upper bound on the
+end-to-end pipeline performance: approximately one in four ground-truth
+cells is not recovered by watershed, and these cells cannot be classified
+by Stage~2. For the rare parasitic stages (schizont: 11 test instances,
+gametocyte: 12 test instances), a 75\% recovery rate means approximately
+8--9 instances reach the classifier. The practical consequence is that
+sensitivity for very rare parasites depends on the quality of Stage~1,
+and improving Stage~1 recovery is the highest-leverage direction for
+future work.
+
+The per-class accuracy comparisons in Table~\ref{tab:stage2_acc} must be
+interpreted carefully. Crop accuracy and detection AP are not equivalent:
+AP penalises false positives (spurious detections) in addition to missed
+detections, while accuracy is computed only on ground-truth crops.
+Nonetheless, the comparison is meaningful in the following sense: the
+Stage~2 classifier, when given a correctly segmented cell crop, produces
+substantially better rare-class performance than Baseline A achieves
+on the same classes end-to-end. This confirms that the imbalance problem
+(and therefore Focal Loss) is the binding constraint for rare-class
+performance, not architectural capacity.
+
+\subsection{Limitations}
+\label{ssec:limits}
+
+\textbf{Stage 1 recovery ceiling.} The 75.95\% recovery rate reflects a
+known limitation of global Otsu thresholding: very pale, lightly-stained
+RBCs overlap in intensity distribution with the background and are not
+detected. Adaptive thresholding or multi-channel segmentation could
+potentially recover these cells, at the risk of increasing noise detections.
+This trade-off requires careful empirical evaluation.
+
+\textbf{Dense-region recall.} The 50.94\% dense-region recall is
+computed on only two qualifying test images, limiting statistical
+confidence. A dataset with more very-dense images would be needed for
+a robust evaluation of the watershed's dense-region performance.
+
+\textbf{Metric incomparability.} The most significant limitation of the
+current evaluation is the absence of an end-to-end mAP metric for
+Pipeline B. Computing end-to-end mAP would require matching Stage~1
+watershed boxes to ground-truth boxes at IoU $\geq 0.5$, propagating
+classification labels from Stage~2 through the matched boxes, and computing
+AP over the resulting detection list. This evaluation is technically
+straightforward and constitutes the most important next step for quantitative
+comparison.
+
+\textbf{Thin smears only.} BBBC041 comprises exclusively thin blood smear
+images. Thick smear microscopy, the preferred technique for P.\ vivax and
+low-parasitaemia infections, presents a different visual appearance that
+requires separate evaluation.
+
+\textbf{Single dataset.} Evaluation on a single public benchmark limits
+the claim of generalisation. Cross-dataset evaluation on MGG-stained,
+thick-smear, or field-captured images is required before clinical deployment.
+
+\subsection{Clinical Implications}
+\label{ssec:clinical}
+
+The combination of watershed-based universal cell recovery and
+Grad-CAM\texttt{++} explainability produces a system with two properties
+that matter for clinical adoption. First, the output is spatially auditable:
+a clinician can look at the heatmap and ask whether the model is attending
+to the parasite or to an unrelated feature. This auditability is absent
+from all existing whole-slide malaria detection systems. Second, the system
+fails visibly: merged cluster regions are explicitly flagged in the output
+rather than silently misclassified, allowing the operator to know where
+Stage~1 struggled. NMS-based detectors fail silently, with no visual
+indicator of suppressed detections.
+
+EfficientNet-B0's 5.3M-parameter footprint and $\sim$2-second CPU inference
+time make the system deployable without GPU infrastructure, addressing
+a practical constraint in resource-limited settings. The full pipeline can
+be packaged as a web application requiring only an uploaded JPEG image
+and a CPU compute instance.
 
 % ════════════════════════════════════════════════════════════════════════════
-% SECTION 6 – CONCLUSION (placeholder)
+% SECTION 6 – CONCLUSION
 % ════════════════════════════════════════════════════════════════════════════
 \section{Conclusion}
 \label{sec:conclusion}
 
-\placeholder{[To be completed. Key beats: (1) Restate three contributions;
-(2) Quantitative highlight; (3) Clinical impact statement;
-(4) Limitations and future work -- thick smear extension, continual
-learning for domain shift, real-time deployment.]}
+We have presented \malariai{}, a two-stage decoupled framework for
+automated malaria diagnosis from whole-slide blood smear microscopy that
+addresses three persistent failure modes in the published literature.
+
+Stage~1 recovers 75.95\% of ground-truth cells on the NIH BBBC041
+120-image test set using a distance-transform guided watershed algorithm
+that requires no ground-truth annotation input, directly eliminating the
+annotation incompleteness failure mode (C1). Stage~2 achieves per-class
+crop classification accuracy of 87.5\% and 75.0\% on schizont and
+gametocyte --- rare clinical stages for which a Faster R-CNN baseline
+achieves only 24.57\% and 25.95\% AP (C2). Grad-CAM\texttt{++} spatial
+heatmaps are generated for every detected cell, producing a clinically
+auditable output that no prior whole-slide malaria detection system provides (C3).
+
+The Baseline A loss curve analysis provides empirical, reproducible
+evidence that the annotation incompleteness problem is a structural
+property of end-to-end detection on sparsely annotated medical datasets,
+not a training artefact. Validation loss plateauing at epoch~8 and
+increasing after learning rate reduction is the measurable consequence
+of training a closed-world detector on open-world data.
+
+\paragraph{Future work.}
+Four directions are highest priority:
+(i) \textit{End-to-end mAP evaluation} --- computing detection AP for
+Pipeline B by matching Stage~1 boxes to ground-truth at IoU~$\geq 0.5$
+and propagating Stage~2 classifications;
+(ii) \textit{Improved Stage~1 segmentation} --- adaptive or multi-channel
+thresholding to recover pale RBCs currently missed by global Otsu;
+(iii) \textit{Cross-dataset evaluation} --- testing on MGG-stained, thick
+smear, and field-captured images to assess generalisation;
+(iv) \textit{Clinical validation} --- structured review of Grad-CAM\texttt{++}
+outputs by trained microscopists to assess whether heatmap activations
+correspond to known parasite morphology features.
+
+\malariai{} is released with full codebase on GitHub (link anonymised for
+review) and will be deployed as a web application on Hugging Face Spaces
+with a public API endpoint upon acceptance.
+
+% ════════════════════════════════════════════════════════════════════════════
+% AUTHOR CONTRIBUTIONS
+% ════════════════════════════════════════════════════════════════════════════
+\section*{Author Contributions}
+
+Conceptualization: K.A.A. and M.A.; Methodology: K.A.A.; Software: K.A.A.;
+Validation: K.A.A. and M.A.; Formal analysis: K.A.A.; Investigation: K.A.A.;
+Data curation: K.A.A.; Writing --- original draft: K.A.A.;
+Writing --- review and editing: K.A.A. and M.A.;
+Visualization: K.A.A.
+
+% ════════════════════════════════════════════════════════════════════════════
+% ACKNOWLEDGEMENTS
+% ════════════════════════════════════════════════════════════════════════════
+\section*{Acknowledgements}
+
+The authors thank their former supervisor at North South University, Dhaka,
+Bangladesh --- currently an Assistant Professor at King Fahd University of
+Petroleum and Minerals (KFUPM) --- for guidance during the Junior Design 299
+course in 2021 where the initial concept was first developed.
+
+The authors also gratefully acknowledge Prof.\ Amr Abdel-Dayem (Laurentian
+University, Canada) for invaluable guidance during the Image Processing and
+Computer Vision course in the M.Sc.\ programme in Computational Sciences at
+Laurentian University. This project was revisited and significantly extended
+as a course project in Fall 2023 under his supervision.
 
 % ════════════════════════════════════════════════════════════════════════════
 % REFERENCES
 % ════════════════════════════════════════════════════════════════════════════
-\section*{Author Contributions}
-\placeholder{Conceptualization: K.A.A. and [Co-Author Initials]; Methodology: K.A.A.; Software: K.A.A.; 
-Validation: K.A.A. and [Co-Author Initials]; Formal analysis: K.A.A.; Investigation: K.A.A.; 
-Data curation: K.A.A.; Writing - original draft preparation: K.A.A.; 
-Writing - review and editing: K.A.A. and [Co-Author Initials]; Visualization: K.A.A.; 
-Supervision: [Former Supervisor Name]; Project administration: K.A.A.}
-
-\section*{Acknowledgements}
-The authors would like to thank their former supervisor from North South University, Dhaka, Bangladesh, currently working as an Assistant Professor at King Fahd University of Petroleum and Minerals (KFUPM), for his guidance during the Junior Design 299 course in 2021, where the initial concept of this work was first developed.
-
-The authors also gratefully acknowledge Prof.\ Amr Abdel-Dayem (Laurentian University, Canada) for his invaluable guidance during the Image Processing and Computer Vision course within the M.Sc.\ programme in Computational Sciences at Laurentian University. This project was revisited and significantly extended as a course project in Fall 2023 under his supervision, forming the direct foundation of the present work.
-
 \begin{thebibliography}{99}
 
 \bibitem{bbbc041}
 V.~Ljosa, K.~L.~Sokolnicki, and A.~E.~Carpenter.
 \newblock Annotated high-throughput microscopy image sets for validation.
 \newblock \textit{Nature Methods}, 9(7):637, 2012.
-\newblock NIH BBBC041 dataset: \url{https://bbbc.broadinstitute.org/BBBC041}.
+\newblock Dataset available at: \url{https://bbbc.broadinstitute.org/BBBC041}.
 
 \bibitem{who2023}
 World Health Organization.
 \newblock \textit{World Malaria Report 2023}.
 \newblock WHO Press, Geneva, 2023.
+\newblock Available at: \url{https://www.who.int/teams/global-malaria-programme/reports/world-malaria-report-2023}.
 
 \bibitem{poostchi2018}
 M.~Poostchi, K.~Silamut, R.~J.~Maude, S.~Jaeger, and G.~Thoma.
 \newblock Image analysis and machine learning for detecting malaria.
 \newblock \textit{Translational Research}, 194:36--55, 2018.
+\newblock \url{https://doi.org/10.1016/j.trsl.2017.12.004}.
 
 \bibitem{otsu1979}
 N.~Otsu.
 \newblock A threshold selection method from gray-level histograms.
 \newblock \textit{IEEE Transactions on Systems, Man, and Cybernetics},
   9(1):62--66, 1979.
+\newblock \url{https://doi.org/10.1109/TSMC.1979.4310076}.
 
 \bibitem{beucher1992}
 S.~Beucher and F.~Meyer.
@@ -893,12 +1399,14 @@ S.~Rajaraman, S.~K.~Antani, M.~Poostchi, K.~Silamut, M.~A.~Hossain,
 \newblock Pre-trained convolutional neural networks as feature extractors
   toward improved malaria parasite detection in thin blood smear images.
 \newblock \textit{PeerJ}, 6:e4568, 2018.
+\newblock \url{https://doi.org/10.7717/peerj.4568}.
 
 \bibitem{singh2025}
 R.~Singh, C.~Prabha, and S.~Abdulla.
 \newblock Optimized {CNN} framework for malaria detection using
   {Otsu} thresholding-based image segmentation.
 \newblock \textit{Scientific Reports}, 15:40117, 2025.
+\newblock \url{https://doi.org/10.1038/s41598-025-23961-5}.
 
 \bibitem{tan2019}
 M.~Tan and Q.~V.~Le.
@@ -906,12 +1414,7 @@ M.~Tan and Q.~V.~Le.
   networks.
 \newblock In \textit{Proceedings of the International Conference on Machine
   Learning (ICML)}, pages 6105--6114, 2019.
-
-\bibitem{plasmocount2025}
-R.~Fisch \etal
-\newblock {PlasmoCount} 2.0: Rapid multi-species malaria parasite detection
-  using deep learning.
-\newblock \textit{medRxiv}, 2025.05.05.25326942, 2025.
+\newblock \url{https://arxiv.org/abs/1905.11946}.
 
 \bibitem{loh2021}
 D.~R.~Loh, W.~X.~Yong, J.~Yapeter, K.~Subburaj, and R.~Chandramohanadas.
@@ -919,26 +1422,29 @@ D.~R.~Loh, W.~X.~Yong, J.~Yapeter, K.~Subburaj, and R.~Chandramohanadas.
   Automated and rapid cell counting, object detection and instance
   segmentation using {Mask R-CNN}.
 \newblock \textit{Computerized Medical Imaging and Graphics}, 88:101845, 2021.
+\newblock \url{https://doi.org/10.1016/j.compmedimag.2020.101845}.
 
 \bibitem{delgado2020}
 M.~Delgado-Ortet, A.~Molina, S.~Alf\'{e}rez, J.~Rodellar, and A.~Merino.
 \newblock A deep learning approach for segmentation of red blood cell images
   and malaria detection.
 \newblock \textit{Entropy}, 22(6):657, 2020.
+\newblock \url{https://doi.org/10.3390/e22060657}.
 
 \bibitem{pandiaraj2024}
 A.~Pandiaraj, P.~R.~Kshirsagar, R.~Thiagarajan, T.~K.~Tak, and B.~Sivaneasan.
 \newblock A robust malaria cell detection framework using adaptive and atrous
-  convolution-based recurrent {MobileNetV2} with {Trans-MobileUNet\texttt{++}}-based
+  convolution-based recurrent {MobileNetV2} with {Trans-MobileUNet$^{++}$}-based
   abnormality segmentation.
 \newblock \textit{Journal of Imaging Informatics in Medicine}, 38:2381--2411, 2025.
 \newblock \url{https://doi.org/10.1007/s10278-024-01311-7}.
 
 \bibitem{yolov4malaria2024}
-\placeholder{Author(s)}.
+D.~Sukumarran, K.~Hasikin, A.~S.~M.~Khairuddin, R.~Ngui, W.~Y.~Wan~Sulaiman,
+  I.~Vythilingam, and P.~C.~S.~Divis.
 \newblock An optimised {YOLOv4} deep learning model for efficient malarial
   cell detection in thin blood smear images.
-\newblock \textit{Parasites \& Vectors}, 2024.
+\newblock \textit{Parasites \& Vectors}, 17:188, 2024.
 \newblock \url{https://doi.org/10.1186/s13071-024-06215-7}.
 
 \bibitem{ren2015}
@@ -947,32 +1453,36 @@ S.~Ren, K.~He, R.~Girshick, and J.~Sun.
   proposal networks.
 \newblock In \textit{Advances in Neural Information Processing Systems
   (NeurIPS)}, pages 91--99, 2015.
+\newblock \url{https://arxiv.org/abs/1506.01497}.
 
 \bibitem{he2017maskrcnn}
-K.~He, G.~Gkioxari, P.~Doll{\'a}r, and R.~Girshick.
+K.~He, G.~Gkioxari, P.~Doll{\'{a}}r, and R.~Girshick.
 \newblock Mask {R-CNN}.
 \newblock In \textit{IEEE International Conference on Computer Vision (ICCV)},
   pages 2961--2969, 2017.
+\newblock \url{https://arxiv.org/abs/1703.06870}.
 
 \bibitem{hung2018}
-J.~Hung \etal
+J.~Hung and A.~Carpenter.
 \newblock Applying faster {R-CNN} for object detection on malaria images.
-\newblock In \textit{CVPR Workshop on Computer Vision for Microscopy Image
-  Analysis}, 2017.
+\newblock In \textit{Proceedings of the IEEE CVPR Workshop on Computer Vision
+  for Microscopy Image Analysis (CVMI)}, 2017.
+\newblock \url{https://doi.org/10.1109/CVPRW.2017.112}.
 
 \bibitem{lin2017focal}
-T.~Y.~Lin, P.~Goyal, R.~Girshick, K.~He, and P.~Doll{\'a}r.
+T.-Y.~Lin, P.~Goyal, R.~Girshick, K.~He, and P.~Doll{\'{a}}r.
 \newblock Focal loss for dense object detection.
 \newblock In \textit{IEEE International Conference on Computer Vision (ICCV)},
   pages 2980--2988, 2017.
+\newblock \url{https://arxiv.org/abs/1708.02002}.
 
 \bibitem{selvaraju2017}
-R.~R.~Selvaraju, M.~Cogswell, A.~Das, R.~Vedantam, D.~Parikh, and
-  D.~Batra.
+R.~R.~Selvaraju, M.~Cogswell, A.~Das, R.~Vedantam, D.~Parikh, and D.~Batra.
 \newblock {Grad-CAM}: Visual explanations from deep networks via
   gradient-based localization.
 \newblock In \textit{IEEE International Conference on Computer Vision (ICCV)},
   pages 618--626, 2017.
+\newblock \url{https://arxiv.org/abs/1610.02391}.
 
 \bibitem{chattopadhyay2018}
 A.~Chattopadhyay, A.~Sarkar, P.~Howlader, and V.~N.~Balasubramanian.
@@ -980,6 +1490,7 @@ A.~Chattopadhyay, A.~Sarkar, P.~Howlader, and V.~N.~Balasubramanian.
   deep convolutional networks.
 \newblock In \textit{IEEE Winter Conference on Applications of Computer Vision
   (WACV)}, pages 839--847, 2018.
+\newblock \url{https://arxiv.org/abs/1710.11063}.
 
 \bibitem{badrinarayanan2017}
 V.~Badrinarayanan, A.~Kendall, and R.~Cipolla.
@@ -987,57 +1498,140 @@ V.~Badrinarayanan, A.~Kendall, and R.~Cipolla.
   image segmentation.
 \newblock \textit{IEEE Transactions on Pattern Analysis and Machine
   Intelligence}, 39(12):2481--2495, 2017.
+\newblock \url{https://doi.org/10.1109/TPAMI.2016.2644615}.
 
 \bibitem{zhou2018unetpp}
 Z.~Zhou, M.~M.~R.~Siddiquee, N.~Tajbakhsh, and J.~Liang.
 \newblock {UNet++}: A nested {U-Net} architecture for medical image
   segmentation.
-\newblock In \textit{Deep Learning in Medical Image Analysis Workshop
-  (MICCAI)}, pages 3--11, 2018.
-
-\bibitem{trustworthy2025}
-\placeholder{Author(s)}.
-\newblock Trustworthy deep learning for malaria diagnosis using explainable
-  artificial intelligence.
-\newblock \textit{Scientific Reports}, 2025.
-\newblock \url{https://doi.org/10.1038/s41598-025-28387-7}.
+\newblock In \textit{Deep Learning in Medical Image Analysis and Multimodal
+  Learning for Clinical Decision Support (MICCAI Workshop)}, pages 3--11, 2018.
+\newblock \url{https://arxiv.org/abs/1807.10165}.
 
 \bibitem{xai2022transformer}
-\placeholder{Author(s)}.
+M.~R.~Islam, M.~Nahiduzzaman, M.~O.~F.~Goni, A.~Sayeed, M.~S.~Anower,
+  M.~Ahsan, and J.~Haider.
 \newblock Explainable transformer-based deep learning model for the detection
   of malaria parasites from blood cell images.
 \newblock \textit{Sensors}, 22(12):4358, 2022.
+\newblock \url{https://doi.org/10.3390/s22124358}.
 
 \bibitem{xai_ensemble2025}
-\placeholder{Author(s)}.
+O.~O.~Awe, P.~N.~Mwangi, S.~K.~Goudoungou, R.~V.~Esho, and O.~S.~Oyejide.
 \newblock Explainable {AI} for enhanced accuracy in malaria diagnosis using
   ensemble machine learning models.
-\newblock \textit{BMC Medical Informatics and Decision Making}, 2025.
+\newblock \textit{BMC Medical Informatics and Decision Making}, 25:152, 2025.
 \newblock \url{https://doi.org/10.1186/s12911-025-02874-3}.
 
-\bibitem{lstm_xai2025}
-\placeholder{Author(s)}.
-\newblock Explainable {AI} for early malaria detection using stacked-{LSTM}
-  and attention mechanisms.
-\newblock \textit{Informatics in Medicine Unlocked}, 2025.
-
-\bibitem{continuallearning2025}
-\placeholder{Author(s)}.
-\newblock Towards field-ready {AI}-based malaria diagnosis: A continual
-  learning approach.
-\newblock \textit{arXiv preprint}, arXiv:2507.23648, 2025.
-
-\bibitem{coco_dataset2025}
-\placeholder{Author(s)}.
-\newblock A {COCO}-formatted instance-level dataset for
-  \textit{Plasmodium Falciparum} detection in {Giemsa}-stained blood smears.
-\newblock \textit{arXiv preprint}, arXiv:2507.18483, 2025.
-
 \bibitem{delves2012}
-P.~J.~Delves \etal
+P.~J.~Delves, S.~J.~Martin, D.~R.~Burton, and I.~M.~Roitt.
 \newblock \textit{Roitt's Essential Immunology}.
 \newblock Wiley-Blackwell, 13th edition, 2017.
 
 \end{thebibliography}
 
+% ════════════════════════════════════════════════════════════════════════════
+% APPENDIX
+% ════════════════════════════════════════════════════════════════════════════
+\clearpage
+\onecolumn
+\captionsetup{hypcap=false}
+\appendix
+
+\section{Inference Pipeline Development: Iterative Improvement}
+\label{app:iterations}
+
+This appendix documents the iterative development of the Stage~2 inference
+pipeline across three experimental runs on a single representative test
+image (NIH BBBC041 identifier: \texttt{64985a1e}). All runs use the same
+trained EfficientNet-B0 checkpoint. The progression illustrates the
+empirical challenges of post-processing in a two-stage pipeline and the
+design decisions made to address them.
+
+\subsection*{Iteration 1 --- Initial Inference (Unfiltered)}
+
+The first inference run applied the EfficientNet-B0 classifier directly to
+all regions returned by Stage~1 watershed without size filtering.
+
+\begin{itemize}
+  \item Total Stage~1 regions: 42
+  \item Detected parasites: 4 (1 trophozoite, 3 schizont)
+  \item Leukocytes: 8
+  \item Infection rate: 9.52\%
+\end{itemize}
+
+Inspection of the JSON output revealed that 5 of the 8 ``leukocyte''
+detections corresponded to bounding boxes with dimensions 236$\times$305\,px,
+297$\times$117\,px (aspect ratio 2.54), and 330$\times$439\,px --- far
+exceeding the typical RBC diameter of 80--160\,px. These are watershed
+regions that span 3--5 touching cells without sufficient distance-transform
+separation to split them. EfficientNet-B0 classifies these multi-cell crops
+as leukocytes because (i) they are large, and (ii) leukocytes are the only
+large-cell class in the training data. One schizont detection had only 38.97\%
+confidence, below any reasonable clinical reporting threshold.
+
+Figure~\ref{fig:appendix_iter1} shows the smear annotation from Iteration~1.
+The absence of bounding boxes on several clearly visible isolated RBCs was
+also observed in this run, suggesting that Stage~1's global Otsu threshold
+misses some pale cells.
+
+\begin{center}
+  \includegraphics[width=0.85\linewidth]{fig_appendix_iter1.jpg}
+\end{center}
+\refstepcounter{figure}\label{fig:appendix_iter1}
+\noindent{\small\textbf{Figure~\thefigure:}
+  Iteration~1: initial inference output before box-size filtering.
+  Eight leukocyte detections are visible (cyan), most corresponding to
+  large merged-cluster regions misclassified due to their unusual size.
+  Image courtesy NIH BBBC041.}
+\medskip
+
+\subsection*{Iteration 2 --- Box-Size Filter Applied}
+
+To address the merged-cluster misclassification problem, we implemented an
+\texttt{\_is\_oversized()} filter in the inference pipeline. Any watershed
+region with width $> 220$\,px, height $> 220$\,px, or aspect ratio $> 2.2$
+is excluded from Stage~2 classification and marked as ``merged?'' in the
+visual output. A confidence threshold of 0.40 was also applied: parasites
+below this threshold are annotated with a `?' suffix and excluded from the
+infection count.
+
+\begin{itemize}
+  \item Total Stage~1 regions: 107 (larger image area processed)
+  \item Oversized merged regions filtered: 5
+  \item Classified cells: 102
+  \item Confirmed parasites (conf $\geq$ 0.40): 4
+  \item Infection rate: 3.74\%
+\end{itemize}
+
+\begin{center}
+  \includegraphics[width=0.85\linewidth]{fig_appendix_iter2.jpg}
+\end{center}
+\refstepcounter{figure}\label{fig:appendix_iter2}
+\noindent{\small\textbf{Figure~\thefigure:}
+  Iteration~2: inference output with box-size filter and confidence threshold
+  applied. Oversized merged-cluster regions are marked ``merged?'' in grey and
+  excluded from classification. The infection rate drops from 9.52\% to 3.74\%
+  as spurious leukocyte detections are removed.
+  Image courtesy NIH BBBC041.}
+\medskip
+
+\subsection*{Iteration 3 (Final) --- Stable Pipeline}
+
+The final pipeline retains all changes from Iteration 2. The 21 remaining
+leukocyte detections in Iteration 2 reflect a known limitation: the model
+has a tendency to classify cells with unusual morphology (irregular shape,
+large size near the threshold) as leukocytes. Improving Stage~1 seed
+separation in moderately dense regions would reduce the number of
+near-oversized crops that pass the size filter. This is identified as a
+priority for Stage~1 enhancement in future work.
+
+The key design lesson from this iterative process is that a two-stage
+pipeline exposes failure modes explicitly --- each stage's output is
+inspectable, and errors in Stage~1 (merged clusters) produce visible,
+labelled artefacts rather than silent false positives. This transparency
+is a practical advantage of the decoupled architecture over end-to-end
+detectors.
+
+\clearpage
 \end{document}

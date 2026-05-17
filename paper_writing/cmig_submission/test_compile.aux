@@ -1,0 +1,108 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{who2023}
+\citation{delves2012}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{poostchi2018}
+\citation{rajaraman2019}
+\citation{singh2025}
+\citation{ren2015}
+\citation{yolov4malaria2024}
+\citation{selvaraju2017}
+\citation{chattopadhyay2018}
+\citation{otsu1979}
+\citation{poostchi2018}
+\citation{poostchi2018}
+\citation{delgado2020}
+\citation{beucher1992}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{3}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Classical and Feature-Based Approaches}{3}{subsection.2.1}\protected@file@percent }
+\newlabel{ssec:classical}{{2.1}{3}{Classical and Feature-Based Approaches}{subsection.2.1}{}}
+\citation{rajaraman2019}
+\citation{rajaraman2019}
+\citation{singh2025}
+\citation{singh2025}
+\citation{ren2015}
+\citation{hung2018}
+\citation{yolov4malaria2024}
+\citation{loh2021}
+\citation{he2017maskrcnn}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}CNN-Based Classification of Pre-Isolated Cells}{4}{subsection.2.2}\protected@file@percent }
+\newlabel{ssec:cnn_class}{{2.2}{4}{CNN-Based Classification of Pre-Isolated Cells}{subsection.2.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}End-to-End Object Detection and Instance Segmentation}{4}{subsection.2.3}\protected@file@percent }
+\newlabel{ssec:e2e}{{2.3}{4}{End-to-End Object Detection and Instance Segmentation}{subsection.2.3}{}}
+\citation{loh2021}
+\citation{loh2021}
+\citation{delgado2020}
+\citation{badrinarayanan2017}
+\citation{delgado2020}
+\citation{pandiaraj2024}
+\citation{pandiaraj2024}
+\citation{xai_ensemble2025}
+\citation{selvaraju2017}
+\citation{chattopadhyay2018}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Two-Stage Decoupled Pipelines}{5}{subsection.2.4}\protected@file@percent }
+\newlabel{ssec:twostage}{{2.4}{5}{Two-Stage Decoupled Pipelines}{subsection.2.4}{}}
+\citation{xai2022transformer}
+\citation{xai_ensemble2025}
+\citation{singh2025}
+\citation{loh2021}
+\citation{yolov4malaria2024}
+\citation{delgado2020}
+\citation{pandiaraj2024}
+\citation{xai_ensemble2025}
+\citation{bbbc041}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Explainable AI for Clinical Malaria Diagnosis}{6}{subsection.2.5}\protected@file@percent }
+\newlabel{ssec:xai}{{2.5}{6}{Explainable AI for Clinical Malaria Diagnosis}{subsection.2.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Cross-Cutting Open Problems and Positioning}{6}{subsection.2.6}\protected@file@percent }
+\newlabel{ssec:gaps}{{2.6}{6}{Cross-Cutting Open Problems and Positioning}{subsection.2.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Positioning of \textsc  {MalariAI}{} against prior work. \textbf  {P1} = annotation-agnostic detection; \textbf  {P2} = dense overlap handling without NMS; \textbf  {P3} = integrated per-cell spatial XAI on whole-slide images. \text  {$\mathsurround \z@ \mathchar "458$}\nobreakspace  {}= addressed; $\sim $\nobreakspace  {}= partial; $\times $\nobreakspace  {}= not addressed.}}{6}{table.1}\protected@file@percent }
+\newlabel{tab:related_summary}{{1}{6}{Positioning of \malariai {} against prior work. \textbf {P1} = annotation-agnostic detection; \textbf {P2} = dense overlap handling without NMS; \textbf {P3} = integrated per-cell spatial XAI on whole-slide images. \checkmark ~= addressed; $\sim $~= partial; $\times $~= not addressed}{table.1}{}}
+\citation{lin2017focal}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textsc  {MalariAI}{} two-stage decoupled architecture. Stage\nobreakspace  {}1 performs universal cell segmentation via distance-transform guided watershed on the raw 1600$\times $1200 blood smear image with no annotation input. Stage\nobreakspace  {}2 classifies each 64$\times $64 crop with EfficientNet-B0 and Focal Loss, followed by Grad-CAM\texttt  {++} for per-cell spatial explainability.}}{7}{figure.1}\protected@file@percent }
+\newlabel{fig:architecture}{{1}{7}{\malariai {} two-stage decoupled architecture. Stage~1 performs universal cell segmentation via distance-transform guided watershed on the raw 1600$\times $1200 blood smear image with no annotation input. Stage~2 classifies each 64$\times $64 crop with EfficientNet-B0 and Focal Loss, followed by Grad-CAM\texttt {++} for per-cell spatial explainability}{figure.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{7}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{7}{Methodology}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Dataset and Experimental Setup}{7}{subsection.3.1}\protected@file@percent }
+\newlabel{ssec:dataset}{{3.1}{7}{Dataset and Experimental Setup}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Dataset.}{7}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Class distribution and imbalance.}{7}{section*.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Class distribution of NIH BBBC041 training annotations. Left: log-scale view dominated by the red blood cell class (77,420 instances). Right: linear-scale view of parasitic stages only, showing the secondary imbalance between trophozoites (1,473) and the rarest stages (gametocyte: 144). The 537:1 RBC-to-gametocyte ratio motivates per-class Focal Loss weighting.}}{8}{figure.2}\protected@file@percent }
+\newlabel{fig:class_dist}{{2}{8}{Class distribution of NIH BBBC041 training annotations. Left: log-scale view dominated by the red blood cell class (77,420 instances). Right: linear-scale view of parasitic stages only, showing the secondary imbalance between trophozoites (1,473) and the rarest stages (gametocyte: 144). The 537:1 RBC-to-gametocyte ratio motivates per-class Focal Loss weighting}{figure.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-class annotation counts in NIH BBBC041 (\textit  {difficult} annotations excluded).}}{8}{table.2}\protected@file@percent }
+\newlabel{tab:class_dist}{{2}{8}{Per-class annotation counts in NIH BBBC041 (\textit {difficult} annotations excluded)}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Parasitic stage morphology.}{8}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Annotation density and cell overlap.}{8}{section*.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Representative ground-truth crops of each parasitic stage in NIH BBBC041 at native resolution. Ring-stage infections are visually the most similar to healthy RBCs, predicting lower per-class accuracy for that class. Parasitic stages are systematically larger than healthy erythrocytes (trophozoite median area: 17,272\,px$^2$; RBC: 11,544\,px$^2$), consistent with intraerythrocytic swelling during parasite development.}}{9}{figure.3}\protected@file@percent }
+\newlabel{fig:parasite_crops}{{3}{9}{Representative ground-truth crops of each parasitic stage in NIH BBBC041 at native resolution. Ring-stage infections are visually the most similar to healthy RBCs, predicting lower per-class accuracy for that class. Parasitic stages are systematically larger than healthy erythrocytes (trophozoite median area: 17,272\,px$^2$; RBC: 11,544\,px$^2$), consistent with intraerythrocytic swelling during parasite development}{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Distribution of annotated bounding boxes per image in the BBBC041 training set (1,208 images). The dashed red line marks the median (59 boxes); the dotted orange line at 100 boxes identifies images we classify as \emph  {dense smears}. 11\% of images exceed this threshold. 58\% of a 200-image sample contain at least one overlapping cell pair ($\text  {IoU}>0.3$), confirming the severity of the NMS failure mode.}}{9}{figure.4}\protected@file@percent }
+\newlabel{fig:density}{{4}{9}{Distribution of annotated bounding boxes per image in the BBBC041 training set (1,208 images). The dashed red line marks the median (59 boxes); the dotted orange line at 100 boxes identifies images we classify as \emph {dense smears}. 11\% of images exceed this threshold. 58\% of a 200-image sample contain at least one overlapping cell pair ($\text {IoU}>0.3$), confirming the severity of the NMS failure mode}{figure.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Train/validation/test protocol.}{9}{section*.5}\protected@file@percent }
+\citation{delgado2020}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Cross-Dataset Validation: The MP-IDB Dataset}{10}{subsection.3.2}\protected@file@percent }
+\newlabel{ssec:mpidb}{{3.2}{10}{Cross-Dataset Validation: The MP-IDB Dataset}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Taxonomy mismatch.}{10}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Species and stage distribution.}{10}{section*.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces MP-IDB species distribution. Left: annotation counts per \textit  {Plasmodium} species across 209 images. \textit  {P.\ falciparum} comprises 90.0\% of all annotated infected cells (1{,}267 of 1{,}407), consistent with its epidemiological prevalence. Right: proportional breakdown. The severe species imbalance mirrors the stage imbalance in BBBC041 and motivates binary (infected vs.\ uninfected) cross-dataset evaluation.}}{11}{figure.5}\protected@file@percent }
+\newlabel{fig:mpidb_class_dist}{{5}{11}{MP-IDB species distribution. Left: annotation counts per \textit {Plasmodium} species across 209 images. \textit {P.\ falciparum} comprises 90.0\% of all annotated infected cells (1{,}267 of 1{,}407), consistent with its epidemiological prevalence. Right: proportional breakdown. The severe species imbalance mirrors the stage imbalance in BBBC041 and motivates binary (infected vs.\ uninfected) cross-dataset evaluation}{figure.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces MP-IDB lifecycle stage distribution. Left: number of images containing each stage tag (multi-label; one image may carry multiple tags). Ring-stage infections are the most common (60\% of images). Right: tag co-occurrence matrix --- the 18 images tagged with both ring and trophozoite indicate mixed-stage smears, reflecting real clinical variability. Stage tags are image-level only; individual infected cells are not labelled by stage.}}{11}{figure.6}\protected@file@percent }
+\newlabel{fig:mpidb_stage_tags}{{6}{11}{MP-IDB lifecycle stage distribution. Left: number of images containing each stage tag (multi-label; one image may carry multiple tags). Ring-stage infections are the most common (60\% of images). Right: tag co-occurrence matrix --- the 18 images tagged with both ring and trophozoite indicate mixed-stage smears, reflecting real clinical variability. Stage tags are image-level only; individual infected cells are not labelled by stage}{figure.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Resolution and scale gap.}{11}{section*.8}\protected@file@percent }

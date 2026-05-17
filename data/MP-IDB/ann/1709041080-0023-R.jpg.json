@@ -1,0 +1,58 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741207,
+            "tagId": 31223,
+            "name": "ring stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:33:00.492Z",
+            "updatedAt": "2024-03-01T15:33:00.492Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128266,
+            "classId": 6533083,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:33:00.493Z",
+            "updatedAt": "2024-03-01T15:33:00.493Z",
+            "tags": [],
+            "classTitle": "vivax",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtKuQOzHyAwkfVo8VwIptgCfEJDg////l96cfxfIYiwJ8gtmcHh2Iw3IeeTp4hhSMaf30kbeQwYCrBc2B+3ofCIYZMSg6uGWJMD1TUGyMVfjJEfPA0GdVSJhfL/f7GbRNNrRMW/Sn92TcxkyGqcLfi0Xs+MSsbN9uMWdZ0l4v8VkvROvPI9P6Tl9uHdpwYlZITW+//eacu9W6Z7hvMD1bFvItRCv//oxJtOO7X+iYlh438Jppmrd1aDzHTmhd9t8XPNU9y5cphQ/tXlzSXSJqGwX272eqQ7L2Gf6n8uddnnW0y1Nb2oniZYqHe4UWsid6p36r/DHJM3JRfbTD4k5N9u1M7+J4WO/oBz7aUtlSWi01kT98qoahk+rX5raTSlvBfqWwdPVz2WdU0ITABaGfqo=",
+                "origin": [
+                    933,
+                    432
+                ]
+            }
+        },
+        {
+            "id": 150128267,
+            "classId": 6533083,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:33:00.493Z",
+            "updatedAt": "2024-03-01T15:33:00.493Z",
+            "tags": [],
+            "classTitle": "vivax",
+            "bitmap": {
+                "data": "eJwBCQL2/YlQTkcNChoKAAAADUlIRFIAAAChAAAApQEDAAAADg4P4wAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAGxSURBVHictddBbsMgEAVQrCy85AjuMbpzj9Ij9AbQk5WcpEhdZMsSqYhpYkM8wE8U6padn0bjYbDBFiKNJwHG0Qox6dImIjdoiqXORFFaRbrWZVhmr0IldUzDmJD8hgN9ZA2bHug6Io/dhkaxZGCsheo61EPdCuY1RKj0knXk6qBeE0uuEeq1E1OhDmpOMRdKSVWpKXGJqcUHqGOlFpSQtSohFYxVdWiF69INtQY0iTX2QQ1owmuDG6XbKhvVUE2HWng3C9q7Nk01+g2VQHtvqoYZLFTXoaFDz0VgnR9W1LPLKgMNf6HTbpX/oR49URdt3otl3Xaq6VAN3u4ltkfBA+w6VTVqO9RDDfCV9bsV5+1RXC/uA1ZzU9u74a0Lx+5X3amqsk+oR6ia0EmmIzoLzRtUeG7iM3bV6SH1MEOPOqQnWNmAZpE/VsrK8reRBBXUm9R9LbcCB9Xe1XIr0PdVcRW/0RnmnWCs7FDengg1wAxYtwy4sv0qT+hufI3YrwRj9tvBUhc6tmmZOqim0HxE6UJTEUoA9QKpafSryXrRd96ZPEjMITYaxeSeGz2X7NjFDzFMn4cA/CXXAAAAAElFTkSuQmCCMrbnuQ==",
+                "origin": [
+                    1179,
+                    638
+                ]
+            }
+        }
+    ]
+}

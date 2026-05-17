@@ -1,0 +1,39 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741165,
+            "tagId": 31226,
+            "name": "gametocyte stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:32:01.316Z",
+            "updatedAt": "2024-03-01T15:32:01.316Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128213,
+            "classId": 6533082,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:32:01.317Z",
+            "updatedAt": "2024-03-01T15:32:01.317Z",
+            "tags": [],
+            "classTitle": "ovale",
+            "bitmap": {
+                "data": "eJwBNwLI/YlQTkcNChoKAAAADUlIRFIAAACiAAAAqwEDAAAA3zPVkAAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAHfSURBVHictddNTsMwEIbhhCJlGSSWLHwF2LELR+IG8TG4DbkBV4jEAfDSCytDmtT5sV+3tQph92j6ZcZOqFsU6/VW0GUIS9TKXq9KBlTpYq1HfSf9dqQirDpDo4Svo4a9lT+UcBDSViChFNI5QPoMNXutZg1Wvp7VoQYjq7O6G84HJNRSwNpEPX6q8bo8E6qrdOvVN3EQU5lI78S1dtXuxDKMf8vVz1jK7mI1qH4M1KDWoZ6Gq/Yqfrb9pVG7Mxp05sdosWG5Rh0mDFg70MQnDfsVVk2rMw9Xh9rnqkJtQrWoJl0bYkIdLE5KB1qGSdtIhW42LRrUarjZcTZWFavFWIMtmFRtg7l8N9b6ZuXceNGn3YyLLe6FyVBOsLibFneI+3V/odGbmac2QzNzeYdA+4zaZGdQO+ATxSo3q8vQ8Z0n1Ym7wWxjLSusTkK7P8iFZ33M5Tcg8Q41/6AmqSrSHrVLapyrofZT6AuynGqDpTTFC3zF9ngsMahcO59Kwn9SXtstLke55rIuh0GFWmNChbprbT16bovNoocL2rf9out0WnWrLr3peqN+kKGo9Eb5sM4He/5pUATTbnu7D3WqDfGAsfybpUypbqLcUbtYi9cn/fgR6bH+gbR4Rt3U/gJ3OT+UFSV+NQAAAABJRU5ErkJggu/sCbE=",
+                "origin": [
+                    908,
+                    90
+                ]
+            }
+        }
+    ]
+}

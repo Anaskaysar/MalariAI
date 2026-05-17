@@ -1,0 +1,252 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\emailauthor{Kaysarulanas2@gmail.com}{Kaysarul Anas Apurba\corref {cor1}}
+\Newlabel{cor1}{1}
+\Newlabel{fn1}{1}
+\Newlabel{fn2}{2}
+\citation{who2023}
+\citation{delves2012}
+\citation{poostchi2018}
+\citation{rajaraman2019,singh2025}
+\citation{ren2015}
+\citation{yolov4malaria2024}
+\Newlabel{1}{a}
+\Newlabel{1}{b}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{selvaraju2017,chattopadhyay2018}
+\citation{otsu1979}
+\citation{poostchi2018}
+\citation{poostchi2018,delgado2020}
+\citation{beucher1992}
+\citation{rajaraman2019}
+\citation{rajaraman2019}
+\citation{singh2025}
+\citation{singh2025}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Classical and Feature-Based Approaches}{2}{subsection.2.1}\protected@file@percent }
+\newlabel{ssec:classical}{{2.1}{2}{Classical and Feature-Based Approaches}{subsection.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}CNN-Based Classification of Pre-Isolated Cells}{2}{subsection.2.2}\protected@file@percent }
+\newlabel{ssec:cnn_class}{{2.2}{2}{CNN-Based Classification of Pre-Isolated Cells}{subsection.2.2}{}}
+\citation{ren2015}
+\citation{hung2018}
+\citation{yolov4malaria2024}
+\citation{loh2021}
+\citation{he2017maskrcnn}
+\citation{loh2021}
+\citation{loh2021}
+\citation{delgado2020}
+\citation{badrinarayanan2017}
+\citation{delgado2020}
+\citation{pandiaraj2024}
+\citation{pandiaraj2024}
+\citation{xai_ensemble2025}
+\citation{selvaraju2017}
+\citation{chattopadhyay2018}
+\citation{xai2022transformer}
+\citation{xai_ensemble2025}
+\citation{singh2025}
+\citation{loh2021}
+\citation{yolov4malaria2024}
+\citation{delgado2020}
+\citation{pandiaraj2024}
+\citation{xai_ensemble2025}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}End-to-End Object Detection and Instance Segmentation}{3}{subsection.2.3}\protected@file@percent }
+\newlabel{ssec:e2e}{{2.3}{3}{End-to-End Object Detection and Instance Segmentation}{subsection.2.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Two-Stage Decoupled Pipelines}{3}{subsection.2.4}\protected@file@percent }
+\newlabel{ssec:twostage}{{2.4}{3}{Two-Stage Decoupled Pipelines}{subsection.2.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Explainable AI for Clinical Malaria Diagnosis}{3}{subsection.2.5}\protected@file@percent }
+\newlabel{ssec:xai}{{2.5}{3}{Explainable AI for Clinical Malaria Diagnosis}{subsection.2.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Cross-Cutting Open Problems and Positioning}{3}{subsection.2.6}\protected@file@percent }
+\newlabel{ssec:gaps}{{2.6}{3}{Cross-Cutting Open Problems and Positioning}{subsection.2.6}{}}
+\citation{bbbc041}
+\citation{lin2017focal}
+\citation{delgado2020}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Positioning of \textsc  {MalariAI}{} against prior work. \textbf  {P1} = annotation-agnostic detection; \textbf  {P2} = dense overlap handling without NMS; \textbf  {P3} = integrated per-cell spatial XAI on whole-slide images. \text  {$\mathsurround \z@ \mathchar "658$}~= addressed; $\sim $~= partial; $\times $~= not addressed.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:related_summary}{{1}{4}{Positioning of \malariai {} against prior work. \textbf {P1} = annotation-agnostic detection; \textbf {P2} = dense overlap handling without NMS; \textbf {P3} = integrated per-cell spatial XAI on whole-slide images. \checkmark ~= addressed; $\sim $~= partial; $\times $~= not addressed}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{4}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{4}{Methodology}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Dataset and Experimental Setup}{4}{subsection.3.1}\protected@file@percent }
+\newlabel{ssec:dataset}{{3.1}{4}{Dataset and Experimental Setup}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Dataset.}{4}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Class distribution and imbalance.}{4}{section*.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-class annotation counts in NIH BBBC041 (\textit  {difficult} annotations excluded).}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:class_dist}{{2}{4}{Per-class annotation counts in NIH BBBC041 (\textit {difficult} annotations excluded)}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Parasitic stage morphology.}{4}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Annotation density and cell overlap.}{4}{section*.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Distribution of annotated bounding boxes per image in the BBBC041 training set (1,208 images). The dashed red line marks the median (59 boxes); the dotted orange line at 100 boxes identifies images we classify as \emph  {dense smears}. 11\% of images exceed this threshold. 58\% of a 200-image sample contain at least one overlapping cell pair ($\text  {IoU}>0.3$), confirming the severity of the NMS failure mode.}}{4}{figure.4}\protected@file@percent }
+\newlabel{fig:density}{{4}{4}{Distribution of annotated bounding boxes per image in the BBBC041 training set (1,208 images). The dashed red line marks the median (59 boxes); the dotted orange line at 100 boxes identifies images we classify as \emph {dense smears}. 11\% of images exceed this threshold. 58\% of a 200-image sample contain at least one overlapping cell pair ($\text {IoU}>0.3$), confirming the severity of the NMS failure mode}{figure.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Train/validation/test protocol.}{4}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Cross-Dataset Validation: The MP-IDB Dataset}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{ssec:mpidb}{{3.2}{4}{Cross-Dataset Validation: The MP-IDB Dataset}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Taxonomy mismatch.}{4}{section*.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textsc  {MalariAI}{} two-stage decoupled architecture. Stage~1 performs universal cell segmentation via distance-transform guided watershed on the raw 1600$\times $1200 blood smear image with no annotation input. Stage~2 classifies each 64$\times $64 crop with EfficientNet-B0 and Focal Loss, followed by Grad-CAM\texttt  {++} for per-cell spatial explainability.}}{5}{figure.1}\protected@file@percent }
+\newlabel{fig:architecture}{{1}{5}{\malariai {} two-stage decoupled architecture. Stage~1 performs universal cell segmentation via distance-transform guided watershed on the raw 1600$\times $1200 blood smear image with no annotation input. Stage~2 classifies each 64$\times $64 crop with EfficientNet-B0 and Focal Loss, followed by Grad-CAM\texttt {++} for per-cell spatial explainability}{figure.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Species and stage distribution.}{5}{section*.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces MP-IDB lifecycle stage distribution. Left: number of images containing each stage tag (multi-label; one image may carry multiple tags). Ring-stage infections are the most common (60\% of images). Right: tag co-occurrence matrix --- the 18 images tagged with both ring and trophozoite indicate mixed-stage smears, reflecting real clinical variability. Stage tags are image-level only; individual infected cells are not labelled by stage.}}{5}{figure.6}\protected@file@percent }
+\newlabel{fig:mpidb_stage_tags}{{6}{5}{MP-IDB lifecycle stage distribution. Left: number of images containing each stage tag (multi-label; one image may carry multiple tags). Ring-stage infections are the most common (60\% of images). Right: tag co-occurrence matrix --- the 18 images tagged with both ring and trophozoite indicate mixed-stage smears, reflecting real clinical variability. Stage tags are image-level only; individual infected cells are not labelled by stage}{figure.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Resolution and scale gap.}{5}{section*.8}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Class distribution of NIH BBBC041 training annotations. Left: log-scale view dominated by the red blood cell class (77,420 instances). Right: linear-scale view of parasitic stages only, showing the secondary imbalance between trophozoites (1,473) and the rarest stages (gametocyte: 144). The 537:1 RBC-to-gametocyte ratio motivates per-class Focal Loss weighting.}}{6}{figure.2}\protected@file@percent }
+\newlabel{fig:class_dist}{{2}{6}{Class distribution of NIH BBBC041 training annotations. Left: log-scale view dominated by the red blood cell class (77,420 instances). Right: linear-scale view of parasitic stages only, showing the secondary imbalance between trophozoites (1,473) and the rarest stages (gametocyte: 144). The 537:1 RBC-to-gametocyte ratio motivates per-class Focal Loss weighting}{figure.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Representative ground-truth crops of each parasitic stage in NIH BBBC041 at native resolution. Ring-stage infections are visually the most similar to healthy RBCs, predicting lower per-class accuracy for that class. Parasitic stages are systematically larger than healthy erythrocytes (trophozoite median area: 17,272\,px$^2$; RBC: 11,544\,px$^2$), consistent with intraerythrocytic swelling during parasite development.}}{6}{figure.3}\protected@file@percent }
+\newlabel{fig:parasite_crops}{{3}{6}{Representative ground-truth crops of each parasitic stage in NIH BBBC041 at native resolution. Ring-stage infections are visually the most similar to healthy RBCs, predicting lower per-class accuracy for that class. Parasitic stages are systematically larger than healthy erythrocytes (trophozoite median area: 17,272\,px$^2$; RBC: 11,544\,px$^2$), consistent with intraerythrocytic swelling during parasite development}{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Geometric illustration of the scale gap between BBBC041 (left) and MP-IDB (right). Each circle represents an infected cell drawn to scale relative to the image frame. In BBBC041 the highlighted cell (radius $r \approx 73$\,px) covers 0.88\% of the image; in MP-IDB the corresponding cell (radius $r \approx 35$\,px) covers only 0.078\%. Watershed parameters tuned on BBBC041 underperform on MP-IDB without resolution-aware adaptation.}}{6}{figure.8}\protected@file@percent }
+\newlabel{fig:mpidb_scale_gap}{{8}{6}{Geometric illustration of the scale gap between BBBC041 (left) and MP-IDB (right). Each circle represents an infected cell drawn to scale relative to the image frame. In BBBC041 the highlighted cell (radius $r \approx 73$\,px) covers 0.88\% of the image; in MP-IDB the corresponding cell (radius $r \approx 35$\,px) covers only 0.078\%. Watershed parameters tuned on BBBC041 underperform on MP-IDB without resolution-aware adaptation}{figure.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Comparison of primary (BBBC041) and cross-validation (MP-IDB) datasets.}}{6}{table.3}\protected@file@percent }
+\newlabel{tab:dataset_comparison}{{3}{6}{Comparison of primary (BBBC041) and cross-validation (MP-IDB) datasets}{table.3}{}}
+\citation{otsu1979}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces MP-IDB species distribution. Left: annotation counts per \textit  {Plasmodium} species across 209 images. \textit  {P.\ falciparum} comprises 90.0\% of all annotated infected cells (1{,}267 of 1{,}407), consistent with its epidemiological prevalence. Right: proportional breakdown. The severe species imbalance mirrors the stage imbalance in BBBC041 and motivates binary (infected vs.\ uninfected) cross-dataset evaluation.}}{7}{figure.5}\protected@file@percent }
+\newlabel{fig:mpidb_class_dist}{{5}{7}{MP-IDB species distribution. Left: annotation counts per \textit {Plasmodium} species across 209 images. \textit {P.\ falciparum} comprises 90.0\% of all annotated infected cells (1{,}267 of 1{,}407), consistent with its epidemiological prevalence. Right: proportional breakdown. The severe species imbalance mirrors the stage imbalance in BBBC041 and motivates binary (infected vs.\ uninfected) cross-dataset evaluation}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Stage 1: Universal Cell Segmentation}{7}{subsection.3.3}\protected@file@percent }
+\newlabel{ssec:stage1}{{3.3}{7}{Stage 1: Universal Cell Segmentation}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Step 1 --- Grayscale conversion and Otsu thresholding.}{7}{section*.9}\protected@file@percent }
+\newlabel{eq:otsu}{{1}{7}{Step 1 --- Grayscale conversion and Otsu thresholding}{equation.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Step 2 --- Morphological opening.}{7}{section*.10}\protected@file@percent }
+\newlabel{eq:open}{{2}{7}{Step 2 --- Morphological opening}{equation.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Step 3 --- Euclidean distance transform.}{7}{section*.11}\protected@file@percent }
+\newlabel{eq:dist}{{3}{7}{Step 3 --- Euclidean distance transform}{equation.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Step 4 --- Seed extraction via local maxima.}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Step 5 --- Watershed segmentation and bounding box extraction.}{7}{section*.13}\protected@file@percent }
+\newlabel{eq:watershed}{{4}{7}{Step 5 --- Watershed segmentation and bounding box extraction}{equation.4}{}}
+\citation{tan2019}
+\citation{lin2017focal}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Bounding-box area distributions for BBBC041 (left) and MP-IDB (right). Left: BBBC041 RBC and parasite distributions overlap substantially; the parasite median (16{,}875\,px$^2$) lies well above the RBC median (11{,}500\,px$^2$), reflecting intraerythrocytic swelling during parasite development. Right: MP-IDB infected-cell areas cluster at far lower values (median 3{,}933\,px$^2$ for \textit  {P.\ falciparum}), 4.3$\times $ smaller than the BBBC041 parasite median (dotted line). \textit  {P.\ vivax} and \textit  {P.\ ovale} show larger median areas (13{,}197 and 11{,}155\,px$^2$ respectively), consistent with their known tendency to infect larger reticulocytes. This scale gap directly predicts reduced Stage~1 recall on MP-IDB without parameter re-tuning.}}{8}{figure.7}\protected@file@percent }
+\newlabel{fig:mpidb_cell_size}{{7}{8}{Bounding-box area distributions for BBBC041 (left) and MP-IDB (right). Left: BBBC041 RBC and parasite distributions overlap substantially; the parasite median (16{,}875\,px$^2$) lies well above the RBC median (11{,}500\,px$^2$), reflecting intraerythrocytic swelling during parasite development. Right: MP-IDB infected-cell areas cluster at far lower values (median 3{,}933\,px$^2$ for \textit {P.\ falciparum}), 4.3$\times $ smaller than the BBBC041 parasite median (dotted line). \textit {P.\ vivax} and \textit {P.\ ovale} show larger median areas (13{,}197 and 11{,}155\,px$^2$ respectively), consistent with their known tendency to infect larger reticulocytes. This scale gap directly predicts reduced Stage~1 recall on MP-IDB without parameter re-tuning}{figure.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Post-processing: oversized region filtering.}{8}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Stage 2: EfficientNet-B0 Classifier with Focal Loss}{8}{subsection.3.4}\protected@file@percent }
+\newlabel{ssec:stage2}{{3.4}{8}{Stage 2: EfficientNet-B0 Classifier with Focal Loss}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Crop extraction.}{8}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{EfficientNet-B0 architecture.}{8}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Focal Loss with per-class inverse-frequency weighting.}{8}{section*.17}\protected@file@percent }
+\newlabel{eq:focal}{{5}{8}{Focal Loss with per-class inverse-frequency weighting}{equation.5}{}}
+\newlabel{eq:alpha}{{6}{8}{Focal Loss with per-class inverse-frequency weighting}{equation.6}{}}
+\citation{selvaraju2017}
+\citation{chattopadhyay2018}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Representative MP-IDB images with ground-truth bounding boxes overlaid. Red boxes: \textit  {P.\ falciparum}; blue: \textit  {P.\ vivax}; green: \textit  {P.\ malariae}; yellow: \textit  {P.\ ovale}. Images span multiple patients and lifecycle stages. The top row shows standard Giemsa staining; the bottom row shows images from a patient with slightly different background colouration, illustrating intra-cohort staining variability. Infected cells are visually subtle relative to the large number of healthy RBCs, confirming the detection challenge.}}{9}{figure.9}\protected@file@percent }
+\newlabel{fig:mpidb_samples}{{9}{9}{Representative MP-IDB images with ground-truth bounding boxes overlaid. Red boxes: \textit {P.\ falciparum}; blue: \textit {P.\ vivax}; green: \textit {P.\ malariae}; yellow: \textit {P.\ ovale}. Images span multiple patients and lifecycle stages. The top row shows standard Giemsa staining; the bottom row shows images from a patient with slightly different background colouration, illustrating intra-cohort staining variability. Infected cells are visually subtle relative to the large number of healthy RBCs, confirming the detection challenge}{figure.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Per-class Focal Loss weights $\alpha _c$ computed from BBBC041 training annotation counts via Equation~\ref {eq:alpha}.}}{9}{table.4}\protected@file@percent }
+\newlabel{tab:focal_weights}{{4}{9}{Per-class Focal Loss weights $\alpha _c$ computed from BBBC041 training annotation counts via Equation~\ref {eq:alpha}}{table.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Training details.}{9}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Grad-CAM\texttt  {++} Explainability}{9}{subsection.3.5}\protected@file@percent }
+\newlabel{ssec:gradcam}{{3.5}{9}{Grad-CAM\texttt {++} Explainability}{subsection.3.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Motivation for Grad-CAM\texttt  {++} over Grad-CAM.}{9}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mathematical formulation.}{9}{section*.20}\protected@file@percent }
+\citation{ren2015}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Stage~1 annotation-agnostic watershed segmentation (Algorithm~1). Parameters: \texttt  {MIN\_DIST}$\!=\!12$\,px, $\tau _{\mathrm  {seed}}\!=\!0.25$, \texttt  {MIN\_AREA}$\!=\!150$\,px$^2$.}}{10}{figure.10}\protected@file@percent }
+\newlabel{fig:watershed_alg}{{10}{10}{Stage~1 annotation-agnostic watershed segmentation (Algorithm~1). Parameters: \texttt {MIN\_DIST}$\!=\!12$\,px, $\tau _{\mathrm {seed}}\!=\!0.25$, \texttt {MIN\_AREA}$\!=\!150$\,px$^2$}{figure.10}{}}
+\newlabel{eq:gcampp_weight}{{7}{10}{Mathematical formulation}{equation.7}{}}
+\newlabel{eq:alpha_gcam}{{8}{10}{Mathematical formulation}{equation.8}{}}
+\newlabel{eq:alpha_gcam_compact}{{9}{10}{Mathematical formulation}{equation.9}{}}
+\newlabel{eq:gcampp_cam}{{10}{10}{Mathematical formulation}{equation.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Hook target.}{10}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Output views.}{10}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Baseline A: Faster R-CNN}{10}{subsection.3.6}\protected@file@percent }
+\newlabel{ssec:baseline}{{3.6}{10}{Baseline A: Faster R-CNN}{subsection.3.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Training protocol.}{10}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structural training ceiling.}{10}{section*.24}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Faster R-CNN (Baseline A) training and validation loss over 80 epochs. Validation loss plateaus at $\approx 0.23$ from epoch~8 and increases after the learning rate drop at epoch~50 --- the empirical signature of annotation incompleteness (Problem~P1). Best checkpoint: epoch~23 (val.\ loss 0.2294).}}{10}{figure.11}\protected@file@percent }
+\newlabel{fig:frcnn_loss}{{11}{10}{Faster R-CNN (Baseline A) training and validation loss over 80 epochs. Validation loss plateaus at $\approx 0.23$ from epoch~8 and increases after the learning rate drop at epoch~50 --- the empirical signature of annotation incompleteness (Problem~P1). Best checkpoint: epoch~23 (val.\ loss 0.2294)}{figure.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Evaluation Metrics}{10}{subsection.3.7}\protected@file@percent }
+\newlabel{ssec:metrics}{{3.7}{10}{Evaluation Metrics}{subsection.3.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Detection metric (Baseline A).}{10}{section*.25}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Ground truth (top) versus Faster R-CNN Baseline A predictions (bottom) on four validation images. Colour coding: red = red blood cell; remaining colours = parasitic stages and leukocyte. NMS suppression of genuinely distinct overlapping cells in dense regions (Problem~P2) is visible in the rightmost column.}}{11}{figure.12}\protected@file@percent }
+\newlabel{fig:frcnn_predictions}{{12}{11}{Ground truth (top) versus Faster R-CNN Baseline A predictions (bottom) on four validation images. Colour coding: red = red blood cell; remaining colours = parasitic stages and leukocyte. NMS suppression of genuinely distinct overlapping cells in dense regions (Problem~P2) is visible in the rightmost column}{figure.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Classification metric (Pipeline B Stage 2).}{11}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cell recovery rate (Pipeline B Stage 1).}{11}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments and Results}{11}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{11}{Experiments and Results}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Implementation Details}{11}{subsection.4.1}\protected@file@percent }
+\newlabel{ssec:impl}{{4.1}{11}{Implementation Details}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Hardware and software.}{11}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baseline A (Faster R-CNN).}{11}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Pipeline B (\textsc  {MalariAI}{}).}{11}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Stage 1 Evaluation: Cell Recovery}{11}{subsection.4.2}\protected@file@percent }
+\newlabel{ssec:stage1_results}{{4.2}{11}{Stage 1 Evaluation: Cell Recovery}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Stage~1 (watershed) cell recovery on the NIH BBBC041 120-image test set. A ground-truth box is ``recovered'' if any watershed centroid falls within its boundary. Dense images have $\geq 100$ annotated boxes.}}{11}{table.5}\protected@file@percent }
+\newlabel{tab:stage1}{{5}{11}{Stage~1 (watershed) cell recovery on the NIH BBBC041 120-image test set. A ground-truth box is ``recovered'' if any watershed centroid falls within its boundary. Dense images have $\geq 100$ annotated boxes}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Stage 2 Evaluation: Crop Classification}{11}{subsection.4.3}\protected@file@percent }
+\newlabel{ssec:stage2_results}{{4.3}{11}{Stage 2 Evaluation: Crop Classification}{subsection.4.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Pipeline B Stage~2 (EfficientNet-B0) training and validation loss and accuracy curves over 30 epochs. Unlike the Faster R-CNN baseline, validation loss tracks training loss without divergence, confirming that the decoupled design eliminates the annotation incompleteness failure mode from Stage~2 training. Best validation accuracy: 98.36\% at epoch~27.}}{11}{figure.13}\protected@file@percent }
+\newlabel{fig:stage2_loss}{{13}{11}{Pipeline B Stage~2 (EfficientNet-B0) training and validation loss and accuracy curves over 30 epochs. Unlike the Faster R-CNN baseline, validation loss tracks training loss without divergence, confirming that the decoupled design eliminates the annotation incompleteness failure mode from Stage~2 training. Best validation accuracy: 98.36\% at epoch~27}{figure.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Stage~2 (EfficientNet-B0) per-class crop classification accuracy on the validation split. \textit  {Note:} This metric measures classification accuracy on pre-extracted crops and is not directly comparable to Baseline A mAP@0.5 (a detection metric). $\dagger $ = rare class ($<200$ training instances).}}{12}{table.6}\protected@file@percent }
+\newlabel{tab:stage2_acc}{{6}{12}{Stage~2 (EfficientNet-B0) per-class crop classification accuracy on the validation split. \textit {Note:} This metric measures classification accuracy on pre-extracted crops and is not directly comparable to Baseline A mAP@0.5 (a detection metric). $\dagger $ = rare class ($<200$ training instances)}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}End-to-End Evaluation on BBBC041}{12}{subsection.4.4}\protected@file@percent }
+\newlabel{ssec:e2e_bbbc041}{{4.4}{12}{End-to-End Evaluation on BBBC041}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces End-to-end Pipeline B detection performance on the BBBC041 120-image test set. Stage~1 metrics use IoU~$\geq 0.5$ box matching; mAP@0.5 is computed over all parasitic-stage classes (leukocyte excluded: zero GT instances in the test set). Binary Parasitized AP maps ring, trophozoite, schizont, and gametocyte to a single positive class.}}{12}{table.7}\protected@file@percent }
+\newlabel{tab:e2e_bbbc041}{{7}{12}{End-to-end Pipeline B detection performance on the BBBC041 120-image test set. Stage~1 metrics use IoU~$\geq 0.5$ box matching; mAP@0.5 is computed over all parasitic-stage classes (leukocyte excluded: zero GT instances in the test set). Binary Parasitized AP maps ring, trophozoite, schizont, and gametocyte to a single positive class}{table.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Interpreting the Stage~1 IoU discrepancy.}{12}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{End-to-end mAP versus Baseline A.}{12}{section*.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Cross-Dataset Evaluation on MP-IDB}{12}{subsection.4.5}\protected@file@percent }
+\newlabel{ssec:mpidb_results}{{4.5}{12}{Cross-Dataset Evaluation on MP-IDB}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Evaluation protocol.}{12}{section*.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stage~1 cell detection on MP-IDB.}{13}{section*.34}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cross-dataset evaluation on MP-IDB (209 images, 1,407 annotated infected cells). All metrics at IoU~$\geq 0.5$. Stage~1 v1 = original Otsu + fixed distance threshold; Stage~1 v2 = CLAHE + resolution-aware \texttt  {peak\_local\_max}. No hyperparameter re-tuning specific to MP-IDB; model weights are the BBBC041-trained checkpoint.}}{13}{table.8}\protected@file@percent }
+\newlabel{tab:e2e_mpidb}{{8}{13}{Cross-dataset evaluation on MP-IDB (209 images, 1,407 annotated infected cells). All metrics at IoU~$\geq 0.5$. Stage~1 v1 = original Otsu + fixed distance threshold; Stage~1 v2 = CLAHE + resolution-aware \texttt {peak\_local\_max}. No hyperparameter re-tuning specific to MP-IDB; model weights are the BBBC041-trained checkpoint}{table.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Interpretation.}{13}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Ablation: Focal Loss vs.\ Cross-Entropy}{13}{subsection.4.6}\protected@file@percent }
+\newlabel{ssec:ablation}{{4.6}{13}{Ablation: Focal Loss vs.\ Cross-Entropy}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Stage~1 v1 vs.\ v2: Source-Domain / Cross-Dataset Trade-off}{13}{subsection.4.7}\protected@file@percent }
+\newlabel{ssec:stage1_v2_ablation}{{4.7}{13}{Stage~1 v1 vs.\ v2: Source-Domain / Cross-Dataset Trade-off}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Stage~1 ablation: v1 (Otsu + fixed parameters) vs.\ v2 (CLAHE + resolution-aware \texttt  {peak\_local\_max}). Source domain = BBBC041 120-image test set; cross-dataset = MP-IDB 209-image set. All metrics at IoU~$\geq 0.5$. Binary AP includes only parasitic-stage classes.}}{13}{table.9}\protected@file@percent }
+\newlabel{tab:stage1_ablation}{{9}{13}{Stage~1 ablation: v1 (Otsu + fixed parameters) vs.\ v2 (CLAHE + resolution-aware \texttt {peak\_local\_max}). Source domain = BBBC041 120-image test set; cross-dataset = MP-IDB 209-image set. All metrics at IoU~$\geq 0.5$. Binary AP includes only parasitic-stage classes}{table.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Analysis.}{13}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Dense Region Analysis}{14}{subsection.4.8}\protected@file@percent }
+\newlabel{ssec:dense}{{4.8}{14}{Dense Region Analysis}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Qualitative Explainability Analysis}{14}{subsection.4.9}\protected@file@percent }
+\newlabel{ssec:xai_results}{{4.9}{14}{Qualitative Explainability Analysis}{subsection.4.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Stage~1 watershed output on a representative test image (64985a1e, 42 valid regions detected, 5 oversized merged clusters filtered). Red boxes: red blood cells. Green box: trophozoite (43\% confidence). Cyan: leukocytes. Grey ``merged?'' labels: oversized regions excluded from Stage~2. The infection summary overlay (top left) shows 4 infected cells at 9.5\% rate. Image courtesy NIH BBBC041.}}{14}{figure.14}\protected@file@percent }
+\newlabel{fig:stage1_result}{{14}{14}{Stage~1 watershed output on a representative test image (64985a1e, 42 valid regions detected, 5 oversized merged clusters filtered). Red boxes: red blood cells. Green box: trophozoite (43\% confidence). Cyan: leukocytes. Grey ``merged?'' labels: oversized regions excluded from Stage~2. The infection summary overlay (top left) shows 4 infected cells at 9.5\% rate. Image courtesy NIH BBBC041}{figure.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Grad-CAM\texttt  {++} crop gallery for the representative test image. Each panel shows a detected parasitic cell at 160$\times $160 pixels with the heatmap overlaid (jet colourmap, $\alpha = 0.5$). Red-yellow regions indicate pixels that most strongly contributed to the model's classification decision. Labels show class name and softmax confidence. Image courtesy NIH BBBC041.}}{14}{figure.15}\protected@file@percent }
+\newlabel{fig:gradcam_gallery}{{15}{14}{Grad-CAM\texttt {++} crop gallery for the representative test image. Each panel shows a detected parasitic cell at 160$\times $160 pixels with the heatmap overlaid (jet colourmap, $\alpha = 0.5$). Red-yellow regions indicate pixels that most strongly contributed to the model's classification decision. Labels show class name and softmax confidence. Image courtesy NIH BBBC041}{figure.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Full-image Grad-CAM\texttt  {++} overlay. The heatmap is spliced back onto the original 1600$\times $1200 smear only at parasite-detected bounding box locations using a soft spatial mask (Gaussian-blurred boundary). The rest of the image is shown unchanged. Parasite bounding boxes are drawn in class colour. Image courtesy NIH BBBC041.}}{14}{figure.16}\protected@file@percent }
+\newlabel{fig:gradcam_fullimage}{{16}{14}{Full-image Grad-CAM\texttt {++} overlay. The heatmap is spliced back onto the original 1600$\times $1200 smear only at parasite-detected bounding box locations using a soft spatial mask (Gaussian-blurred boundary). The rest of the image is shown unchanged. Parasite bounding boxes are drawn in class colour. Image courtesy NIH BBBC041}{figure.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Results Summary}{14}{subsection.4.10}\protected@file@percent }
+\newlabel{ssec:results_summary}{{4.10}{14}{Results Summary}{subsection.4.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Consolidated results summary. Baseline A = Faster R-CNN ResNet-50 FPN; Pipeline B = two-stage decoupled framework (Stage~1 watershed + Stage~2 EfficientNet-B0). Stage~1 v1 = Otsu + fixed distance threshold; Stage~1 v2 = CLAHE + resolution-aware \texttt  {peak\_local\_max}. All detection metrics at IoU~$\geq 0.5$. $\dagger $ = cross-dataset zero-shot (no MP-IDB data seen during training). N/A = metric not applicable to this method.}}{15}{table.10}\protected@file@percent }
+\newlabel{tab:results_summary}{{10}{15}{Consolidated results summary. Baseline A = Faster R-CNN ResNet-50 FPN; Pipeline B = two-stage decoupled framework (Stage~1 watershed + Stage~2 EfficientNet-B0). Stage~1 v1 = Otsu + fixed distance threshold; Stage~1 v2 = CLAHE + resolution-aware \texttt {peak\_local\_max}. All detection metrics at IoU~$\geq 0.5$. $\dagger $ = cross-dataset zero-shot (no MP-IDB data seen during training). N/A = metric not applicable to this method}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{15}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{15}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Interpreting the Results in Context}{15}{subsection.5.1}\protected@file@percent }
+\newlabel{ssec:interpret}{{5.1}{15}{Interpreting the Results in Context}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Limitations}{15}{subsection.5.2}\protected@file@percent }
+\newlabel{ssec:limits}{{5.2}{15}{Limitations}{subsection.5.2}{}}
+\bibstyle{elsarticle-num}
+\bibdata{references}
+\bibcite{who2023}{{1}{}{{}}{{}}}
+\bibcite{delves2012}{{2}{}{{}}{{}}}
+\bibcite{poostchi2018}{{3}{}{{}}{{}}}
+\bibcite{rajaraman2019}{{4}{}{{}}{{}}}
+\bibcite{singh2025}{{5}{}{{}}{{}}}
+\bibcite{ren2015}{{6}{}{{}}{{}}}
+\bibcite{yolov4malaria2024}{{7}{}{{}}{{}}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Clinical Implications}{16}{subsection.5.3}\protected@file@percent }
+\newlabel{ssec:clinical}{{5.3}{16}{Clinical Implications}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{16}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{16}{Conclusion}{section.6}{}}
+\bibcite{selvaraju2017}{{8}{}{{}}{{}}}
+\bibcite{chattopadhyay2018}{{9}{}{{}}{{}}}
+\bibcite{otsu1979}{{10}{}{{}}{{}}}
+\bibcite{delgado2020}{{11}{}{{}}{{}}}
+\bibcite{beucher1992}{{12}{}{{}}{{}}}
+\bibcite{hung2018}{{13}{}{{}}{{}}}
+\bibcite{loh2021}{{14}{}{{}}{{}}}
+\bibcite{he2017maskrcnn}{{15}{}{{}}{{}}}
+\bibcite{badrinarayanan2017}{{16}{}{{}}{{}}}
+\bibcite{pandiaraj2024}{{17}{}{{}}{{}}}
+\bibcite{xai_ensemble2025}{{18}{}{{}}{{}}}
+\bibcite{xai2022transformer}{{19}{}{{}}{{}}}
+\bibcite{bbbc041}{{20}{}{{}}{{}}}
+\bibcite{lin2017focal}{{21}{}{{}}{{}}}
+\bibcite{tan2019}{{22}{}{{}}{{}}}
+\@writefile{toc}{\let\numberline\tmptocnumberline}
+\@writefile{toc}{\contentsline {section}{\numberline {Appendix~A}Inference Pipeline Development: Iterative Improvement}{17}{section.A}\protected@file@percent }
+\newlabel{sec:appendix}{{Appendix~A}{17}{Inference Pipeline Development: Iterative Improvement}{section.A}{}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\@writefile{lof}{\contentsline {figure}{\numberline {A.17}{\ignorespaces Iteration~1 output: watershed without size filtering. Cluttered with $\sim $1,400 detected regions, the majority of which are sub-pixel noise fragments.}}{18}{figure.17}\protected@file@percent }
+\newlabel{fig:appendix_iter1}{{A.17}{18}{Iteration~1 output: watershed without size filtering. Cluttered with $\sim $1,400 detected regions, the majority of which are sub-pixel noise fragments}{figure.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {A.18}{\ignorespaces Iteration~2 output: size filter applied. Noise eliminated; oversized merged-cluster regions remain unlabelled.}}{18}{figure.18}\protected@file@percent }
+\newlabel{fig:appendix_iter2}{{A.18}{18}{Iteration~2 output: size filter applied. Noise eliminated; oversized merged-cluster regions remain unlabelled}{figure.18}{}}
+\gdef \@abspage@last{18}

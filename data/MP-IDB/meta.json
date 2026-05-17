@@ -1,0 +1,83 @@
+{
+    "classes": [
+        {
+            "title": "falciparum",
+            "shape": "any",
+            "color": "#FF8000",
+            "geometry_config": {},
+            "id": 6533080,
+            "hotkey": ""
+        },
+        {
+            "title": "malariae",
+            "shape": "bitmap",
+            "color": "#FF00FF",
+            "geometry_config": {},
+            "id": 6533081,
+            "hotkey": ""
+        },
+        {
+            "title": "ovale",
+            "shape": "bitmap",
+            "color": "#00FF00",
+            "geometry_config": {},
+            "id": 6533082,
+            "hotkey": ""
+        },
+        {
+            "title": "vivax",
+            "shape": "bitmap",
+            "color": "#0080FF",
+            "geometry_config": {},
+            "id": 6533083,
+            "hotkey": ""
+        }
+    ],
+    "tags": [
+        {
+            "name": "gametocyte stage",
+            "value_type": "none",
+            "color": "#0F8A38",
+            "id": 31226,
+            "hotkey": "",
+            "applicable_type": "all",
+            "classes": []
+        },
+        {
+            "name": "ring stage",
+            "value_type": "none",
+            "color": "#8A540F",
+            "id": 31223,
+            "hotkey": "",
+            "applicable_type": "all",
+            "classes": []
+        },
+        {
+            "name": "schizont stage",
+            "value_type": "none",
+            "color": "#0F388A",
+            "id": 31225,
+            "hotkey": "",
+            "applicable_type": "all",
+            "classes": []
+        },
+        {
+            "name": "trophozoite stage",
+            "value_type": "none",
+            "color": "#0F8A54",
+            "id": 31224,
+            "hotkey": "",
+            "applicable_type": "all",
+            "classes": []
+        }
+    ],
+    "projectType": "images",
+    "projectSettings": {
+        "multiView": {
+            "enabled": false,
+            "tagName": null,
+            "tagId": null,
+            "isSynced": false
+        }
+    }
+}

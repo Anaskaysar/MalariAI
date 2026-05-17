@@ -1,0 +1,162 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{who2023}
+{World Health Organization},
+  \href{https://www.who.int/teams/global-malaria-programme/reports/world-malaria-report-2023}{World
+  malaria report 2023}, Tech. rep., WHO Press, Geneva (2023).
+\newline\urlprefix\url{https://www.who.int/teams/global-malaria-programme/reports/world-malaria-report-2023}
+
+\bibitem{delves2012}
+P.~J. Delves, S.~J. Martin, D.~R. Burton, I.~M. Roitt, Roitt's Essential
+  Immunology, 13th Edition, Wiley-Blackwell, 2017.
+
+\bibitem{poostchi2018}
+M.~Poostchi, K.~Silamut, R.~J. Maude, S.~Jaeger, G.~Thoma, Image analysis and
+  machine learning for detecting malaria, Translational Research 194 (2018)
+  36--55.
+\newblock \href {https://doi.org/10.1016/j.trsl.2017.12.004}
+  {\path{doi:10.1016/j.trsl.2017.12.004}}.
+
+\bibitem{rajaraman2019}
+S.~Rajaraman, S.~K. Antani, M.~Poostchi, K.~Silamut, M.~A. Hossain, R.~J.
+  Maude, S.~Jaeger, G.~R. Thoma, Pre-trained convolutional neural networks as
+  feature extractors toward improved malaria parasite detection in thin blood
+  smear images, PeerJ 6 (2018) e4568.
+\newblock \href {https://doi.org/10.7717/peerj.4568}
+  {\path{doi:10.7717/peerj.4568}}.
+
+\bibitem{singh2025}
+R.~Singh, C.~Prabha, S.~Abdulla, Optimized {CNN} framework for malaria
+  detection using {Otsu} thresholding-based image segmentation, Scientific
+  Reports 15 (2025) 40117.
+\newblock \href {https://doi.org/10.1038/s41598-025-23961-5}
+  {\path{doi:10.1038/s41598-025-23961-5}}.
+
+\bibitem{ren2015}
+S.~Ren, K.~He, R.~Girshick, J.~Sun,
+  \href{https://arxiv.org/abs/1506.01497}{Faster {R-CNN}: Towards real-time
+  object detection with region proposal networks}, in: Advances in Neural
+  Information Processing Systems (NeurIPS), 2015, pp. 91--99.
+\newline\urlprefix\url{https://arxiv.org/abs/1506.01497}
+
+\bibitem{yolov4malaria2024}
+D.~Sukumarran, K.~Hasikin, A.~S.~M. Khairuddin, R.~Ngui, W.~Y. {Wan Sulaiman},
+  I.~Vythilingam, P.~C.~S. Divis, An optimised {YOLOv4} deep learning model for
+  efficient malarial cell detection in thin blood smear images, Parasites \&
+  Vectors 17 (2024) 188.
+\newblock \href {https://doi.org/10.1186/s13071-024-06215-7}
+  {\path{doi:10.1186/s13071-024-06215-7}}.
+
+\bibitem{selvaraju2017}
+R.~R. Selvaraju, M.~Cogswell, A.~Das, R.~Vedantam, D.~Parikh, D.~Batra,
+  \href{https://arxiv.org/abs/1610.02391}{{Grad-CAM}: Visual explanations from
+  deep networks via gradient-based localization}, in: IEEE International
+  Conference on Computer Vision (ICCV), 2017, pp. 618--626.
+\newline\urlprefix\url{https://arxiv.org/abs/1610.02391}
+
+\bibitem{chattopadhyay2018}
+A.~Chattopadhyay, A.~Sarkar, P.~Howlader, V.~N. Balasubramanian,
+  \href{https://arxiv.org/abs/1710.11063}{{Grad-CAM++}: Generalized
+  gradient-based visual explanations for deep convolutional networks}, in: IEEE
+  Winter Conference on Applications of Computer Vision (WACV), 2018, pp.
+  839--847.
+\newline\urlprefix\url{https://arxiv.org/abs/1710.11063}
+
+\bibitem{otsu1979}
+N.~Otsu, A threshold selection method from gray-level histograms, IEEE
+  Transactions on Systems, Man, and Cybernetics 9~(1) (1979) 62--66.
+\newblock \href {https://doi.org/10.1109/TSMC.1979.4310076}
+  {\path{doi:10.1109/TSMC.1979.4310076}}.
+
+\bibitem{delgado2020}
+M.~Delgado-Ortet, A.~Molina, S.~Alf\'{e}rez, J.~Rodellar, A.~Merino, A deep
+  learning approach for segmentation of red blood cell images and malaria
+  detection, Entropy 22~(6) (2020) 657.
+\newblock \href {https://doi.org/10.3390/e22060657}
+  {\path{doi:10.3390/e22060657}}.
+
+\bibitem{beucher1992}
+S.~Beucher, F.~Meyer, The morphological approach to segmentation: the watershed
+  transformation, in: E.~Dougherty (Ed.), Mathematical Morphology in Image
+  Processing, Marcel Dekker, New York, 1992, pp. 433--481.
+
+\bibitem{hung2018}
+J.~Hung, A.~Carpenter, Applying faster {R-CNN} for object detection on malaria
+  images, in: Proceedings of the IEEE/CVF Conference on Computer Vision and
+  Pattern Recognition Workshops (CVPRW), 2017, pp. 808--816.
+\newblock \href {https://doi.org/10.1109/CVPRW.2017.112}
+  {\path{doi:10.1109/CVPRW.2017.112}}.
+
+\bibitem{loh2021}
+D.~R. Loh, W.~X. Yong, J.~Yapeter, K.~Subburaj, R.~Chandramohanadas, A deep
+  learning approach to the screening of malaria infection: Automated and rapid
+  cell counting, object detection and instance segmentation using {Mask R-CNN},
+  Computerized Medical Imaging and Graphics 88 (2021) 101845.
+\newblock \href {https://doi.org/10.1016/j.compmedimag.2020.101845}
+  {\path{doi:10.1016/j.compmedimag.2020.101845}}.
+
+\bibitem{he2017maskrcnn}
+K.~He, G.~Gkioxari, P.~Doll{\'{a}}r, R.~Girshick,
+  \href{https://arxiv.org/abs/1703.06870}{Mask {R-CNN}}, in: IEEE International
+  Conference on Computer Vision (ICCV), 2017, pp. 2961--2969.
+\newline\urlprefix\url{https://arxiv.org/abs/1703.06870}
+
+\bibitem{badrinarayanan2017}
+V.~Badrinarayanan, A.~Kendall, R.~Cipolla, {SegNet}: A deep convolutional
+  encoder-decoder architecture for image segmentation, IEEE Transactions on
+  Pattern Analysis and Machine Intelligence 39~(12) (2017) 2481--2495.
+\newblock \href {https://doi.org/10.1109/TPAMI.2016.2644615}
+  {\path{doi:10.1109/TPAMI.2016.2644615}}.
+
+\bibitem{pandiaraj2024}
+A.~Pandiaraj, P.~R. Kshirsagar, R.~Thiagarajan, T.~K. Tak, B.~Sivaneasan, A
+  robust malaria cell detection framework using adaptive and atrous
+  convolution-based recurrent {MobileNetV2} with
+  {Trans-MobileUNet\textsuperscript{++}}-based abnormality segmentation,
+  Journal of Imaging Informatics in Medicine 38 (2025) 2381--2411.
+\newblock \href {https://doi.org/10.1007/s10278-024-01311-7}
+  {\path{doi:10.1007/s10278-024-01311-7}}.
+
+\bibitem{xai_ensemble2025}
+O.~O. Awe, P.~N. Mwangi, S.~K. Goudoungou, R.~V. Esho, O.~S. Oyejide,
+  Explainable {AI} for enhanced accuracy in malaria diagnosis using ensemble
+  machine learning models, BMC Medical Informatics and Decision Making 25
+  (2025) 152.
+\newblock \href {https://doi.org/10.1186/s12911-025-02874-3}
+  {\path{doi:10.1186/s12911-025-02874-3}}.
+
+\bibitem{xai2022transformer}
+M.~R. Islam, M.~Nahiduzzaman, M.~O.~F. Goni, A.~Sayeed, M.~S. Anower, M.~Ahsan,
+  J.~Haider, Explainable transformer-based deep learning model for the
+  detection of malaria parasites from blood cell images, Sensors 22~(12) (2022)
+  4358.
+\newblock \href {https://doi.org/10.3390/s22124358}
+  {\path{doi:10.3390/s22124358}}.
+
+\bibitem{bbbc041}
+V.~Ljosa, K.~L. Sokolnicki, A.~E. Carpenter, Annotated high-throughput
+  microscopy image sets for validation, Nature Methods 9~(7) (2012) 637,
+  dataset: \url{https://bbbc.broadinstitute.org/BBBC041}.
+\newblock \href {https://doi.org/10.1038/nmeth.2083}
+  {\path{doi:10.1038/nmeth.2083}}.
+
+\bibitem{lin2017focal}
+T.-Y. Lin, P.~Goyal, R.~Girshick, K.~He, P.~Doll{\'{a}}r,
+  \href{https://arxiv.org/abs/1708.02002}{Focal loss for dense object
+  detection}, in: IEEE International Conference on Computer Vision (ICCV),
+  2017, pp. 2980--2988.
+\newline\urlprefix\url{https://arxiv.org/abs/1708.02002}
+
+\bibitem{tan2019}
+M.~Tan, Q.~V. Le, \href{https://arxiv.org/abs/1905.11946}{{EfficientNet}:
+  Rethinking model scaling for convolutional neural networks}, in: Proceedings
+  of the International Conference on Machine Learning (ICML), 2019, pp.
+  6105--6114.
+\newline\urlprefix\url{https://arxiv.org/abs/1905.11946}
+
+\end{thebibliography}

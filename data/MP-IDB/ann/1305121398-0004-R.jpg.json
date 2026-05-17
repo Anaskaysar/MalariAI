@@ -1,0 +1,58 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741063,
+            "tagId": 31223,
+            "name": "ring stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:29:44.108Z",
+            "updatedAt": "2024-03-01T15:29:44.108Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150127288,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:29:44.109Z",
+            "updatedAt": "2024-03-01T15:29:44.109Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtLOQOzJyAwkY+ZzhgEptgCfEFcg/f///6U3598FshhLgvyCGRye3UgDcpZ4ujiGVMzpvXSQt1WBhy2Bg71PtjHQSqrvmUbfg4nNC7mW1vuo7Hl+VD8r27n++S/V3fdip3kLuqxyTMlW6pjN9/eeipp9YIOSi4Dz3lh5Nx/GLgHfKWpJGs6fprYziagraege9e4NnDf5D1dz2ItfSwOjpln9v/LRbkHO45kbFnatNVXtyFmxsKlXfMmDlrKUFOemOUu9Lh9f7FC/SFP17bK17Xv21nh9uchbefyCjWOjzz0GkOdc/VzWOSU0AQDzpWHL",
+                "origin": [
+                    814,
+                    1079
+                ]
+            }
+        },
+        {
+            "id": 150127289,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:29:44.109Z",
+            "updatedAt": "2024-03-01T15:29:44.109Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtIxQOzLyAwkBVdPVAVSbAE+Ia5A+v///0tvzr8LZDGWBPkFMzg8u5EG5Oz2dHEMqZiz9/JpThZFHrYEcf7qOUI6qV6XLwV1qVZ8UUgrvfpjtwIH9+RguxoXlcBVbWlppofEAs6vn1T8Zod20Ol40+c8u9l2sOoY7I57LM3C/Yb7jENDrGi+o4uKRfzqvAPVO0TTmrZ90H7XWcD1W/+H4A/jC2J8C8MiThorKT6SbGp6H/tAsKXA3uDDls4ejxvrBQOzzm1TeVOY88Pk+VLZifKKM7fXuci1F19V9/P+WziXrzhpcs97064vXm/jvjIuiTi/aYfUq2qgNxg8Xf1c1jklNAEAFUtreQ==",
+                "origin": [
+                    1893,
+                    1375
+                ]
+            }
+        }
+    ]
+}

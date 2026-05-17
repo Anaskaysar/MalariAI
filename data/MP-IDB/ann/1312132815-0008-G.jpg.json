@@ -1,0 +1,58 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741258,
+            "tagId": 31226,
+            "name": "gametocyte stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:34:21.857Z",
+            "updatedAt": "2024-03-01T15:34:21.857Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128327,
+            "classId": 6533081,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:34:21.858Z",
+            "updatedAt": "2024-03-01T15:34:21.858Z",
+            "tags": [],
+            "classTitle": "malariae",
+            "bitmap": {
+                "data": "eJwBkQFu/olQTkcNChoKAAAADUlIRFIAAACEAAAAggEDAAAAvdPy+QAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAE5SURBVHic1da7kYQwDAZgMQSELsGlUBouzaW4BIcEDLpjsWRZAta3c8kq/AI9/n0AwFl+hbYG3AAQcxWH24B4MJVHdL+CVWY8K7IsRRJLgdpoIOFGI0s0kozQ6hPqRkKikURnafFV8p3MWuoRNGsUEvSoIqIxtnldyt4miBSiHL6a4VlfXg6VYhc06ewmCyubScfKas7KRlKHRBNGMAJa9n+SrV+Gv8n+kZRLx7eSm4/9tXB2Qo4McfNamkodkr9Q1k5ZPpLZTO8R30jqkHgprpHQKVMjcCnjs+zXIr+75VfwLOuNLEbmR8nd4h8l3YjrEBlHBB3HKfKwAHpYEfvIG40MRkRrEr6e/urqMCv85ObL+O1hMsILZRJeKJLwQgw0LFRxbRduHYWA6lIuS41MGo6NQNVS33N+AEXPreYR7F54AAAAAElFTkSuQmCC35ysHQ==",
+                "origin": [
+                    1260,
+                    1117
+                ]
+            }
+        },
+        {
+            "id": 150128328,
+            "classId": 6533081,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:34:21.858Z",
+            "updatedAt": "2024-03-01T15:34:21.858Z",
+            "tags": [],
+            "classTitle": "malariae",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtImQKzJyAwkHf7NeAuk2AJ8QlyB9P///5fenH8XyGIsCfILZnB4diMNyCnzdHEMqZhTeuEgb4MCD+uFfJuKFBb3RBOJ3kCJRmX2x9uXmiq67NzDwvVFnCGped3kN4fcPgnxf9yWa8Tsqft4xpobdx/0GZkdObrlhP/rpJ+Gv63X35v2RTJdP3+3vteFhPszjp4Vmx6c80Piy8HEDR8zCmZf37GO+dIn9t9zz305FnrvLNAFDJ6ufi7rnBKaAD5KU8s=",
+                "origin": [
+                    1319,
+                    1678
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,67 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741084,
+            "tagId": 31224,
+            "name": "trophozoite stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:30:16.237Z",
+            "updatedAt": "2024-03-01T15:30:16.237Z"
+        },
+        {
+            "id": 18741085,
+            "tagId": 31226,
+            "name": "gametocyte stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:30:16.237Z",
+            "updatedAt": "2024-03-01T15:30:16.237Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150127581,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:30:16.238Z",
+            "updatedAt": "2024-03-01T15:30:16.238Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtIqQKzNyAwktWbs4ANSbAE+Ia5A+v///0tvzr8LZDGWBPkFMzg8u5EG5OR6ujiGVMwpPb9RsEGBh/VCgciUvgMaPWyLDbuUl2z58OffkcPdrSLrvezslXzffL17xNFIL+oOr8RpLp+J2544sZucSP1TzaY/feGdpDvKxpJR8Vf/LVWd0XxStMZ7xfRg/bVlbaJn84osjzBbmPzdV8i8la/76XI+3lqgxQyern4u65wSmgC9LEh2",
+                "origin": [
+                    1070,
+                    475
+                ]
+            }
+        },
+        {
+            "id": 150127582,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:30:16.238Z",
+            "updatedAt": "2024-03-01T15:30:16.238Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJwBxQE6/olQTkcNChoKAAAADUlIRFIAAADAAAAAawEDAAAAG8kfaQAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAFtSURBVHicddbLsYQgEAVQLBezNARDITQN7YVCCC5nYdHzShD6cy9LTkl/EDQlPVYpCY5dKoYs8gdBRL5ofvkHuNYqz7gCbA0ExX5GWE7e4VJbBtwWPgNclG2CTSwLWeuYICcOIabLWYNq2arndY2bASEPKNgZCIEPg0xg8fPCVnphYxBCvHAwCPOVJVVxowbEbCvu4ICY7c2yvUm2HWK2HWK2/S2hEMvoL28so0OOUEgZHeJ8O2ygjAYg2wYg23ZwNgY7gwyAZVtZtpVl+2VwsTJYfZUcgb4bAE68f+/VE6Cw05QIjIvnQDUAmBcSCe2bOx9wPZx3nmvVSYDehWXCDqv2cCnIsGpXuPnUaDAfARbCgErWtupUYFqVCJjYulUXA12e6eFJwH5iFVwMzEqq6+7LO6FYyLBsDTeD08FBHhhQPLCVBvj5xEK8EP+FWOzEYicWIoEtauOIW9RGxhEagAhto9BKz3tVECwkxA+2R4tTizR6kAAAAABJRU5ErkJggj19ttg=",
+                "origin": [
+                    1343,
+                    1010
+                ]
+            }
+        }
+    ]
+}

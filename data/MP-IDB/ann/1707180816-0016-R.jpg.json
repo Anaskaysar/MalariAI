@@ -1,0 +1,39 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741157,
+            "tagId": 31223,
+            "name": "ring stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:47.038Z",
+            "updatedAt": "2024-03-01T15:31:47.038Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128205,
+            "classId": 6533082,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:47.039Z",
+            "updatedAt": "2024-03-01T15:31:47.039Z",
+            "tags": [],
+            "classTitle": "ovale",
+            "bitmap": {
+                "data": "eJwBbQGS/olQTkcNChoKAAAADUlIRFIAAABjAAAAagEDAAAAkvp9HgAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAEVSURBVHicldQxbsMwDAVQGR6cTj5BoSt07eSxlyoQ3aBHaI/Crceoj6BRgyA2iizr/6QWUi/BA0mLgUgbY04GnyddQVb9g1ru9dIUjHl1oNO7gJ73WlUdNGdXzaqx6Yd0eVLBQBqLtGjaJKTyJ2eS3eRJgaSO9NVaqa8hjbs8HF5e2hShlb4SS1D5QJZtEpLrxNZ8Jxg7FGf6jgIp/kf2SEpKVJfgGq6ZrPOhHGW6m9jSkSXND0pIK8xE1kDC1i4X+E2xN1Ibu3xl41HM4RAqjWtXDhVp6H1nIYTEi/THkk0Uq0q04hHXv343WJY0Qyt7KsttOrfDayyRhFTLBiozn9q+WaWZQBLUR9MEVbmZgFoENW6/vxhvf2PadI58AAAAAElFTkSuQmCCOnGbMQ==",
+                "origin": [
+                    1079,
+                    601
+                ]
+            }
+        }
+    ]
+}

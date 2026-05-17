@@ -1,0 +1,96 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741091,
+            "tagId": 31223,
+            "name": "ring stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:30:23.917Z",
+            "updatedAt": "2024-03-01T15:30:23.917Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150127640,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:30:23.919Z",
+            "updatedAt": "2024-03-01T15:30:23.919Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtK+QOzEyAwkNSaeVANSbAE+Ia5A+v///0tvzr8LZDGWBPkFMzg8u5EG5EzxdHEMqZiz9ZIj12EFAdYLE/U2nRG06XI3dv+sIafoLb5w/yuLnwtvOC0o/Srwyd0o3oXFYWIdk9/xY4tfNtZtOxU68+TeS9rdrC/KA3/+8Tjzgq3wHKvQzNy82W/UdbZL/Dvi8aj8Tr7hpESv/3M791udTLqzo5t75/btR/vcZda4pSXqmXpN7T5661X1b5mVB6P80xkfVxVcXSMet0ha6EvHXgWg+xg8Xf1c1jklNAEAEFxgJQ==",
+                "origin": [
+                    1273,
+                    597
+                ]
+            }
+        },
+        {
+            "id": 150127641,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:30:23.919Z",
+            "updatedAt": "2024-03-01T15:30:23.919Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtKuQOzPyAwk22/M4gFSbAE+ISDB////L705/y6QxVgS5BfM4PDsRhqQs9zTxTGkYs7aS3t5DyuIsCRM6J4id3Bxhcm9DLlWQQ1NAfHPnywecVi6On3lPNI5v/hc66scho+trBtOli6SbVjB9GvasisP/BWiOQJWZCk+z7gV4iQrzhq6x2PhxflawonLvjQbhaqtEmlLWfQ4bKJX2ef3t1b2ustG/V90fK3Yqc9u5UJ2E7/ws+3fFXX4XmjE3IV3upfu/Wx7btFS8dDTy9J1995atm3OzfLsfeG2jGKTeZ3Tti13ATqZwdPVz2WdU0ITABY7Z/E=",
+                "origin": [
+                    807,
+                    643
+                ]
+            }
+        },
+        {
+            "id": 150127642,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:30:23.919Z",
+            "updatedAt": "2024-03-01T15:30:23.919Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtLBQGzLyAwkXzcdzwRSbAE+Ia5A+v///0tvzr8LZDGWBPkFMzg8u5EG5Kz0dHEMqZgz9dJuwSMKPCwBhiwtUxw0p6RNfxak8dCJXe7aM+XK93N+dMQxaC+c2FHh8IUlIVQ9IVyfYdvLbo3mPplZT1/esHEu/swjpSdmuXrnw39Nb5fbS9XPdX68PvikxN3byZ/d9B6HS2Xdi/9xYVp9zMkf97ktJ1/mdn91POb9zq3W5/YEJcq5LDz0tDqiUedNq8zJxjcnD/n5f//64drytV25S3f+dy83eRx38Uot08a0C0xiyryWQEczeLr6uaxzSmgCADQJbNw=",
+                "origin": [
+                    1074,
+                    943
+                ]
+            }
+        },
+        {
+            "id": 150127643,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:30:23.919Z",
+            "updatedAt": "2024-03-01T15:30:23.919Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtK+QBzDyAwkBX1XnQVSbAE+Ia5A+v///0tvzr8LZDGWBPkFMzg8u5EG5OzwdHEMqZiz9PJG3hYDHtYAd5Ep5kyLDaIkzi5OaZkiElhjmfOZX/Cl38Gr2k0/A3OUZqUor468sdOjdJ3STQlHQXtD86j+6+05vFGqGxqu3t72ads9p5MJTMY7mo9eumOpedQ4bmdjzsmv5d2GzdYRB6oedjErr6k3OFXJG777GH/RdM4z/Tv7jZpeS4hfiN+s+rpYSvmrpOP5wxId6yc+Or2g1Xp78TT+V+VfY3RTXwQxi+rc3ygxK266foO71SJzbbUduZ7MgnuAfmDwdPVzWeeU0AQAvT9quA==",
+                "origin": [
+                    1597,
+                    1024
+                ]
+            }
+        }
+    ]
+}
