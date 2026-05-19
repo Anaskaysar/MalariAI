@@ -1,0 +1,53 @@
+{
+  "total_gt_cells": 5917,
+  "total_watershed_boxes": 9531,
+  "tp": 4177,
+  "fp": 5354,
+  "fn": 1740,
+  "recall_at_iou50": 0.7059,
+  "precision_at_iou50": 0.4383,
+  "f1_at_iou50": 0.5408,
+  "recall_at_relaxed_iou": {
+    "iou25": 0.8607,
+    "iou30": 0.828,
+    "iou50": 0.7059
+  },
+  "centroid_in_box_recall": 0.9273,
+  "centroid_in_box_tp": 5487,
+  "total_infected_gt": 303,
+  "infected_cell_sensitivity": {
+    "iou25": 0.7855,
+    "iou30": 0.7063,
+    "iou50": 0.5512
+  },
+  "bio_localization_recall": 0.9297,
+  "bio_localization_fraction_used": 0.5,
+  "bio_localization_tp": 5501,
+  "per_class": {
+    "red blood cell": {
+      "gt_count": 5614,
+      "tp": 4010,
+      "recall": 0.7143
+    },
+    "trophozoite": {
+      "gt_count": 111,
+      "tp": 43,
+      "recall": 0.3874
+    },
+    "ring": {
+      "gt_count": 169,
+      "tp": 121,
+      "recall": 0.716
+    },
+    "schizont": {
+      "gt_count": 11,
+      "tp": 1,
+      "recall": 0.0909
+    },
+    "gametocyte": {
+      "gt_count": 12,
+      "tp": 2,
+      "recall": 0.1667
+    }
+  }
+}
