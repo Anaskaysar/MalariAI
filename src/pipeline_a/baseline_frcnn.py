@@ -54,7 +54,7 @@ from src.utils.label_map import NUM_CLASSES, FOREGROUND_CLASSES  # noqa
 from src.models.dataset import MalariaDataset, detection_transforms  # noqa
 
 
-# ── Model factory ─────────────────────────────────────────────────────────────
+# - Model factory -
 
 def build_faster_rcnn(num_classes: int = NUM_CLASSES,
                       pretrained_backbone: bool = True) -> torch.nn.Module:
@@ -89,7 +89,7 @@ def build_faster_rcnn(num_classes: int = NUM_CLASSES,
     return model
 
 
-# ── Collate function ──────────────────────────────────────────────────────────
+# - Collate function -
 
 def collate_fn(batch):
     """
@@ -99,7 +99,7 @@ def collate_fn(batch):
     return tuple(zip(*batch))
 
 
-# ── Training loop ─────────────────────────────────────────────────────────────
+# - Training loop -
 
 def train_one_epoch(model, optimizer, loader, device, epoch: int, print_freq: int = 50):
     model.train()
@@ -154,7 +154,7 @@ def evaluate_loss(model, loader, device):
     return total_loss / max(n_batches, 1)
 
 
-# ── Checkpoint helpers ────────────────────────────────────────────────────────
+# - Checkpoint helpers -
 
 def save_checkpoint(state: dict, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -169,7 +169,7 @@ def load_checkpoint(model, optimizer, path: Path, device):
     return ckpt["epoch"], ckpt.get("best_val_loss", float("inf"))
 
 
-# ── Main entry point ──────────────────────────────────────────────────────────
+# - Main entry point -
 
 def main():
     parser = argparse.ArgumentParser(description="Train Faster R-CNN baseline (Pipeline A)")
@@ -196,7 +196,7 @@ def main():
     print(f"Device  : {device}")
     print(f"Classes : {NUM_CLASSES}  ({FOREGROUND_CLASSES})")
 
-    # ── Datasets & loaders ────────────────────────────────────────────────
+    # - Datasets & loaders -
     train_transforms = detection_transforms(train=True)
     val_transforms   = detection_transforms(train=False)
 
@@ -219,14 +219,14 @@ def main():
     for label, count in train_ds.get_class_counts().items():
         print(f"  {label:<22} {count:6,}")
 
-    # ── Model ─────────────────────────────────────────────────────────────
+    # - Model -
     model = build_faster_rcnn(
         num_classes=NUM_CLASSES,
         pretrained_backbone=not args.no_pretrain,
     )
     model.to(device)
 
-    # ── Optimiser — SGD with momentum (standard for Faster R-CNN) ─────────
+    # - Optimiser — SGD with momentum (standard for Faster R-CNN) -
     # We use SGD rather than Adam because the torchvision paper and most
     # detection fine-tuning guides converge better with SGD + cosine/step LR.
     params = [p for p in model.parameters() if p.requires_grad]
@@ -234,7 +234,7 @@ def main():
     scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=args.lr_step,
                                           gamma=args.lr_gamma)
 
-    # ── Resume ────────────────────────────────────────────────────────────
+    # - Resume -
     start_epoch    = 0
     best_val_loss  = float("inf")
     out_dir        = Path(args.out_dir)
@@ -245,7 +245,7 @@ def main():
         )
         print(f"Resumed from epoch {start_epoch}, best_val_loss={best_val_loss:.4f}")
 
-    # ── Training loop ─────────────────────────────────────────────────────
+    # - Training loop -
     print(f"\nStarting training for {args.epochs} epochs ...\n")
     for epoch in range(start_epoch + 1, args.epochs + 1):
         t0 = time.time()

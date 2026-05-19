@@ -1,51 +1,79 @@
-# MalariAI .gitignore
-# GitHub hard limit: 100 MB/file.
-# All model weights, dataset files and environments are excluded.
+# ============================================================
+# MalariAI — .gitignore
+# Public repo: code + results JSONs + paper source only.
+# Data, checkpoints, internal docs, and build artifacts stay local.
+# ============================================================
 
-# Virtual environment
+# ── Virtual environments ─────────────────────────────────────
 malariaenv/
 venv/
 .venv/
 env/
 
-# Dataset (too large for GitHub)
+# ── Datasets (download separately per dataset licence) ───────
 data/malaria/images/
 data/malaria.zip
 data/*.zip
 data/crops/
+data/MP-IDB/img/
+data/MP-IDB/meta/
+# Annotation JSONs and CSVs are small and kept:
+# data/MP-IDB/ann/  ← kept (JSON annotations)
+# data/processed/   ← kept (derived CSVs, reproducibility)
 
-# Model checkpoints (300-500 MB each)
+# ── Model checkpoints (too large; host on HuggingFace Hub) ───
 *.pth
 *.pt
 *.ckpt
 
-# Phase-specific checkpoints and results
+# ── Phase-specific artefacts ──────────────────────────────────
 Phase2-BaselineA/checkpoints/
+Phase2-BaselineA/checkpoints-kaggle-80epoch/
+Phase2-BaselineA/checkpoints-local-20epoch/
+Phase2-BaselineA/results/
 Phase2-BaselineA/0.8
 Phase3-PipelineB/checkpoints/
-Phase3-PipelineB/results/
-checkpoints/
-outputs/
+Phase3-PipelineB/checkpoints_v2/
+Phase3-PipelineB/Phase3-PipelineB/
+Phase4-WebApp/checkpoints/
+Phase4-WebApp/static/uploads/
 
-# Keep small result files inside checkpoint folders
-!**/metrics.json
-!**/loss_curves.png
-!**/gt_vs_pred.png
-!**/sample_gt_boxes.png
+# ── Internal working documents (not for public) ───────────────
+paper_writing/draft/
+paper_writing/previous_study/
+paper_writing/research_strategy_*.md
+paper_writing/malariai_project_master_plan.html
+paper_writing/malaria_literature_landscape.html
+paper_writing/coauthor_reading_guide.md
+paper_writing/v2_figures/
+paper_writing/v2_results/
+paper_writing/cmig_submission/system_diagram_brief.md
+paper_writing/cmig_submission/system_diagram_v1.png
 
-# Local Execution Scripts
+# ── LaTeX build artefacts (compile on Overleaf) ───────────────
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.toc
+*.pdf
+
+# ── Utility / scratch scripts ─────────────────────────────────
+scripts/
+archive/
+problem_statement.md
 run.bat
 run.ps1
 run.sh
-1526001325-main.pdf
 
-# Research Paper Drafts & Assets
-paper_writing/draft/
-paper_writing/previous/
-paper_writing/*.zip
-*.pdf
+# ── Temporary eval runs ───────────────────────────────────────
+results/v2/e2e_bbbc041_altmetrics/
 
-# Python cache
+# ── Python cache ──────────────────────────────────────────────
 __pycache__/
 *.py[cod]
 *$py.class
@@ -53,40 +81,38 @@ __pycache__/
 *.pyd
 .Python
 
-# Jupyter
+# ── Jupyter ───────────────────────────────────────────────────
 .ipynb_checkpoints/
 
-# Packaging
+# ── Packaging ─────────────────────────────────────────────────
 dist/
 build/
 *.egg-info/
 *.egg
 wheels/
 
-# Testing
+# ── Testing ───────────────────────────────────────────────────
 .pytest_cache/
 .coverage
 htmlcov/
 
-# IDEs
+# ── IDEs ──────────────────────────────────────────────────────
 .idea/
 .vscode/
 *.swp
 *.swo
 *~
 
-# OS
+# ── OS ────────────────────────────────────────────────────────
 .DS_Store
 .DS_Store?
 Thumbs.db
 ehthumbs.db
 desktop.ini
 
-# Logs
-*.log
+# ── Logs / wandb ──────────────────────────────────────────────
 *.tmp
 *.temp
 wandb/
 runs/
 lightning_logs/
-

@@ -1,0 +1,1407 @@
+{
+  "image": "data/malaria/images/64985a1e-16bb-4016-a01c-c21a5b86e572.jpg",
+  "total_cells": 107,
+  "oversized_merged_regions": 5,
+  "infected_cells": 4,
+  "infection_rate_pct": 3.74,
+  "conf_threshold": 0.4,
+  "class_counts": {
+    "leukocyte": 21,
+    "red blood cell": 82,
+    "trophozoite": 2,
+    "schizont": 2
+  },
+  "cells": [
+    {
+      "idx": 0,
+      "box": [
+        1174,
+        12,
+        1247,
+        83
+      ],
+      "label": "leukocyte",
+      "confidence": 0.5906,
+      "heatmap_mean": 0.4292,
+      "confident": true
+    },
+    {
+      "idx": 1,
+      "box": [
+        1240,
+        0,
+        1348,
+        104
+      ],
+      "label": "leukocyte",
+      "confidence": 0.7099,
+      "heatmap_mean": 0.4489,
+      "confident": true
+    },
+    {
+      "idx": 2,
+      "box": [
+        1098,
+        39,
+        1240,
+        128
+      ],
+      "label": "leukocyte",
+      "confidence": 0.8618,
+      "heatmap_mean": 0.4866,
+      "confident": true
+    },
+    {
+      "idx": 3,
+      "box": [
+        1548,
+        67,
+        1673,
+        181
+      ],
+      "label": "red blood cell",
+      "confidence": 0.832,
+      "heatmap_mean": 0.4508,
+      "confident": true
+    },
+    {
+      "idx": 4,
+      "box": [
+        949,
+        98,
+        1029,
+        205
+      ],
+      "label": "red blood cell",
+      "confidence": 0.7492,
+      "heatmap_mean": 0.4367,
+      "confident": true
+    },
+    {
+      "idx": 5,
+      "box": [
+        1138,
+        90,
+        1267,
+        237
+      ],
+      "label": "trophozoite",
+      "confidence": 0.7852,
+      "heatmap_mean": 0.429,
+      "confident": true
+    },
+    {
+      "idx": 6,
+      "box": [
+        1729,
+        124,
+        1778,
+        176
+      ],
+      "label": "leukocyte",
+      "confidence": 0.9483,
+      "heatmap_mean": 0.5059,
+      "confident": true
+    },
+    {
+      "idx": 7,
+      "box": [
+        1776,
+        126,
+        1808,
+        175
+      ],
+      "label": "leukocyte",
+      "confidence": 0.9202,
+      "heatmap_mean": 0.4627,
+      "confident": true
+    },
+    {
+      "idx": 8,
+      "box": [
+        716,
+        129,
+        787,
+        211
+      ],
+      "label": "red blood cell",
+      "confidence": 0.7323,
+      "heatmap_mean": 0.4764,
+      "confident": true
+    },
+    {
+      "idx": 9,
+      "box": [
+        778,
+        31,
+        903,
+        178
+      ],
+      "label": "red blood cell",
+      "confidence": 0.7783,
+      "heatmap_mean": 0.4351,
+      "confident": true
+    },
+    {
+      "idx": 10,
+      "box": [
+        1024,
+        100,
+        1091,
+        170
+      ],
+      "label": "leukocyte",
+      "confidence": 0.7262,
+      "heatmap_mean": 0.457,
+      "confident": true
+    },
+    {
+      "idx": 11,
+      "box": [
+        1787,
+        140,
+        1840,
+        187
+      ],
+      "label": "leukocyte",
+      "confidence": 0.7192,
+      "heatmap_mean": 0.4738,
+      "confident": true
+    },
+    {
+      "idx": 12,
+      "box": [
+        999,
+        161,
+        1089,
+        211
+      ],
+      "label": "red blood cell",
+      "confidence": 0.8605,
+      "heatmap_mean": 0.4255,
+      "confident": true
+    },
+    {
+      "idx": 13,
+      "box": [
+        790,
+        153,
+        840,
+        189
+      ],
+      "label": "red blood cell",
+      "confidence": 0.7782,
+      "heatmap_mean": 0.3929,
+      "confident": true
+    },
+    {
+      "idx": 14,
+      "box": [
+        1711,
+        143,
+        1773,
+        240
+      ],
+      "label": "red blood cell",
+      "confidence": 0.6301,
+      "heatmap_mean": 0.4726,
+      "confident": true
+    },
+    {
+      "idx": 15,
+      "box": [
+        758,
+        181,
+        842,
+        259
+      ],
+      "label": "leukocyte",
+      "confidence": 0.6042,
+      "heatmap_mean": 0.4787,
+      "confident": true
+    },
+    {
+      "idx": 16,
+      "box": [
+        1759,
+        180,
+        1842,
+        246
+      ],
+      "label": "red blood cell",
+      "confidence": 0.6815,
+      "heatmap_mean": 0.4626,
+      "confident": true
+    },
+    {
+      "idx": 17,
+      "box": [
+        561,
+        185,
+        661,
+        298
+      ],
+      "label": "leukocyte",
+      "confidence": 0.4438,
+      "heatmap_mean": 0.4793,
+      "confident": true
+    },
+    {
+      "idx": 18,
+      "box": [
+        501,
+        190,
+        568,
+        254
+      ],
+      "label": "schizont",
+      "confidence": 0.5518,
+      "heatmap_mean": 0.5258,
+      "confident": true
+    },
+    {
+      "idx": 19,
+      "box": [
+        497,
+        241,
+        589,
+        313
+      ],
+      "label": "schizont",
+      "confidence": 0.5388,
+      "heatmap_mean": 0.5001,
+      "confident": true
+    },
+    {
+      "idx": 20,
+      "box": [
+        1199,
+        192,
+        1327,
+        306
+      ],
+      "label": "red blood cell",
+      "confidence": 0.6038,
+      "heatmap_mean": 0.4414,
+      "confident": true
+    },
+    {
+      "idx": 21,
+      "box": [
+        665,
+        206,
+        808,
+        337
+      ],
+      "label": "red blood cell",
+      "confidence": 0.9275,
+      "heatmap_mean": 0.4469,
+      "confident": true
+    },
+    {
+      "idx": 22,
+      "box": [
+        133,
+        255,
+        202,
+        308
+      ],
+      "label": "red blood cell",
+      "confidence": 0.5199,
+      "heatmap_mean": 0.5659,
+      "confident": true
+    },
+    {
+      "idx": 23,
+      "box": [
+        1785,
+        264,
+        1855,
+        318
+      ],
+      "label": "leukocyte",
+      "confidence": 0.7256,
+      "heatmap_mean": 0.4853,
+      "confident": true
+    },
+    {
+      "idx": 24,
+      "box": [
+        93,
+        259,
+        150,
+        343
+      ],
+      "label": "red blood cell",
+      "confidence": 0.5524,
+      "heatmap_mean": 0.4273,
+      "confident": true
+    },
+    {
+      "idx": 25,
+      "box": [
+        1828,
+        272,
+        1877,
+        319
+      ],
+      "label": "leukocyte",
+      "confidence": 0.5368,
+      "heatmap_mean": 0.4619,
+      "confident": true
+    },
+    {
+      "idx": 26,
+      "box": [
+        149,
+        270,
+        225,
+        364
+      ],
+      "label": "red blood cell",
+      "confidence": 0.844,
+      "heatmap_mean": 0.447,
+      "confident": true
+    },
+    {
+      "idx": 27,
+      "box": [
+        1823,
+        299,
+        1884,
+        383
+      ],
+      "label": "red blood cell",
+      "confidence": 0.5718,
+      "heatmap_mean": 0.4413,
+      "confident": true
+    },
+    {
+      "idx": 28,
+      "box": [
+        1761,
+        280,
+        1828,
+        383
+      ],
+      "label": "red blood cell",
+      "confidence": 0.6091,
+      "heatmap_mean": 0.4407,
+      "confident": true
+    },
+    {
+      "idx": 29,
+      "box": [
+        928,
+        243,
+        1128,
+        389
+      ],
+      "label": "red blood cell",
+      "confidence": 0.9147,
+      "heatmap_mean": 0.4442,
+      "confident": true
+    },
+    {
+      "idx": 30,
+      "box": [
+        524,
+        312,
+        638,
+        429
+      ],
+      "label": "red blood cell",
+      "confidence": 0.9811,
+      "heatmap_mean": 0.4565,
+      "confident": true
+    },
+    {
+      "idx": 31,
+      "box": [
+        1279,
+        340,
+        1393,
+        395
+      ],
+      "label": "leukocyte",
+      "confidence": 0.5581,
+      "heatmap_mean": 0.4647,
+      "confident": true
+    },
+    {
+      "idx": 32,
+      "box": [
+        260,
+        283,
+        362,
+        469
+      ],
+      "label": "red blood cell",
+      "confidence": 0.8292,
+      "heatmap_mean": 0.4385,
+      "confident": true
+    },
+    {
+      "idx": 33,
+      "box": [
+        444,
+        324,
+        593,
+        493
+      ],
+      "label": "leukocyte",
+      "confidence": 0.5648,
+      "heatmap_mean": 0.4843,
+      "confident": true
+    },
+    {
+      "idx": 34,
+      "box": [
+        661,
+        355,
+        792,
+        460
+      ],
+      "label": "red blood cell",
+      "confidence": 0.8412,
+      "heatmap_mean": 0.4803,
+      "confident": true
+    },
+    {
+      "idx": 35,
+      "box": [
+        1348,
+        396,
+        1393,
+        431
+      ],
+      "label": "red blood cell",
+      "confidence": 0.6155,
+      "heatmap_mean": 0.4558,
+      "confident": true
+    },
+    {
+      "idx": 36,
+      "box": [
+        34,
+        344,
+        177,
+        469
+      ],
+      "label": "red blood cell",
+      "confidence": 0.9269,
+      "heatmap_mean": 0.4405,
+      "confident": true
+    },
+    {
+      "idx": 37,
+      "box": [
+        787,
+        346,
+        951,
+        463
+      ],
+      "label": "red blood cell",
+      "confidence": 0.9151,
+      "heatmap_mean": 0.4395,
+      "confident": true
+    },
+    {
+      "idx": 38,
+      "box": [
+        1087,
+        336,
+        1165,
+        437
+      ],
+      "label": "red blood cell",
+      "confidence": 0.8188,
+      "heatmap_mean": 0.4361,
+      "confident": true
+    },
+    {
+      "idx": 39,
+      "box": [
+        1274,
+        375,
+        1381,
+        451
+      ],
+      "label": "leukocyte",
+      "confidence": 0.9461,
+      "heatmap_mean": 0.4691,
+      "confident": true
+    },
+    {
+      "idx": 40,
+      "box": [
+        953,
+        381,
+        1090,
+        524
+      ],
+      "label": "red blood cell",
+      "confidence": 0.706,
+      "heatmap_mean": 0.4544,
+      "confident": true
+    },
+    {
+      "idx": 41,
+      "box": [
+        1101,
+        416,
+        1199,
+        523
+      ],
+      "label": "red blood cell",
+      "confidence": 0.7794,
+      "heatmap_mean": 0.4422,
+      "confident": true
+    },
+    {
+      "idx": 42,
+      "box": [
+        1132,
+        426,
+        1235,
+        537
+      ],
+      "label": "red blood cell",
+      "confidence": 0.756,
+      "heatmap_mean": 0.445,
+      "confident": true
+    },
+    {
+      "idx": 43,
+      "box": [
+        180,
+        480,
+        329,
+        597
+      ],
+      "label": "red blood cell",
+      "confidence": 0.9676,
+      "heatmap_mean": 0.4403,
+      "confident": true
+    },
+    {
+      "idx": 44,
+      "box": [
+        1018,
+        485,
+        1163,
+        648
+      ],
+      "label": "red blood cell",
+      "confidence": 0.8838,
+      "heatmap_mean": 0.4262,
+      "confident": true
+    },
+    {
+      "idx": 45,
+      "box": [
+        461,
+        491,
+        604,
+        606
+      ],
+      "label": "red blood cell",
+      "confidence": 0.7354,
+      "heatmap_mean": 0.4499,
+      "confident": true
+    },
+    {
+      "idx": 46,
+      "box": [
+        1136,
+        527,
+        1243,
+        637
+      ],
+      "label": "red blood cell",
+      "confidence": 0.9825,
+      "heatmap_mean": 0.4455,
+      "confident": true
+    },
+    {
+      "idx": 47,
+      "box": [
+        1222,
+        555,
+        1279,
+        616
+      ],
+      "label": "leukocyte",
+      "confidence": 0.4602,
+      "heatmap_mean": 0.4594,
+      "confident": true
+    },
+    {
+      "idx": 48,
+      "box": [
+        591,
+        602,
+        663,
+        736
+      ],
+      "label": "trophozoite",
+      "confidence": 0.4993,
+      "heatmap_mean": 0.5041,
+      "confident": true
+    },
+    {
+      "idx": 49,
+      "box": [
+        1137,
+        610,
+        1280,
+        682
+      ],
+      "label": "red blood cell",
+      "confidence": 0.883,
+      "heatmap_mean": 0.4131,
+      "confident": true
+    },
+    {
+      "idx": 50,
+      "box": [
+        506,
+        601,
+        592,
+        735
+      ],
+      "label": "red blood cell",
+      "confidence": 0.7338,
+      "heatmap_mean": 0.4637,
+      "confident": true
+    },
+    {
+      "idx": 51,
+      "box": [
+        118,
+        587,
+        252,
+        709
+      ],
+      "label": "red blood cell",
+      "confidence": 0.7675,
+      "heatmap_mean": 0.4294,
+      "confident": true
+    },
+    {
+      "idx": 52,
+      "box": [
+        1890,
+        634,
+        1943,
+        732
+      ],
+      "label": "leukocyte",
+      "confidence": 0.8285,
+      "heatmap_mean": 0.4479,
+      "confident": true
+    },
+    {
+      "idx": 53,
+      "box": [
+        877,
+        669,
+        912,
+        727
+      ],
+      "label": "red blood cell",
+      "confidence": 0.6538,
+      "heatmap_mean": 0.5475,
+      "confident": true
+    },
+    {
+      "idx": 54,
+      "box": [
+        854,
+        678,
+        890,
+        730
+      ],
+      "label": "red blood cell",
+      "confidence": 0.8442,
+      "heatmap_mean": 0.4481,
+      "confident": true
+    },
+    {
+      "idx": 55,
+      "box": [
+        901,
+        672,
+        969,
+        731
+      ],
+      "label": "red blood cell",
+      "confidence": 0.612,
+      "heatmap_mean": 0.412,
+      "confident": true
+    },
+    {
+      "idx": 56,
+      "box": [
+        815,
+        683,
+        882,
+        782
+      ],
+      "label": "red blood cell",
+      "confidence": 0.7148,
+      "heatmap_mean": 0.4191,
+      "confident": true
+    },
+    {
+      "idx": 57,
+      "box": [
+        216,
+        658,
+        289,
+        780
+      ],
+      "label": "red blood cell",
+      "confidence": 0.9467,
+      "heatmap_mean": 0.4838,
+      "confident": true
+    },
+    {
+      "idx": 58,
+      "box": [
+        285,
+        657,
+        363,
+        781
+      ],
+      "label": "red blood cell",
+      "confidence": 0.9647,
+      "heatmap_mean": 0.4407,
+      "confident": true
+    },
+    {
+      "idx": 59,
+      "box": [
+        859,
+        720,
+        983,
+        821
+      ],
+      "label": "red blood cell",
+      "confidence": 0.6488,
+      "heatmap_mean": 0.4219,
+      "confident": true
+    },
+    {
+      "idx": 60,
+      "box": [
+        982,
+        725,
+        1056,
+        783
+      ],
+      "label": "red blood cell",
+      "confidence": 0.5636,
+      "heatmap_mean": 0.5069,
+      "confident": true
+    },
+    {
+      "idx": 61,
+      "box": [
+        1003,
+        751,
+        1071,
+        831
+      ],
+      "label": "red blood cell",
+      "confidence": 0.7216,
+      "heatmap_mean": 0.4647,
+      "confident": true
+    },
+    {
+      "idx": 62,
+      "box": [
+        1123,
+        723,
+        1236,
+        832
+      ],
+      "label": "red blood cell",
+      "confidence": 0.8489,
+      "heatmap_mean": 0.4569,
+      "confident": true
+    },
+    {
+      "idx": 63,
+      "box": [
+        1074,
+        800,
+        1186,
+        865
+      ],
+      "label": "red blood cell",
+      "confidence": 0.6978,
+      "heatmap_mean": 0.4163,
+      "confident": true
+    },
+    {
+      "idx": 64,
+      "box": [
+        1616,
+        800,
+        1724,
+        853
+      ],
+      "label": "red blood cell",
+      "confidence": 0.7947,
+      "heatmap_mean": 0.4566,
+      "confident": true
+    },
+    {
+      "idx": 65,
+      "box": [
+        265,
+        796,
+        332,
+        902
+      ],
+      "label": "red blood cell",
+      "confidence": 0.8963,
+      "heatmap_mean": 0.4949,
+      "confident": true
+    },
+    {
+      "idx": 66,
+      "box": [
+        206,
+        796,
+        275,
+        904
+      ],
+      "label": "red blood cell",
+      "confidence": 0.9624,
+      "heatmap_mean": 0.4541,
+      "confident": true
+    },
+    {
+      "idx": 67,
+      "box": [
+        1616,
+        846,
+        1723,
+        902
+      ],
+      "label": "leukocyte",
+      "confidence": 0.578,
+      "heatmap_mean": 0.4885,
+      "confident": true
+    },
+    {
+      "idx": 68,
+      "box": [
+        919,
+        808,
+        1037,
+        918
+      ],
+      "label": "red blood cell",
+      "confidence": 0.5826,
+      "heatmap_mean": 0.4242,
+      "confident": true
+    },
+    {
+      "idx": 69,
+      "box": [
+        1048,
+        820,
+        1118,
+        932
+      ],
+      "label": "red blood cell",
+      "confidence": 0.704,
+      "heatmap_mean": 0.4342,
+      "confident": true
+    },
+    {
+      "idx": 70,
+      "box": [
+        1115,
+        855,
+        1193,
+        934
+      ],
+      "label": "red blood cell",
+      "confidence": 0.8588,
+      "heatmap_mean": 0.4724,
+      "confident": true
+    },
+    {
+      "idx": 71,
+      "box": [
+        988,
+        851,
+        1067,
+        953
+      ],
+      "label": "red blood cell",
+      "confidence": 0.8954,
+      "heatmap_mean": 0.4419,
+      "confident": true
+    },
+    {
+      "idx": 72,
+      "box": [
+        1760,
+        877,
+        1832,
+        982
+      ],
+      "label": "red blood cell",
+      "confidence": 0.5666,
+      "heatmap_mean": 0.4445,
+      "confident": true
+    },
+    {
+      "idx": 73,
+      "box": [
+        1713,
+        877,
+        1762,
+        935
+      ],
+      "label": "red blood cell",
+      "confidence": 0.5857,
+      "heatmap_mean": 0.4312,
+      "confident": true
+    },
+    {
+      "idx": 74,
+      "box": [
+        1161,
+        920,
+        1259,
+        1025
+      ],
+      "label": "red blood cell",
+      "confidence": 0.9177,
+      "heatmap_mean": 0.4501,
+      "confident": true
+    },
+    {
+      "idx": 75,
+      "box": [
+        1708,
+        914,
+        1818,
+        1000
+      ],
+      "label": "leukocyte",
+      "confidence": 0.9128,
+      "heatmap_mean": 0.5192,
+      "confident": true
+    },
+    {
+      "idx": 76,
+      "box": [
+        1335,
+        923,
+        1465,
+        1053
+      ],
+      "label": "red blood cell",
+      "confidence": 0.9396,
+      "heatmap_mean": 0.4443,
+      "confident": true
+    },
+    {
+      "idx": 77,
+      "box": [
+        1529,
+        929,
+        1638,
+        1023
+      ],
+      "label": "red blood cell",
+      "confidence": 0.8845,
+      "heatmap_mean": 0.4559,
+      "confident": true
+    },
+    {
+      "idx": 78,
+      "box": [
+        1181,
+        938,
+        1285,
+        1048
+      ],
+      "label": "red blood cell",
+      "confidence": 0.8711,
+      "heatmap_mean": 0.4408,
+      "confident": true
+    },
+    {
+      "idx": 79,
+      "box": [
+        1540,
+        955,
+        1649,
+        1040
+      ],
+      "label": "red blood cell",
+      "confidence": 0.8735,
+      "heatmap_mean": 0.4231,
+      "confident": true
+    },
+    {
+      "idx": 80,
+      "box": [
+        309,
+        1029,
+        393,
+        1100
+      ],
+      "label": "red blood cell",
+      "confidence": 0.4457,
+      "heatmap_mean": 0.5462,
+      "confident": true
+    },
+    {
+      "idx": 81,
+      "box": [
+        389,
+        979,
+        576,
+        1103
+      ],
+      "label": "red blood cell",
+      "confidence": 0.8717,
+      "heatmap_mean": 0.4474,
+      "confident": true
+    },
+    {
+      "idx": 82,
+      "box": [
+        1676,
+        1054,
+        1762,
+        1155
+      ],
+      "label": "red blood cell",
+      "confidence": 0.8559,
+      "heatmap_mean": 0.4503,
+      "confident": true
+    },
+    {
+      "idx": 83,
+      "box": [
+        281,
+        1075,
+        350,
+        1185
+      ],
+      "label": "red blood cell",
+      "confidence": 0.5795,
+      "heatmap_mean": 0.3471,
+      "confident": true
+    },
+    {
+      "idx": 84,
+      "box": [
+        400,
+        1101,
+        472,
+        1160
+      ],
+      "label": "leukocyte",
+      "confidence": 0.5002,
+      "heatmap_mean": 0.4738,
+      "confident": true
+    },
+    {
+      "idx": 85,
+      "box": [
+        324,
+        1098,
+        382,
+        1177
+      ],
+      "label": "red blood cell",
+      "confidence": 0.5299,
+      "heatmap_mean": 0.4397,
+      "confident": true
+    },
+    {
+      "idx": 86,
+      "box": [
+        160,
+        1063,
+        303,
+        1206
+      ],
+      "label": "red blood cell",
+      "confidence": 0.949,
+      "heatmap_mean": 0.4402,
+      "confident": true
+    },
+    {
+      "idx": 87,
+      "box": [
+        1640,
+        1060,
+        1724,
+        1162
+      ],
+      "label": "red blood cell",
+      "confidence": 0.5739,
+      "heatmap_mean": 0.4536,
+      "confident": true
+    },
+    {
+      "idx": 88,
+      "box": [
+        361,
+        1124,
+        441,
+        1178
+      ],
+      "label": "red blood cell",
+      "confidence": 0.7568,
+      "heatmap_mean": 0.4403,
+      "confident": true
+    },
+    {
+      "idx": 89,
+      "box": [
+        820,
+        1148,
+        946,
+        1245
+      ],
+      "label": "red blood cell",
+      "confidence": 0.9435,
+      "heatmap_mean": 0.4532,
+      "confident": true
+    },
+    {
+      "idx": 90,
+      "box": [
+        841,
+        1176,
+        956,
+        1273
+      ],
+      "label": "red blood cell",
+      "confidence": 0.9845,
+      "heatmap_mean": 0.4556,
+      "confident": true
+    },
+    {
+      "idx": 91,
+      "box": [
+        1467,
+        1177,
+        1554,
+        1228
+      ],
+      "label": "red blood cell",
+      "confidence": 0.7702,
+      "heatmap_mean": 0.4654,
+      "confident": true
+    },
+    {
+      "idx": 92,
+      "box": [
+        1524,
+        1191,
+        1578,
+        1271
+      ],
+      "label": "red blood cell",
+      "confidence": 0.8558,
+      "heatmap_mean": 0.4357,
+      "confident": true
+    },
+    {
+      "idx": 93,
+      "box": [
+        1771,
+        1110,
+        1943,
+        1321
+      ],
+      "label": "red blood cell",
+      "confidence": 0.9818,
+      "heatmap_mean": 0.4569,
+      "confident": true
+    },
+    {
+      "idx": 94,
+      "box": [
+        1446,
+        1197,
+        1500,
+        1286
+      ],
+      "label": "red blood cell",
+      "confidence": 0.68,
+      "heatmap_mean": 0.4932,
+      "confident": true
+    },
+    {
+      "idx": 95,
+      "box": [
+        1332,
+        1223,
+        1467,
+        1345
+      ],
+      "label": "red blood cell",
+      "confidence": 0.8649,
+      "heatmap_mean": 0.4418,
+      "confident": true
+    },
+    {
+      "idx": 96,
+      "box": [
+        618,
+        1203,
+        756,
+        1344
+      ],
+      "label": "red blood cell",
+      "confidence": 0.9096,
+      "heatmap_mean": 0.4402,
+      "confident": true
+    },
+    {
+      "idx": 97,
+      "box": [
+        238,
+        1202,
+        369,
+        1338
+      ],
+      "label": "red blood cell",
+      "confidence": 0.7769,
+      "heatmap_mean": 0.4456,
+      "confident": true
+    },
+    {
+      "idx": 98,
+      "box": [
+        339,
+        1202,
+        407,
+        1316
+      ],
+      "label": "red blood cell",
+      "confidence": 0.7049,
+      "heatmap_mean": 0.431,
+      "confident": true
+    },
+    {
+      "idx": 99,
+      "box": [
+        744,
+        1259,
+        825,
+        1382
+      ],
+      "label": "red blood cell",
+      "confidence": 0.9561,
+      "heatmap_mean": 0.4541,
+      "confident": true
+    },
+    {
+      "idx": 100,
+      "box": [
+        1474,
+        1252,
+        1566,
+        1331
+      ],
+      "label": "leukocyte",
+      "confidence": 0.6157,
+      "heatmap_mean": 0.4742,
+      "confident": true
+    },
+    {
+      "idx": 101,
+      "box": [
+        808,
+        1190,
+        910,
+        1382
+      ],
+      "label": "red blood cell",
+      "confidence": 0.5599,
+      "heatmap_mean": 0.4504,
+      "confident": true
+    },
+    {
+      "idx": 102,
+      "box": [
+        306,
+        1264,
+        361,
+        1316
+      ],
+      "label": "red blood cell",
+      "confidence": 0.5656,
+      "heatmap_mean": 0.3529,
+      "confident": true
+    },
+    {
+      "idx": 103,
+      "box": [
+        168,
+        1248,
+        288,
+        1378
+      ],
+      "label": "red blood cell",
+      "confidence": 0.8641,
+      "heatmap_mean": 0.45,
+      "confident": true
+    },
+    {
+      "idx": 104,
+      "box": [
+        1606,
+        1206,
+        1773,
+        1382
+      ],
+      "label": "red blood cell",
+      "confidence": 0.7576,
+      "heatmap_mean": 0.4542,
+      "confident": true
+    },
+    {
+      "idx": 105,
+      "box": [
+        1766,
+        1238,
+        1935,
+        1382
+      ],
+      "label": "leukocyte",
+      "confidence": 0.8534,
+      "heatmap_mean": 0.4824,
+      "confident": true
+    },
+    {
+      "idx": 106,
+      "box": [
+        1448,
+        1314,
+        1567,
+        1382
+      ],
+      "label": "red blood cell",
+      "confidence": 0.8626,
+      "heatmap_mean": 0.4674,
+      "confident": true
+    }
+  ]
+}

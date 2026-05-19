@@ -8,14 +8,16 @@ Runs the full two-stage pipeline (Stage 1 Watershed + Stage 2 EfficientNet-B0)
 over a test set and computes rigorous detection metrics:
 
     Stage-1 only  (annotation-agnostic cell detection)
-    ─────────────────────────────────────────────────────
     • Cell Recovery Rate (Recall@IoU0.5) — fraction of GT cells found
     • Detection Precision                — fraction of WS boxes that are real cells
     • F1 score
     • Per-class cell recovery rate
+    • Relaxed IoU recalls (IoU@0.25, IoU@0.30) — fairer to organic WS boundaries
+    • Centroid-in-GT-box recall          — boundary-independent spatial localization
+    • Infected-cell sensitivity          — recall over parasitized GT cells only
+    • Biological localization recall     — centroid within 0.5x GT diagonal
 
     End-to-End  (full pipeline: box + class)
-    ─────────────────────────────────────────────────────
     • Per-class AP@0.5 (Average Precision at IoU threshold 0.5)
     • mAP@0.5          (mean over parasite classes)
     • Binary Parasitized AP@0.5
@@ -34,9 +36,9 @@ Supported datasets
 Output
 ------
     <out-dir>/
-    ├── metrics.json          all numeric results
-    ├── pr_curves.png         precision-recall curves per class
-    └── stage1_stats.json     Stage 1 cell recovery breakdown
+    ├- metrics.json          all numeric results
+    ├- pr_curves.png         precision-recall curves per class
+    └- stage1_stats.json     Stage 1 cell recovery breakdown
 
 Usage
 -----
@@ -83,7 +85,7 @@ try:
 except ImportError:
     _TORCH_AVAILABLE = False
 
-# ── Project root ──────────────────────────────────────────────────────────────
+# Project root
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "Phase3-PipelineB"))
@@ -123,7 +125,7 @@ def _run_stage1(bgr: np.ndarray) -> list:
         # v1 already returns tuples
         return _watershed_cells_v1(bgr)
 
-# ── Dataset-specific class maps ───────────────────────────────────────────────
+# Dataset-specific class maps
 # For MP-IDB: species labels → binary "parasitized"
 MPIDB_LABEL_TO_INT = {
     "falciparum": 1, "vivax": 2, "malariae": 3, "ovale": 4,
@@ -149,10 +151,7 @@ else:
     _NORMALIZE = None
     _TRANSFORM = None
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  IoU + matching
-# ═══════════════════════════════════════════════════════════════════════════════
+# IoU + matching + alternative localization helpers
 
 def iou(a: Tuple, b: Tuple) -> float:
     """IoU between two (x1, y1, x2, y2) boxes."""
@@ -164,6 +163,40 @@ def iou(a: Tuple, b: Tuple) -> float:
     union  = area_a + area_b - inter
     return inter / union if union > 0 else 0.0
 
+def box_centroid(box: Tuple) -> Tuple[float, float]:
+    """Return (cx, cy) of a (x1, y1, x2, y2) box."""
+    return (box[0] + box[2]) / 2.0, (box[1] + box[3]) / 2.0
+
+def centroid_in_box(wb: Tuple, gb: Tuple) -> bool:
+    """True if the centroid of watershed box wb lies inside GT box gb."""
+    cx, cy = box_centroid(wb)
+    return gb[0] <= cx <= gb[2] and gb[1] <= cy <= gb[3]
+
+def box_diagonal(box: Tuple) -> float:
+    """Euclidean diagonal length of a (x1, y1, x2, y2) box."""
+    w = box[2] - box[0]
+    h = box[3] - box[1]
+    return (w ** 2 + h ** 2) ** 0.5
+
+def biological_localization_match(wb: Tuple, gb: Tuple, fraction: float = 0.5) -> bool:
+    """
+    Biological localization criterion: the centroid of the watershed box wb
+    must lie within `fraction * diagonal(gb)` pixels of the centroid of GT box gb.
+
+    This is a clinically motivated alternative to strict IoU@0.5.  A cell is
+    considered "found" when the detector correctly identifies its spatial
+    location to within half the cell's own diameter — sufficient for a
+    pathologist to verify the detection.
+
+    Default fraction=0.5 means: allowed distance <= 0.5 * GT box diagonal.
+    For a typical BBBC041 RBC (65x65 px, diagonal ~92 px) this allows
+    up to ~46 px displacement — roughly one cell radius.
+    """
+    cx_w, cy_w = box_centroid(wb)
+    cx_g, cy_g = box_centroid(gb)
+    diag = box_diagonal(gb)
+    dist = ((cx_w - cx_g) ** 2 + (cy_w - cy_g) ** 2) ** 0.5
+    return dist <= fraction * diag
 
 def match_predictions_to_gt(
     pred_boxes:  List[Tuple],
@@ -212,11 +245,7 @@ def match_predictions_to_gt(
 
     return records
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  AP computation
-# ═══════════════════════════════════════════════════════════════════════════════
-
+# AP computation
 def compute_ap(
     all_records: List[Dict],
     class_name:  str,
@@ -268,11 +297,7 @@ def compute_ap(
 
     return float(ap), precision, recall
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  Model loading + inference
-# ═══════════════════════════════════════════════════════════════════════════════
-
+# Model loading + inference
 def load_model(checkpoint_path: str, device: "torch.device") -> "nn.Module":  # type: ignore[name-defined]
     from torchvision.models import efficientnet_b0, EfficientNet_B0_Weights
     model = efficientnet_b0(weights=EfficientNet_B0_Weights.IMAGENET1K_V1)
@@ -285,7 +310,6 @@ def load_model(checkpoint_path: str, device: "torch.device") -> "nn.Module":  # 
     else:
         print("  WARNING: No checkpoint loaded — using ImageNet-only weights.")
     return model.to(device).eval()
-
 
 def classify_batch(
     model,
@@ -318,16 +342,11 @@ def classify_batch(
                 confs.append(float(prob[pred]))
     return labels, confs
 
-
 def is_oversized(box: Tuple) -> bool:
     x1, y1, x2, y2 = box
     return (x2 - x1) > MAX_CELL_W or (y2 - y1) > MAX_CELL_H
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  Stage 1 — cell-level recall/precision (dataset-agnostic)
-# ═══════════════════════════════════════════════════════════════════════════════
-
+# Stage 1 — cell-level recall/precision (dataset-agnostic)
 def evaluate_stage1(
     gt_df:   pd.DataFrame,
     img_dir: Path,
@@ -337,16 +356,52 @@ def evaluate_stage1(
     """
     Run watershed on each image, match to GT, report cell recovery rate.
     No Stage 2 classification here — pure detection evaluation.
+
+    Beyond the standard IoU@0.5 recall, this function also computes four
+    alternative localization metrics that are fairer to watershed-based
+    detectors (which produce organic boundaries, not rectangular proposals):
+
+      1. Centroid-in-GT-box recall  — a WS box is a "hit" if its centroid
+         falls inside the GT box, regardless of boundary IoU.  This tests
+         spatial localization without penalising non-rectangular regions.
+
+      2. Relaxed IoU recalls        — recall at IoU@0.25 and IoU@0.30 in
+         addition to the standard IoU@0.50.  Watershed boundaries grow
+         from distance-transform seeds and do not align with rectangular
+         GT annotations even when the correct cell is found.
+
+      3. Infected-cell sensitivity  — recall computed only over parasitized
+         GT boxes (ring, trophozoite, schizont, gametocyte / all MP-IDB
+         species).  For clinical malaria diagnosis, missing infected cells
+         is the critical failure mode; missing RBCs is not.
+
+      4. Biological localization recall — a WS box is a "hit" if its centroid
+         lies within 0.5 * diagonal(GT box) of the GT centroid.  For a
+         typical BBBC041 RBC (65x65 px) this allows ~46 px displacement,
+         roughly one cell radius — sufficient for a clinician to verify
+         the detection location.
     """
+    RELAXED_THRESHOLDS = [0.25, 0.30, 0.50]   # IoU thresholds to report
+    BIO_FRACTION       = 0.50                  # fraction of GT diagonal for bio-loc
+
     images = gt_df["img_name"].unique()
     total_gt   = 0
     total_ws   = 0
-    total_tp   = 0    # WS boxes matched to any GT
-    total_fp   = 0    # WS boxes with no GT match
-    total_fn   = 0    # GT boxes not covered by any WS box
 
-    per_class_tp = defaultdict(int)
+    # IoU-based counters (one set per threshold)
+    tp_at = {t: 0 for t in RELAXED_THRESHOLDS}
+    fp_at = {t: 0 for t in RELAXED_THRESHOLDS}
+
+    per_class_tp = {t: defaultdict(int) for t in RELAXED_THRESHOLDS}
     per_class_gt = defaultdict(int)
+
+    # Infected-cell TP at each IoU threshold
+    inf_tp_at  = {t: 0 for t in RELAXED_THRESHOLDS}
+    total_inf_gt = 0   # total parasitized GT boxes
+
+    # Alternative metric counters
+    centroid_tp    = 0   # metric 1: centroid-in-box
+    bio_loc_tp     = 0   # metric 4: biological localization (centroid distance)
 
     for img_name in tqdm(images, desc="  Stage 1 eval"):
         img_path = img_dir / img_name
@@ -372,56 +427,122 @@ def evaluate_stage1(
         # Count GT per class
         for lbl in gt_labels:
             per_class_gt[lbl] += 1
+        total_inf_gt += sum(1 for l in gt_labels if l in parasite_classes)
 
-        # Match WS → GT (greedy, highest-IoU first)
-        gt_matched = [False] * len(gt_boxes)
-        ws_tp = 0
+        # IoU matching at each threshold (separate greedy match per thr) -
+        for thr in RELAXED_THRESHOLDS:
+            gt_matched = [False] * len(gt_boxes)
+            ws_tp_img  = 0
+            inf_tp_img = 0
 
+            for wb in ws_boxes:
+                best_iou_val, best_j = 0.0, -1
+                for j, gb in enumerate(gt_boxes):
+                    if gt_matched[j]:
+                        continue
+                    v = iou(wb, gb)
+                    if v > best_iou_val:
+                        best_iou_val, best_j = v, j
+                if best_iou_val >= thr and best_j >= 0:
+                    gt_matched[best_j] = True
+                    ws_tp_img += 1
+                    per_class_tp[thr][gt_labels[best_j]] += 1
+                    if gt_labels[best_j] in parasite_classes:
+                        inf_tp_img += 1
+
+            tp_at[thr] += ws_tp_img
+            fp_at[thr] += len(ws_boxes) - ws_tp_img
+            inf_tp_at[thr] += inf_tp_img
+
+        # Metric 1: centroid-in-GT-box (each GT matched at most once)
+        gt_centroid_matched = [False] * len(gt_boxes)
         for wb in ws_boxes:
-            best_iou, best_j = 0.0, -1
             for j, gb in enumerate(gt_boxes):
-                if gt_matched[j]:
+                if gt_centroid_matched[j]:
                     continue
-                v = iou(wb, gb)
-                if v > best_iou:
-                    best_iou, best_j = v, j
-            if best_iou >= iou_thr and best_j >= 0:
-                gt_matched[best_j] = True
-                ws_tp += 1
-                per_class_tp[gt_labels[best_j]] += 1
+                if centroid_in_box(wb, gb):
+                    gt_centroid_matched[j] = True
+                    centroid_tp += 1
+                    break  # this WS box can match at most one GT
 
-        total_tp += ws_tp
-        total_fp += len(ws_boxes) - ws_tp
-        total_fn += sum(1 for m in gt_matched if not m)
+        # Metric 4: biological localization (each GT matched at most once) -
+        gt_bio_matched = [False] * len(gt_boxes)
+        for wb in ws_boxes:
+            for j, gb in enumerate(gt_boxes):
+                if gt_bio_matched[j]:
+                    continue
+                if biological_localization_match(wb, gb, BIO_FRACTION):
+                    gt_bio_matched[j] = True
+                    bio_loc_tp += 1
+                    break
 
-    recall    = total_tp / total_gt if total_gt > 0 else 0.0
-    precision = total_tp / total_ws if total_ws > 0 else 0.0
-    f1        = (2 * precision * recall / (precision + recall)
-                 if (precision + recall) > 0 else 0.0)
+    # Aggregate metrics
 
+    # Standard IoU@0.5 recall / precision / F1
+    tp50      = tp_at[0.50]
+    fp50      = fp_at[0.50]
+    fn50      = total_gt - tp50
+    recall50  = tp50 / total_gt    if total_gt > 0 else 0.0
+    prec50    = tp50 / total_ws    if total_ws > 0 else 0.0
+    f1_50     = (2 * prec50 * recall50 / (prec50 + recall50)
+                 if (prec50 + recall50) > 0 else 0.0)
+
+    # Relaxed IoU recalls
+    relaxed_recalls = {}
+    for thr in RELAXED_THRESHOLDS:
+        relaxed_recalls[f"iou{int(thr*100):02d}"] = round(
+            tp_at[thr] / total_gt if total_gt > 0 else 0.0, 4
+        )
+
+    # Centroid-in-box recall (metric 1)
+    centroid_recall = centroid_tp / total_gt if total_gt > 0 else 0.0
+
+    # Biological localization recall (metric 4)
+    bio_recall = bio_loc_tp / total_gt if total_gt > 0 else 0.0
+
+    # Infected-cell sensitivity at each threshold
+    inf_sensitivity = {}
+    for thr in RELAXED_THRESHOLDS:
+        inf_sensitivity[f"iou{int(thr*100):02d}"] = round(
+            inf_tp_at[thr] / total_inf_gt if total_inf_gt > 0 else 0.0, 4
+        )
+
+    # Per-class stats (at standard IoU@0.5)
     per_class = {}
     for lbl in per_class_gt:
+        tp_lbl = per_class_tp[0.50].get(lbl, 0)
         per_class[lbl] = {
             "gt_count": per_class_gt[lbl],
-            "tp":       per_class_tp.get(lbl, 0),
-            "recall":   per_class_tp.get(lbl, 0) / per_class_gt[lbl],
+            "tp":       tp_lbl,
+            "recall":   round(tp_lbl / per_class_gt[lbl], 4),
         }
 
     return {
+        # Standard IoU@0.5 metrics
         "total_gt_cells":         total_gt,
         "total_watershed_boxes":  total_ws,
-        "tp": total_tp, "fp": total_fp, "fn": total_fn,
-        "recall_at_iou50":    round(recall, 4),
-        "precision_at_iou50": round(precision, 4),
-        "f1_at_iou50":        round(f1, 4),
+        "tp": tp50, "fp": fp50, "fn": fn50,
+        "recall_at_iou50":    round(recall50, 4),
+        "precision_at_iou50": round(prec50,   4),
+        "f1_at_iou50":        round(f1_50,    4),
+        # Alternative localization metrics
+        # Metric 2: relaxed IoU thresholds (includes iou25, iou30, iou50)
+        "recall_at_relaxed_iou":  relaxed_recalls,
+        # Metric 1: centroid-in-GT-box (boundary-independent spatial localization)
+        "centroid_in_box_recall": round(centroid_recall, 4),
+        "centroid_in_box_tp":     centroid_tp,
+        # Metric 3: infected-cell sensitivity (parasite-only recall)
+        "total_infected_gt":      total_inf_gt,
+        "infected_cell_sensitivity": inf_sensitivity,
+        # Metric 4: biological localization (centroid within 0.5 * GT diagonal)
+        "bio_localization_recall":        round(bio_recall, 4),
+        "bio_localization_fraction_used": BIO_FRACTION,
+        "bio_localization_tp":            bio_loc_tp,
+        # Per-class breakdown (at IoU@0.5)
         "per_class":          per_class,
     }
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  End-to-end evaluation
-# ═══════════════════════════════════════════════════════════════════════════════
-
+# End-to-end evaluation
 def evaluate_e2e(
     gt_df:            pd.DataFrame,
     img_dir:          Path,
@@ -540,11 +661,7 @@ def evaluate_e2e(
         "binary_parasitized_AP": round(bin_ap, 4),
     }
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  Plotting
-# ═══════════════════════════════════════════════════════════════════════════════
-
+# Plotting
 def plot_pr_curves(e2e_results: Dict, out_path: Path) -> None:
     try:
         import matplotlib
@@ -579,11 +696,7 @@ def plot_pr_curves(e2e_results: Dict, out_path: Path) -> None:
     plt.close()
     print(f"  PR curves saved -> {out_path}")
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  Main
-# ═══════════════════════════════════════════════════════════════════════════════
-
+# Main
 def main():
     p = argparse.ArgumentParser(
         description="MalariAI v2 — End-to-End Evaluation Framework"
@@ -638,7 +751,7 @@ def main():
     parasite_set = (MPIDB_PARASITE_CLASSES if args.dataset == "mpidb"
                     else BBBC041_PARASITE_CLASSES)
 
-    # ── Stage 1 evaluation ────────────────────────────────────────────────────
+    # Stage 1 evaluation
     print("\n[Stage 1] Cell detection evaluation (watershed only) ...")
     t0 = time.time()
     s1_results = evaluate_stage1(gt_df, img_dir, parasite_set, args.iou_thr)
@@ -652,10 +765,30 @@ def main():
     print(f"    GT cells        : {s1_results['total_gt_cells']:,}")
     print(f"    Watershed boxes : {s1_results['total_watershed_boxes']:,}")
     print(f"    TP / FP / FN    : {s1_results['tp']} / {s1_results['fp']} / {s1_results['fn']}")
+
+    print(f"\n  -- Standard IoU metrics --")
     print(f"    Recall @IoU0.5  : {s1_results['recall_at_iou50']:.4f}")
     print(f"    Precision@IoU0.5: {s1_results['precision_at_iou50']:.4f}")
     print(f"    F1 @IoU0.5      : {s1_results['f1_at_iou50']:.4f}")
-    print(f"\n  Per-class cell recovery:")
+
+    print(f"\n  -- Alternative localization metrics --")
+    ri = s1_results["recall_at_relaxed_iou"]
+    print(f"    Recall @IoU0.25 : {ri.get('iou25', 0):.4f}   (relaxed boundary criterion)")
+    print(f"    Recall @IoU0.30 : {ri.get('iou30', 0):.4f}   (relaxed boundary criterion)")
+    print(f"    Recall @IoU0.50 : {ri.get('iou50', 0):.4f}   (standard criterion)")
+    print(f"    Centroid-in-box : {s1_results['centroid_in_box_recall']:.4f}   "
+          f"(boundary-free spatial localization, n={s1_results['centroid_in_box_tp']})")
+    print(f"    Bio-loc recall  : {s1_results['bio_localization_recall']:.4f}   "
+          f"(centroid within {s1_results['bio_localization_fraction_used']} x GT diagonal, "
+          f"n={s1_results['bio_localization_tp']})")
+
+    print(f"\n  -- Infected-cell sensitivity (parasitized GT only, n={s1_results['total_infected_gt']}) --")
+    inf = s1_results["infected_cell_sensitivity"]
+    print(f"    Sensitivity @IoU0.25: {inf.get('iou25', 0):.4f}")
+    print(f"    Sensitivity @IoU0.30: {inf.get('iou30', 0):.4f}")
+    print(f"    Sensitivity @IoU0.50: {inf.get('iou50', 0):.4f}")
+
+    print(f"\n  Per-class cell recovery (@IoU0.5):")
     for cls, info in sorted(s1_results["per_class"].items(),
                              key=lambda x: -x[1]["gt_count"]):
         print(f"    {cls:<22}: {info['tp']:4d}/{info['gt_count']:4d}  "
@@ -665,7 +798,7 @@ def main():
         print(f"\nStage-1-only mode — skipping E2E. Results saved to {out_dir}")
         return
 
-    # ── End-to-end evaluation ─────────────────────────────────────────────────
+    # End-to-end evaluation
     if not _TORCH_AVAILABLE:
         print("\nERROR: PyTorch is not installed. "
               "Use --stage1-only, or install torch + torchvision.")
@@ -718,7 +851,6 @@ def main():
     print("    metrics.json      -- all numeric results")
     print("    stage1_stats.json -- Stage 1 cell recovery stats")
     print("    pr_curves.png     -- precision-recall curves")
-
 
 if __name__ == "__main__":
     main()

@@ -83,12 +83,8 @@ sys.path.insert(0, str(PROJECT_ROOT / "Phase1-EDA"))
 from shared.label_map import NUM_CLASSES, INT_TO_LABEL, LABEL_TO_INT, FOREGROUND_NAMES
 from dataset import MalariaCropDataset
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  Focal Loss
-# ═══════════════════════════════════════════════════════════════════════════════
-
-# Training annotation counts from Phase 1 EDA (excluding "difficult")
+# Focal Loss
+# # Training annotation counts from Phase 1 EDA (excluding "difficult")
 # Used to compute per-class inverse-frequency alpha weights.
 _TRAIN_COUNTS = {
     1: 77420,   # red blood cell
@@ -98,7 +94,6 @@ _TRAIN_COUNTS = {
     5: 144,     # gametocyte
     6: 103,     # leukocyte
 }
-
 
 def compute_focal_alpha(num_classes: int = NUM_CLASSES) -> torch.Tensor:
     """
@@ -115,7 +110,6 @@ def compute_focal_alpha(num_classes: int = NUM_CLASSES) -> torch.Tensor:
     s = sum(alpha[1:])
     alpha = [a / s * (num_classes - 1) for a in alpha]
     return torch.tensor(alpha, dtype=torch.float32)
-
 
 class FocalLoss(nn.Module):
     """
@@ -140,11 +134,7 @@ class FocalLoss(nn.Module):
         loss = at * (1.0 - pt) ** self.gamma * ce
         return loss.mean()
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  Model
-# ═══════════════════════════════════════════════════════════════════════════════
-
+# Model
 def build_model(num_classes: int = NUM_CLASSES, pretrained: bool = True) -> nn.Module:
     """EfficientNet-B0 with replaced classification head."""
     weights = EfficientNet_B0_Weights.IMAGENET1K_V1 if pretrained else None
@@ -155,11 +145,7 @@ def build_model(num_classes: int = NUM_CLASSES, pretrained: bool = True) -> nn.M
     model.classifier[1] = nn.Linear(in_feat, num_classes)
     return model
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  Training / validation loops
-# ═══════════════════════════════════════════════════════════════════════════════
-
+# Training / validation loops
 def train_one_epoch(model, loader, criterion, optimizer, device):
     model.train()
     total_loss, correct, total = 0.0, 0, 0
@@ -175,7 +161,6 @@ def train_one_epoch(model, loader, criterion, optimizer, device):
         correct    += (logits.argmax(1) == labels).sum().item()
         total      += len(labels)
     return total_loss / total, correct / total
-
 
 @torch.no_grad()
 def evaluate(model, loader, criterion, device):
@@ -207,11 +192,7 @@ def evaluate(model, loader, criterion, device):
 
     return total_loss / total, correct / total, per_class_acc
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  Plot helpers
-# ═══════════════════════════════════════════════════════════════════════════════
-
+# Plot helpers
 def save_curves(train_losses, val_losses, train_accs, val_accs, out_path: Path):
     epochs = list(range(1, len(train_losses) + 1))
     fig, axes = plt.subplots(1, 2, figsize=(13, 4))
@@ -233,11 +214,7 @@ def save_curves(train_losses, val_losses, train_accs, val_accs, out_path: Path):
     plt.close()
     print(f"Loss curves saved: {out_path}")
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  Main
-# ═══════════════════════════════════════════════════════════════════════════════
-
+# Main
 def parse_args():
     p = argparse.ArgumentParser(
         description="Stage 2 — EfficientNet-B0 + Focal Loss training")
@@ -256,7 +233,6 @@ def parse_args():
     p.add_argument("--workers",    type=int, default=4)
     return p.parse_args()
 
-
 def main():
     args     = parse_args()
     out_dir  = Path(args.out_dir)
@@ -267,7 +243,7 @@ def main():
     if device.type == "cuda":
         print(f"GPU: {torch.cuda.get_device_name(0)}")
 
-    # ── Dataset ───────────────────────────────────────────────────────────────
+    # Dataset
     print(f"\nLoading crops from {args.train_json} ...")
     full_ds = MalariaCropDataset(
         json_path=args.train_json,
@@ -296,7 +272,7 @@ def main():
     val_loader   = DataLoader(val_ds,   batch_size=args.batch, shuffle=False,
                               num_workers=args.workers, pin_memory=True)
 
-    # ── Model + Loss + Optimiser ──────────────────────────────────────────────
+    # Model + Loss + Optimiser
     model = build_model(NUM_CLASSES, pretrained=not args.no_pretrain).to(device)
 
     alpha     = compute_focal_alpha(NUM_CLASSES).to(device)
@@ -306,7 +282,7 @@ def main():
                             lr=args.lr, weight_decay=1e-4)
     scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=args.epochs)
 
-    # ── Resume ────────────────────────────────────────────────────────────────
+    # Resume
     start_epoch   = 0
     best_val_acc  = 0.0
     train_losses, val_losses   = [], []
@@ -329,12 +305,12 @@ def main():
             scheduler.step()
         print(f"  Resuming from epoch {start_epoch + 1}")
 
-    # ── Print focal-loss alpha weights ────────────────────────────────────────
+    # Print focal-loss alpha weights
     print("\nFocal Loss alpha weights:")
     for i in range(NUM_CLASSES):
         print(f"  [{i}] {INT_TO_LABEL[i]:<20} α={alpha[i].item():.4f}")
 
-    # ── Training loop ─────────────────────────────────────────────────────────
+    # Training loop
     print(f"\nTraining for {args.epochs - start_epoch} epoch(s) "
           f"(total target: {args.epochs})\n")
 
@@ -379,7 +355,7 @@ def main():
         }
         torch.save(ckpt, out_dir / "last.pth")
 
-    # ── Final evaluation on val set ───────────────────────────────────────────
+    # Final evaluation on val set
     print("\nLoading best checkpoint for final evaluation ...")
     model.load_state_dict(torch.load(out_dir / "best.pth", map_location=device))
     _, final_acc, final_per_class = evaluate(model, val_loader, criterion, device)
@@ -389,7 +365,7 @@ def main():
     for cls, acc in final_per_class.items():
         print(f"  {cls:<22}: {acc:.2f}%")
 
-    # ── Save metrics ──────────────────────────────────────────────────────────
+    # Save metrics
     metrics = {
         "val_accuracy":       round(final_acc * 100, 2),
         "best_val_acc":       round(best_val_acc * 100, 2),
@@ -405,13 +381,12 @@ def main():
         json.dump(metrics, f, indent=2)
     print(f"\nMetrics saved: {metrics_path}")
 
-    # ── Loss curves ───────────────────────────────────────────────────────────
+    # Loss curves
     save_curves(train_losses, val_losses, train_accs, val_accs,
                 out_dir / "loss_curves.png")
 
     print("\nPhase 3 Stage 2 training complete.")
     print(f"Checkpoints: {out_dir}")
-
 
 if __name__ == "__main__":
     main()

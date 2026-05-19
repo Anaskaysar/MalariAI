@@ -19,7 +19,7 @@ Class index conventions
 appear in this map.
 """
 
-# ── Core mappings ─────────────────────────────────────────────────────────────
+# - Core mappings -
 
 LABEL_TO_INT: dict[str, int] = {
     "background":    0,
@@ -33,7 +33,7 @@ LABEL_TO_INT: dict[str, int] = {
 
 INT_TO_LABEL: dict[int, str] = {v: k for k, v in LABEL_TO_INT.items()}
 
-# ── Derived constants ─────────────────────────────────────────────────────────
+# - Derived constants -
 
 NUM_CLASSES: int = len(LABEL_TO_INT)          # 7  (includes background)
 NUM_FOREGROUND_CLASSES: int = NUM_CLASSES - 1  # 6
@@ -60,7 +60,7 @@ LABEL_ABBREV: dict[str, str] = {
 }
 
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
+# - Helpers -
 
 def encode(label: str) -> int:
     """Return the integer index for a class name string.
@@ -91,7 +91,7 @@ def is_parasite(label: str) -> bool:
     return label in PARASITE_CLASSES
 
 
-# ── Self-test (run as script to verify) ───────────────────────────────────────
+# - Self-test (run as script to verify) -
 
 if __name__ == "__main__":
     print("MalariAI Label Map")
