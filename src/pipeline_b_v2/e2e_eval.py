@@ -104,6 +104,12 @@ try:
 except ImportError:
     _V2_AVAILABLE = False
 
+try:
+    from stage1_v3 import segment_cells as _segment_cells_v3
+    _V3_AVAILABLE = True
+except ImportError:
+    _V3_AVAILABLE = False
+
 # Active stage1 function — set by CLI arg at startup (default: v1)
 _stage1_version = "v1"
 
@@ -120,6 +126,14 @@ def _run_stage1(bgr: np.ndarray) -> list:
         rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
         # v2 returns dicts; convert to tuples for consistency with v1 and evaluate logic
         res = _segment_cells_v2(rgb)
+        return [(d["x_min"], d["y_min"], d["x_max"], d["y_max"]) for d in res]
+    elif _stage1_version == "v3":
+        if not _V3_AVAILABLE:
+            raise RuntimeError(
+                "stage1_v3.py not found. Check src/pipeline_b_v2/stage1_v3.py exists."
+            )
+        rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
+        res = _segment_cells_v3(rgb)
         return [(d["x_min"], d["y_min"], d["x_max"], d["y_max"]) for d in res]
     else:
         # v1 already returns tuples
@@ -710,7 +724,7 @@ def main():
     p.add_argument("--out-dir",    default="results/v2/e2e")
     p.add_argument("--iou-thr",    type=float, default=0.50,
                    help="IoU threshold for GT matching (default 0.50)")
-    p.add_argument("--stage1-version", choices=["v1", "v2"], default="v1",
+    p.add_argument("--stage1-version", choices=["v1", "v2", "v3"], default="v1",
                    help="Stage 1 implementation: v1=original watershed, "
                         "v2=CLAHE+resolution-aware (default: v1)")
     p.add_argument("--stage1-only", action="store_true",
