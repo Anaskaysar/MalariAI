@@ -6,7 +6,7 @@
 > Kaysarul Anas Apurba · Md Hasibul Hasan (Laurentian University, Canada) · Mohammed Ali (Melbourne Institute of Technology, Australia)
 
 **Live Demo:** [huggingface.co/spaces/Kaysarulanas/MalariAI](https://huggingface.co/spaces/Kaysarulanas/MalariAI)  
-**Code:** [github.com/Anaskaysar/MalariAI-Automated-Malaria-Cell-Segmentation-from-Blood-Smear-Images](https://github.com/Anaskaysar/MalariAI-Automated-Malaria-Cell-Segmentation-from-Blood-Smear-Images)
+**Code:** [https://github.com/Anaskaysar/MalariAI](https://github.com/Anaskaysar/MalariAI)
 
 ---
 
