@@ -89,7 +89,7 @@ except ImportError:
         stacklevel=2,
     )
 
-# ── Reference constants (1600 x 1200 BBBC041 baseline) ───────────────────────
+# Reference constants (1600 x 1200 BBBC041 baseline)
 REF_W        = 1600   # reference image width
 REF_H        = 1200   # reference image height
 REF_MIN_DIST = 12     # minimum distance between watershed seeds (px)
@@ -102,8 +102,7 @@ DIST_RATIO   = 0.35   # fallback: v1-style threshold (used if scipy missing)
 CLAHE_CLIP   = 2.0    # contrast clip limit (higher = stronger local contrast)
 CLAHE_TILE   = 8      # NxN tile grid size
 
-
-# ── Resolution scaling ────────────────────────────────────────────────────────
+# Resolution scaling
 
 def resolution_scale(h: int, w: int) -> float:
     """
@@ -118,7 +117,6 @@ def resolution_scale(h: int, w: int) -> float:
     """
     return math.sqrt((h * w) / (REF_H * REF_W))
 
-
 def auto_params(h: int, w: int) -> tuple[int, int, int]:
     """
     Return (min_dist, area_min, area_max) scaled to the given image resolution.
@@ -129,8 +127,7 @@ def auto_params(h: int, w: int) -> tuple[int, int, int]:
     area_max = int(REF_AREA_MAX * s ** 2)
     return min_dist, area_min, area_max
 
-
-# ── CLAHE preprocessing ───────────────────────────────────────────────────────
+# CLAHE preprocessing
 
 def apply_clahe(image_rgb: np.ndarray,
                 clip_limit: float = CLAHE_CLIP,
@@ -160,8 +157,7 @@ def apply_clahe(image_rgb: np.ndarray,
     lab[:, :, 0] = clahe.apply(lab[:, :, 0])
     return cv2.cvtColor(lab, cv2.COLOR_LAB2RGB)
 
-
-# ── Core segmentation function ────────────────────────────────────────────────
+# Core segmentation function
 
 def segment_cells(
     image: np.ndarray,
@@ -208,7 +204,7 @@ def segment_cells(
     """
     H, W = image.shape[:2]
 
-    # ── Resolve auto parameters ───────────────────────────────────────────
+    # Resolve auto parameters
     _min_dist, _area_min, _area_max = auto_params(H, W)
     if min_dist is None:
         min_dist = _min_dist
@@ -217,7 +213,7 @@ def segment_cells(
     if area_max is None:
         area_max = _area_max
 
-    # ── Step 1: Contrast normalisation ───────────────────────────────────
+    # Step 1: Contrast normalisation
     if normalise_stain:
         # Legacy v1 path: HSV V-channel equalisation
         hsv = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
@@ -227,7 +223,7 @@ def segment_cells(
     if clahe:
         image = apply_clahe(image, clip_limit=CLAHE_CLIP, tile_grid=CLAHE_TILE)
 
-    # ── Step 2: Grayscale + Otsu thresholding ───────────────────────────
+    # Step 2: Grayscale + Otsu thresholding
     gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
     # THRESH_BINARY_INV: cells (dark) -> 1, background (light) -> 0
     _, binary = cv2.threshold(
@@ -235,16 +231,16 @@ def segment_cells(
         cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU
     )
 
-    # ── Step 3: Morphological opening ────────────────────────────────────
+    # Step 3: Morphological opening
     kernel  = cv2.getStructuringElement(
         cv2.MORPH_ELLIPSE, (morph_ksize, morph_ksize)
     )
     cleaned = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kernel, iterations=2)
 
-    # ── Step 4: Distance transform ────────────────────────────────────────
+    # Step 4: Distance transform
     dist = cv2.distanceTransform(cleaned, cv2.DIST_L2, maskSize=5)
 
-    # ── Step 5: Seed generation ───────────────────────────────────────────
+    # Step 5: Seed generation
     if _SCIPY_OK:
         # v2 path: find local maxima with explicit min_distance
         # peak_local_max returns (row, col) indices of peaks
@@ -265,7 +261,7 @@ def segment_cells(
         dist_norm = dist / (dist.max() + 1e-8)
         seed_mask = (dist_norm >= dist_ratio).astype(np.uint8) * 255
 
-    # ── Step 6: Marker labelling ──────────────────────────────────────────
+    # Step 6: Marker labelling
     sure_bg = cv2.dilate(cleaned, kernel, iterations=3)
     unknown = cv2.subtract(sure_bg, seed_mask)
 
@@ -274,12 +270,12 @@ def segment_cells(
     markers = markers + 1
     markers[unknown == 255] = 0   # unknown region for watershed to fill
 
-    # ── Step 7: Watershed ─────────────────────────────────────────────────
+    # Step 7: Watershed
     img_bgr = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     markers = cv2.watershed(img_bgr, markers)
     # After: -1 = boundary, 1 = background, >=2 = cell regions
 
-    # ── Step 8: Extract bounding boxes ───────────────────────────────────
+    # Step 8: Extract bounding boxes
     results = []
 
     for label_id in range(2, n_labels + 2):
@@ -315,8 +311,7 @@ def segment_cells(
 
     return results
 
-
-# ── Convenience helpers (same as v1) ─────────────────────────────────────────
+# Convenience helpers (same as v1)
 
 def segment_image_file(
     img_path: str | Path,
@@ -327,7 +322,6 @@ def segment_image_file(
     image    = np.array(Image.open(img_path).convert("RGB"))
     boxes    = segment_cells(image, **kwargs)
     return image, boxes
-
 
 def draw_boxes(
     image: np.ndarray,
@@ -346,8 +340,7 @@ def draw_boxes(
         )
     return vis
 
-
-# ── CLI ───────────────────────────────────────────────────────────────────────
+# CLI
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(

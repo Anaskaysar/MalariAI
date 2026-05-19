@@ -56,11 +56,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from PIL import Image
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  Grad-CAM++
-# ═══════════════════════════════════════════════════════════════════════════════
-
+# Grad-CAM++
 class GradCAMPlusPlus:
     """
     Grad-CAM++ wrapper for EfficientNet-B0.
@@ -87,7 +83,7 @@ class GradCAMPlusPlus:
         self._fwd_hook = self.target_layer.register_forward_hook(self._save_activation)
         self._bwd_hook = self.target_layer.register_full_backward_hook(self._save_gradient)
 
-    # ── Hooks ──────────────────────────────────────────────────────────────────
+    # Hooks
 
     def _save_activation(self, module, inp, output):
         """Forward hook: cache feature maps."""
@@ -102,7 +98,7 @@ class GradCAMPlusPlus:
         self._fwd_hook.remove()
         self._bwd_hook.remove()
 
-    # ── Core computation ───────────────────────────────────────────────────────
+    # Core computation
 
     def __call__(
         self,
@@ -140,7 +136,7 @@ class GradCAMPlusPlus:
         score = logits[0, target_cls]
         score.backward()
 
-        # ── Grad-CAM++ formula ──────────────────────────────────────────────
+        # Grad-CAM++ formula
         # grads  : [1, C_feat, h, w]
         # acts   : [1, C_feat, h, w]
         grads = self._gradients                     # [1, K, h, w]
@@ -177,7 +173,7 @@ class GradCAMPlusPlus:
 
         return heatmap.astype(np.float32), pred_class, confidence
 
-    # ── Overlay helper ─────────────────────────────────────────────────────────
+    # Overlay helper
 
     @staticmethod
     def overlay(
@@ -219,7 +215,7 @@ class GradCAMPlusPlus:
         blended = Image.blend(original.convert("RGB"), coloured_img, alpha=alpha)
         return blended
 
-    # ── Batch helper ───────────────────────────────────────────────────────────
+    # Batch helper
 
     def batch_heatmaps(
         self,
@@ -237,12 +233,8 @@ class GradCAMPlusPlus:
             results.append(self(inp, class_idx=cidx))
         return results
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  Quick smoke-test
-# ═══════════════════════════════════════════════════════════════════════════════
-
-if __name__ == "__main__":
+# Quick smoke-test
+# if __name__ == "__main__":
     import sys
     from pathlib import Path
 

@@ -6,26 +6,26 @@ Full MalariAI end-to-end inference pipeline.
 Pipeline
 --------
   Input: full blood smear image (PNG / JPG)
-     |
+     │
      ▼
   Stage 1 — watershed_cells()
      → N bounding boxes (annotation-agnostic, no NMS)
-     |
+     │
      ▼
   Stage 2 — EfficientNet-B0 classifier
      → class label + confidence per cell
-     |
+     │
      ▼
   Grad-CAM++ — per-cell heatmap
      → spatial attention map (crop detail view)
-     |
+     │
      ▼
   Results saved to --out-dir:
-     ├- smear_annotated.jpg      Card 1: smear with watershed outlines + class labels
-     ├- crop_gallery.jpg         Card 2: grid of top-K infected cell crops
-     ├- gradcam_gallery.jpg      Card 3: Grad-CAM++ overlays for top-K infected cells
-     ├- fullimage_gradcam.jpg    Card 3 extra: Grad-CAM++ overlaid on full smear
-     └- results.json             Per-cell: box, label, confidence, heatmap intensity
+     ├── smear_annotated.jpg      Card 1: smear with watershed outlines + class labels
+     ├── crop_gallery.jpg         Card 2: grid of top-K infected cell crops
+     ├── gradcam_gallery.jpg      Card 3: Grad-CAM++ overlays for top-K infected cells
+     ├── fullimage_gradcam.jpg    Card 3 extra: Grad-CAM++ overlaid on full smear
+     └── results.json             Per-cell: box, label, confidence, heatmap intensity
 
 Usage
 -----
@@ -71,9 +71,10 @@ sys.path.insert(0, str(_p3))
 from stage1_watershed import watershed_cells, extract_crop
 from gradcam import GradCAMPlusPlus
 
+
 CROP_SIZE = 64
 
-# Box-size guards
+# ── Box-size guards ────────────────────────────────────────────────────────────
 # Watershed sometimes merges 3-5 touching cells into one large region.
 # These merged regions are not single cells and should not be classified.
 # Typical single RBC:  80-160 px wide/tall at 1600×1200 resolution.
@@ -93,7 +94,11 @@ _TRANSFORM = T.Compose([
     _NORMALIZE,
 ])
 
-# Model loading
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  Model loading
+# ═══════════════════════════════════════════════════════════════════════════════
+
 def load_model(checkpoint_path: str | None, device: torch.device) -> nn.Module:
     from torchvision.models import efficientnet_b0, EfficientNet_B0_Weights
 
@@ -113,8 +118,12 @@ def load_model(checkpoint_path: str | None, device: torch.device) -> nn.Module:
     model.to(device).eval()
     return model
 
-# Inference helpers
-# @torch.no_grad()
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  Inference helpers
+# ═══════════════════════════════════════════════════════════════════════════════
+
+@torch.no_grad()
 def classify_crops(
     model: nn.Module,
     crops_rgb: List[np.ndarray],
@@ -136,6 +145,7 @@ def classify_crops(
             results.append((int(pred), float(prob[pred])))
     return results
 
+
 def run_gradcam(
     cam: GradCAMPlusPlus,
     crops_rgb: List[np.ndarray],
@@ -151,10 +161,15 @@ def run_gradcam(
         heatmaps.append(hmap)
     return heatmaps
 
-# Visualisation builders
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  Visualisation builders
+# ═══════════════════════════════════════════════════════════════════════════════
+
 def _colour_bgr(label: str) -> Tuple[int, int, int]:
     r, g, b = CLASS_COLOUR_RGB.get(label, (200, 200, 200))
     return (b, g, r)
+
 
 def build_annotated_smear(
     bgr: np.ndarray,
@@ -216,6 +231,7 @@ def build_annotated_smear(
 
     return vis
 
+
 def build_crop_gallery(
     crops_rgb: List[np.ndarray],
     labels: List[str],
@@ -256,6 +272,7 @@ def build_crop_gallery(
                     cv2.FONT_HERSHEY_SIMPLEX, 0.30, colour_bgr, 1, cv2.LINE_AA)
 
     return canvas
+
 
 def build_gradcam_gallery(
     crops_rgb: List[np.ndarray],
@@ -309,6 +326,7 @@ def build_gradcam_gallery(
                     cv2.FONT_HERSHEY_SIMPLEX, 0.42, lbl_bgr, 1, cv2.LINE_AA)
 
     return canvas
+
 
 def build_fullimage_gradcam(
     bgr: np.ndarray,
@@ -373,7 +391,11 @@ def build_fullimage_gradcam(
 
     return blended
 
-# Main inference routine
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  Main inference routine
+# ═══════════════════════════════════════════════════════════════════════════════
+
 def _is_oversized(box: Tuple) -> bool:
     """Return True if a watershed box is too large to be a single cell.
 
@@ -388,6 +410,7 @@ def _is_oversized(box: Tuple) -> bool:
     if max(w, h) / max(min(w, h), 1) > MAX_ASPECT_RATIO:
         return True
     return False
+
 
 def run_inference(args):
     out_dir = Path(args.out_dir)
@@ -452,7 +475,7 @@ def run_inference(args):
     cam.remove_hooks()
     print(f"  Heatmaps computed for {len(heatmaps)} cells")
 
-    # Save outputs
+    # ── Save outputs ──────────────────────────────────────────────────────────
     print("\n[Output] Saving results ...")
 
     # Card 1: annotated smear
@@ -520,7 +543,11 @@ def run_inference(args):
     print("  fullimage_gradcam.jpg— Card 3 extra: full-image heatmap overlay")
     print("  results.json         — per-cell label, confidence, heatmap stats")
 
-# CLI
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  CLI
+# ═══════════════════════════════════════════════════════════════════════════════
+
 def parse_args():
     p = argparse.ArgumentParser(
         description="MalariAI full inference: watershed → EfficientNet-B0 → Grad-CAM++")
@@ -538,6 +565,7 @@ def parse_args():
                         "detection (default: 0.40). Below this the cell is shown "
                         "with a '?' suffix and excluded from Grad-CAM gallery.")
     return p.parse_args()
+
 
 if __name__ == "__main__":
     run_inference(parse_args())

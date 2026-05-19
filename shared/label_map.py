@@ -64,18 +64,15 @@ CLASS_COLOUR_RGB = {
     "background":     (128, 128, 128),
 }
 
-
 def encode(label: str) -> int:
     if label not in LABEL_TO_INT:
         raise KeyError(f"Unknown label '{label}'. Valid: {list(LABEL_TO_INT.keys())}")
     return LABEL_TO_INT[label]
 
-
 def decode(idx: int) -> str:
     if idx not in INT_TO_LABEL:
         raise KeyError(f"Unknown index {idx}. Valid: {list(INT_TO_LABEL.keys())}")
     return INT_TO_LABEL[idx]
-
 
 if __name__ == "__main__":
     print(f"{'IDX':<4} {'CLASS':<22} {'SHORT':<8} {'PARASITE'}")

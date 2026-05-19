@@ -81,7 +81,7 @@ from src.utils.label_map import NUM_CLASSES, INT_TO_LABEL, FOREGROUND_CLASSES  #
 from src.models.dataset import MalariaCropDataset, classification_transforms   # noqa
 
 
-# ── Focal Loss ────────────────────────────────────────────────────────────────
+# - Focal Loss -
 
 class FocalLoss(nn.Module):
     """
@@ -150,7 +150,7 @@ class FocalLoss(nn.Module):
         return loss
 
 
-# ── Model ─────────────────────────────────────────────────────────────────────
+# - Model -
 
 def build_efficientnet(num_classes: int = NUM_CLASSES,
                        pretrained: bool = True) -> nn.Module:
@@ -239,7 +239,7 @@ class EfficientNetClassifier:
         return results
 
 
-# ── Training helpers ──────────────────────────────────────────────────────────
+# - Training helpers -
 
 def train_one_epoch(model, loader, optimizer, criterion, device, epoch):
     model.train()
@@ -289,7 +289,7 @@ def evaluate(model, loader, criterion, device):
     return total_loss / max(len(loader), 1), acc
 
 
-# ── Main ──────────────────────────────────────────────────────────────────────
+# - Main -
 
 def main():
     parser = argparse.ArgumentParser(
@@ -315,7 +315,7 @@ def main():
     print(f"Focal gamma : {args.gamma}  (0 = standard cross-entropy)")
     print(f"Classes     : {FOREGROUND_CLASSES}")
 
-    # ── Datasets ─────────────────────────────────────────────────────────
+    # - Datasets -
     train_ds = MalariaCropDataset(
         args.train_csv, args.img_dir,
         transforms=classification_transforms(train=True,  img_size=args.img_size),
@@ -342,7 +342,7 @@ def main():
         if w > 0:
             print(f"  [{i}] {INT_TO_LABEL[i]:<20}  {w:.3f}")
 
-    # ── Model & loss ──────────────────────────────────────────────────────
+    # - Model & loss -
     model = build_efficientnet(
         num_classes=NUM_CLASSES, pretrained=not args.no_pretrain
     )
@@ -362,7 +362,7 @@ def main():
         optimizer, T_max=args.epochs, eta_min=1e-6
     )
 
-    # ── Training loop ─────────────────────────────────────────────────────
+    # - Training loop -
     out_dir       = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     best_val_acc  = 0.0
