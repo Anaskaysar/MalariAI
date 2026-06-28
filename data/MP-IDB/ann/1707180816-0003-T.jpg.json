@@ -1,0 +1,39 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741168,
+            "tagId": 31224,
+            "name": "trophozoite stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:32:01.316Z",
+            "updatedAt": "2024-03-01T15:32:01.316Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128215,
+            "classId": 6533082,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:32:01.317Z",
+            "updatedAt": "2024-03-01T15:32:01.317Z",
+            "tags": [],
+            "classTitle": "ovale",
+            "bitmap": {
+                "data": "eJwBUgGt/olQTkcNChoKAAAADUlIRFIAAABTAAAAbQEDAAAA5wzPngAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAD6SURBVHicldTBbcQgEAVQLA4+RSnBFaSAPbmtvUEnacWlUALKCa0QExs8wweZZI1k6QkN8IUBpXLTqrY5VS9UvYINOTGRv/IEfog/voko8oTimaqX7ASmWn7aFNu/XJgX1qcDOA76g8QpNZ+nEzjWaLme7TuvUG9umDozA9iBfeuJ/QN+gROYRrayJb3nW95k21rXrTry3DK1XpkRHFqbK7ub3lpLBDuwBycYuxcJ94mu7RobqFn/tW28vOHRf8SzodAcKHXnnCcNcF/wTvnOfLA2sL12fhN0XSo7znloDup18dHvdHkG9FE7iS1YsVW5EeVZ+jrSPvfvF4ZWUkuA0yTTAAAAAElFTkSuQmCChjOQWw==",
+                "origin": [
+                    1338,
+                    910
+                ]
+            }
+        }
+    ]
+}

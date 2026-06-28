@@ -1,0 +1,39 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741205,
+            "tagId": 31225,
+            "name": "schizont stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:33:00.492Z",
+            "updatedAt": "2024-03-01T15:33:00.492Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128264,
+            "classId": 6533083,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:33:00.493Z",
+            "updatedAt": "2024-03-01T15:33:00.493Z",
+            "tags": [],
+            "classTitle": "vivax",
+            "bitmap": {
+                "data": "eJwBDALz/YlQTkcNChoKAAAADUlIRFIAAACRAAAAhwEDAAAALJkp5gAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAG0SURBVHicpdY9TsMwFAfwF4IaBoQvgJSRlY0FETaOwVHsG/RK2bog9Qh4g9ESiyWCjR0nabD/Flbjpcmvfs+ftUs0lwuinqKyl5U8vdXj91ZWw8m4t8q6cgoeH5m3Jbi2R0HUedP3RN7ro30fJjOdaLw17nnYkQ3ljXnbe2OzmVZN7ZnusLZ6fOR2tlcV0q2K4Xqutypq6uu6SGB9ks/1CxiINYTtBth1mxpFZnMWN4JMgFhkPTC/HjwyVWhu7sNi/2NDoW2JzVkL2mCRqY0WbxhkcqO9pJbs+890uH68HTAem5urmKCZbfYIrGjdStcc5csZB/ni/g3T2VRgyXqgsyRzXp1tEvRliylcj51rutCGDWbAPFtsSWymXmKojdL+oXlBdxTaGxqvUbJPc8YLTGd+b8g6EBubAbFWgIMIxFrQP3RH9WC8PZg/dMcLYODYNZTmM1fpepjbtH9mPnO+278JL927Wtl8oaul9UMw9y59S6OLxob/XPbZjVrWwUywJ98jV/fHmwrmE3wJ4pobavrF6pq8aWoomBg/qVVcTVZ9TMbUg6KoMLqTse2oSsylGRv9BVTl5yOxmDkdAAAAAElFTkSuQmCCWxr1ag==",
+                "origin": [
+                    1289,
+                    394
+                ]
+            }
+        }
+    ]
+}

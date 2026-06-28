@@ -56,24 +56,21 @@ import numpy as np
 from scipy import ndimage as ndi
 from skimage.feature import peak_local_max
 from skimage.segmentation import watershed
+from tqdm import tqdm
 
-# ── Project root on sys.path ──────────────────────────────────────────────────
+# Project root on sys.path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 from shared.label_map import LABEL_TO_INT, INT_TO_LABEL, CLASS_COLOUR_RGB
 
 SKIP_LABELS = {"difficult"}
 CROP_SIZE   = 64          # output crop dimension (pixels)
-MIN_AREA    = 200         # discard watershed regions smaller than this (noise)
-MIN_DIST    = 18          # peak_local_max min_distance (px) — tune to cell size
-OPEN_KSIZE  = 5           # morphological opening kernel size
-DIST_THRESH = 0.30        # fraction of max distance → sure-foreground threshold
+MIN_AREA    = 150         # discard watershed regions smaller than this (noise)
+MIN_DIST    = 12          # peak_local_max min_distance (px) — smaller = more seeds = better separation
+OPEN_KSIZE  = 3           # morphological opening kernel size — smaller preserves inter-cell gaps
+DIST_THRESH = 0.25        # fraction of max distance → sure-foreground threshold — lower = more markers
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  Core watershed routine
-# ═══════════════════════════════════════════════════════════════════════════════
-
+# Core watershed routine
 def watershed_cells(
     bgr: np.ndarray,
     min_area: int   = MIN_AREA,
@@ -133,11 +130,7 @@ def watershed_cells(
 
     return boxes
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  Crop extraction helpers
-# ═══════════════════════════════════════════════════════════════════════════════
-
+# Crop extraction helpers
 def extract_crop(bgr: np.ndarray, box: Tuple[int, int, int, int],
                  size: int = CROP_SIZE) -> np.ndarray:
     """
@@ -156,7 +149,6 @@ def extract_crop(bgr: np.ndarray, box: Tuple[int, int, int, int],
     crop_rgb = cv2.cvtColor(crop_bgr, cv2.COLOR_BGR2RGB)
     return crop_rgb
 
-
 def iou(a: Tuple[int,int,int,int], b: Tuple[int,int,int,int]) -> float:
     """Compute IoU between two (x1,y1,x2,y2) boxes."""
     ix1 = max(a[0], b[0]); iy1 = max(a[1], b[1])
@@ -166,7 +158,6 @@ def iou(a: Tuple[int,int,int,int], b: Tuple[int,int,int,int]) -> float:
     area_b = (b[2]-b[0]) * (b[3]-b[1])
     union  = area_a + area_b - inter
     return inter / union if union > 0 else 0.0
-
 
 def match_gt(ws_box: Tuple, gt_boxes: List, gt_labels: List,
              iou_thr: float = 0.40) -> Tuple[str, float]:
@@ -183,11 +174,7 @@ def match_gt(ws_box: Tuple, gt_boxes: List, gt_labels: List,
         return "background", best_iou
     return best_label, best_iou
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  JSON parsing
-# ═══════════════════════════════════════════════════════════════════════════════
-
+# JSON parsing
 def parse_json(json_path: Path) -> List[dict]:
     """Return list of {filename, image_id, gt_boxes, gt_labels} dicts."""
     with open(json_path) as f:
@@ -214,11 +201,7 @@ def parse_json(json_path: Path) -> List[dict]:
         records.append({"filename": fname, "gt_boxes": gt_boxes, "gt_labels": gt_labels})
     return records
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  Visualisation
-# ═══════════════════════════════════════════════════════════════════════════════
-
+# Visualisation
 def draw_watershed_vis(bgr: np.ndarray, ws_boxes: List,
                        gt_boxes: List, gt_labels: List) -> np.ndarray:
     """Draw GT boxes (green) and watershed boxes (blue) on the image."""
@@ -231,11 +214,7 @@ def draw_watershed_vis(bgr: np.ndarray, ws_boxes: List,
         cv2.rectangle(vis, (x1, y1), (x2, y2), (255, 100, 0), 1)
     return vis
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  Crops mode
-# ═══════════════════════════════════════════════════════════════════════════════
-
+# Crops mode
 def run_crops(records, img_dir: Path, out_dir: Path, vis_dir: Path | None,
               n_vis: int):
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -248,7 +227,7 @@ def run_crops(records, img_dir: Path, out_dir: Path, vis_dir: Path | None,
                          "gt_label", "gt_iou"])
 
         total_ws = 0
-        for rec_idx, rec in enumerate(records):
+        for rec_idx, rec in enumerate(tqdm(records, desc="Extracting crops", unit="img")):
             img_path = img_dir / rec["filename"]
             if not img_path.exists():
                 # try basename only
@@ -277,10 +256,6 @@ def run_crops(records, img_dir: Path, out_dir: Path, vis_dir: Path | None,
                 writer.writerow([rec["filename"], cell_idx, crop_name,
                                  *box, label, f"{best_iou:.3f}"])
 
-            if (rec_idx + 1) % 50 == 0:
-                print(f"  [{rec_idx+1}/{len(records)}] "
-                      f"total watershed cells so far: {total_ws}")
-
             # optional visualisation
             if vis_dir and rec_idx < n_vis:
                 vis_dir.mkdir(parents=True, exist_ok=True)
@@ -292,11 +267,7 @@ def run_crops(records, img_dir: Path, out_dir: Path, vis_dir: Path | None,
     print(f"\nDone. {total_ws} crops saved to {out_dir}")
     print(f"Manifest: {manifest_path}")
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  Eval mode  (cell-recovery + dense-region recall)
-# ═══════════════════════════════════════════════════════════════════════════════
-
+# Eval mode  (cell-recovery + dense-region recall)
 def run_eval(records, img_dir: Path, vis_dir: Path | None, n_vis: int,
              dense_thresh: int = 100):
     """
@@ -311,7 +282,7 @@ def run_eval(records, img_dir: Path, vis_dir: Path | None, n_vis: int,
 
     per_image  = []
 
-    for rec_idx, rec in enumerate(records):
+    for rec_idx, rec in enumerate(tqdm(records, desc="Evaluating", unit="img")):
         img_path = img_dir / rec["filename"]
         if not img_path.exists():
             img_path = img_dir / Path(rec["filename"]).name
@@ -348,10 +319,6 @@ def run_eval(records, img_dir: Path, vis_dir: Path | None, n_vis: int,
         if n_gt >= dense_thresh:
             dense_gt  += n_gt
             dense_rec += rec_count
-
-        if (rec_idx + 1) % 20 == 0:
-            print(f"  [{rec_idx+1}/{len(records)}] "
-                  f"running recall={recovered/max(total_gt,1)*100:.1f}%")
 
         if vis_dir and rec_idx < n_vis:
             vis_dir.mkdir(parents=True, exist_ok=True)
@@ -391,11 +358,7 @@ def run_eval(records, img_dir: Path, vis_dir: Path | None, n_vis: int,
         json.dump(results, f, indent=2)
     print(f"Results saved: {out_path}")
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#  CLI
-# ═══════════════════════════════════════════════════════════════════════════════
-
+# CLI
 def parse_args():
     p = argparse.ArgumentParser(
         description="Stage 1 — Annotation-agnostic watershed cell segmentation")
@@ -416,7 +379,6 @@ def parse_args():
                    help="Minimum distance between cell-centre peaks (default 18)")
     return p.parse_args()
 
-
 def main():
     args    = parse_args()
     img_dir = Path(args.img_dir)
@@ -435,7 +397,6 @@ def main():
 
     elapsed = time.time() - t0
     print(f"Total time: {elapsed/60:.1f} min")
-
 
 if __name__ == "__main__":
     main()

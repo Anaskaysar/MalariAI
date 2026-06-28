@@ -31,13 +31,13 @@ from PIL import Image
 from torch.utils.data import Dataset
 import torchvision.transforms as T
 
-# ── Shared label map ──────────────────────────────────────────────────────────
+# - Shared label map -
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 from src.utils.label_map import LABEL_TO_INT, INT_TO_LABEL, NUM_CLASSES  # noqa
 
 
-# ── Default transforms ────────────────────────────────────────────────────────
+# - Default transforms -
 
 def detection_transforms(train: bool = True):
     """
@@ -79,7 +79,7 @@ def classification_transforms(train: bool = True, img_size: int = 64):
         ])
 
 
-# ── MalariaDataset (detection) ────────────────────────────────────────────────
+# - MalariaDataset (detection) -
 
 class MalariaDataset(Dataset):
     """
@@ -115,7 +115,7 @@ class MalariaDataset(Dataset):
         img_name = self.image_names[idx]
         group    = self.image_groups.get_group(img_name)
 
-        # ── Load image ────────────────────────────────────────────────────
+        # - Load image -
         img_path = self.image_dir / img_name
         if not img_path.exists():
             raise FileNotFoundError(
@@ -124,7 +124,7 @@ class MalariaDataset(Dataset):
             )
         image = Image.open(img_path).convert("RGB")
 
-        # ── Collect boxes and labels ──────────────────────────────────────
+        # - Collect boxes and labels -
         boxes  = []
         labels = []
         for _, row in group.iterrows():
@@ -145,14 +145,14 @@ class MalariaDataset(Dataset):
         boxes  = torch.as_tensor(boxes,  dtype=torch.float32)
         labels = torch.as_tensor(labels, dtype=torch.int64)
 
-        # ── Build target dict (torchvision detection API) ─────────────────
+        # - Build target dict (torchvision detection API) -
         target = {
             "boxes":    boxes,
             "labels":   labels,
             "image_id": torch.tensor([idx], dtype=torch.int64),
         }
 
-        # ── Apply transforms ──────────────────────────────────────────────
+        # - Apply transforms -
         image = self.transforms(image)
 
         return image, target
@@ -162,7 +162,7 @@ class MalariaDataset(Dataset):
         return self.annotations["label"].value_counts().to_dict()
 
 
-# ── MalariaCropDataset (classification) ──────────────────────────────────────
+# - MalariaCropDataset (classification) -
 
 class MalariaCropDataset(Dataset):
     """
@@ -197,14 +197,14 @@ class MalariaCropDataset(Dataset):
     def __getitem__(self, idx: int):
         row = self.annotations.iloc[idx]
 
-        # ── Load full image ───────────────────────────────────────────────
+        # - Load full image -
         img_path = self.image_dir / row["img_name"]
         if not img_path.exists():
             raise FileNotFoundError(f"Image not found: {img_path}")
         image = Image.open(img_path).convert("RGB")
         W, H  = image.size
 
-        # ── Crop with margin ──────────────────────────────────────────────
+        # - Crop with margin -
         x0 = max(0, int(row["x_min"]) - self.margin)
         y0 = max(0, int(row["y_min"]) - self.margin)
         x1 = min(W, int(row["x_max"]) + self.margin)
@@ -233,7 +233,7 @@ class MalariaCropDataset(Dataset):
         return weights
 
 
-# ── Quick sanity check ────────────────────────────────────────────────────────
+# - Quick sanity check -
 
 if __name__ == "__main__":
     import argparse

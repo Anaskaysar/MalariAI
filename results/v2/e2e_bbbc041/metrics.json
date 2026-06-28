@@ -1,0 +1,77 @@
+{
+  "iou_threshold": 0.5,
+  "dataset": "bbbc041",
+  "n_images_evaluated": 120,
+  "gt_counts": {
+    "red blood cell": 5614,
+    "trophozoite": 111,
+    "ring": 169,
+    "schizont": 11,
+    "gametocyte": 12
+  },
+  "ap_per_class": {
+    "ring": {
+      "ap": 0.0822,
+      "n_gt": 169
+    },
+    "trophozoite": {
+      "ap": 0.0827,
+      "n_gt": 111
+    },
+    "schizont": {
+      "ap": 0.1364,
+      "n_gt": 11
+    },
+    "gametocyte": {
+      "ap": 0.0455,
+      "n_gt": 12
+    },
+    "leukocyte": {
+      "ap": 0.0,
+      "n_gt": 0
+    }
+  },
+  "mAP_at_iou50": 0.0867,
+  "binary_parasitized_AP": 0.291,
+  "stage1": {
+    "total_gt_cells": 5917,
+    "total_watershed_boxes": 7704,
+    "tp": 3957,
+    "fp": 3747,
+    "fn": 1960,
+    "recall_at_iou50": 0.6688,
+    "precision_at_iou50": 0.5136,
+    "f1_at_iou50": 0.581,
+    "per_class": {
+      "red blood cell": {
+        "gt_count": 5614,
+        "tp": 3756,
+        "recall": 0.6690416815105095
+      },
+      "trophozoite": {
+        "gt_count": 111,
+        "tp": 68,
+        "recall": 0.6126126126126126
+      },
+      "ring": {
+        "gt_count": 169,
+        "tp": 121,
+        "recall": 0.7159763313609467
+      },
+      "schizont": {
+        "gt_count": 11,
+        "tp": 3,
+        "recall": 0.2727272727272727
+      },
+      "gametocyte": {
+        "gt_count": 12,
+        "tp": 9,
+        "recall": 0.75
+      }
+    }
+  },
+  "timing": {
+    "stage1_seconds": 118.0,
+    "e2e_seconds": 126.8
+  }
+}

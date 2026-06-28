@@ -1,0 +1,39 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741006,
+            "tagId": 31226,
+            "name": "gametocyte stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:28:41.600Z",
+            "updatedAt": "2024-03-01T15:28:41.600Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150126918,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:28:41.602Z",
+            "updatedAt": "2024-03-01T15:28:41.602Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJwBdwGI/olQTkcNChoKAAAADUlIRFIAAACzAAAAVgEDAAAAvlM1gQAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAEfSURBVHicrdUxcoQwDAVQMltsyZbpyDHScTToUqRIjuRuyxwhPoLLLRgrGLwslv5nxplVQfFGY0sYi6bZxXsD4yRzeOKj1q5pk98UD5LDlX5nKfRyFpT/UJGoKwHe7ly+N36RIjzxbedz6cHUrlpQfK+o1fn53fXaPV4++8l4QFXOMR26KSc3MFh3sMzcAMm3Za6FMrdlrg7KXBpg3hEHvJwMcpYv5hvZHLWVHLWVvIU+VjpuN+X3Ve7QKf7LIVev48k6zNm+Y6WTYz9YZ3iKw1u0eI84Ep+elB+4d5UO1/HER3IvyHWPB147ftABBzLe8Ni7xmKs/kxf8pGKcWH/c8kzOT3e9mNe/y/zBjEYXzZwhle3PG/w+RuRz/Gq4Q/yNOADwZge3gAAAABJRU5ErkJggqnsqRc=",
+                "origin": [
+                    1117,
+                    599
+                ]
+            }
+        }
+    ]
+}

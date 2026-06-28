@@ -1,0 +1,58 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741257,
+            "tagId": 31225,
+            "name": "schizont stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:34:21.857Z",
+            "updatedAt": "2024-03-01T15:34:21.857Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128325,
+            "classId": 6533081,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:34:21.858Z",
+            "updatedAt": "2024-03-01T15:34:21.858Z",
+            "tags": [],
+            "classTitle": "malariae",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtK6QKzCyAwk1W8rCgIptgCfEFcg/f///6U3598FshhLgvyCGRye3UgDcpI8XRxDKua0nj/L2WDAw/rAo1WulPn6h2cZpSbuhS1yxStqny3vYD3o8MOv8qGgq9pcVotW3oTlHAZsC+1Y1LleWH7xSQ5it7ok/jbv0xQxMZna7j/8+1euLj2RolqmGnuv2MztprRU7xSbD+W/y4C2MXi6+rmsc0poAgBnMUAm",
+                "origin": [
+                    1869,
+                    1008
+                ]
+            }
+        },
+        {
+            "id": 150128326,
+            "classId": 6533081,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:34:21.858Z",
+            "updatedAt": "2024-03-01T15:34:21.858Z",
+            "tags": [],
+            "classTitle": "malariae",
+            "bitmap": {
+                "data": "eJwBWQGm/olQTkcNChoKAAAADUlIRFIAAABzAAAAZAEDAAAAj16dhgAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAEBSURBVHicrdTLDcMgDAZgIypxK52gWaEbMFJHSEbpKIySETj2EMXNAxL80xZVKbdPAWwTMNEyriSHC0G45WdOxTx8s2bmbIMzz2PfoV3MXTZ7Hj7aRKcFFtxEj3K7bUOWVpt7cBDhS48inU+2H83oLk8/VfyrHbjd3YODOI71BBXL72gD87Nwy09m6Xz5XLAW7grbr/ZVmz/7WLyusAU34LZiPmSquIznfrIv6rEV4/lpsALLBNE9yQA1P+R9ZrjvA/gJ7yW8e18ObMEanAXw0EA8NCQPDS3agZvI1ABjBiZ5DTDq1JMVmGLxW0eeUh7uA12Sp4hk844/Qfh0I7UczguaWTZPe4mJNgAAAABJRU5ErkJggmy/jnc=",
+                "origin": [
+                    1158,
+                    1033
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741183,
+            "tagId": 31223,
+            "name": "ring stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:32:31.674Z",
+            "updatedAt": "2024-03-01T15:32:31.674Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128231,
+            "classId": 6533083,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:32:31.675Z",
+            "updatedAt": "2024-03-01T15:32:31.675Z",
+            "tags": [],
+            "classTitle": "vivax",
+            "bitmap": {
+                "data": "eJwBPgHB/olQTkcNChoKAAAADUlIRFIAAAA/AAAATQEDAAAAK3suVgAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAADmSURBVHicZdKxbcMwEAXQrxCBqlhtGoNrJE2UTewRXLoTR+MGGSEaQUAaAVF4Js37p1hSoweSd+QnCHxCv7P+nyfFcVa8Ly7eIakdgUOG+KWJpwJJ/SixQORHxgrJGCpm9ISvWNBxxBFNxQSwXOsjXEXA0x5c7IjGynst182gSBm+nkJHSty2nuIfPKEH1M6G38C9Il64abfBtCa17O0GaUW3u5+efQyesMj77HYwRdgBrGKcxKQLpyzpxCnDSEReVOBlGiJRFn9pQ3w/7FUwXOXvjg+UcLn+DbHiFSG30DfY8DHight+Hq1xaZgzSQAAAABJRU5ErkJggiAUhLs=",
+                "origin": [
+                    1279,
+                    315
+                ]
+            }
+        }
+    ]
+}

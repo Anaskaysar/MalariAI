@@ -1,0 +1,39 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741164,
+            "tagId": 31225,
+            "name": "schizont stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:32:01.316Z",
+            "updatedAt": "2024-03-01T15:32:01.316Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128212,
+            "classId": 6533082,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:32:01.317Z",
+            "updatedAt": "2024-03-01T15:32:01.317Z",
+            "tags": [],
+            "classTitle": "ovale",
+            "bitmap": {
+                "data": "eJwBfAGD/olQTkcNChoKAAAADUlIRFIAAABzAAAAYQEDAAAA35MMNQAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAEkSURBVHicndTNbcUgDABgoxzSGxuUEXrtjbV6qBpm6gSMwggcoxZBH//GIaKtD0/6Ypuf8AIAAAv6OKHFFmKoZpls9s9Mlhi+QxjyWthins108VH66xS537w4PF3wMuD2VEKsiRWxm1o2e+I8oLi3WuTNf8zvbX9jNN5J8sn7fd7NjMbz5bjO+qC8L4P96DcC1UdzUl/XoPJxW9k3EI/bHX2B8e/keHesP/ex3tc1umF7U0tsf7XADiT/WDD1MRgW1kuHRf5vNpe8XFgMVsTX/E68BT6Y+W1w+8BTALHqF8K0ftrf6+kXbInPqfuW6I1Cb5Dsp7G9L4DaFtcJdHF5Z1+F9YqraYBnaJtJ8UH8Dm3zJeSQz18dNsPDpyC8+I34Nf3+ANzx2EhgBUOTAAAAAElFTkSuQmCCpiOzig==",
+                "origin": [
+                    1357,
+                    875
+                ]
+            }
+        }
+    ]
+}

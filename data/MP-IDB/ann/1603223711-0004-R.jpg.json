@@ -1,0 +1,58 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741062,
+            "tagId": 31223,
+            "name": "ring stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:29:44.108Z",
+            "updatedAt": "2024-03-01T15:29:44.108Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150127286,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:29:44.109Z",
+            "updatedAt": "2024-03-01T15:29:44.109Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtKGQKzHyAwkd19KFgRSbAE+Ia5A+v///0tvzr8LZDGWBPkFMzg8u5EG5DR5ujiGVMyJvXCQt0GBh/WCVHKPurhBosgdHvMCVfdC5l51/jav2/4uO/Y4ZCyc35GhEJ1ndjjvl/DzSNv8itBouyvzKo1/+PWdZHfLnJSi2eY4p4Nl54Lqf1+WCpYGznN+nLPi29KfD4PYnVP/PTi/dJPEilajD6z+KxojZrKURuTJfloy5T03Z8TKx/IJD9KBrmHwdPVzWeeU0AQAORJR2A==",
+                "origin": [
+                    2150,
+                    801
+                ]
+            }
+        },
+        {
+            "id": 150127287,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:29:44.109Z",
+            "updatedAt": "2024-03-01T15:29:44.109Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtI2QGzFyAwkr2Wv0AFSbAE+Ia5A+v///0tvzr8LZDGWBPkFMzg8u5EG5Cz3dHEMqZhTetGX75CCAOsDRdPCSH8F94cZX9Ie+VaxTFPRUv78WefiiTb9L0t5jF1cHrpsO/fHkXGVYpG5yjPfiYxp/LwmDxSrJSbEP9udsOSzd4CJYTL7q8YGf8aH+2+4zc0pX+twZW/2wWRb9YglD5co2SQ7ut3L9HD40hMbtsW3j0OlfuOiyz05oRJSC3TPmLt39b1+tYNlS+WR8jOL6hT/JTAypVkdPO4bdFT60cff9RJH56wAOpnB09XPZZ1TQhMAdhNkXQ==",
+                "origin": [
+                    884,
+                    1193
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,58 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741175,
+            "tagId": 31223,
+            "name": "ring stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:32:12.651Z",
+            "updatedAt": "2024-03-01T15:32:12.651Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128222,
+            "classId": 6533082,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:32:12.652Z",
+            "updatedAt": "2024-03-01T15:32:12.652Z",
+            "tags": [],
+            "classTitle": "ovale",
+            "bitmap": {
+                "data": "eJwBaQGW/olQTkcNChoKAAAADUlIRFIAAABtAAAAYAEDAAAALahuywAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAAERSURBVHicndRNDsIgEAVgCIsuPUKPUo/iIdyXxIXXauJB5AjdyYIwAinlvWrqz+y+VIaZ6VilUhg5K4hO4hE4iExAIWpmn+gaxz0aIR6YA3Mk5luBJZP4Vn+OyBRK3IoehXItDK3ZEla3a/OvjUWGfmr31GzAubYna6HAsMxtidhqrBx3KX8ycKrwWpVhaiYc3qdnzm8oX9Izo+MeHHcoG1rmhB39SMuk4eQqYXS5B6T7kZh55o429DwNz5v0Zu1gRyO/YOGXlEe3JRz+vP5A/5HmTzouuvzFe7lfWs1pAFbD007qgXJWhzqxsnfqVCc2169Huu0BTLluV+KkiVYN63dJ5akO61PVpZn3TmEYprZPQU1tPQ9q/sgAAAAASUVORK5CYIK+uZ7X",
+                "origin": [
+                    1363,
+                    282
+                ]
+            }
+        },
+        {
+            "id": 150128223,
+            "classId": 6533082,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:32:12.652Z",
+            "updatedAt": "2024-03-01T15:32:12.652Z",
+            "tags": [],
+            "classTitle": "ovale",
+            "bitmap": {
+                "data": "eJwBPgHB/olQTkcNChoKAAAADUlIRFIAAABoAAAASAEDAAAAIH4i1AAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAADmSURBVHicndMxDoIwFAbgRxg6cgScvICDI1fxFE4a8SQeRbyFg4ndXBzcZID+liL0fyYS45v48tq/4VFEupoJ1WJNSOE2EQfAjUrgq1JqBhW9kirKrbZ9e9cJFiBVSnWvEBmq9DITykbZMSQEKfmlhmQpBHgoNRTZKVeiED+P/4RJ4Wf9us8pNRN6KFmlUp3nhxvpZ70rqCXLUeHO5EpGafjS7Z1uAeqKe1ZoX1sGZb0uEvWEkG5OqWadlPYsJ+e3DOhWfyhRSid6Av5xuvcjFUo5gG/K1EqDax2V4mCjEhxJUsyHpxf2S0ddqcgBOAAAAABJRU5ErkJggo0OgGM=",
+                "origin": [
+                    939,
+                    1228
+                ]
+            }
+        }
+    ]
+}

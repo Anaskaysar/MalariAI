@@ -1,0 +1,58 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741018,
+            "tagId": 31223,
+            "name": "ring stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:29:01.386Z",
+            "updatedAt": "2024-03-01T15:29:01.386Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150127060,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:29:01.387Z",
+            "updatedAt": "2024-03-01T15:29:01.387Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtK+QBzIyAwk117eKQyk2AJ8QlyB9P///5fenH8XyGIsCfILZnB4diMNyNnu6eIYUjFn7mVvvlYFHtYLQuw8kU3ehZkbTKY/EpIwUgi7sk2ct1J/4kVJk71P3Ut0z3em6O5pmn3CMD0xQS9ha1Cq9tud2Q7RYaeExHsvr7SulLsYu+sZp7lxxJbXZy0WmVi8PMiglyAzqZdvTtsXZ7aCf8eemhef51h166Pk9XyfY3P/bbCTcJQ14t858a3FwyahdboTZU1tX+Sw+K5LqDQ8de7NyxL+vp6nZxn8jHaonWafKLh04z8pfquTVgzz1luse57AuBHoBQZPVz+XdU4JTQBfhmlO",
+                "origin": [
+                    1375,
+                    174
+                ]
+            }
+        },
+        {
+            "id": 150127061,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:29:01.387Z",
+            "updatedAt": "2024-03-01T15:29:01.387Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJzrDPBz5+WS4mJgYOD19HAJAtIxQBzEyAwkH2srZgMptgCfEFcg/f///6U3598FshhLgvyCGRye3UgDco55ujiGVMw5enmvYIuCAGuCTDO37sEgDV6vzSJeOyY0PJSV2fT7T+Ixn0V/jyVGfsn0iTTY8mBr3MSXjAIS9+POswZudzC/yZT5TmtbmP/Wd7JSi8yYgw5/Yuf7UNTDk+IoK7PicF8Nax7D3DT7jHc3JBzZM6bvcE9RcUu7UtZV0SSqstNRWpS5wq2C6/gF59O9xyLijx/6wWNorMa2t+UDzzz7w4zPWG6/tuFxuhSzfQ8H0+Jl/nolJ5YquvTlP0lgP7d/f9LUxJTJz/dve8T+5fOxN4eqQmSBPmLwdPVzWeeU0AQA1flw/w==",
+                "origin": [
+                    1003,
+                    1633
+                ]
+            }
+        }
+    ]
+}

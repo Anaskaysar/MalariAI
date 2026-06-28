@@ -83,7 +83,7 @@ import cv2
 import numpy as np
 from PIL import Image
 
-# ── Tunable constants ─────────────────────────────────────────────────────────
+# Tunable constants
 # These are starting-point values. You will tune them on val images in Week 2.
 
 DIST_RATIO  = 0.35   # peak threshold as fraction of distance-map maximum
@@ -93,8 +93,7 @@ AREA_MIN    = 150    # minimum cell area in pixels (ignores dust / noise)
 AREA_MAX    = 8000   # maximum cell area in pixels (ignores large artefacts)
 MORPH_KSIZE = 3      # morphological opening kernel size
 
-
-# ── Core function ─────────────────────────────────────────────────────────────
+# Core function
 
 def segment_cells(
     image: np.ndarray,
@@ -128,13 +127,13 @@ def segment_cells(
     list of dicts with keys: x_min, y_min, x_max, y_max, area, label
     """
 
-    # ── Step 1: Optional stain normalisation ──────────────────────────────
+    # Step 1: Optional stain normalisation
     if normalise_stain:
         hsv    = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
         hsv[:, :, 2] = cv2.equalizeHist(hsv[:, :, 2])
         image  = cv2.cvtColor(hsv, cv2.COLOR_HSV2RGB)
 
-    # ── Step 2: Grayscale + Otsu threshold ───────────────────────────────
+    # Step 2: Grayscale + Otsu threshold
     gray   = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
     # THRESH_BINARY_INV: cells (dark) become 1, background (light) becomes 0
     _, binary = cv2.threshold(
@@ -142,13 +141,13 @@ def segment_cells(
         cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU
     )
 
-    # ── Step 3: Morphological opening ────────────────────────────────────
+    # Step 3: Morphological opening
     kernel  = cv2.getStructuringElement(
         cv2.MORPH_ELLIPSE, (morph_ksize, morph_ksize)
     )
     cleaned = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kernel, iterations=2)
 
-    # ── Step 4: Distance transform ────────────────────────────────────────
+    # Step 4: Distance transform
     dist    = cv2.distanceTransform(cleaned, cv2.DIST_L2, maskSize=5)
     # cv2.distanceTransform returns float32 distances in pixels
     # Normalise to [0, 1] for stable threshold arithmetic
@@ -157,7 +156,7 @@ def segment_cells(
     # Peak pixels: those whose distance value exceeds dist_ratio * max
     sure_fg = (dist_norm >= dist_ratio).astype(np.uint8) * 255
 
-    # ── Step 5: Marker labelling ──────────────────────────────────────────
+    # Step 5: Marker labelling
     # sure_bg: everything that is definitely background (dilated inverse of fg)
     sure_bg   = cv2.dilate(cleaned, kernel, iterations=3)
     unknown   = cv2.subtract(sure_bg, sure_fg)          # unknown region
@@ -169,13 +168,13 @@ def segment_cells(
     markers = markers + 1
     markers[unknown == 255] = 0   # mark unknown region for watershed to fill
 
-    # ── Step 6: Watershed ─────────────────────────────────────────────────
+    # Step 6: Watershed
     # OpenCV's watershed expects BGR format and marks boundaries with -1
     img_bgr  = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     markers  = cv2.watershed(img_bgr, markers)
     # After watershed: -1 = boundary, 1 = background, ≥2 = cell regions
 
-    # ── Step 7: Extract bounding boxes ───────────────────────────────────
+    # Step 7: Extract bounding boxes
     results  = []
     H, W     = image.shape[:2]
 
@@ -212,8 +211,7 @@ def segment_cells(
 
     return results
 
-
-# ── Convenience: process from file path ──────────────────────────────────────
+# Convenience: process from file path
 
 def segment_image_file(
     img_path: str | Path,
@@ -227,8 +225,7 @@ def segment_image_file(
     boxes    = segment_cells(image, **kwargs)
     return image, boxes
 
-
-# ── Visualisation helper ──────────────────────────────────────────────────────
+# Visualisation helper
 
 def draw_boxes(image: np.ndarray, boxes: list[dict],
                colour: tuple = (0, 255, 0), thickness: int = 1) -> np.ndarray:
@@ -241,8 +238,7 @@ def draw_boxes(image: np.ndarray, boxes: list[dict],
                       colour, thickness)
     return vis
 
-
-# ── CLI: process a single image and save a visualisation ─────────────────────
+# CLI: process a single image and save a visualisation
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(

@@ -1,0 +1,39 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741137,
+            "tagId": 31224,
+            "name": "trophozoite stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:25.322Z",
+            "updatedAt": "2024-03-01T15:31:25.322Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128080,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:25.323Z",
+            "updatedAt": "2024-03-01T15:31:25.323Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJwBRgG5/olQTkcNChoKAAAADUlIRFIAAABsAAAAXAEDAAAAsdLCIwAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAADuSURBVHicxdRLDoQgDAZgjAuXHMGjzNHgaByFI7h0YWS00MdvHMwsJsPui9AWU+ocrbmU4nS9Dm6i4VDZhdNJ3e2JkTkTEzMQl6aRVFbYK6x7OfFQxYnbUU48MaONxAzMWgerZBu4USLVKpWr3k4oqlUiNTAVPSI1MN3BI2dk+Mxo054cLNOVY4cZinqk73C5cka+/sTwM5YO8zdMDwwdRrxvxN/urvRGO7bkDg17Q9tXK/Q+PZyANGVlbO8E3PGRbTdP8PJeNXGUWdWuZyfBhnNixaHCAynYwHKY6W0ezszTqmVehHQ6Ko/vdXa9Aeaty+9KzOdyAAAAAElFTkSuQmCCRsqOAA==",
+                "origin": [
+                    1224,
+                    1056
+                ]
+            }
+        }
+    ]
+}

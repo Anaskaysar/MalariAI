@@ -1,0 +1,39 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 18741131,
+            "tagId": 31223,
+            "name": "ring stage",
+            "value": null,
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.746Z",
+            "updatedAt": "2024-03-01T15:31:17.746Z"
+        }
+    ],
+    "size": {
+        "height": 1944,
+        "width": 2592
+    },
+    "objects": [
+        {
+            "id": 150128032,
+            "classId": 6533080,
+            "objectId": null,
+            "description": "",
+            "geometryType": "bitmap",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2024-03-01T15:31:17.748Z",
+            "updatedAt": "2024-03-01T15:31:17.748Z",
+            "tags": [],
+            "classTitle": "falciparum",
+            "bitmap": {
+                "data": "eJwBJwHY/olQTkcNChoKAAAADUlIRFIAAABoAAAAVwEDAAAA0v6SmgAAAAZQTFRFAAAA////pdmf3QAAAAF0Uk5TAEDm2GYAAADPSURBVHicxdQxDsMgDAVQRwwdOUKOwtGSY3XMUXKEjBkifkuMwbaUVqpaNdsTYOOAISKKADaSLz0Fq7liKGhTWdkIC+sGPbXqYEXohSMLKl0LM1WtKgGwG51Bg5GEBO4qJA9OTdmo5O8oFV9q6cnPvQWlzSlealfb9MovBKf0FU1G+KvsXtLPNX6kbE4zyx1/q8NodwqX8jdL/7RV3/nSO0qzVw+TyWsw6iex6d5kRZWcehWzaUfT8LX9g1Snnw15U5JU0BfKA8M5ms7RsuwBuvqDtG5ENNsAAAAASUVORK5CYIJHknne",
+                "origin": [
+                    1084,
+                    714
+                ]
+            }
+        }
+    ]
+}
