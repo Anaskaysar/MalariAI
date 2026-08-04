@@ -1,0 +1,134 @@
+{
+  "note": "Evaluated on the REAL 120-image test.json set (5,917 GT boxes) using each image's ACTUAL resolution (1944x1383, not the training-set's 1600x1200) -- the earlier version of this cell used the wrong hardcoded resolution and produced meaningless near-zero numbers.",
+  "n_test_images": 120,
+  "n_gt_boxes": 5917,
+  "test_image_dims_seen": [
+    [
+      1383,
+      1944
+    ]
+  ],
+  "naive_threshold_sweep": {
+    "0.3": {
+      "recall": 0.2219,
+      "precision": 0.7473,
+      "f1": 0.3422,
+      "n_pred": 1757,
+      "n_gt": 5917
+    },
+    "0.4": {
+      "recall": 0.2244,
+      "precision": 0.7685,
+      "f1": 0.3474,
+      "n_pred": 1728,
+      "n_gt": 5917
+    },
+    "0.5": {
+      "recall": 0.2297,
+      "precision": 0.7846,
+      "f1": 0.3553,
+      "n_pred": 1732,
+      "n_gt": 5917
+    },
+    "0.6": {
+      "recall": 0.2332,
+      "precision": 0.7877,
+      "f1": 0.3599,
+      "n_pred": 1752,
+      "n_gt": 5917
+    },
+    "0.7": {
+      "recall": 0.2363,
+      "precision": 0.7762,
+      "f1": 0.3623,
+      "n_pred": 1801,
+      "n_gt": 5917
+    },
+    "0.8": {
+      "recall": 0.2412,
+      "precision": 0.8021,
+      "f1": 0.3708,
+      "n_pred": 1779,
+      "n_gt": 5917
+    },
+    "0.9": {
+      "recall": 0.2528,
+      "precision": 0.7941,
+      "f1": 0.3835,
+      "n_pred": 1884,
+      "n_gt": 5917
+    }
+  },
+  "watershed_split_sweep": {
+    "thr=0.4_mindist=3": {
+      "recall": 0.6201,
+      "precision": 0.6733,
+      "f1": 0.6456,
+      "n_pred": 5449,
+      "n_gt": 5917
+    },
+    "thr=0.4_mindist=5": {
+      "recall": 0.6295,
+      "precision": 0.7687,
+      "f1": 0.6922,
+      "n_pred": 4846,
+      "n_gt": 5917
+    },
+    "thr=0.4_mindist=8": {
+      "recall": 0.6289,
+      "precision": 0.8328,
+      "f1": 0.7166,
+      "n_pred": 4468,
+      "n_gt": 5917
+    },
+    "thr=0.5_mindist=3": {
+      "recall": 0.6098,
+      "precision": 0.6907,
+      "f1": 0.6477,
+      "n_pred": 5224,
+      "n_gt": 5917
+    },
+    "thr=0.5_mindist=5": {
+      "recall": 0.6197,
+      "precision": 0.7856,
+      "f1": 0.6929,
+      "n_pred": 4668,
+      "n_gt": 5917
+    },
+    "thr=0.5_mindist=8": {
+      "recall": 0.6197,
+      "precision": 0.8438,
+      "f1": 0.7146,
+      "n_pred": 4346,
+      "n_gt": 5917
+    },
+    "thr=0.6_mindist=3": {
+      "recall": 0.5986,
+      "precision": 0.7087,
+      "f1": 0.649,
+      "n_pred": 4998,
+      "n_gt": 5917
+    },
+    "thr=0.6_mindist=5": {
+      "recall": 0.6128,
+      "precision": 0.8008,
+      "f1": 0.6943,
+      "n_pred": 4528,
+      "n_gt": 5917
+    },
+    "thr=0.6_mindist=8": {
+      "recall": 0.6104,
+      "precision": 0.8491,
+      "f1": 0.7103,
+      "n_pred": 4254,
+      "n_gt": 5917
+    }
+  },
+  "best_watershed_split_combo": "thr=0.4_mindist=8",
+  "stage1_watershed_table5_reference": {
+    "recall_iou50": 0.6688,
+    "centroid_in_box": 0.7904,
+    "bio_localization": 0.795,
+    "infected_sensitivity_iou50": 0.6634
+  }
+}

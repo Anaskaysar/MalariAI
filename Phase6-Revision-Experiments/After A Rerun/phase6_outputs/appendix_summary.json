@@ -1,0 +1,270 @@
+{
+  "Section A -- k-fold CV (Issue 4)": {
+    "n_folds": 3,
+    "n_epochs_cap": 30,
+    "early_stop_patience": 6,
+    "kfold_strategy": "StratifiedKFold",
+    "fold_results": [
+      {
+        "fold": 1,
+        "best_val_acc": 97.43,
+        "best_epoch": 28,
+        "n_epochs_run": 30,
+        "plateaued": false,
+        "per_class_acc": {
+          "red blood cell": 97.87,
+          "trophozoite": 80.86,
+          "ring": 82.91,
+          "schizont": 81.67,
+          "gametocyte": 85.42,
+          "leukocyte": 97.14
+        },
+        "val_acc_history": [
+          62.34,
+          82.43,
+          90.15,
+          88.26,
+          91.16,
+          91.03,
+          88.99,
+          90.77,
+          91.0,
+          95.64,
+          91.94,
+          94.4,
+          95.63,
+          95.2,
+          96.63,
+          95.89,
+          96.66,
+          96.36,
+          97.12,
+          96.6,
+          96.04,
+          95.76,
+          96.7,
+          97.42,
+          96.66,
+          96.86,
+          96.72,
+          97.43,
+          97.24,
+          97.22
+        ]
+      },
+      {
+        "fold": 2,
+        "best_val_acc": 97.09,
+        "best_epoch": 12,
+        "n_epochs_run": 20,
+        "plateaued": true,
+        "per_class_acc": {
+          "red blood cell": 98.02,
+          "trophozoite": 59.67,
+          "ring": 84.75,
+          "schizont": 38.98,
+          "gametocyte": 91.67,
+          "leukocyte": 88.24
+        },
+        "val_acc_history": [
+          68.63,
+          84.34,
+          85.94,
+          90.51,
+          86.76,
+          91.05,
+          93.53,
+          94.25,
+          93.25,
+          94.89,
+          94.14,
+          97.09,
+          96.0,
+          96.08,
+          93.3,
+          95.41,
+          94.06,
+          94.8,
+          95.31,
+          95.8
+        ]
+      },
+      {
+        "fold": 3,
+        "best_val_acc": 97.51,
+        "best_epoch": 30,
+        "n_epochs_run": 30,
+        "plateaued": false,
+        "per_class_acc": {
+          "red blood cell": 97.99,
+          "trophozoite": 80.65,
+          "ring": 83.05,
+          "schizont": 71.67,
+          "gametocyte": 85.42,
+          "leukocyte": 88.24
+        },
+        "val_acc_history": [
+          65.75,
+          80.02,
+          87.37,
+          89.4,
+          81.34,
+          88.31,
+          89.69,
+          90.88,
+          90.49,
+          93.94,
+          93.4,
+          95.92,
+          93.85,
+          95.82,
+          95.44,
+          95.18,
+          96.97,
+          96.31,
+          97.28,
+          96.02,
+          95.77,
+          97.39,
+          97.03,
+          97.05,
+          96.83,
+          97.35,
+          96.64,
+          97.26,
+          97.18,
+          97.51
+        ]
+      }
+    ],
+    "n_folds_completed": 3,
+    "status": "complete",
+    "mean_val_acc": 97.34,
+    "std_val_acc": 0.18,
+    "n_folds_not_plateaued": 2,
+    "elapsed_seconds": 4827.4
+  },
+  "Section B -- Grad-CAM++ localization (Issue 5)": {
+    "n_crops_evaluated": 429,
+    "n_correctly_classified": 330,
+    "overall_mean_energy_in_box_ratio": 0.8343,
+    "overall_std": 0.0219,
+    "overall_chance_baseline_area_fraction": 0.834,
+    "overall_ratio_minus_chance": 0.0003,
+    "per_class": {
+      "gametocyte": {
+        "n": 27,
+        "mean_energy_in_box_ratio": 0.8308,
+        "std": 0.0218,
+        "chance_baseline_area_fraction": 0.8311,
+        "ratio_minus_chance": -0.0003
+      },
+      "ring": {
+        "n": 59,
+        "mean_energy_in_box_ratio": 0.8239,
+        "std": 0.0129,
+        "chance_baseline_area_fraction": 0.8239,
+        "ratio_minus_chance": 0.0
+      },
+      "trophozoite": {
+        "n": 221,
+        "mean_energy_in_box_ratio": 0.8359,
+        "std": 0.022,
+        "chance_baseline_area_fraction": 0.8353,
+        "ratio_minus_chance": 0.0006
+      },
+      "schizont": {
+        "n": 23,
+        "mean_energy_in_box_ratio": 0.8499,
+        "std": 0.0254,
+        "chance_baseline_area_fraction": 0.8482,
+        "ratio_minus_chance": 0.0017
+      }
+    },
+    "metric_definition": "Fraction of total Grad-CAM++ heatmap activation falling inside the tight (pre-margin) ground-truth box, evaluated only on correctly-classified parasite-class crops from the held-out validation images. 1.0 = all activation on the cell; lower values indicate the explanation is spreading into the surrounding margin/background. chance_baseline_area_fraction is the tight box's own area fraction of the 64x64 crop (computed for every crop, not just correct ones) -- the score a spatially uninformative heatmap (e.g. uniform activation) would get by construction, since the box already covers most of a tightly-margined (6px) crop. Report ratio_minus_chance alongside the raw ratio so the metric can't be read as vacuous."
+  },
+  "Section B -- layer ablation": {
+    "features[-1] (default, final block)": {
+      "spatial_shape": [
+        2,
+        2
+      ],
+      "n": 330,
+      "mean_ratio": 0.8343,
+      "std": 0.0219,
+      "mean_chance": 0.8343,
+      "ratio_minus_chance": -0.0,
+      "effect_size_in_stds": -0.0
+    },
+    "features[5]": {
+      "spatial_shape": [
+        4,
+        4
+      ],
+      "n": 326,
+      "mean_ratio": 0.8831,
+      "std": 0.0665,
+      "mean_chance": 0.8346,
+      "ratio_minus_chance": 0.0485,
+      "effect_size_in_stds": 0.73
+    },
+    "features[4]": {
+      "spatial_shape": [
+        4,
+        4
+      ],
+      "n": 326,
+      "mean_ratio": 0.8133,
+      "std": 0.0673,
+      "mean_chance": 0.834,
+      "ratio_minus_chance": -0.0208,
+      "effect_size_in_stds": -0.31
+    },
+    "features[3]": {
+      "spatial_shape": [
+        8,
+        8
+      ],
+      "n": 330,
+      "mean_ratio": 0.7902,
+      "std": 0.0878,
+      "mean_chance": 0.8343,
+      "ratio_minus_chance": -0.0441,
+      "effect_size_in_stds": -0.5
+    },
+    "features[2]": {
+      "spatial_shape": [
+        16,
+        16
+      ],
+      "n": 330,
+      "mean_ratio": 0.8224,
+      "std": 0.106,
+      "mean_chance": 0.8343,
+      "ratio_minus_chance": -0.0119,
+      "effect_size_in_stds": -0.11
+    }
+  },
+  "Section C -- U-Net baseline (Issue 6)": {
+    "model": "U-Net (from-scratch, box-derived ellipse masks, 512x384 downsampled)",
+    "oversized_filter_applied": "MAX_CELL_W=220, MAX_CELL_H=220 (same as Stage 1's is_oversized)",
+    "total_gt_cells": 16226,
+    "total_predicted_boxes": 5640,
+    "recall_at_iou50": 0.2828,
+    "precision_at_iou50": 0.8135,
+    "f1_at_iou50": 0.4196,
+    "recall_at_relaxed_iou": {
+      "iou25": 0.3343,
+      "iou30": 0.3316,
+      "iou50": 0.2828
+    },
+    "centroid_in_box_recall": 0.3356,
+    "bio_localization_recall": 0.3367,
+    "infected_cell_sensitivity": {
+      "iou25": 0.2448,
+      "iou30": 0.2424,
+      "iou50": 0.2051
+    },
+    "total_infected_gt": 429
+  }
+}

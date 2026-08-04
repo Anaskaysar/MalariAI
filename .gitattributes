@@ -1,0 +1,23 @@
+# ============================================================
+# MalariAI — .gitattributes
+# Normalize line endings to LF for all text files so the repo
+# is consistent regardless of the OS it's edited/cloned on
+# (this repo has been touched from Windows, Kaggle, and Linux).
+# ============================================================
+
+* text=auto eol=lf
+
+# Explicit binary types (avoid any auto-detection surprises)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.pth binary
+*.pt binary
+*.ckpt binary
+*.docx binary
+*.zip binary
+
+# Jupyter notebooks are JSON — keep them LF too
+*.ipynb text eol=lf

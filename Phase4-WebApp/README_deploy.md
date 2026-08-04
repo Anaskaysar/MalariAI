@@ -46,7 +46,7 @@ Dockerfile
 checkpoints/stage2_best.pth     ← upload after Phase 3 training
 ```
 
-### Dockerfile (to be created in Phase 4)
+### Dockerfile
 
 ```dockerfile
 FROM python:3.10-slim
@@ -85,4 +85,4 @@ scipy>=1.11
 
 ## Status
 
-⏳ To be built after Phase 3 (Pipeline B) training is complete and checkpoints are saved.
+Deployed and live at huggingface.co/spaces/Kaysarulanas/MalariAI (Docker SDK, CPU basic tier). The deployed Space is a separate git repo (see the `MalariAI/` folder at the repo root, or push updates directly to the HF Space remote).

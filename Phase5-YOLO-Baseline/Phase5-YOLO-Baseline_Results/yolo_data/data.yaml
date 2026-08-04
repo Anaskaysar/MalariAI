@@ -1,0 +1,12 @@
+path: /kaggle/working/yolo_data
+train: images/train
+val: images/val
+test: images/test
+
+names:
+  0: red blood cell
+  1: trophozoite
+  2: ring
+  3: schizont
+  4: gametocyte
+  5: leukocyte

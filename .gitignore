@@ -1,6 +1,6 @@
 # ============================================================
 # MalariAI — .gitignore
-# Public repo: code + results JSONs + paper source only.
+# Public repo: code + results JSONs only.
 # Data, checkpoints, internal docs, and build artifacts stay local.
 # ============================================================
 
@@ -37,18 +37,22 @@ Phase3-PipelineB/checkpoints_v2/
 Phase3-PipelineB/Phase3-PipelineB/
 Phase4-WebApp/checkpoints/
 Phase4-WebApp/static/uploads/
+Phase5-YOLO-Baseline/**/checkpoints-kaggle-80epoch/weights/
+**/yolo_data/images/
 
 # ── Internal working documents (not for public) ───────────────
-paper_writing/draft/
-paper_writing/previous_study/
-paper_writing/research_strategy_*.md
-paper_writing/malariai_project_master_plan.html
-paper_writing/malaria_literature_landscape.html
-paper_writing/coauthor_reading_guide.md
-paper_writing/v2_figures/
-paper_writing/v2_results/
-paper_writing/cmig_submission/system_diagram_brief.md
-paper_writing/cmig_submission/system_diagram_v1.png
+paper_writing/
+1.Revisions/
+31st May/
+CMIG_Final/
+malariai_medical_ui.html
+malariai_ui_proposal.html
+email_to_professor.md
+author_guide.pdf
+references.bib
+
+# ── Nested deployment repo (separate HF Space git repo, not a submodule) ──
+MalariAI/
 
 # ── LaTeX build artefacts (compile on Overleaf) ───────────────
 *.aux
@@ -80,6 +84,9 @@ __pycache__/
 *.pyo
 *.pyd
 .Python
+
+# ── Ultralytics/YOLO regenerable cache ──────────────────────────
+*.cache
 
 # ── Jupyter ───────────────────────────────────────────────────
 .ipynb_checkpoints/

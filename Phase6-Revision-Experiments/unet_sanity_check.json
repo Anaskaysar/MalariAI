@@ -1,0 +1,66 @@
+{
+  "diagnostics": {
+    "avg_positive_pixel_fraction_thr0.5": 0.3011,
+    "avg_raw_components_per_image_thr0.5": 28.85,
+    "avg_gt_boxes_per_image": 67.33
+  },
+  "threshold_sweep": {
+    "0.2": {
+      "recall": 0.241,
+      "precision": 0.8167,
+      "f1": 0.3722,
+      "n_pred": 4789,
+      "n_gt": 16226
+    },
+    "0.3": {
+      "recall": 0.2556,
+      "precision": 0.8222,
+      "f1": 0.39,
+      "n_pred": 5045,
+      "n_gt": 16226
+    },
+    "0.4": {
+      "recall": 0.268,
+      "precision": 0.8235,
+      "f1": 0.4044,
+      "n_pred": 5280,
+      "n_gt": 16226
+    },
+    "0.5": {
+      "recall": 0.2779,
+      "precision": 0.8251,
+      "f1": 0.4158,
+      "n_pred": 5466,
+      "n_gt": 16226
+    },
+    "0.6": {
+      "recall": 0.2886,
+      "precision": 0.8264,
+      "f1": 0.4278,
+      "n_pred": 5667,
+      "n_gt": 16226
+    },
+    "0.7": {
+      "recall": 0.3059,
+      "precision": 0.8308,
+      "f1": 0.4472,
+      "n_pred": 5975,
+      "n_gt": 16226
+    }
+  },
+  "best_threshold": "0.7",
+  "best_threshold_no_area_filter": {
+    "recall": 0.3059,
+    "precision": 0.8219,
+    "f1": 0.4459,
+    "n_pred": 6040,
+    "n_gt": 16226
+  },
+  "original_result_for_reference": {
+    "threshold": 0.5,
+    "area_filter": true,
+    "recall": 0.2828,
+    "precision": 0.8135,
+    "f1": 0.4196
+  }
+}
