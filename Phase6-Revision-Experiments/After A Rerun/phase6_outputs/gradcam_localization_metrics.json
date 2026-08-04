@@ -1,0 +1,39 @@
+{
+  "n_crops_evaluated": 429,
+  "n_correctly_classified": 330,
+  "overall_mean_energy_in_box_ratio": 0.8343,
+  "overall_std": 0.0219,
+  "overall_chance_baseline_area_fraction": 0.834,
+  "overall_ratio_minus_chance": 0.0003,
+  "per_class": {
+    "gametocyte": {
+      "n": 27,
+      "mean_energy_in_box_ratio": 0.8308,
+      "std": 0.0218,
+      "chance_baseline_area_fraction": 0.8311,
+      "ratio_minus_chance": -0.0003
+    },
+    "ring": {
+      "n": 59,
+      "mean_energy_in_box_ratio": 0.8239,
+      "std": 0.0129,
+      "chance_baseline_area_fraction": 0.8239,
+      "ratio_minus_chance": 0.0
+    },
+    "trophozoite": {
+      "n": 221,
+      "mean_energy_in_box_ratio": 0.8359,
+      "std": 0.022,
+      "chance_baseline_area_fraction": 0.8353,
+      "ratio_minus_chance": 0.0006
+    },
+    "schizont": {
+      "n": 23,
+      "mean_energy_in_box_ratio": 0.8499,
+      "std": 0.0254,
+      "chance_baseline_area_fraction": 0.8482,
+      "ratio_minus_chance": 0.0017
+    }
+  },
+  "metric_definition": "Fraction of total Grad-CAM++ heatmap activation falling inside the tight (pre-margin) ground-truth box, evaluated only on correctly-classified parasite-class crops from the held-out validation images. 1.0 = all activation on the cell; lower values indicate the explanation is spreading into the surrounding margin/background. chance_baseline_area_fraction is the tight box's own area fraction of the 64x64 crop (computed for every crop, not just correct ones) -- the score a spatially uninformative heatmap (e.g. uniform activation) would get by construction, since the box already covers most of a tightly-margined (6px) crop. Report ratio_minus_chance alongside the raw ratio so the metric can't be read as vacuous."
+}

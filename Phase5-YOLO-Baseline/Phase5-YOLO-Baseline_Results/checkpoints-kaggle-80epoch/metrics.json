@@ -1,0 +1,12 @@
+{
+  "map_50": 0.7124,
+  "per_class_ap": {
+    "red blood cell": 0.9624,
+    "trophozoite": 0.7705,
+    "ring": 0.7565,
+    "schizont": 0.3845,
+    "gametocyte": 0.5727,
+    "leukocyte": 0.8279
+  },
+  "model": "YOLOv8s"
+}

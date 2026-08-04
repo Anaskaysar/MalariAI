@@ -1,0 +1,22 @@
+{
+  "model": "U-Net (from-scratch, box-derived ellipse masks, 512x384 downsampled)",
+  "oversized_filter_applied": "MAX_CELL_W=220, MAX_CELL_H=220 (same as Stage 1's is_oversized)",
+  "total_gt_cells": 16226,
+  "total_predicted_boxes": 5640,
+  "recall_at_iou50": 0.2828,
+  "precision_at_iou50": 0.8135,
+  "f1_at_iou50": 0.4196,
+  "recall_at_relaxed_iou": {
+    "iou25": 0.3343,
+    "iou30": 0.3316,
+    "iou50": 0.2828
+  },
+  "centroid_in_box_recall": 0.3356,
+  "bio_localization_recall": 0.3367,
+  "infected_cell_sensitivity": {
+    "iou25": 0.2448,
+    "iou30": 0.2424,
+    "iou50": 0.2051
+  },
+  "total_infected_gt": 429
+}

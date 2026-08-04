@@ -1,0 +1,62 @@
+{
+  "features[-1] (default, final block)": {
+    "spatial_shape": [
+      2,
+      2
+    ],
+    "n": 330,
+    "mean_ratio": 0.8343,
+    "std": 0.0219,
+    "mean_chance": 0.8343,
+    "ratio_minus_chance": -0.0,
+    "effect_size_in_stds": -0.0
+  },
+  "features[5]": {
+    "spatial_shape": [
+      4,
+      4
+    ],
+    "n": 326,
+    "mean_ratio": 0.8831,
+    "std": 0.0665,
+    "mean_chance": 0.8346,
+    "ratio_minus_chance": 0.0485,
+    "effect_size_in_stds": 0.73
+  },
+  "features[4]": {
+    "spatial_shape": [
+      4,
+      4
+    ],
+    "n": 326,
+    "mean_ratio": 0.8133,
+    "std": 0.0673,
+    "mean_chance": 0.834,
+    "ratio_minus_chance": -0.0208,
+    "effect_size_in_stds": -0.31
+  },
+  "features[3]": {
+    "spatial_shape": [
+      8,
+      8
+    ],
+    "n": 330,
+    "mean_ratio": 0.7902,
+    "std": 0.0878,
+    "mean_chance": 0.8343,
+    "ratio_minus_chance": -0.0441,
+    "effect_size_in_stds": -0.5
+  },
+  "features[2]": {
+    "spatial_shape": [
+      16,
+      16
+    ],
+    "n": 330,
+    "mean_ratio": 0.8224,
+    "std": 0.106,
+    "mean_chance": 0.8343,
+    "ratio_minus_chance": -0.0119,
+    "effect_size_in_stds": -0.11
+  }
+}

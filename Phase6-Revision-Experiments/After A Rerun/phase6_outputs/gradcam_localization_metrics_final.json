@@ -1,0 +1,56 @@
+{
+  "target_layer": "features[5] (selected via ablation -- see gradcam_layer_ablation.json)",
+  "n_crops_evaluated": 429,
+  "n_correctly_classified": 330,
+  "overall_mean_energy_in_box_ratio": 0.8831,
+  "overall_std": 0.0665,
+  "overall_chance_baseline_area_fraction": 0.8346,
+  "overall_ratio_minus_chance": 0.0485,
+  "paired_ttest": {
+    "t_stat": 13.5798,
+    "p_value": 1.400622094123898e-33
+  },
+  "wilcoxon_signed_rank": {
+    "stat": 7762.0,
+    "p_value": 1.3899579056514839e-28
+  },
+  "per_class": {
+    "gametocyte": {
+      "n": 27,
+      "mean_ratio": 0.8968,
+      "std": 0.073,
+      "mean_chance": 0.8308,
+      "ratio_minus_chance": 0.066,
+      "paired_ttest_p": 0.0001
+    },
+    "ring": {
+      "n": 56,
+      "mean_ratio": 0.857,
+      "std": 0.0789,
+      "mean_chance": 0.8235,
+      "ratio_minus_chance": 0.0334,
+      "paired_ttest_p": 0.0026
+    },
+    "trophozoite": {
+      "n": 221,
+      "mean_ratio": 0.8832,
+      "std": 0.0601,
+      "mean_chance": 0.836,
+      "ratio_minus_chance": 0.0472,
+      "paired_ttest_p": 0.0
+    },
+    "schizont": {
+      "n": 22,
+      "mean_ratio": 0.9316,
+      "std": 0.0503,
+      "mean_chance": 0.8525,
+      "ratio_minus_chance": 0.0791,
+      "paired_ttest_p": 0.0
+    }
+  },
+  "previous_default_layer_result_for_reference": {
+    "target_layer": "features[-1] (original default, pre-ablation)",
+    "ratio_minus_chance": 0.0003,
+    "note": "from the first real Section B run -- kept here for the before/after record"
+  }
+}
